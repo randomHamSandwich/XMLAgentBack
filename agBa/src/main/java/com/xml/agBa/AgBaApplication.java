@@ -1,13 +1,13 @@
-package com.xml.agentBack20;
+package com.xml.agBa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AgentBack20Application {
+public class AgBaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AgentBack20Application.class, args);
+		SpringApplication.run(AgBaApplication.class, args);
 	}
 
 }
