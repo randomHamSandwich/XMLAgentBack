@@ -2,10 +2,18 @@ package com.xml.agBa.model;
 
 import java.util.Set;
 
-public class TipMenjaca {
-	private int idTipMenjaca;
-	private int naziv;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	private Set<Vozilo> vozila;
+public class TipMenjaca {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idTipMenjaca;
+	@Column
+	private String naziv;
+
+//	private Set<Vozilo> vozila;
 
 }

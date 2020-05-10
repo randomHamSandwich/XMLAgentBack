@@ -2,11 +2,19 @@ package com.xml.agBa.model;
 
 import java.util.Set;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class OglasAgenta {
-	private int idOglasAgent;
-	private Cenovnik cenovnik;
-	private Agent agent;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idOglasAgent;
 	
-	private Set<Zahtev> zahtevi;
+//	private Cenovnik cenovnik;
+//	
+//	private Agent agent;
+//	
+//	private Set<Zahtev> zahtevi;
 
 }

@@ -8,7 +8,8 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("AGENT")
 public class Agent extends Korisnik{
-	private Set<Cenovnik> cenovnici;
-	private Set<OglasAgenta> oglasiAgenta;
+	
+//	private Set<Cenovnik> cenovnici;
+//	private Set<OglasAgenta> oglasiAgenta;
 
 }

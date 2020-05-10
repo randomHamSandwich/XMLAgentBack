@@ -1,11 +1,21 @@
 package com.xml.agBa.model;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Vozilo {
-	private int idVozilo;
-	private int kilometraza;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idVozilo;
+	@Column
+	private double kilometraza;
+	@Column
 	private int brojSedistaZaDecu;
-	private int cdw;
+	@Column
+	private float cdw;
 	
-	private Lokaija lokaija;
+//	private Lokaija lokaija;
 
 }

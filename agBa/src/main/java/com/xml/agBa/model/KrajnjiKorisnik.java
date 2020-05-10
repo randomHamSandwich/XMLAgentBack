@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("KRAJNI_KORISNIK")
 public class KrajnjiKorisnik extends Korisnik {
-	private Set<Zahtev> zahtevi;
-	private Set<OglasKorsnika> oglasiKorsnika;
+//	private Set<Zahtev> zahtevi;
+//	private Set<OglasKorsnika> oglasiKorsnika;
 
 }

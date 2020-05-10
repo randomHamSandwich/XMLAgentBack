@@ -2,13 +2,21 @@ package com.xml.agBa.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Zahtev {
-	private int idZahtev;
-	private int status;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idZahtev;
+	@Column
+	private StatusZahteva status;
 
 	
-	private KrajnjiKorisnik krajnjiKorisnik;
-	private Set<OglasAgenta> oglasiAgenta;
-	private Set<OglasKorsnika> oglasiKorsnika;
+//	private KrajnjiKorisnik krajnjiKorisnik;
+//	private Set<OglasAgenta> oglasiAgenta;
+//	private Set<OglasKorsnika> oglasiKorsnika;
 
 }

@@ -2,15 +2,26 @@ package com.xml.agBa.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Lokaija {
-	private int idLokacija;
-	private int grad;
-	private int ulica;
-	private int brojUlice;
-	private int drzava;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idLokacija;
+	@Column
+	private String grad;
+	@Column
+	private String ulica;
+	@Column
+	private String brojUlice;
+	@Column
+	private String drzava;
 
-
-	private Set<Vozilo> vozila;
-	private Set<Korisnik> korisnici;
+//
+//	private Set<Vozilo> vozila;
+//	private Set<Korisnik> korisnici;
 
 }
