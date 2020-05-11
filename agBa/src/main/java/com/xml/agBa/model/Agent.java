@@ -2,14 +2,19 @@ package com.xml.agBa.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("AGENT")
 public class Agent extends Korisnik{
 	
-//	private Set<Cenovnik> cenovnici;
-//	private Set<OglasAgenta> oglasiAgenta;
+	@OneToMany(mappedBy = "agent", cascade = CascadeType.ALL)
+	private Set<Cenovnik> cenovnici;
+	
+	@OneToMany
+	private Set<OglasAgenta> oglasiAgenta;
 
 }

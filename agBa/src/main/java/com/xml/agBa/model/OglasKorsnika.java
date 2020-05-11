@@ -2,7 +2,14 @@ package com.xml.agBa.model;
 
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class OglasKorsnika {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idKorisnikOglas;
 	private double cenaPoDanu;
 

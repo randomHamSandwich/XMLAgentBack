@@ -2,12 +2,15 @@ package com.xml.agBa.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-/** @pdOid 6b73d82b-afdf-4265-b1e3-ce55c2d40d37 */
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+@Entity
 public class Cenovnik {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,5 +21,9 @@ public class Cenovnik {
 	private double cenaPoKilometru;
 	
 //	private Set<OglasAgenta> oglasiAgenta;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_korisnik", nullable = true)
+	private Agent agent;
 
 }

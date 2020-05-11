@@ -1,11 +1,17 @@
 package com.xml.agBa.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Roles {
@@ -17,12 +23,20 @@ public class Roles {
 	@Enumerated(EnumType.STRING)
 	private RoleNaziv nazivRole;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idRola"), inverseJoinColumns = @JoinColumn(name = "idKorisnik"))
+	private Set<Korisnik> korisnici;
+
 	public Roles() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Roles(RoleNaziv nazivRole) {
+	public Roles(Long idRola, RoleNaziv nazivRole, Set<Korisnik> korisnici) {
 		super();
+		this.idRola = idRola;
 		this.nazivRole = nazivRole;
+		this.korisnici = korisnici;
 	}
 
 	public Long getIdRola() {
@@ -41,10 +55,12 @@ public class Roles {
 		this.nazivRole = nazivRole;
 	}
 
-	@Override
-	public String toString() {
-		return "Roles [idRola=" + idRola + ", nazivRole=" + nazivRole + "]";
+	public Set<Korisnik> getKorisnici() {
+		return korisnici;
 	}
-	
-	
+
+	public void setKorisnici(Set<Korisnik> korisnici) {
+		this.korisnici = korisnici;
+	}
+
 }
