@@ -11,10 +11,11 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue("AGENT")
 public class Agent extends Korisnik{
 	
-	@OneToMany(mappedBy = "agent", cascade = CascadeType.ALL)
-	private Set<Cenovnik> cenovnici;
+//	@OneToMany(mappedBy = "agent", cascade = CascadeType.ALL)
+//	private Set<Cenovnik> cenovnici;
 	
-	@OneToMany
-	private Set<OglasAgenta> oglasiAgenta;
+//	iz cenonvnika imamo ovaj info
+//	@OneToMany
+//	private Set<OglasAgenta> oglasiAgenta;
 
 }

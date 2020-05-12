@@ -31,6 +31,31 @@ public class TipMenjaca {
 		this.naziv = naziv;
 		this.vozila = vozila;
 	}
+
+	public Long getIdTipMenjaca() {
+		return idTipMenjaca;
+	}
+
+	public void setIdTipMenjaca(Long idTipMenjaca) {
+		this.idTipMenjaca = idTipMenjaca;
+	}
+
+	public String getNaziv() {
+		return naziv;
+	}
+
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
+	}
+
+	public Set<Vozilo> getVozila() {
+		return vozila;
+	}
+
+	public void setVozila(Set<Vozilo> vozila) {
+		this.vozila = vozila;
+	}
+	
 	
 	
 	

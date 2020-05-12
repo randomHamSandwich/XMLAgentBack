@@ -1,6 +1,5 @@
 package com.xml.agBa.model;
 
-import javax.persistence.DiscriminatorColumn;
 import static javax.persistence.DiscriminatorType.STRING;
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
@@ -8,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = SINGLE_TABLE)
@@ -44,6 +45,9 @@ public class Korisnik {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_lokacija")
 	private Lokacija lokaija;
+	
+	@OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL)
+	private Set<Cenovnik> cenovnici;
 
 	public Korisnik() {
 		super();
@@ -51,7 +55,7 @@ public class Korisnik {
 	}
 
 	public Korisnik(Long idKorisnik, String email, String lozinka, String brojTelefona, StatusKorisnika status,
-			Set<Roles> roles, Lokacija lokaija) {
+			Set<Roles> roles, Lokacija lokaija, Set<Cenovnik> cenovnici) {
 		super();
 		this.idKorisnik = idKorisnik;
 		this.email = email;
@@ -60,6 +64,7 @@ public class Korisnik {
 		this.status = status;
 		this.roles = roles;
 		this.lokaija = lokaija;
+		this.cenovnici = cenovnici;
 	}
 
 	public Long getIdKorisnik() {
@@ -117,5 +122,15 @@ public class Korisnik {
 	public void setLokaija(Lokacija lokaija) {
 		this.lokaija = lokaija;
 	}
+
+	public Set<Cenovnik> getCenovnici() {
+		return cenovnici;
+	}
+
+	public void setCenovnici(Set<Cenovnik> cenovnici) {
+		this.cenovnici = cenovnici;
+	}
+
+	
 
 }
