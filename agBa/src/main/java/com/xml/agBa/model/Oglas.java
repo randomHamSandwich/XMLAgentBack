@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.val;
 
@@ -45,6 +46,10 @@ public class Oglas {
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST ,CascadeType.REFRESH} )
 	@JoinColumn(name = "id_cenovnik")
 	private Cenovnik cenovnik;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_vozilo", nullable = false)
+    private Vozilo vozilo;
 
 	public Oglas() {
 		super();
