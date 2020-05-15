@@ -8,6 +8,6 @@ import com.xml.agBa.model.VrstaGoriva;
 
 public interface VrstaGorivaRepo extends JpaRepository<VrstaGoriva, Long>{
 
-	Optional<VrstaGoriva> findByEmail(String idVrstaGoriva);
-	Boolean existsByEmail(String idVrstaGoriva);
+	Optional<VrstaGoriva> findByidVrstaGoriva(String idVrstaGoriva);
+	Boolean existsByidVrstaGoriva(String idVrstaGoriva);
 }

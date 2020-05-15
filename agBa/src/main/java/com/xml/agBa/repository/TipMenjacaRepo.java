@@ -8,6 +8,6 @@ import com.xml.agBa.model.TipMenjaca;
 
 public interface TipMenjacaRepo  extends JpaRepository<TipMenjaca, Long>{
 
-	Optional<TipMenjaca> findByEmail(String idTipMenjaca);
-	Boolean existsByEmail(String idTipMenjaca);
+	Optional<TipMenjaca> findByIdTipMenjaca(String idTipMenjaca);
+	Boolean existsByIdTipMenjaca(String idTipMenjaca);
 }

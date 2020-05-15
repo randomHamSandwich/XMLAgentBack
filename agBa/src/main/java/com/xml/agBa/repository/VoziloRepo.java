@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.xml.agBa.model.Vozilo;
 
 public interface VoziloRepo  extends JpaRepository<Vozilo, Long>{
-	Optional<Vozilo> findById(String id);
-	Boolean existsById(String id);
+	Optional<Vozilo> findByIdVozilo(String idVozilo);
+	Boolean existsByIdVozilo(String idVozilo);
 	
 }

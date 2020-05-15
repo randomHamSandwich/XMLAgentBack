@@ -8,6 +8,6 @@ import com.xml.agBa.model.Zahtev;
 
 public interface ZahtevRepo  extends JpaRepository<Zahtev, Long>{
 
-	Optional<Zahtev> findByEmail(String idZahtev);
-	Boolean existsByEmail(String idZahtev);
+	Optional<Zahtev> findByidZahtev(String idZahtev);
+	Boolean existsByidZahtev(String idZahtev);
 }
