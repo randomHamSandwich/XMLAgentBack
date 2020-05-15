@@ -1,5 +1,14 @@
 package com.xml.agBa.service;
 
-public interface VoziloService {
+import java.util.List;
 
+import com.xml.agBa.model.Vozilo;
+
+public interface VoziloService {
+	
+	Vozilo findVoziloById();
+	
+	List<Vozilo> findAll();
+	
+	Vozilo save(Vozilo vozilo);
 }
