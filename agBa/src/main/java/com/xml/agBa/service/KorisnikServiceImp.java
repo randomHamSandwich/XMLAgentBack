@@ -24,7 +24,7 @@ public class KorisnikServiceImp implements KorisnikService {
 		// TODO Auto-generated method stub
 		Korisnik korisnik = new Korisnik();
 		korisnik.setEmail(korisnikDTO.getEmail());
-		korisnik.setBrojTelefona(korisnik.getBrojTelefona());
+		korisnik.setBrojTelefona(korisnikDTO.getBrojTelefona());
 		korisnik = korisnikRepo.save(korisnik);
 		return new KorisnikDTO(korisnik);
 	}
