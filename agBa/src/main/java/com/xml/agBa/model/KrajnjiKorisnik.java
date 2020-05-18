@@ -23,9 +23,10 @@ public class KrajnjiKorisnik extends Korisnik {
 		// TODO Auto-generated constructor stub
 	}
 
-	public KrajnjiKorisnik(Long idKorisnik, String email, String lozinka, String brojTelefona, StatusKorisnika status,
-			Set<Roles> roles, Lokacija lokaija, Set<Cenovnik> cenovnici) {
-		super(idKorisnik, email, lozinka, brojTelefona, status, roles, lokaija, cenovnici);
+	public KrajnjiKorisnik(Long idKorisnik, String email, String lozinka, String brojTelefona, String ulica,
+			String brojUlice, String grad, String drzava, StatusKorisnika status, Set<Roles> roles,
+			Set<Cenovnik> cenovnici) {
+		super(idKorisnik, email, lozinka, brojTelefona, ulica, brojUlice, grad, drzava, status, roles, cenovnici);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
 @Entity
 public class Vozilo {
 	@Id
@@ -21,17 +22,19 @@ public class Vozilo {
 	private int brojSedistaZaDecu;
 	@Column
 	private float cdw;
-// TODO	
-//	private Oglas oglas;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_lokacija", nullable = true)
-	private Lokacija lokaija;
-	
+	@Column
+	private String ulica;
+	@Column
+	private String brojUlice;
+	@Column
+	private String grad;
+	@Column
+	private String drzava;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_marka_vozila", nullable = true)
 	private MarkaVozila markaVozila;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_model_vozila", nullable = true)
 	private ModelVozila modelVozila;
@@ -39,33 +42,36 @@ public class Vozilo {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_vrsta_goriva", nullable = true)
 	private VrstaGoriva vrstaGoriva;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "", nullable = true)
 	private TipMenjaca tipMenjaca;
-	
-	@OneToOne(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
-            mappedBy = "vozilo")
-    private Oglas oglas;
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "vozilo")
+	private Oglas oglas;
 
 	public Vozilo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Vozilo(Long idVozilo, double kilometraza, int brojSedistaZaDecu, float cdw, Lokacija lokaija,
-			MarkaVozila markaVozila, ModelVozila modelVozila, VrstaGoriva vrstaGoriva, TipMenjaca tipMenjaca) {
+	public Vozilo(Long idVozilo, double kilometraza, int brojSedistaZaDecu, float cdw, String ulica, String brojUlice,
+			String grad, String drzava, MarkaVozila markaVozila, ModelVozila modelVozila, VrstaGoriva vrstaGoriva,
+			TipMenjaca tipMenjaca, Oglas oglas) {
 		super();
 		this.idVozilo = idVozilo;
 		this.kilometraza = kilometraza;
 		this.brojSedistaZaDecu = brojSedistaZaDecu;
 		this.cdw = cdw;
-		this.lokaija = lokaija;
+		this.ulica = ulica;
+		this.brojUlice = brojUlice;
+		this.grad = grad;
+		this.drzava = drzava;
 		this.markaVozila = markaVozila;
 		this.modelVozila = modelVozila;
 		this.vrstaGoriva = vrstaGoriva;
 		this.tipMenjaca = tipMenjaca;
+		this.oglas = oglas;
 	}
 
 	public Long getIdVozilo() {
@@ -100,12 +106,36 @@ public class Vozilo {
 		this.cdw = cdw;
 	}
 
-	public Lokacija getLokaija() {
-		return lokaija;
+	public String getUlica() {
+		return ulica;
 	}
 
-	public void setLokaija(Lokacija lokaija) {
-		this.lokaija = lokaija;
+	public void setUlica(String ulica) {
+		this.ulica = ulica;
+	}
+
+	public String getBrojUlice() {
+		return brojUlice;
+	}
+
+	public void setBrojUlice(String brojUlice) {
+		this.brojUlice = brojUlice;
+	}
+
+	public String getGrad() {
+		return grad;
+	}
+
+	public void setGrad(String grad) {
+		this.grad = grad;
+	}
+
+	public String getDrzava() {
+		return drzava;
+	}
+
+	public void setDrzava(String drzava) {
+		this.drzava = drzava;
 	}
 
 	public MarkaVozila getMarkaVozila() {
@@ -139,7 +169,13 @@ public class Vozilo {
 	public void setTipMenjaca(TipMenjaca tipMenjaca) {
 		this.tipMenjaca = tipMenjaca;
 	}
-	
-	
-	
+
+	public Oglas getOglas() {
+		return oglas;
+	}
+
+	public void setOglas(Oglas oglas) {
+		this.oglas = oglas;
+	}
+
 }

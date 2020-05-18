@@ -35,6 +35,15 @@ public class Korisnik {
 	private String lozinka;
 	@Column
 	private String brojTelefona;
+	@Column
+	private String ulica;
+	@Column
+	private String brojUlice;
+	@Column
+	private String grad;
+	@Column
+	private String drzava;
+
 	@Enumerated(EnumType.STRING)
 	private StatusKorisnika status;
 
@@ -42,10 +51,6 @@ public class Korisnik {
 	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idKorisnik"), inverseJoinColumns = @JoinColumn(name = "idRola"))
 	private Set<Roles> roles;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_lokacija")
-	private Lokacija lokaija;
-	
 	@OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL)
 	private Set<Cenovnik> cenovnici;
 
@@ -54,16 +59,19 @@ public class Korisnik {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Korisnik(Long idKorisnik, String email, String lozinka, String brojTelefona, StatusKorisnika status,
-			Set<Roles> roles, Lokacija lokaija, Set<Cenovnik> cenovnici) {
+	public Korisnik(Long idKorisnik, String email, String lozinka, String brojTelefona, String ulica, String brojUlice,
+			String grad, String drzava, StatusKorisnika status, Set<Roles> roles, Set<Cenovnik> cenovnici) {
 		super();
 		this.idKorisnik = idKorisnik;
 		this.email = email;
 		this.lozinka = lozinka;
 		this.brojTelefona = brojTelefona;
+		this.ulica = ulica;
+		this.brojUlice = brojUlice;
+		this.grad = grad;
+		this.drzava = drzava;
 		this.status = status;
 		this.roles = roles;
-		this.lokaija = lokaija;
 		this.cenovnici = cenovnici;
 	}
 
@@ -99,6 +107,38 @@ public class Korisnik {
 		this.brojTelefona = brojTelefona;
 	}
 
+	public String getUlica() {
+		return ulica;
+	}
+
+	public void setUlica(String ulica) {
+		this.ulica = ulica;
+	}
+
+	public String getBrojUlice() {
+		return brojUlice;
+	}
+
+	public void setBrojUlice(String brojUlice) {
+		this.brojUlice = brojUlice;
+	}
+
+	public String getGrad() {
+		return grad;
+	}
+
+	public void setGrad(String grad) {
+		this.grad = grad;
+	}
+
+	public String getDrzava() {
+		return drzava;
+	}
+
+	public void setDrzava(String drzava) {
+		this.drzava = drzava;
+	}
+
 	public StatusKorisnika getStatus() {
 		return status;
 	}
@@ -115,14 +155,6 @@ public class Korisnik {
 		this.roles = roles;
 	}
 
-	public Lokacija getLokaija() {
-		return lokaija;
-	}
-
-	public void setLokaija(Lokacija lokaija) {
-		this.lokaija = lokaija;
-	}
-
 	public Set<Cenovnik> getCenovnici() {
 		return cenovnici;
 	}
@@ -130,7 +162,5 @@ public class Korisnik {
 	public void setCenovnici(Set<Cenovnik> cenovnici) {
 		this.cenovnici = cenovnici;
 	}
-
-	
 
 }

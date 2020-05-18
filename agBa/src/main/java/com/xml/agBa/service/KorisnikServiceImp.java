@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.KorisnikDTO;
 import com.xml.agBa.model.Korisnik;
+import com.xml.agBa.model.KrajnjiKorisnik;
 import com.xml.agBa.repository.KorisnikRepo;
 
 @Service
@@ -40,6 +41,18 @@ public class KorisnikServiceImp implements KorisnikService {
 		}
 
 		return KorisniksDTO;
+	}
+
+
+	@Override
+	public Korisnik save(Korisnik korisnik) {
+		return korisnikRepo.save(korisnik);
+	}
+
+
+	@Override
+	public KrajnjiKorisnik save(KrajnjiKorisnik krajnjiKorisnik) {
+		return korisnikRepo.save(krajnjiKorisnik);
 	}
 
 
