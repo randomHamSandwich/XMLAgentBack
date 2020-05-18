@@ -30,11 +30,6 @@ export class AppComponent implements OnInit {
           return false;
         }
 
-        else if (role === 'ADMINISTRAOR_KLINIKE') {
-          this.authority = 'ak';
-          return false;
-        }
-
         else if (role === 'AGENT') {
           this.authority = 'ag';
           return false;
