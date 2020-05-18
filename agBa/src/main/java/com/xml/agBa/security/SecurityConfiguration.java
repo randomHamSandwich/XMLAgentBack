@@ -24,11 +24,29 @@ import com.xml.agBa.security.service.UserDetailsServiceImpl;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+	/**
+	 * premit all paths, use this for testing with postman. app will use the other one 
+	 */
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.authorizeRequests().antMatchers("/").permitAll();
 		httpSecurity.csrf().disable();
 	}
+	
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.csrf().disable().authorizeRequests()
+//				.antMatchers("/api/auth/**", "/api/auth/activate/**", "/favicon.*", "/api/pregled/zakazimailom",
+//						"/api/pregled/zakazimailom/", "/api/pregled/otkazimailom", "/api/pregled/otkazimailom/")
+//				.permitAll().anyRequest().authenticated().and()
+//
+//				.cors().and()
+//
+//				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
+//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//
+//		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//	}
 	
 	
 	
@@ -59,20 +77,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.csrf().disable().authorizeRequests()
-//				.antMatchers("/api/auth/**", "/api/auth/activate/**", "/favicon.*", "/api/pregled/zakazimailom",
-//						"/api/pregled/zakazimailom/", "/api/pregled/otkazimailom", "/api/pregled/otkazimailom/")
-//				.permitAll().anyRequest().authenticated().and()
-//
-//				.cors().and()
-//
-//				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
-//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//
-//		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-//	}
+
 
 
 }
