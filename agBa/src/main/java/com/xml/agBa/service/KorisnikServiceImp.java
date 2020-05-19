@@ -15,7 +15,7 @@ import com.xml.agBa.repository.KorisnikRepo;
 @Service
 @Transactional(readOnly = true)
 public class KorisnikServiceImp implements KorisnikService {
-	
+
 	@Autowired
 	private KorisnikRepo korisnikRepo;
 
@@ -29,11 +29,10 @@ public class KorisnikServiceImp implements KorisnikService {
 		korisnik = korisnikRepo.save(korisnik);
 		return new KorisnikDTO(korisnik);
 	}
-	
-	
+
 	@Override
 	public List<KorisnikDTO> findAllKorisnik() {
-		
+
 		List<Korisnik> korisnici = korisnikRepo.findAll();
 		List<KorisnikDTO> KorisniksDTO = new ArrayList<>();
 		for (Korisnik k : korisnici) {
@@ -43,18 +42,16 @@ public class KorisnikServiceImp implements KorisnikService {
 		return KorisniksDTO;
 	}
 
-
 	@Override
+	@Transactional
 	public Korisnik save(Korisnik korisnik) {
 		return korisnikRepo.save(korisnik);
 	}
 
-
 	@Override
+	@Transactional
 	public KrajnjiKorisnik save(KrajnjiKorisnik krajnjiKorisnik) {
 		return korisnikRepo.save(krajnjiKorisnik);
 	}
-
-
 
 }

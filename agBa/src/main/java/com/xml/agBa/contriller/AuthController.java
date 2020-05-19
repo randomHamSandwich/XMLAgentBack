@@ -1,4 +1,4 @@
-package com.xml.agBa;
+package com.xml.agBa.contriller;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -66,14 +66,16 @@ public class AuthController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
+		
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+		
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-
 		String jwt = jwtProvider.generateJwtToken(authentication);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		
 
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities(),
 				String.valueOf(((UserDetailsImpl) authentication.getPrincipal()).getId())));
@@ -84,6 +86,7 @@ public class AuthController {
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already taken!"), HttpStatus.BAD_REQUEST);
 		}
+
 
 //		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 //			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
