@@ -50,9 +50,6 @@ public class Korisnik {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idKorisnik"), inverseJoinColumns = @JoinColumn(name = "idRola"))
 	private Set<Roles> roles;
-//TODO vidi kako ovu cezu da predstavis posto nemamo ovo u mikroservisu ili ako je jedan baza nemamo pristup toj tabeli
-	@OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL)
-	private Set<Cenovnik> cenovnici;
 
 	public Korisnik() {
 		super();
@@ -60,7 +57,7 @@ public class Korisnik {
 	}
 
 	public Korisnik(Long idKorisnik, String email, String lozinka, String brojTelefona, String ulica, String brojUlice,
-			String grad, String drzava, StatusKorisnika status, Set<Roles> roles, Set<Cenovnik> cenovnici) {
+			String grad, String drzava, StatusKorisnika status, Set<Roles> roles) {
 		super();
 		this.idKorisnik = idKorisnik;
 		this.email = email;
@@ -72,7 +69,6 @@ public class Korisnik {
 		this.drzava = drzava;
 		this.status = status;
 		this.roles = roles;
-		this.cenovnici = cenovnici;
 	}
 
 	public Long getIdKorisnik() {
@@ -153,14 +149,6 @@ public class Korisnik {
 
 	public void setRoles(Set<Roles> roles) {
 		this.roles = roles;
-	}
-
-	public Set<Cenovnik> getCenovnici() {
-		return cenovnici;
-	}
-
-	public void setCenovnici(Set<Cenovnik> cenovnici) {
-		this.cenovnici = cenovnici;
 	}
 
 }

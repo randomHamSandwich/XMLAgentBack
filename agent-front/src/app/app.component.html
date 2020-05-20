@@ -2,9 +2,12 @@
     <div class="container-fluid">
       <ul class="nav navbar-nav" routerLinkActive="active">
         <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
+        
         <li *ngIf="authority === 'user'" class="nav-item">
           <a class="nav-link" routerLink="user">User Board</a>
         </li>
+
+        
         <li *ngIf="authority === 'admin'" class="nav-item">
           <a class="nav-link" routerLink="admin">Admin Board</a>
         </li>
