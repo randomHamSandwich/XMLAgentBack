@@ -1,7 +1,5 @@
 package com.xml.agBa.dto;
 
-import javax.persistence.Column;
-
 import com.xml.agBa.model.Korisnik;
 
 public class KorisnikDTO {
