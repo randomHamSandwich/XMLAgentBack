@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row col-sm-6" style="max-width:500px;">
+        <div>
+            <hr>
+            <a routerLink = "/createDiscount"><button class="btn btn-success">Create discount</button></a> 
+            <hr>
+            <h2>My discounts:</h2>
+            <hr>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">No. days: </th>
+                    <th scope="col">Percentage: </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let d of discounts; index as i">
+                    <th scope="row"> {{ i + 1}}</th>
+                    <td>{{ d.dani }}</td>
+                    <td>{{ d.popust }}</td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+          <button class="btn btn-info" (click)="onBack()">Back</button>
+            
+        </div>
+    </div>
+</div>

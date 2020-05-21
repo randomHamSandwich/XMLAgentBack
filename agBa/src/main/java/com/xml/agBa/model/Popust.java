@@ -15,7 +15,7 @@ public class Popust {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long idPopust;
 	public int viseOdXDana;
-	public double popust;
+	public int popust;
 	
 	
 	@ManyToOne
@@ -29,7 +29,7 @@ public class Popust {
 	}
 
 
-	public Popust(Long idPopust, int viseOdXDana, double popust, Cenovnik cenovnik) {
+	public Popust(Long idPopust, int viseOdXDana, int popust, Cenovnik cenovnik) {
 		super();
 		this.idPopust = idPopust;
 		this.viseOdXDana = viseOdXDana;
@@ -58,16 +58,6 @@ public class Popust {
 	}
 
 
-	public double getPopust() {
-		return popust;
-	}
-
-
-	public void setPopust(double popust) {
-		this.popust = popust;
-	}
-
-
 	public Cenovnik getCenovnik() {
 		return cenovnik;
 	}
@@ -76,6 +66,14 @@ public class Popust {
 	public void setCenovnik(Cenovnik cenovnik) {
 		this.cenovnik = cenovnik;
 	}
-	
-	
+
+
+	public int getPopust() {
+		return popust;
+	}
+
+
+	public void setPopust(int popust) {
+		this.popust = popust;
+	}
 }
