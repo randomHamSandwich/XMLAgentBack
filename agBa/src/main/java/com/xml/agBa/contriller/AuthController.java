@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,6 +34,7 @@ import com.xml.agBa.repository.KorisnikRepo;
 import com.xml.agBa.security.jwt.JwtProvider;
 import com.xml.agBa.security.repository.RolesRepo;
 import com.xml.agBa.security.service.UserDetailsImpl;
+import com.xml.agBa.service.EmailService;
 import com.xml.agBa.service.KorisnikService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -57,12 +59,17 @@ public class AuthController {
 
 	@Autowired
 	JwtProvider jwtProvider;
+	
+	@Autowired
+	EmailService emailService;
 
 	@Autowired
 	private Environment env;
 
 //	@Autowired
 //	private EmailService emailService;
+	
+	
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
@@ -82,7 +89,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
+	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) throws InterruptedException {
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already taken!"), HttpStatus.BAD_REQUEST);
 		}
@@ -137,6 +144,13 @@ public class AuthController {
 		user.setRoles(roles);
 
 		korisnikService.save(user);
+		
+		try {
+			emailService.sendSuccessfulRegistrationMail(user);
+		} catch (MailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return new ResponseEntity<>(new ResponseMessage("Activate account on your mail!"), HttpStatus.OK);
 	}
