@@ -54,4 +54,9 @@ public class KorisnikServiceImp implements KorisnikService {
 		return korisnikRepo.save(krajnjiKorisnik);
 	}
 
+	@Override
+	public KorisnikDTO getUser(Long id) {
+		return new KorisnikDTO(korisnikRepo.getOne(id));
+	}
+
 }

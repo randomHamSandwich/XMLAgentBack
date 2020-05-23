@@ -11,13 +11,19 @@ import { LoginComponent } from './login/login.component';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { KrajnjiKorisnikComponent } from './krajnji-korisnik/krajnji-korisnik.component';
+import { AdminComponent } from './admin/admin.component';
+import { AgentComponent } from './agent/agent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    KrajnjiKorisnikComponent,
+    AdminComponent,
+    AgentComponent
   ],
   imports: [
     BrowserModule,

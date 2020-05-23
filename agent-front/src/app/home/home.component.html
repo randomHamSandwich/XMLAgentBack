@@ -9,7 +9,12 @@ hhhhhhhhhoooooooooommmmmmmmeeeeeeeee
     </p>
     <button class="btn btn-secondary" (click)="logout()">Logout</button>
   </div>
-  
+
+
+
+
+  <app-krajnji-korisnik [korisnik]='korisnik | async'></app-krajnji-korisnik>
+
   <ng-template #loggedOut>
     Please login.
   </ng-template>

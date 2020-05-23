@@ -44,8 +44,8 @@ export class AppComponent implements OnInit {
           this.authority = 'kz';
           return false;
         }
-// else if (role === 'KORISNIK')
-        this.authority = 'user';
+ else if (role === 'KORISNIK')
+        this.authority = 'korisnik';
         return true;
       });
     }
