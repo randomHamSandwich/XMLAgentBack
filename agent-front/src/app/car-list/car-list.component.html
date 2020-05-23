@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row col-sm-6" style="max-width:500px;">
+        <div>
+            <hr>
+            <a routerLink = "/createCar"><button class="btn btn-success">Create car</button></a> 
+            <hr>
+            <h2>My cars:</h2>
+            <hr>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Car brand: </th>
+                    <th scope="col">Car model: </th>
+                    <th scope="col">Gearbox type: </th>
+                    <th scope="col">Fuel type: </th>
+                    <th scope="col">Mileage: </th>
+                    <th scope="col">Car class: </th>
+                    <th scope="col">CDW available: </th>
+                    <th scope="col">Child seats: </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of cars; index as i">
+                    <th scope="row"> {{ i + 1}}</th>
+                    <td>{{ c.markaVozila }}</td>
+                    <td>{{ c.modelVozila }}</td>
+                    <td>{{ c.tipMenjaca }}</td>
+                    <td>{{ c.vrstaGoriva }}</td>
+                    <td>{{ c.kilometraza }}</td>
+                    <td>{{ c.klasaVozila }}</td>
+                    <td>{{ c.cdwDostupno }}</td>
+                    <td>{{ c.sedostaZaDecu }}</td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+          <button class="btn btn-info" (click)="onBack()">Back</button>
+            
+        </div>
+    </div>
+</div>

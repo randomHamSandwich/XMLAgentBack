@@ -14,6 +14,8 @@ import { RegisterComponent } from './register/register.component';
 import { KrajnjiKorisnikComponent } from './krajnji-korisnik/krajnji-korisnik.component';
 import { AdminComponent } from './admin/admin.component';
 import { AgentComponent } from './agent/agent.component';
+import { CarCreateComponent } from './car-create/car-create.component';
+import { CarListComponent } from './car-list/car-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AgentComponent } from './agent/agent.component';
     RegisterComponent,
     KrajnjiKorisnikComponent,
     AdminComponent,
-    AgentComponent
+    AgentComponent,
+    CarCreateComponent,
+    CarListComponent
   ],
   imports: [
     BrowserModule,

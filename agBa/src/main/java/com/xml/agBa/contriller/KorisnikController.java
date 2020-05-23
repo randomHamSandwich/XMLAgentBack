@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xml.agBa.service.KorisnikService;
 import com.xml.agBa.dto.KorisnikDTO;
 import com.xml.agBa.model.Korisnik;
+import com.xml.agBa.security.jwt.JwtAuthTokenFilter;
 
 @CrossOrigin(origins = "*")
 @RestController

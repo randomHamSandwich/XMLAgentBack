@@ -4,16 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { CarListComponent } from './car-list/car-list.component';
 
 const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent
     },
-    // {
-    //     path: 'user',
-    //     component: UserComponent
-    // },
+    {
+        path: 'carList',
+        component: CarListComponent
+    },
     // {
     //     path: 'pm',
     //     component: PmComponent
