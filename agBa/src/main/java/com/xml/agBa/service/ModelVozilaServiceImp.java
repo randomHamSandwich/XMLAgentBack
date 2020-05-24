@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.xml.agBa.model.ModelVozila;
+import com.xml.agBa.model.CarModel;
 import com.xml.agBa.repository.ModelVozilaRepo;
 
 @Service
@@ -17,19 +17,19 @@ public class ModelVozilaServiceImp implements ModelVozilaService{
 	private ModelVozilaRepo modelVozilaRepo;
 
 	@Override
-	public ModelVozila findModelVozilaById() {
+	public CarModel findModelVozilaById() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ModelVozila> findAll() {
+	public List<CarModel> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ModelVozila save(ModelVozila modelVozila) {
+	public CarModel save(CarModel modelVozila) {
 		// TODO Auto-generated method stub
 		return null;
 	}

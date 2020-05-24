@@ -31,23 +31,23 @@ public class Ad {
 	private LocalDate ends;
 	
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "zahtevi_oglasa", joinColumns = @JoinColumn(name = "id_ad"), inverseJoinColumns = @JoinColumn(name = "id_user_request"))
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_request_ad", joinColumns = @JoinColumn(name = "id_ad"), inverseJoinColumns = @JoinColumn(name = "id_user_request"))
 	private Set<UserRequest> userRequest;
 	
-	@OneToMany(mappedBy = "oglas", cascade = CascadeType.ALL)
-	private Set<Ocena> ocene;
+	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
+	private Set<Rating> rating;
 
-	@OneToMany(mappedBy = "oglas", cascade = CascadeType.ALL)
-	private Set<Komentar> komentari;
+	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
+	private Set<Comment> comments;
 	
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST ,CascadeType.REFRESH} )
-	@JoinColumn(name = "id_cenovnik")
-	private PriceList cenovnik;
+	@JoinColumn(name = "id_price_list")
+	private PriceList priceList;
 	
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_vozilo", nullable = false)
-    private Vozilo vozilo;
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "id_car", nullable = true)
+    private Car car;
 
 	public Ad() {
 		super();

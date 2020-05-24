@@ -21,7 +21,7 @@ public class Roles {
 	private Long idRole;
 
 	@Enumerated(EnumType.STRING)
-	private RoleNaziv nazivRole;
+	private RoleName nazivRole;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idRola"), inverseJoinColumns = @JoinColumn(name = "idUser"))
@@ -32,7 +32,7 @@ public class Roles {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Roles(Long idRola, RoleNaziv nazivRole, Set<User> korisnici) {
+	public Roles(Long idRola, RoleName nazivRole, Set<User> korisnici) {
 		super();
 		this.idRole = idRola;
 		this.nazivRole = nazivRole;
@@ -47,11 +47,11 @@ public class Roles {
 		this.idRole = idRole;
 	}
 
-	public RoleNaziv getNazivRole() {
+	public RoleName getNazivRole() {
 		return nazivRole;
 	}
 
-	public void setNazivRole(RoleNaziv nazivRole) {
+	public void setNazivRole(RoleName nazivRole) {
 		this.nazivRole = nazivRole;
 	}
 

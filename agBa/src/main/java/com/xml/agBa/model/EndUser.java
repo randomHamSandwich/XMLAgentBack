@@ -11,18 +11,21 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue("KRAJNI_KORISNIK")
 public class EndUser extends User {
 
-	@OneToMany(mappedBy = "krajnjiKorisnik", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "endUser", cascade = CascadeType.ALL)
 	private Set<UserRequest> zahtevi;
-	@OneToMany(mappedBy = "krajnjiKorisnik", cascade = CascadeType.ALL)
-	private Set<Ocena> ocene;
-	@OneToMany(mappedBy = "krajnjiKorisnik", cascade = CascadeType.ALL)
-	private Set<Komentar> komentari;
+
+	@OneToMany(mappedBy = "endUser", cascade = CascadeType.ALL)
+	private Set<Rating> rating;
+
+	@OneToMany(mappedBy = "endUser", cascade = CascadeType.ALL)
+	private Set<Comment> comment;
+
+	@OneToMany(mappedBy = "byer")
+	private Set<Chat> chats;
 
 	public EndUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 }

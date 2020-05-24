@@ -1,9 +1,0 @@
-package com.xml.agBa.model;
-
-public enum RoleNaziv {
-	KORISNIK, 
-	KORISNIK_ZABRANJEN,
-	KORISNIK_OGRANI_PRISTUP,
-	ADMIN, 
-	AGENT,
-}

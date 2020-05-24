@@ -27,10 +27,10 @@ import com.xml.agBa.message.request.SignUpForm;
 import com.xml.agBa.message.response.JwtResponse;
 import com.xml.agBa.message.response.ResponseMessage;
 import com.xml.agBa.model.EndUser;
-import com.xml.agBa.model.RoleNaziv;
+import com.xml.agBa.model.RoleName;
 import com.xml.agBa.model.Roles;
 import com.xml.agBa.model.StatusUser;
-import com.xml.agBa.repository.KorisnikRepo;
+import com.xml.agBa.repository.UserRepo;
 import com.xml.agBa.security.jwt.JwtProvider;
 import com.xml.agBa.security.repository.RolesRepo;
 import com.xml.agBa.security.service.UserDetailsImpl;
@@ -46,7 +46,7 @@ public class AuthController {
 // TODO PROMENI U KORISNIK SERVICE I REPO SERVICE
 
 	@Autowired
-	KorisnikRepo userRepository;
+	UserRepo userRepository;
 
 	@Autowired
 	UserService korisnikService;
@@ -117,26 +117,26 @@ public class AuthController {
 		strRoles.forEach(role -> {
 			switch (role) {
 			case "ad":
-				Roles adminRole = roleRepository.findByNazivRole(RoleNaziv.ADMIN)
+				Roles adminRole = roleRepository.findByNazivRole(RoleName.ADMIN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(adminRole);
 				break;
 			case "ag":
-				Roles lekarRole = roleRepository.findByNazivRole(RoleNaziv.AGENT)
+				Roles lekarRole = roleRepository.findByNazivRole(RoleName.AGENT)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(lekarRole);
 
 			case "kop":
-				Roles medicinskaSestraROle = roleRepository.findByNazivRole(RoleNaziv.KORISNIK_OGRANI_PRISTUP)
+				Roles medicinskaSestraROle = roleRepository.findByNazivRole(RoleName.KORISNIK_OGRANI_PRISTUP)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(medicinskaSestraROle);
 			case "kz":
-				Roles administratorKlinickogCentraRole = roleRepository.findByNazivRole(RoleNaziv.KORISNIK_ZABRANJEN)
+				Roles administratorKlinickogCentraRole = roleRepository.findByNazivRole(RoleName.KORISNIK_ZABRANJEN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(administratorKlinickogCentraRole);
 
 			default:
-				Roles userRole = roleRepository.findByNazivRole(RoleNaziv.KORISNIK)
+				Roles userRole = roleRepository.findByNazivRole(RoleName.KORISNIK)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(userRole);
 			}

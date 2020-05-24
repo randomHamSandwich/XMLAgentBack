@@ -2,14 +2,14 @@ package com.xml.agBa.service;
 
 import java.util.List;
 
-import com.xml.agBa.model.VrstaGoriva;
+import com.xml.agBa.model.FuelType;
 
 public interface VrstaGorivaService {
 	
-	VrstaGoriva findVrstaGorivaById();
+	FuelType findVrstaGorivaById();
 	
-	List<VrstaGoriva> findAll();
+	List<FuelType> findAll();
 	
-	VrstaGoriva save(VrstaGoriva vrstaGoriva);
+	FuelType save(FuelType vrstaGoriva);
 
 }

@@ -33,7 +33,7 @@ public class UserController {
 
 	
 	@GetMapping(value = "/kroisnik")
-	@PreAuthorize("hasAuthority('KORISNIK')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<List<UserDTO>> getUsers() {
 		List<UserDTO> korisnikListDTO = korisnikService.findAllKorisnik();
 

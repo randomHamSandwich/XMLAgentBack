@@ -1,9 +1,0 @@
-package com.xml.agBa.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.xml.agBa.model.Komentar;
-
-public interface KomentarRepo extends JpaRepository<Komentar, Long> {
-
-}

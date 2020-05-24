@@ -6,27 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.xml.agBa.model.KlasaVozila;
-import com.xml.agBa.repository.KlasaVozilaRepo;
+import com.xml.agBa.model.CarClass;
+import com.xml.agBa.repository.CarClassRepo;
 
 @Service
 @Transactional(readOnly = true)
 public class KlasaVozilaServiceImp implements KlasaVozilaService{
 
 	@Override
-	public KlasaVozila findKlasaVozilaById() {
+	public CarClass findKlasaVozilaById() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<KlasaVozila> findAll() {
+	public List<CarClass> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public KlasaVozila save(KlasaVozila klasaVozila) {
+	public CarClass save(CarClass klasaVozila) {
 		// TODO Auto-generated method stub
 		return null;
 	}

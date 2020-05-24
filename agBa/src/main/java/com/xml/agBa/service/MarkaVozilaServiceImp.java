@@ -6,30 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.xml.agBa.model.MarkaVozila;
-import com.xml.agBa.repository.MarkaVozilaRepo;
+import com.xml.agBa.model.CarBrand;
+import com.xml.agBa.repository.CarBrandRepo;
 
 @Service
 @Transactional(readOnly = true)
 public class MarkaVozilaServiceImp implements MarkaVozilaService{
 	
 	@Autowired
-	private MarkaVozilaRepo markaVozilaRepo;
+	private CarBrandRepo markaVozilaRepo;
 
 	@Override
-	public MarkaVozila findMarkaVozilaById() {
+	public CarBrand findMarkaVozilaById() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<MarkaVozila> findAll() {
+	public List<CarBrand> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public MarkaVozila save(MarkaVozila markaVozila) {
+	public CarBrand save(CarBrand markaVozila) {
 		// TODO Auto-generated method stub
 		return null;
 	}

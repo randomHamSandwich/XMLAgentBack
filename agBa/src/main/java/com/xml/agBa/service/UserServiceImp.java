@@ -10,14 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.xml.agBa.dto.UserDTO;
 import com.xml.agBa.model.User;
 import com.xml.agBa.model.EndUser;
-import com.xml.agBa.repository.KorisnikRepo;
+import com.xml.agBa.repository.UserRepo;
 
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImp implements UserService {
 
 	@Autowired
-	private KorisnikRepo korisnikRepo;
+	private UserRepo korisnikRepo;
 
 	@Override
 	@Transactional

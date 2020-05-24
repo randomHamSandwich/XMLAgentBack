@@ -2,14 +2,14 @@ package com.xml.agBa.service;
 
 import java.util.List;
 
-import com.xml.agBa.model.ModelVozila;
+import com.xml.agBa.model.CarModel;
 
 public interface ModelVozilaService {
 	
-	ModelVozila findModelVozilaById();
+	CarModel findModelVozilaById();
 	
-	List<ModelVozila> findAll();
+	List<CarModel> findAll();
 	
-	ModelVozila save(ModelVozila modelVozila);
+	CarModel save(CarModel modelVozila);
 
 }

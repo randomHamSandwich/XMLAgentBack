@@ -24,14 +24,14 @@ public class PriceList {
 	
 
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-	@JoinColumn(name = "id_korisnik", nullable = true)
-	private User korisnik;
+	@JoinColumn(name = "id_user", nullable = true)
+	private User user;
 
-	@OneToMany(mappedBy="cenovnik" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-	private Set<Popust> popusti;
+	@OneToMany(mappedBy="priceList" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	private Set<Discount> discounts;
 	
-	@OneToMany(mappedBy="cenovnik" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-	private Set<Ad> oglasi;
+	@OneToMany(mappedBy="priceList" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	private Set<Ad> ad;
 	
 	
 }

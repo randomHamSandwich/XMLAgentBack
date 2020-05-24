@@ -11,29 +11,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xml.agBa.dto.PopustDTO;
-import com.xml.agBa.service.PopustService;
+import com.xml.agBa.dto.DiscountDTO;
+import com.xml.agBa.service.DiscountService;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class PopustController {
 
 	@Autowired
-	private PopustService popustService;
+	private DiscountService discountService;
 
-	@PostMapping(value = "/create")
-	public ResponseEntity<PopustDTO> createPopust(@RequestBody PopustDTO popustData) {
-		//System.out.println("kreiranje popusta: " + popustData.getDani() + " , " + popustData.getPopust());
-		PopustDTO noviPopust = popustService.createPopust(popustData);
-		
-		return new ResponseEntity<>(noviPopust, HttpStatus.CREATED);
-	}
-	
-	@GetMapping(value = "/popusti")
-	public ResponseEntity<List<PopustDTO>> getAllPopusti() {
-		List<PopustDTO> popustiList = popustService.getAllPopusti();
-		
-		return new ResponseEntity<>(popustiList, HttpStatus.OK);
-	}
+//	TODO create restfull get,getAll,put and post
+//	@PostMapping(value = "/create")
+//	public ResponseEntity<DiscountDTO> createPopust(@RequestBody DiscountDTO popustData) {
+//		//System.out.println("kreiranje popusta: " + popustData.getDani() + " , " + popustData.getPopust());
+//		DiscountDTO noviPopust = popustService.createPopust(popustData);
+//		
+//		return new ResponseEntity<>(noviPopust, HttpStatus.CREATED);
+//	}
+//	
+//	@GetMapping(value = "/popusti")
+//	public ResponseEntity<List<DiscountDTO>> getAllPopusti() {
+//		List<DiscountDTO> popustiList = popustService.getAllDiscounts();
+//		
+//		return new ResponseEntity<>(popustiList, HttpStatus.OK);
+//	}
 	
 }

@@ -2,15 +2,15 @@ package com.xml.agBa.service;
 
 import java.util.List;
 
-import com.xml.agBa.model.MarkaVozila;
+import com.xml.agBa.model.CarBrand;
 
 
 public interface MarkaVozilaService {
 	
-	MarkaVozila findMarkaVozilaById();
+	CarBrand findMarkaVozilaById();
 	
-	List<MarkaVozila> findAll();
+	List<CarBrand> findAll();
 	
-	MarkaVozila save(MarkaVozila markaVozila);
+	CarBrand save(CarBrand markaVozila);
 
 }

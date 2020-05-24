@@ -10,14 +10,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.xml.agBa.model.User;
-import com.xml.agBa.repository.KorisnikRepo;
+import com.xml.agBa.repository.UserRepo;
 
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	KorisnikRepo korisnikRepo;
+	UserRepo korisnikRepo;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws AuthenticationException {

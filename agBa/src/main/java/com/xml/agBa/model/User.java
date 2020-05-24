@@ -51,8 +51,14 @@ public class User {
 	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "idRola"))
 	private Set<Roles> roles;
 
-	@OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL)
-	private Set<PriceList> cenovnici;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<PriceList> priceList;
+	
+	@OneToMany(mappedBy = "seller")
+	private Set<Chat> chats;
+	
+	@OneToMany(mappedBy = "messageSender")
+	private Set<Message> messages;
 
 	public User() {
 		super();
@@ -60,7 +66,8 @@ public class User {
 	}
 
 	public User(Long idUser, String email, String password, String phoneNumber, String street, String streetNumber,
-			String city, String country, StatusUser status, Set<Roles> roles, Set<PriceList> cenovnici) {
+			String city, String country, StatusUser status, Set<Roles> roles, Set<PriceList> priceList, Set<Chat> chats,
+			Set<Message> messages) {
 		super();
 		this.idUser = idUser;
 		this.email = email;
@@ -72,7 +79,9 @@ public class User {
 		this.country = country;
 		this.status = status;
 		this.roles = roles;
-		this.cenovnici = cenovnici;
+		this.priceList = priceList;
+		this.chats = chats;
+		this.messages = messages;
 	}
 
 	public Long getIdUser() {
@@ -155,15 +164,31 @@ public class User {
 		this.roles = roles;
 	}
 
-	public Set<PriceList> getCenovnici() {
-		return cenovnici;
+	public Set<PriceList> getPriceList() {
+		return priceList;
 	}
 
-	public void setCenovnici(Set<PriceList> cenovnici) {
-		this.cenovnici = cenovnici;
+	public void setPriceList(Set<PriceList> priceList) {
+		this.priceList = priceList;
 	}
 
-	
+	public Set<Chat> getChats() {
+		return chats;
+	}
+
+	public void setChats(Set<Chat> chats) {
+		this.chats = chats;
+	}
+
+	public Set<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}
+
+
 	
 	
 
