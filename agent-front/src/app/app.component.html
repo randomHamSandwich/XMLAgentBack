@@ -6,12 +6,10 @@
         <li *ngIf="!authority" class="nav-item">
           <a class="nav-link" routerLink="auth/login">Login</a>
         </li>
-        <!-- <li *ngIf="korisnik" class="nav-item">
-          <a class="nav-link" routerLink="carList">Klinike</a>
-        </li> -->
-        <li class="nav-item">
+        <li *ngIf="authority ==='korisnik'" class="nav-item">
           <a class="nav-link" routerLink="carList">Vozila</a>
         </li>
+
 
       </ul>
     </div>

@@ -9,11 +9,19 @@ hhhhhhhhhoooooooooommmmmmmmeeeeeeeee
     </p>
     <button class="btn btn-secondary" (click)="logout()">Logout</button>
   </div>
+        <!-- <li *ngIf="korisnik" class="nav-item">
+          <a class="nav-link" routerLink="carList">Klinike</a>
+        </li> -->
 
-
-
-
+<div *ngIf="authority==='korisnik'">
   <app-krajnji-korisnik [korisnik]='korisnik | async'></app-krajnji-korisnik>
+</div>
+
+
+<div *ngIf="authority==='ad'">
+  <app-krajnji-korisnik [korisnik]='korisnik | async'></app-krajnji-korisnik>
+</div>
+
 
   <ng-template #loggedOut>
     Please login.
