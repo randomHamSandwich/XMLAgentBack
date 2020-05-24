@@ -17,18 +17,18 @@ public class Ocena {
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "id_korisnik")
-	private KrajnjiKorisnik krajnjiKorisnik;
+	private EndUser krajnjiKorisnik;
 	
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "id_oglas")
-	private Oglas oglas;
+	@JoinColumn(name = "id_ad")
+	private Ad oglas;
 
 	public Ocena() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ocena(Long idOcena, int ocena, KrajnjiKorisnik krajnjiKorisnik, Oglas oglas) {
+	public Ocena(Long idOcena, int ocena, EndUser krajnjiKorisnik, Ad oglas) {
 		super();
 		this.idOcena = idOcena;
 		this.ocena = ocena;
@@ -52,19 +52,19 @@ public class Ocena {
 		this.ocena = ocena;
 	}
 
-	public KrajnjiKorisnik getKrajnjiKorisnik() {
+	public EndUser getKrajnjiKorisnik() {
 		return krajnjiKorisnik;
 	}
 
-	public void setKrajnjiKorisnik(KrajnjiKorisnik krajnjiKorisnik) {
+	public void setKrajnjiKorisnik(EndUser krajnjiKorisnik) {
 		this.krajnjiKorisnik = krajnjiKorisnik;
 	}
 
-	public Oglas getOglas() {
+	public Ad getOglas() {
 		return oglas;
 	}
 
-	public void setOglas(Oglas oglas) {
+	public void setOglas(Ad oglas) {
 		this.oglas = oglas;
 	}
 	

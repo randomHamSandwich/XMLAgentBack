@@ -13,25 +13,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Cenovnik {
+public class PriceList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idCenovnik;
+	private Long idPriceList;
 	@Column
-	private double cenaPoDanu;
+	private double priceForOneDay;
 	@Column
-	private double cenaPoKilometru;
+	private double priceForKM;
 	
 
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	@JoinColumn(name = "id_korisnik", nullable = true)
-	private Korisnik korisnik;
+	private User korisnik;
 
 	@OneToMany(mappedBy="cenovnik" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	private Set<Popust> popusti;
 	
 	@OneToMany(mappedBy="cenovnik" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-	private Set<Oglas> oglasi;
+	private Set<Ad> oglasi;
 	
 	
 }

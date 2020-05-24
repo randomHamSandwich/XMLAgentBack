@@ -1,6 +1,6 @@
 package com.xml.agBa.model;
 
-public enum StatusKorisnika {
+public enum StatusUser {
 	ACTIVE,
 	PENDING,
 	BANNED,

@@ -48,7 +48,7 @@ public class Vozilo {
 	private TipMenjaca tipMenjaca;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "vozilo")
-	private Oglas oglas;
+	private Ad oglas;
 
 	public Vozilo() {
 		super();
@@ -57,7 +57,7 @@ public class Vozilo {
 
 	public Vozilo(Long idVozilo, double kilometraza, int brojSedistaZaDecu, float cdw, String ulica, String brojUlice,
 			String grad, String drzava, MarkaVozila markaVozila, ModelVozila modelVozila, VrstaGoriva vrstaGoriva,
-			TipMenjaca tipMenjaca, Oglas oglas) {
+			TipMenjaca tipMenjaca, Ad oglas) {
 		super();
 		this.idVozilo = idVozilo;
 		this.kilometraza = kilometraza;
@@ -170,11 +170,11 @@ public class Vozilo {
 		this.tipMenjaca = tipMenjaca;
 	}
 
-	public Oglas getOglas() {
+	public Ad getOglas() {
 		return oglas;
 	}
 
-	public void setOglas(Oglas oglas) {
+	public void setOglas(Ad oglas) {
 		this.oglas = oglas;
 	}
 

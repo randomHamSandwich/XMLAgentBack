@@ -14,7 +14,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.xml.agBa.model.Korisnik;
+import com.xml.agBa.model.User;
 
 
 
@@ -32,7 +32,7 @@ public class EmailServiceImp implements EmailService{
 
 //	annotating a method of a bean with @Async will make it execute in a separate thread i.e. the caller will not wait for the completion of the called method.
 	@Async
-	public void sendSuccessfulRegistrationMail(Korisnik korisnik) throws MailException, InterruptedException {
+	public void sendSuccessfulRegistrationMail(User korisnik) throws MailException, InterruptedException {
 		System.out.println("Slanje emaila...");
 
 		LocalDateTime dateTimeNow = LocalDateTime.now();

@@ -1,5 +1,5 @@
 package com.xml.agBa.model;
 
-public enum StatusZahteva {
+public enum StatusUserRequest {
 PENDING,PAID
 }

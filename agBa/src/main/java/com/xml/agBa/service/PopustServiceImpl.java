@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.xml.agBa.dto.PopustDTO;
 import com.xml.agBa.model.Popust;
-import com.xml.agBa.repository.PopustRepo;
+import com.xml.agBa.repository.DiscountRepo;
 
 @Service
 public class PopustServiceImpl implements PopustService {
 	
 	@Autowired
-	private PopustRepo popustRepo;
+	private DiscountRepo popustRepo;
 	
 	@Override
 	public PopustDTO createPopust(PopustDTO popustData) {

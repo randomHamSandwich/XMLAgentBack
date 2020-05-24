@@ -20,7 +20,7 @@ public class Popust {
 	
 	@ManyToOne
 	@JoinColumn(name ="id_cenovnik")
-	private Cenovnik cenovnik;
+	private PriceList cenovnik;
 
 
 	public Popust() {
@@ -29,7 +29,7 @@ public class Popust {
 	}
 
 
-	public Popust(Long idPopust, int viseOdXDana, int popust, Cenovnik cenovnik) {
+	public Popust(Long idPopust, int viseOdXDana, int popust, PriceList cenovnik) {
 		super();
 		this.idPopust = idPopust;
 		this.viseOdXDana = viseOdXDana;
@@ -58,12 +58,12 @@ public class Popust {
 	}
 
 
-	public Cenovnik getCenovnik() {
+	public PriceList getCenovnik() {
 		return cenovnik;
 	}
 
 
-	public void setCenovnik(Cenovnik cenovnik) {
+	public void setCenovnik(PriceList cenovnik) {
 		this.cenovnik = cenovnik;
 	}
 

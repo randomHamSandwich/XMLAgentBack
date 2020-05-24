@@ -18,33 +18,33 @@ public class Roles {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idRola;
+	private Long idRole;
 
 	@Enumerated(EnumType.STRING)
 	private RoleNaziv nazivRole;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idRola"), inverseJoinColumns = @JoinColumn(name = "idKorisnik"))
-	private Set<Korisnik> korisnici;
+	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idRola"), inverseJoinColumns = @JoinColumn(name = "idUser"))
+	private Set<User> korisnici;
 
 	public Roles() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Roles(Long idRola, RoleNaziv nazivRole, Set<Korisnik> korisnici) {
+	public Roles(Long idRola, RoleNaziv nazivRole, Set<User> korisnici) {
 		super();
-		this.idRola = idRola;
+		this.idRole = idRola;
 		this.nazivRole = nazivRole;
 		this.korisnici = korisnici;
 	}
 
-	public Long getIdRola() {
-		return idRola;
+	public Long getIdRole() {
+		return idRole;
 	}
 
-	public void setIdRola(Long idRola) {
-		this.idRola = idRola;
+	public void setIdRole(Long idRole) {
+		this.idRole = idRole;
 	}
 
 	public RoleNaziv getNazivRole() {
@@ -55,12 +55,14 @@ public class Roles {
 		this.nazivRole = nazivRole;
 	}
 
-	public Set<Korisnik> getKorisnici() {
+	public Set<User> getKorisnici() {
 		return korisnici;
 	}
 
-	public void setKorisnici(Set<Korisnik> korisnici) {
+	public void setKorisnici(Set<User> korisnici) {
 		this.korisnici = korisnici;
 	}
+
+	
 
 }

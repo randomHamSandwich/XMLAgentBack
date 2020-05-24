@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.xml.agBa.model.Korisnik;
+import com.xml.agBa.model.User;
 
-public interface KorisnikRepo extends JpaRepository<Korisnik, Long> {
+public interface KorisnikRepo extends JpaRepository<User, Long> {
 
-	Optional<Korisnik> findByEmail(String idKorisnik);
+	Optional<User> findByEmail(String idKorisnik);
 	Boolean existsByEmail(String idKorisnik);
 }

@@ -26,16 +26,16 @@ import com.xml.agBa.message.request.LoginForm;
 import com.xml.agBa.message.request.SignUpForm;
 import com.xml.agBa.message.response.JwtResponse;
 import com.xml.agBa.message.response.ResponseMessage;
-import com.xml.agBa.model.KrajnjiKorisnik;
+import com.xml.agBa.model.EndUser;
 import com.xml.agBa.model.RoleNaziv;
 import com.xml.agBa.model.Roles;
-import com.xml.agBa.model.StatusKorisnika;
+import com.xml.agBa.model.StatusUser;
 import com.xml.agBa.repository.KorisnikRepo;
 import com.xml.agBa.security.jwt.JwtProvider;
 import com.xml.agBa.security.repository.RolesRepo;
 import com.xml.agBa.security.service.UserDetailsImpl;
 import com.xml.agBa.service.EmailService;
-import com.xml.agBa.service.KorisnikService;
+import com.xml.agBa.service.UserService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -49,7 +49,7 @@ public class AuthController {
 	KorisnikRepo userRepository;
 
 	@Autowired
-	KorisnikService korisnikService;
+	UserService korisnikService;
 
 	@Autowired
 	RolesRepo roleRepository;
@@ -101,15 +101,15 @@ public class AuthController {
 //		}
 
 		// Creating user's account
-		KrajnjiKorisnik user = new KrajnjiKorisnik();
+		EndUser user = new EndUser();
 		user.setEmail(signUpRequest.getEmail());
-		user.setBrojTelefona(signUpRequest.getBrojTelefona());
-		user.setBrojUlice(signUpRequest.getBrojUlice());
-		user.setDrzava(signUpRequest.getDrzava());
-		user.setGrad(signUpRequest.getGrad());
-		user.setUlica(signUpRequest.getUlica());
-		user.setStatus(StatusKorisnika.ACTIVE);
-		user.setLozinka(encoder.encode(signUpRequest.getPassword()));
+		user.setPhoneNumber(signUpRequest.getBrojTelefona());
+		user.setStreetNumber(signUpRequest.getBrojUlice());
+		user.setCountry(signUpRequest.getDrzava());
+		user.setCity(signUpRequest.getGrad());
+		user.setStreet(signUpRequest.getUlica());
+		user.setStatus(StatusUser.ACTIVE);
+		user.setPassword(encoder.encode(signUpRequest.getPassword()));
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Roles> roles = new HashSet<>();

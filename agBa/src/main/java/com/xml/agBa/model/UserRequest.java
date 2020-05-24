@@ -15,54 +15,51 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Zahtev {
+public class UserRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idZahtev;
+	private Long idUserRequest;
 	@Column
-	private StatusZahteva status;
+	private StatusUserRequest statusUserRequest;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "id_korisnik")
-	private KrajnjiKorisnik krajnjiKorisnik;
+	private EndUser krajnjiKorisnik;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "zahtevi_oglasa", joinColumns = @JoinColumn(name = "id_zahtev"), inverseJoinColumns = @JoinColumn(name = "id_oglas"))
-	private Set<Oglas> oglasi;
+	@JoinTable(name = "zahtevi_oglasa", joinColumns = @JoinColumn(name = "id_user_request"), inverseJoinColumns = @JoinColumn(name = "id_ad"))
+	private Set<Ad> oglasi;
 
-	public Long getIdZahtev() {
-		return idZahtev;
+	public Long getIdUserRequest() {
+		return idUserRequest;
 	}
 
-	public void setIdZahtev(Long idZahtev) {
-		this.idZahtev = idZahtev;
+	public void setIdUserRequest(Long idUserRequest) {
+		this.idUserRequest = idUserRequest;
 	}
 
-	public StatusZahteva getStatus() {
-		return status;
+	public StatusUserRequest getStatusUserRequest() {
+		return statusUserRequest;
 	}
 
-	public void setStatus(StatusZahteva status) {
-		this.status = status;
+	public void setStatusUserRequest(StatusUserRequest statusUserRequest) {
+		this.statusUserRequest = statusUserRequest;
 	}
 
-	public KrajnjiKorisnik getKrajnjiKorisnik() {
+	public EndUser getKrajnjiKorisnik() {
 		return krajnjiKorisnik;
 	}
 
-	public void setKrajnjiKorisnik(KrajnjiKorisnik krajnjiKorisnik) {
+	public void setKrajnjiKorisnik(EndUser krajnjiKorisnik) {
 		this.krajnjiKorisnik = krajnjiKorisnik;
 	}
 
-	public Set<Oglas> getOglasi() {
+	public Set<Ad> getOglasi() {
 		return oglasi;
 	}
 
-	public void setOglasi(Set<Oglas> oglasi) {
+	public void setOglasi(Set<Ad> oglasi) {
 		this.oglasi = oglasi;
 	}
-	
-	
-	
 
 }

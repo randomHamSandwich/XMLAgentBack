@@ -17,25 +17,25 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xml.agBa.dto.KorisnikDTO;
+import com.xml.agBa.dto.UserDTO;
 import com.xml.agBa.message.response.ResponseMessage;
 import com.xml.agBa.security.jwt.JwtAuthTokenFilter;
 import com.xml.agBa.security.service.UserDetailsImpl;
-import com.xml.agBa.service.KorisnikService;
+import com.xml.agBa.service.UserService;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "api")
-public class KorisnikController {
+public class UserController {
 
 	@Autowired
-	private KorisnikService korisnikService;
+	private UserService korisnikService;
 
 	
 	@GetMapping(value = "/kroisnik")
 	@PreAuthorize("hasAuthority('KORISNIK')")
-	public ResponseEntity<List<KorisnikDTO>> getUsers() {
-		List<KorisnikDTO> korisnikListDTO = korisnikService.findAllKorisnik();
+	public ResponseEntity<List<UserDTO>> getUsers() {
+		List<UserDTO> korisnikListDTO = korisnikService.findAllKorisnik();
 
 		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
 	}
@@ -56,24 +56,24 @@ public class KorisnikController {
 			
 			return new ResponseEntity<>(new ResponseMessage("You can only access your information"), HttpStatus.FORBIDDEN);
 		}
-		KorisnikDTO korisnikListDTO = korisnikService.getUser(id);
+		UserDTO korisnikListDTO = korisnikService.getUser(id);
 		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
 	}
 
 
 	@PostMapping(value= "/kroisnik", consumes= "application/json")
-	public ResponseEntity<KorisnikDTO> saveUser(@RequestBody KorisnikDTO KorisnikDTO) {
+	public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO KorisnikDTO) {
 		
-		KorisnikDTO noviKorisnik = korisnikService.saveKorisnik(KorisnikDTO) ;
+		UserDTO noviKorisnik = korisnikService.saveUser(KorisnikDTO) ;
 
 		return new ResponseEntity<>(noviKorisnik, HttpStatus.CREATED);
 	}
 	
 	@PutMapping
 	@PreAuthorize("hasAuthority('PACIJENT')")
-	public ResponseEntity<KorisnikDTO> changUserPremmsions(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
+	public ResponseEntity<UserDTO> changUserPremmsions(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
 		JwtAuthTokenFilter f = new JwtAuthTokenFilter(); 
-		KorisnikDTO korisnikListDTO = korisnikService.getUser(id);
+		UserDTO korisnikListDTO = korisnikService.getUser(id);
 
 		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
 	}	
