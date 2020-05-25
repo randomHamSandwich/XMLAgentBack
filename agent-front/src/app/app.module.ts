@@ -17,6 +17,8 @@ import { AgentComponent } from './agent/agent.component';
 import { CarCreateComponent } from './car-create/car-create.component';
 import { CarListComponent } from './car-list/car-list.component';
 
+import { ChangeAuthoriyComponent } from './admin/change-authoriy/change-authoriy.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,9 @@ import { CarListComponent } from './car-list/car-list.component';
     AdminComponent,
     AgentComponent,
     CarCreateComponent,
-    CarListComponent
+    CarListComponent,
+
+    ChangeAuthoriyComponent
   ],
   imports: [
     BrowserModule,

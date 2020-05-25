@@ -30,26 +30,26 @@ export class HomeComponent implements OnInit {
       this.roles.every(role => {
 
          if (role === 'ADMIN') {
-          this.authority = 'ad';
+          this.authority = 'admin';
           return false;
         }
 
         else if (role === 'AGENT') {
-          this.authority = 'ag';
+          this.authority = 'agent';
           return false;
         } 
         
         else if (role === 'END_USER_LIMITED_ACCESS') {
-          this.authority = 'eula';
+          this.authority = 'end_user_limited_access';
           return false;
         }
         
         else if (role === 'END_USER_FORBIDDEN') {
-          this.authority = 'euf';
+          this.authority = 'end_user_forbidden';
           return false;
         }
         else if (role === 'END_USER')
-        this.authority = 'eu';
+        this.authority = 'end_user';
         return true;
       });
     }

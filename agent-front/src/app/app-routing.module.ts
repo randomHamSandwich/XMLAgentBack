@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CarListComponent } from './car-list/car-list.component';
+import { ChangeAuthoriyComponent} from './admin/change-authoriy/change-authoriy.component'
 
 const routes: Routes = [
     {
@@ -15,10 +16,10 @@ const routes: Routes = [
         path: 'carList',
         component: CarListComponent
     },
-    // {
-    //     path: 'pm',
-    //     component: PmComponent
-    // },
+    {
+        path: 'users',
+        component: ChangeAuthoriyComponent
+    },
     // {
     //     path: 'admin',
     //     component: AdminComponent

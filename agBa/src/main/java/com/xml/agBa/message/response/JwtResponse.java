@@ -17,6 +17,8 @@ public class JwtResponse {
 		this.authorities = authorities;
 		this.idUser = idKorsnik;
 	}
+	
+	
 
 //	public String getIdKorisnik() {
 //		return idUser;
@@ -25,6 +27,12 @@ public class JwtResponse {
 //	public void setIdKorisnik(String idKorisnik) {
 //		this.idUser = idKorisnik;
 //	}
+
+	public String getIdUser() {
+		return idUser;
+	}
+
+
 
 	public String getAccessToken() {
 		return token;

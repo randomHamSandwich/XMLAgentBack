@@ -7,6 +7,8 @@ import com.xml.agBa.model.User;
 import com.xml.agBa.model.EndUser;
 
 public interface UserService {
+	
+	
 
 	UserDTO saveUser(UserDTO korisnikDTO);
 

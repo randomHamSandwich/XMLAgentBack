@@ -71,16 +71,16 @@ public class AuthController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
-System.out.println("11111111111111111111111111111111111");
+
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-		System.out.println("22222222222222222222222222");
+
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		System.out.println("33333333333333333333");
+
 		String jwt = jwtProvider.generateJwtToken(authentication);
-		System.out.println("44444444444444444444");
+
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		System.out.println("555555555555555555555555");
+
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities(),
 				String.valueOf(((UserDetailsImpl) authentication.getPrincipal()).getId())));
 	}
@@ -112,26 +112,26 @@ System.out.println("11111111111111111111111111111111111");
 
 		strRoles.forEach(role -> {
 			switch (role) {
-			case "ad":
+			case "admin":
 				Roles adminRole = roleRepository.findByRoleName(RoleName.ADMIN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(adminRole);
 				break;
-			case "ag":
+			case "agent":
 				Roles lekarRole = roleRepository.findByRoleName(RoleName.AGENT)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(lekarRole);
 
-			case "eula":
+			case "end_user_limited_access":
 				Roles medicinskaSestraROle = roleRepository.findByRoleName(RoleName.END_USER_LIMITED_ACCESS)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(medicinskaSestraROle);
-			case "euf":
+			case "end_user_forbidden":
 				Roles administratorKlinickogCentraRole = roleRepository.findByRoleName(RoleName.END_USER_FORBIDDEN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(administratorKlinickogCentraRole);
 
-			case "eu":
+			case "end_user":
 				Roles userRole = roleRepository.findByRoleName(RoleName.END_USER)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(userRole);

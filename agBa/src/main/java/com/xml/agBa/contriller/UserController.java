@@ -62,7 +62,7 @@ public class UserController {
 	
 	@PutMapping(value="user/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")
-	public ResponseEntity<UserDTO> changUserPremmsions(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
+	public ResponseEntity<UserDTO> changUserPremmsions(@PathVariable("id") Long id) {
 		UserDTO korisnikListDTO = korisnikService.getUser(id);
 
 		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
