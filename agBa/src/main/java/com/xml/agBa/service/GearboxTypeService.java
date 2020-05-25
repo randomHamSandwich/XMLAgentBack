@@ -5,7 +5,7 @@ import java.util.List;
 import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.model.Car;
 
-public interface TipMenjacaService {
+public interface GearboxTypeService {
 
 	GearboxType findTipMenjacaById(Long id);
 

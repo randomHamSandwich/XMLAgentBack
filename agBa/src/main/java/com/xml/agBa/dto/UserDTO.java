@@ -13,6 +13,7 @@ public class UserDTO {
 	private String streetNumber;
 	private String city;
 	private String country;
+	private String authority;
 
 	public UserDTO() {
 		super();
@@ -29,6 +30,19 @@ public class UserDTO {
 		this.streetNumber = streetNumber;
 		this.city = city;
 		this.country = country;
+	}
+
+	public UserDTO(Long idUser, String email, String phoneNumber, String street, String streetNumber, String city,
+			String country, String authority) {
+		super();
+		this.idUser = idUser;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.street = street;
+		this.streetNumber = streetNumber;
+		this.city = city;
+		this.country = country;
+		this.authority = authority;
 	}
 
 	public UserDTO(User user) {
@@ -90,6 +104,14 @@ public class UserDTO {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 
 }

@@ -24,7 +24,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = SINGLE_TABLE)
-@DiscriminatorColumn(name = "tip_korisnika", discriminatorType = STRING)
+@DiscriminatorColumn(name = "user_type", discriminatorType = STRING)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +47,8 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private StatusUser status;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "idRola"))
+	@ManyToMany(fetch = FetchType.EAGER ,cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "idRole"))
 	private Set<Roles> roles;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

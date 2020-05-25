@@ -6,30 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.xml.agBa.model.FuelType;
-import com.xml.agBa.repository.FuelTypeRepo;
+import com.xml.agBa.model.CarModel;
+import com.xml.agBa.repository.ModelVozilaRepo;
 
 @Service
 @Transactional(readOnly = true)
-public class VrstaGorivaServiceImp implements VrstaGorivaService{
+public class CarModelServiceImp implements CarModelService{
 	
 	@Autowired
-	private FuelTypeRepo vrstaGorivaRepo;
+	private ModelVozilaRepo modelVozilaRepo;
 
 	@Override
-	public FuelType findVrstaGorivaById() {
+	public CarModel findModelVozilaById() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<FuelType> findAll() {
+	public List<CarModel> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public FuelType save(FuelType vrstaGoriva) {
+	public CarModel save(CarModel modelVozila) {
 		// TODO Auto-generated method stub
 		return null;
 	}

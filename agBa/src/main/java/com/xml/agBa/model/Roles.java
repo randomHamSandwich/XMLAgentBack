@@ -2,6 +2,7 @@ package com.xml.agBa.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,22 +22,22 @@ public class Roles {
 	private Long idRole;
 
 	@Enumerated(EnumType.STRING)
-	private RoleName nazivRole;
+	private RoleName roleName;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idRola"), inverseJoinColumns = @JoinColumn(name = "idUser"))
-	private Set<User> korisnici;
+	@ManyToMany(fetch = FetchType.EAGER ,cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "idRole"), inverseJoinColumns = @JoinColumn(name = "idUser"))
+	private Set<User> users;
 
 	public Roles() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Roles(Long idRola, RoleName nazivRole, Set<User> korisnici) {
+	public Roles(Long idRole, RoleName roleName, Set<User> users) {
 		super();
-		this.idRole = idRola;
-		this.nazivRole = nazivRole;
-		this.korisnici = korisnici;
+		this.idRole = idRole;
+		this.roleName = roleName;
+		this.users = users;
 	}
 
 	public Long getIdRole() {
@@ -47,22 +48,20 @@ public class Roles {
 		this.idRole = idRole;
 	}
 
-	public RoleName getNazivRole() {
-		return nazivRole;
+	public RoleName getRoleName() {
+		return roleName;
 	}
 
-	public void setNazivRole(RoleName nazivRole) {
-		this.nazivRole = nazivRole;
+	public void setRoleName(RoleName roleName) {
+		this.roleName = roleName;
 	}
 
-	public Set<User> getKorisnici() {
-		return korisnici;
+	public Set<User> getUsers() {
+		return users;
 	}
 
-	public void setKorisnici(Set<User> korisnici) {
-		this.korisnici = korisnici;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
-
-	
 
 }

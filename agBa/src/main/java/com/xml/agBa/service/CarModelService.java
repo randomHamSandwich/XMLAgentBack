@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.xml.agBa.model.CarModel;
 
-public interface ModelVozilaService {
+public interface CarModelService {
 	
 	CarModel findModelVozilaById();
 	

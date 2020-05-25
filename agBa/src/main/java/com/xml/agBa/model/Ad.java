@@ -54,6 +54,83 @@ public class Ad {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Ad(Long idAd, LocalDate starts, LocalDate ends, Set<UserRequest> userRequest, Set<Rating> rating,
+			Set<Comment> comments, PriceList priceList, Car car) {
+		super();
+		this.idAd = idAd;
+		this.starts = starts;
+		this.ends = ends;
+		this.userRequest = userRequest;
+		this.rating = rating;
+		this.comments = comments;
+		this.priceList = priceList;
+		this.car = car;
+	}
+
+	public Long getIdAd() {
+		return idAd;
+	}
+
+	public void setIdAd(Long idAd) {
+		this.idAd = idAd;
+	}
+
+	public LocalDate getStarts() {
+		return starts;
+	}
+
+	public void setStarts(LocalDate starts) {
+		this.starts = starts;
+	}
+
+	public LocalDate getEnds() {
+		return ends;
+	}
+
+	public void setEnds(LocalDate ends) {
+		this.ends = ends;
+	}
+
+	public Set<UserRequest> getUserRequest() {
+		return userRequest;
+	}
+
+	public void setUserRequest(Set<UserRequest> userRequest) {
+		this.userRequest = userRequest;
+	}
+
+	public Set<Rating> getRating() {
+		return rating;
+	}
+
+	public void setRating(Set<Rating> rating) {
+		this.rating = rating;
+	}
+
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public PriceList getPriceList() {
+		return priceList;
+	}
+
+	public void setPriceList(PriceList priceList) {
+		this.priceList = priceList;
+	}
+
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+
 	
 	
 	

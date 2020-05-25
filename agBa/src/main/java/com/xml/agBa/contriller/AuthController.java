@@ -59,7 +59,7 @@ public class AuthController {
 
 	@Autowired
 	JwtProvider jwtProvider;
-	
+
 	@Autowired
 	EmailService emailService;
 
@@ -68,22 +68,19 @@ public class AuthController {
 
 //	@Autowired
 //	private EmailService emailService;
-	
-	
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
-		
-
+System.out.println("11111111111111111111111111111111111");
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-		
-
+		System.out.println("22222222222222222222222222");
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+		System.out.println("33333333333333333333");
 		String jwt = jwtProvider.generateJwtToken(authentication);
+		System.out.println("44444444444444444444");
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		
-
+		System.out.println("555555555555555555555555");
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities(),
 				String.valueOf(((UserDetailsImpl) authentication.getPrincipal()).getId())));
 	}
@@ -93,7 +90,6 @@ public class AuthController {
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already taken!"), HttpStatus.BAD_REQUEST);
 		}
-
 
 //		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 //			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
@@ -117,26 +113,26 @@ public class AuthController {
 		strRoles.forEach(role -> {
 			switch (role) {
 			case "ad":
-				Roles adminRole = roleRepository.findByNazivRole(RoleName.ADMIN)
+				Roles adminRole = roleRepository.findByRoleName(RoleName.ADMIN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(adminRole);
 				break;
 			case "ag":
-				Roles lekarRole = roleRepository.findByNazivRole(RoleName.AGENT)
+				Roles lekarRole = roleRepository.findByRoleName(RoleName.AGENT)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(lekarRole);
 
-			case "kop":
-				Roles medicinskaSestraROle = roleRepository.findByNazivRole(RoleName.KORISNIK_OGRANI_PRISTUP)
+			case "eula":
+				Roles medicinskaSestraROle = roleRepository.findByRoleName(RoleName.END_USER_LIMITED_ACCESS)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(medicinskaSestraROle);
-			case "kz":
-				Roles administratorKlinickogCentraRole = roleRepository.findByNazivRole(RoleName.KORISNIK_ZABRANJEN)
+			case "euf":
+				Roles administratorKlinickogCentraRole = roleRepository.findByRoleName(RoleName.END_USER_FORBIDDEN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(administratorKlinickogCentraRole);
 
-			default:
-				Roles userRole = roleRepository.findByNazivRole(RoleName.KORISNIK)
+			case "eu":
+				Roles userRole = roleRepository.findByRoleName(RoleName.END_USER)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(userRole);
 			}
@@ -144,7 +140,7 @@ public class AuthController {
 		user.setRoles(roles);
 
 		korisnikService.save(user);
-		
+
 		try {
 			emailService.sendSuccessfulRegistrationMail(user);
 		} catch (MailException e) {

@@ -18,13 +18,13 @@ public class JwtResponse {
 		this.idUser = idKorsnik;
 	}
 
-	public String getIdKorisnik() {
-		return idUser;
-	}
-
-	public void setIdKorisnik(String idKorisnik) {
-		this.idUser = idKorisnik;
-	}
+//	public String getIdKorisnik() {
+//		return idUser;
+//	}
+//
+//	public void setIdKorisnik(String idKorisnik) {
+//		this.idUser = idKorisnik;
+//	}
 
 	public String getAccessToken() {
 		return token;

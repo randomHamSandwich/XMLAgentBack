@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.xml.agBa.model.FuelType;
 
-public interface VrstaGorivaService {
+public interface FuelTypeService {
 	
 	FuelType findVrstaGorivaById();
 	

@@ -8,11 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
-@DiscriminatorValue("KRAJNI_KORISNIK")
+@DiscriminatorValue("END_USER")
 public class EndUser extends User {
 
 	@OneToMany(mappedBy = "endUser", cascade = CascadeType.ALL)
-	private Set<UserRequest> zahtevi;
+	private Set<UserRequest> userRequest;
 
 	@OneToMany(mappedBy = "endUser", cascade = CascadeType.ALL)
 	private Set<Rating> rating;

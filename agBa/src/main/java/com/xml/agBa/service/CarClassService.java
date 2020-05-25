@@ -5,7 +5,7 @@ import java.util.List;
 import com.xml.agBa.model.CarClass;
 
 
-public interface KlasaVozilaService {
+public interface CarClassService {
 
 	CarClass findKlasaVozilaById();
 	

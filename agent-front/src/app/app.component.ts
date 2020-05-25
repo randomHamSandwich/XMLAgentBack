@@ -35,17 +35,17 @@ export class AppComponent implements OnInit {
           return false;
         } 
         
-        else if (role === 'KORISNIK_OGRANI_PRISTUP') {
-          this.authority = 'kop';
+        else if (role === 'END_USER_LIMITED_ACCESS') {
+          this.authority = 'eula';
           return false;
         }
         
-        else if (role === 'KORISNIK_ZABRANJEN') {
-          this.authority = 'kz';
+        else if (role === 'END_USER_FORBIDDEN') {
+          this.authority = 'euf';
           return false;
         }
- else if (role === 'KORISNIK')
-        this.authority = 'korisnik';
+        else if (role === 'END_USER')
+        this.authority = 'eu';
         return true;
       });
     }

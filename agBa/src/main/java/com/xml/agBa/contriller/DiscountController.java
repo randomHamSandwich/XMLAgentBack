@@ -16,7 +16,7 @@ import com.xml.agBa.service.DiscountService;
 
 @CrossOrigin(origins = "*")
 @RestController
-public class PopustController {
+public class DiscountController {
 
 	@Autowired
 	private DiscountService discountService;

@@ -6,30 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.xml.agBa.model.CarModel;
-import com.xml.agBa.repository.ModelVozilaRepo;
+import com.xml.agBa.model.GearboxType;
+import com.xml.agBa.repository.GearboxTypeRepo;
 
 @Service
 @Transactional(readOnly = true)
-public class ModelVozilaServiceImp implements ModelVozilaService{
-	
+public class GearboxTypeServiceImp implements GearboxTypeService{
+
 	@Autowired
-	private ModelVozilaRepo modelVozilaRepo;
-
+	private GearboxTypeRepo tipMenjacaRepo;
+	
 	@Override
-	public CarModel findModelVozilaById() {
+	public GearboxType findTipMenjacaById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CarModel> findAll() {
+	public List<GearboxType> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CarModel save(CarModel modelVozila) {
+	public GearboxType save(GearboxType tipMenjaca) {
 		// TODO Auto-generated method stub
 		return null;
 	}

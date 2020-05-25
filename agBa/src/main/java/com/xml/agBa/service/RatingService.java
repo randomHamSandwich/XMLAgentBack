@@ -1,5 +1,5 @@
 package com.xml.agBa.service;
 
-public interface OglasService {
+public interface RatingService {
 
 }

@@ -13,13 +13,14 @@ hhhhhhhhhoooooooooommmmmmmmeeeeeeeee
           <a class="nav-link" routerLink="carList">Klinike</a>
         </li> -->
 
-<div *ngIf="authority==='korisnik'">
+<div *ngIf="authority==='eu'">
   <app-krajnji-korisnik [korisnik]='korisnik | async'></app-krajnji-korisnik>
 </div>
 
 
 <div *ngIf="authority==='ad'">
-  <app-krajnji-korisnik [korisnik]='korisnik | async'></app-krajnji-korisnik>
+  <!-- <app-krajnji-korisnik [korisnik]='korisnik | async'></app-krajnji-korisnik> -->
+  stavi admin stuff
 </div>
 
 

@@ -5,7 +5,7 @@ import java.util.List;
 import com.xml.agBa.model.CarBrand;
 
 
-public interface MarkaVozilaService {
+public interface CarBrandService {
 	
 	CarBrand findMarkaVozilaById();
 	

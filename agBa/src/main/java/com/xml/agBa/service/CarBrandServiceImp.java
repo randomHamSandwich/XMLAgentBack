@@ -11,7 +11,7 @@ import com.xml.agBa.repository.CarBrandRepo;
 
 @Service
 @Transactional(readOnly = true)
-public class MarkaVozilaServiceImp implements MarkaVozilaService{
+public class CarBrandServiceImp implements CarBrandService{
 	
 	@Autowired
 	private CarBrandRepo markaVozilaRepo;

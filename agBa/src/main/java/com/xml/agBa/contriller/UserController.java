@@ -32,25 +32,16 @@ public class UserController {
 	private UserService korisnikService;
 
 	
-	@GetMapping(value = "/kroisnik")
+	@GetMapping(value = "/user")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<List<UserDTO>> getUsers() {
 		List<UserDTO> korisnikListDTO = korisnikService.findAllKorisnik();
 
 		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
 	}
-//	
-//	@GetMapping(value = "/kroisnik/{id}")
-//	@PreAuthorize("hasAuthority('KORISNIK')")
-//	public ResponseEntity<KorisnikDTO> getUser(@PathVariable("id") Long id) {
-//		KorisnikDTO korisnikListDTO = korisnikService.getUser(id);
-//
-//		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
-//	}
-//	
-//	
-	@GetMapping(value = "/kroisnik/{id}")
-	@PreAuthorize("hasAuthority('KORISNIK')")
+
+	@GetMapping(value = "/user/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<?> getMyUserInfo(@PathVariable("id") Long id, @AuthenticationPrincipal UserDetailsImpl  user) {
 		if(!user.getId().equals(id)) {
 			
@@ -61,7 +52,7 @@ public class UserController {
 	}
 
 
-	@PostMapping(value= "/kroisnik", consumes= "application/json")
+	@PostMapping(value= "/user", consumes= "application/json")
 	public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO KorisnikDTO) {
 		
 		UserDTO noviKorisnik = korisnikService.saveUser(KorisnikDTO) ;
@@ -69,12 +60,13 @@ public class UserController {
 		return new ResponseEntity<>(noviKorisnik, HttpStatus.CREATED);
 	}
 	
-	@PutMapping
-	@PreAuthorize("hasAuthority('PACIJENT')")
+	@PutMapping(value="user/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<UserDTO> changUserPremmsions(@PathVariable("id") Long id, @RequestHeader (name="Authorization") String token) {
-		JwtAuthTokenFilter f = new JwtAuthTokenFilter(); 
 		UserDTO korisnikListDTO = korisnikService.getUser(id);
 
 		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
 	}	
+	
+	
 }

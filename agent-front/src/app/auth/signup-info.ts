@@ -17,7 +17,7 @@ constructor( streetName: string, streetNumber: string, contry: string, city: str
         this.brojTelefona = phoneNumber;
         this.email = email;
         this.password = password;
-        this.role = ['korisnik']; 
+        this.role = ['eu']; 
 
 
     }
