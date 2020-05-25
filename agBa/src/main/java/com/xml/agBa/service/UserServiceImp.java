@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.UserDTO;
-import com.xml.agBa.model.User;
 import com.xml.agBa.model.EndUser;
+import com.xml.agBa.model.Roles;
+import com.xml.agBa.model.User;
 import com.xml.agBa.repository.UserRepo;
 
 @Service
@@ -17,7 +18,7 @@ import com.xml.agBa.repository.UserRepo;
 public class UserServiceImp implements UserService {
 
 	@Autowired
-	private UserRepo korisnikRepo;
+	private UserRepo userRepo;
 
 	@Override
 	@Transactional
@@ -28,37 +29,39 @@ public class UserServiceImp implements UserService {
 		user.setEmail(userDTO.getEmail());
 		user.setStreet(userDTO.getStreet());
 
-		user = korisnikRepo.save(user);
+		user = userRepo.save(user);
 		return new UserDTO(user);
 	}
 
 	@Override
-	public List<UserDTO> findAllKorisnik() {
+	public List<UserDTO> findAllEndUsers() {
 
-		List<User> korisnici = korisnikRepo.findAll();
-		List<UserDTO> KorisniksDTO = new ArrayList<>();
-		for (User k : korisnici) {
-			KorisniksDTO.add(new UserDTO(k));
+		List<User> users = userRepo.findAllEndUsers();
+		List<UserDTO> usersDTO = new ArrayList<>();
+		for (User k : users) {
+			Object[] r = k.getRoles().toArray();
+			Roles role = (Roles)r[0];
+			usersDTO.add(new UserDTO(k,role));
 		}
 
-		return KorisniksDTO;
+		return usersDTO;
 	}
 
 	@Override
 	@Transactional
-	public User save(User korisnik) {
-		return korisnikRepo.save(korisnik);
+	public User save(User user) {
+		return userRepo.save(user);
 	}
 
 	@Override
 	@Transactional
-	public EndUser save(EndUser krajnjiKorisnik) {
-		return korisnikRepo.save(krajnjiKorisnik);
+	public EndUser save(EndUser endUser) {
+		return userRepo.save(endUser);
 	}
 
 	@Override
 	public UserDTO getUser(Long id) {
-		return new UserDTO(korisnikRepo.getOne(id));
+		return new UserDTO(userRepo.getOne(id));
 	}
 
 }

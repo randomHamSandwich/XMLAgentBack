@@ -29,13 +29,13 @@ import com.xml.agBa.service.UserService;
 public class UserController {
 
 	@Autowired
-	private UserService korisnikService;
+	private UserService userService;
 
 	
 	@GetMapping(value = "/user")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<List<UserDTO>> getUsers() {
-		List<UserDTO> korisnikListDTO = korisnikService.findAllKorisnik();
+		List<UserDTO> korisnikListDTO = userService.findAllEndUsers();
 
 		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
 	}
@@ -47,7 +47,7 @@ public class UserController {
 			
 			return new ResponseEntity<>(new ResponseMessage("You can only access your information"), HttpStatus.FORBIDDEN);
 		}
-		UserDTO korisnikListDTO = korisnikService.getUser(id);
+		UserDTO korisnikListDTO = userService.getUser(id);
 		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
 	}
 
@@ -55,7 +55,7 @@ public class UserController {
 	@PostMapping(value= "/user", consumes= "application/json")
 	public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO KorisnikDTO) {
 		
-		UserDTO noviKorisnik = korisnikService.saveUser(KorisnikDTO) ;
+		UserDTO noviKorisnik = userService.saveUser(KorisnikDTO) ;
 
 		return new ResponseEntity<>(noviKorisnik, HttpStatus.CREATED);
 	}
@@ -63,7 +63,7 @@ public class UserController {
 	@PutMapping(value="user/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<UserDTO> changUserPremmsions(@PathVariable("id") Long id) {
-		UserDTO korisnikListDTO = korisnikService.getUser(id);
+		UserDTO korisnikListDTO = userService.getUser(id);
 
 		return new ResponseEntity<>(korisnikListDTO, HttpStatus.OK);
 	}	

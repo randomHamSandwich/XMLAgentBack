@@ -12,7 +12,7 @@ public interface UserService {
 
 	UserDTO saveUser(UserDTO korisnikDTO);
 
-	List<UserDTO> findAllKorisnik();
+	List<UserDTO> findAllEndUsers();
 
 	UserDTO getUser(Long id);
 

@@ -1,7 +1,6 @@
 package com.xml.agBa.dto;
 
-import javax.persistence.Column;
-
+import com.xml.agBa.model.Roles;
 import com.xml.agBa.model.User;
 
 public class UserDTO {
@@ -48,6 +47,12 @@ public class UserDTO {
 	public UserDTO(User user) {
 		this(user.getIdUser(), user.getEmail(), user.getPhoneNumber(), user.getStreet(), user.getStreetNumber(),
 				user.getCity(), user.getCountry());
+	}
+	
+	public UserDTO(User user, Roles role) {
+		this(user);
+		this.authority = role.getRoleName().toString();
+
 	}
 
 	public Long getIdUser() {

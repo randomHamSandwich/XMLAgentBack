@@ -6,5 +6,6 @@ export class Korisnik{
     city: string;
     country: string;
     phoneNumber: string;
+    authority: string;
     
 }

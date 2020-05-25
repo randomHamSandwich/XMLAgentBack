@@ -1,1 +1,27 @@
 <p>change-authoriy works!</p>
+
+
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">user mail</th>
+            <th scope="col">permissions</th>
+            <th>action</th>
+        </tr>
+    </thead>
+
+    <tbody *ngFor="let korisnik of korisnici | async ; let i = index;">
+
+        <tr class="info">
+            <th scope="row">{{i+1}}</th>
+            <th scope="row">{{korisnik.email}}</th>
+            <th scope="row">{{korisnik.authority}}</th>
+            <th>action</th>
+        </tr>
+
+
+    </tbody>
+
+</table>
