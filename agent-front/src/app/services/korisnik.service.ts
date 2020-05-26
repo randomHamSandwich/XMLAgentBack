@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Korisnik } from '../home/Korisnik';
-import { TestDTO } from '../admin/change-authoriy/TestDTO';
+import { RoleDTO } from '../admin/change-authoriy/RoleDTO';
+
 
 
 
@@ -36,7 +36,7 @@ export class KorisnikService {
     return this.http.get(this.korisnikUrl );
   }
 
-  public updateKorisnik(id: number, value: TestDTO): Observable<any> {
+  public updateKorisnik(id: number, value: RoleDTO): Observable<any> {
     return this.http.put(this.korisnikUrl + '/' + id, value)
   }
  

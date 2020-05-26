@@ -45,7 +45,7 @@ export class ChangeAuthoriyComponent implements OnInit {
         error => console.log(error)
         );
 
-        // window.location.reload();
+        window.location.reload();
     };
 
 
