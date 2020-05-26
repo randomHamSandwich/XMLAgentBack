@@ -1,0 +1,27 @@
+<p>gearbox-list works!</p>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            
+        </tr>
+    </thead>
+
+    <tbody *ngFor="let gearboxType of gearboxTypes | async ; let i = index;">
+
+        <tr class="info">
+            <th scope="row">{{i+1}}</th>
+            <th scope="row">{{gearboxType.idGearboxType}}</th>
+            <th scope="row">{{gearboxType.name}}</th>
+            
+
+
+        </tr>
+
+
+    </tbody>
+
+</table>

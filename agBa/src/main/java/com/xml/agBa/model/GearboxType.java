@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.xml.agBa.dto.GearboxTypeDTO;
+
 @Entity
 public class GearboxType {
 	@Id
@@ -31,6 +33,12 @@ public class GearboxType {
 		this.idGearboxType = idGearboxType;
 		this.name = name;
 		this.car = car;
+	}
+	
+	public GearboxType(GearboxTypeDTO gearboxTypeDTO) {
+		super();
+		this.idGearboxType = gearboxTypeDTO.getIdGearboxType();
+		this.name = gearboxTypeDTO.getName();
 	}
 
 	public Long getIdGearboxType() {

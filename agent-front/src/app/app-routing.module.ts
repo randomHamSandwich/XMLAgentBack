@@ -5,7 +5,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CarListComponent } from './car-list/car-list.component';
-import { ChangeAuthoriyComponent} from './admin/change-authoriy/change-authoriy.component'
+import { AdminComponent } from './admin/admin.component'; 
+import { ChangeAuthoriyComponent} from './admin/change-authoriy/change-authoriy.component';
+import { GearboxListComponent  } from './admin/gearbox-list/gearbox-list.component';
 
 const routes: Routes = [
     {
@@ -20,10 +22,18 @@ const routes: Routes = [
         path: 'users',
         component: ChangeAuthoriyComponent
     },
-    // {
-    //     path: 'admin',
-    //     component: AdminComponent
-    // },
+    {
+        path: 'admin',
+        component: AdminComponent
+    },
+
+    {
+        path: 'gearbox',
+        component: GearboxListComponent
+    },
+
+
+
     {
         path: 'auth/login',
         component: LoginComponent

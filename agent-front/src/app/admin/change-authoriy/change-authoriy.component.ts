@@ -16,22 +16,18 @@ export class ChangeAuthoriyComponent implements OnInit {
   constructor(private korisnikService: KorisnikService) { }
 
   ngOnInit() {
-
-
-
     this.reloadData();
   }
 
   reloadData() {
     this.users = this.korisnikService.getAllKorisnik()
-
-
   }
 
   onUpdateUserAccess(user: Korisnik, permmision: string) {
     this.roleDTO = new RoleDTO();
     this.roleDTO.roleName = permmision;
-    console.log("xxxxxxxxxxxxxxxxxxxxx_"+ user.idUser);
+
+    
     this.korisnikService.changeRole(
       user.idUser,       
       {
