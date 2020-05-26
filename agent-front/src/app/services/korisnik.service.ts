@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Korisnik } from '../home/Korisnik';
+import { TestDTO } from '../admin/change-authoriy/TestDTO';
 
 
 
@@ -11,7 +13,17 @@ import { Observable } from 'rxjs';
 
 export class KorisnikService {
 
+
   private korisnikUrl = 'http://localhost:8080/api/user';
+
+  
+  changeRole( idUser : string, info: any): Observable<any>  {
+    console.log("xxxxxxxxxxx stigno do servisa:_" + idUser);
+    
+    const roleName = new HttpParams().set('roleName', info.roleName);
+    return this.http.put(this.korisnikUrl + '/'+idUser, roleName );
+
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +36,7 @@ export class KorisnikService {
     return this.http.get(this.korisnikUrl );
   }
 
-  public updateKorisnik(id: number, value: any): Observable<any> {
+  public updateKorisnik(id: number, value: TestDTO): Observable<any> {
     return this.http.put(this.korisnikUrl + '/' + id, value)
   }
  

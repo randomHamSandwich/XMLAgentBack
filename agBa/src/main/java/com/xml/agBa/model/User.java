@@ -157,11 +157,7 @@ public class User {
 	}
 
 	public Set<Roles> getRoles() {
-		for (Roles r : roles) {
-			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxx " + roles);
-			System.out.println(r.getRoleName());
-		}
-		
+				
 		return roles;
 	}
 

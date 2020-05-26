@@ -14,7 +14,9 @@ public interface UserService {
 
 	List<UserDTO> findAllEndUsers();
 
-	UserDTO getUser(Long id);
+	UserDTO getUserDTO(Long id);
+	
+	UserDTO chageUserRole(Long id, String role);
 
 	User save(User korisnik);
 

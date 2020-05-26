@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { Korisnik } from 'src/app/home/Korisnik';
 import { Observable } from 'rxjs';
 import { KorisnikService } from 'src/app/services/korisnik.service';
+import { RoleDTO } from './RoleDTO';
 
 @Component({
   selector: 'app-change-authoriy',
@@ -9,8 +10,9 @@ import { KorisnikService } from 'src/app/services/korisnik.service';
   styleUrls: ['./change-authoriy.component.css']
 })
 export class ChangeAuthoriyComponent implements OnInit {
+  @Input() roleDTO: RoleDTO;
 
-  korisnici: Observable<Korisnik[]>;
+  users: Observable<Korisnik[]>;
   constructor(private korisnikService: KorisnikService) { }
 
   ngOnInit() {
@@ -21,9 +23,31 @@ export class ChangeAuthoriyComponent implements OnInit {
   }
 
   reloadData() {
-    this.korisnici = this.korisnikService.getAllKorisnik()
+    this.users = this.korisnikService.getAllKorisnik()
 
 
   }
 
-}
+  onUpdateUserAccess(user: Korisnik, permmision: string) {
+    this.roleDTO = new RoleDTO();
+    this.roleDTO.roleName = permmision;
+    console.log("xxxxxxxxxxxxxxxxxxxxx_"+ user.idUser);
+    this.korisnikService.changeRole(
+      user.idUser,       
+      {
+        roleName: this.roleDTO.roleName,
+      }
+    ).subscribe(
+    data =>{
+      console.log(data);
+            this.roleDTO = data as RoleDTO;
+        },
+        error => console.log(error)
+        );
+
+        // window.location.reload();
+    };
+
+
+  }
+

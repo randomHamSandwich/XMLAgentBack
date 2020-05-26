@@ -9,16 +9,39 @@
             <th scope="col">user mail</th>
             <th scope="col">permissions</th>
             <th>action</th>
+            <th>action</th>
+            <th>action</th>
         </tr>
     </thead>
 
-    <tbody *ngFor="let korisnik of korisnici | async ; let i = index;">
+    <tbody *ngFor="let user of users | async ; let i = index;">
 
         <tr class="info">
             <th scope="row">{{i+1}}</th>
-            <th scope="row">{{korisnik.email}}</th>
-            <th scope="row">{{korisnik.authority}}</th>
-            <th>action</th>
+            <th scope="row">{{user.email}}</th>
+            <th scope="row">{{user.authority}}</th>
+            
+            <td>
+                <button class="btn btn-info"
+                    (click)="onUpdateUserAccess(user,'END_USER_FORBIDDEN')">Forbidden</button>
+            </td>
+
+            <td>
+                <button class="btn btn-info"
+                    (click)="onUpdateUserAccess(user,'END_USER_LIMITED_ACCESS')">Limit user</button>
+            </td>
+
+            <td>
+                <button class="btn btn-info"
+                    (click)="onUpdateUserAccess(user,'END_USER')">Full access</button>
+            </td>
+            
+            <!-- <td *ngIf="!isOcenjenLekar(operacija)">
+                <button class="btn btn-info" [disabled]="!isOcenaLekar[i]"
+                    (click)="onOceniLekara(operacija,oceneLekara[i])">Oceni Lekara</button>
+            </td> -->
+
+
         </tr>
 
 

@@ -1,7 +1,10 @@
 package com.xml.agBa.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,9 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.UserDTO;
 import com.xml.agBa.model.EndUser;
+import com.xml.agBa.model.RoleName;
 import com.xml.agBa.model.Roles;
 import com.xml.agBa.model.User;
 import com.xml.agBa.repository.UserRepo;
+import com.xml.agBa.security.repository.RolesRepo;
 
 @Service
 @Transactional(readOnly = true)
@@ -19,6 +24,9 @@ public class UserServiceImp implements UserService {
 
 	@Autowired
 	private UserRepo userRepo;
+	
+	@Autowired
+	private  RolesRepo rolesRepo;
 
 	@Override
 	@Transactional
@@ -33,6 +41,9 @@ public class UserServiceImp implements UserService {
 		return new UserDTO(user);
 	}
 
+	
+	/** get get users dto, as users have one role set authority field in userDTO to that role
+	 */
 	@Override
 	public List<UserDTO> findAllEndUsers() {
 
@@ -60,8 +71,26 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public UserDTO getUser(Long id) {
+	public UserDTO getUserDTO(Long id) {
 		return new UserDTO(userRepo.getOne(id));
+	}
+
+	/** Change end user permissions to:	END_USER, END_USER_FORBIDDEN, END_USER_LIMITED_ACCESS
+	 */
+	@Override
+	@Transactional
+	public UserDTO chageUserRole(Long id, String roleName) {
+		User user = userRepo.getOne(id);
+		Optional<Roles> role = rolesRepo.findByRoleName(RoleName.valueOf(roleName));
+		Set<Roles> roles = new HashSet<Roles>();
+		roles.add(role.get());
+		user.setRoles(roles);
+		userRepo.save(user);
+		
+		Object[] r = user.getRoles().toArray();
+		Roles roleCasted = (Roles)r[0];
+		
+		return new UserDTO(user, roleCasted );
 	}
 
 }
