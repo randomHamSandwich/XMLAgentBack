@@ -2,15 +2,25 @@ package com.xml.agBa.dto;
 
 import javax.persistence.Column;
 
+import com.xml.agBa.model.CarBrand;
 import com.xml.agBa.model.Car;
+import com.xml.agBa.model.CarClass;
+import com.xml.agBa.model.CarModel;
+import com.xml.agBa.model.FuelType;
+import com.xml.agBa.model.GearboxType;
 
 public class CarDTO {
 
+	private String carBrand;
+	private String carModel;
+	private String carClass;
+	private String fuelType;
+	private String gearboxType;
 	private Long idCar;
 	private double km;
 	private double allowedKM;
 	private int childrenSeats;
-	private float cdw;
+	private boolean cdw;
 	private String street;
 	private String streetNumber;
 	private String city;
@@ -21,8 +31,30 @@ public class CarDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CarDTO(Long idCar, double km, double allowedKM, int childrenSeats, float cdw, String street,
-			String streetNumber, String city, String country) {
+	
+	
+	public CarDTO(CarBrand carBrand, CarModel carModel, CarClass carClass, FuelType fuelType, GearboxType gearboxType,
+			Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street, String streetNumber,
+			String city, String country) {
+		super();
+		this.carBrand = carBrand.getName();
+		this.carModel = carModel.getName();
+		this.carClass = carClass.getName();
+		this.fuelType = fuelType.getName();
+		this.gearboxType = gearboxType.getName();
+		this.idCar = idCar;
+		this.km = km;
+		this.allowedKM = allowedKM;
+		this.childrenSeats = childrenSeats;
+		this.cdw = cdw;
+		this.street = street;
+		this.streetNumber = streetNumber;
+		this.city = city;
+		this.country = country;
+	}
+
+	public CarDTO(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street, String streetNumber,
+			String city, String country) {
 		super();
 		this.idCar = idCar;
 		this.km = km;
@@ -33,6 +65,18 @@ public class CarDTO {
 		this.streetNumber = streetNumber;
 		this.city = city;
 		this.country = country;
+	}
+
+
+//	public CarDTO(Car car) {
+//		this(car.getIdCar(), car.getKm(), car.getAllowedKM(), car.getChildrenSeats(), car.getCdw(),
+//				car.getStreet(), car.getStreetNumber(), car.getCity(), car.getCountry());
+//	}
+	
+	public CarDTO(Car car) {
+		this(car.getCarBrand(), car.getCarModel(), car.getCarClass(), car.getFuelType(), car.getGearboxType(),
+				car.getIdCar(), car.getKm(), car.getAllowedKM(), car.getChildrenSeats(), car.getCdw(),
+				car.getStreet(), car.getStreetNumber(), car.getCity(), car.getCountry());
 	}
 
 	public Long getIdCar() {
@@ -67,11 +111,11 @@ public class CarDTO {
 		this.childrenSeats = childrenSeats;
 	}
 
-	public float getCdw() {
+	public boolean getCdw() {
 		return cdw;
 	}
 
-	public void setCdw(float cdw) {
+	public void setCdw(boolean cdw) {
 		this.cdw = cdw;
 	}
 
@@ -107,4 +151,64 @@ public class CarDTO {
 		this.country = country;
 	}
 
-}
+
+
+	public String getCarBrand() {
+		return carBrand;
+	}
+
+
+
+	public void setCarBrand(String carBrand) {
+		this.carBrand = carBrand;
+	}
+
+
+
+	public String getCarModel() {
+		return carModel;
+	}
+
+
+
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
+	}
+
+
+
+	public String getCarClass() {
+		return carClass;
+	}
+
+
+
+	public void setCarClass(String carClass) {
+		this.carClass = carClass;
+	}
+
+
+
+	public String getFuelType() {
+		return fuelType;
+	}
+
+
+
+	public void setFuelType(String fuelType) {
+		this.fuelType = fuelType;
+	}
+
+
+
+	public String getGearboxType() {
+		return gearboxType;
+	}
+
+
+
+	public void setGearboxType(String gearboxType) {
+		this.gearboxType = gearboxType;
+	}
+
+	}

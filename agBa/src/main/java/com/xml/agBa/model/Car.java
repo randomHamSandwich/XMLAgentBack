@@ -26,7 +26,7 @@ public class Car {
 	@Column
 	private int childrenSeats;
 	@Column
-	private float cdw;
+	private boolean cdw;
 	@Column
 	private String street;
 	@Column
@@ -67,7 +67,7 @@ public class Car {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Car(Long idCar, double km, double allowedKM, int childrenSeats, float cdw, String street,
+	public Car(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street,
 			String streetNumber, String city, String country, CarBrand carBrand, CarClass carClass, CarModel carModel,
 			FuelType fuelType, GearboxType gearboxType, Set<Report> reports, Ad ad) {
 		super();
@@ -121,11 +121,11 @@ public class Car {
 		this.childrenSeats = childrenSeats;
 	}
 
-	public float getCdw() {
+	public boolean getCdw() {
 		return cdw;
 	}
 
-	public void setCdw(float cdw) {
+	public void setCdw(boolean cdw) {
 		this.cdw = cdw;
 	}
 

@@ -13,4 +13,6 @@ public interface CarRepo extends JpaRepository<Car, Long> {
 //
 //	Boolean existsByIdVozilo(String idVozilo);
 
+	List<Car> findAll();
+	
 }

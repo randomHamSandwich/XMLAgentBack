@@ -24,6 +24,41 @@ public class CarClass {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public CarClass(Long idCarClass, String name, Set<Car> cars) {
+		super();
+		this.idCarClass = idCarClass;
+		this.name = name;
+		this.cars = cars;
+	}
+
+
+
+	public Long getIdCarClass() {
+		return idCarClass;
+	}
+
+	public void setIdCarClass(Long idCarClass) {
+		this.idCarClass = idCarClass;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Set<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(Set<Car> cars) {
+		this.cars = cars;
+	}
 
 	
 }

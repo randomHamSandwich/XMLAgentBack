@@ -10,19 +10,19 @@ export class CarService {
 
   constructor(private http:HttpClient) {}
 
-  createNewDiscount(car) {
+  createNewCar(car) {
     return this.http.post(this.baseUrl + '/create/', car);
   }
 
-  updateCar() {
+  public updateCar() {
 
   }
 
-  getCarById() {
+  public getCarById() {
 
   }
 
-  getCarsList() {
-    return this.http.get(this.baseUrl + '/vozila');
+  public getCarsList() {
+    return this.http.get(this.baseUrl + '/carList');
   }
 }
