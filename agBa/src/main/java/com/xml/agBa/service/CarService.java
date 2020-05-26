@@ -8,28 +8,29 @@ import com.xml.agBa.model.CarModel;
 import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.model.Car;
 import com.xml.agBa.model.FuelType;
+import com.xml.agBa.dto.CarDTO;
 
 public interface CarService {
 	
-	Car findVoziloById();
+	Car findCarById();
 	
-	List<Car> findAll();
+	List<CarDTO> getAllCars();
 	
-	Car save(Car vozilo);
+	Car save(Car car);
 	
-	void deleteVoziloById(Long idVozilo);
+	void deleteCarById(Long carId);
 	
-	Car editVoziloById(Long idVozilo);
+	Car editCarById(Long carId);
 	
-	List<Car> findAllVoziloByModel(CarModel modelaVozila);
+	List<Car> findAllCarByModel(CarModel carModel);
 	
-	List<Car> findAllVoziloByMarka(CarBrand markaVozila);
+	List<Car> findAllCarByBrand(CarBrand carBrand);
 	
-	List<Car> findAllVoziloByTipMenjaca(GearboxType tipMenjaca);
+	List<Car> findAllCarByGearboxType(GearboxType gearboxType);
 	
-	List<Car> findAllVoziloByVrstaGoriva(FuelType vrstaGoriva);
+	List<Car> findAllCarByFuelType(FuelType fuelType);
 	
-	List<Car> findAllVoziloByKlasa(CarClass klasaVozila);
+	List<Car> findAllCarByClass(CarClass carClass);
 	
-	void updateKilometrazaById(Long idVozilo, double kilometraza);
+	void updateMileageById(Long idCar, double mileage);
 }

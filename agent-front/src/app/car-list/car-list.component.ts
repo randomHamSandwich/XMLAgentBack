@@ -8,20 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./car-list.component.css']
 })
 export class CarListComponent implements OnInit {
-  car: any;
+  cars: any;
   errorMessage: any;
 
   constructor(private carService: CarService,
               private router: Router) { }
 
   ngOnInit() {
-    this.findAllDiscounts();
+    this.findAllCars();
   }
 
-  findAllDiscounts() {
+  findAllCars() {
     this.carService.getCarsList().subscribe(
       data => {
-        this.car = data;
+        this.cars = data;
       },
       error => {
         this.errorMessage = error.error.message;

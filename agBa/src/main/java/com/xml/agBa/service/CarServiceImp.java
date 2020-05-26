@@ -1,5 +1,6 @@
 package com.xml.agBa.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,74 +14,86 @@ import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.model.Car;
 import com.xml.agBa.model.FuelType;
 import com.xml.agBa.repository.CarRepo;
+import com.xml.agBa.dto.CarDTO;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
 public class CarServiceImp implements CarService{
 	
 
+	@Autowired
+	private CarRepo carRepo;
+	
 	@Override
-	public Car findVoziloById() {
+	public Car findCarById() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Car> findAll() {
+	public List<CarDTO> getAllCars() {
+		
+		List<Car> cars = carRepo.findAll();
+		List<CarDTO> carsDTO = new ArrayList<>();
+		for (Car c : cars) {
+			CarDTO carDTOtemp = new CarDTO(c);
+			carsDTO.add(carDTOtemp);
+		}
+		
+		return carsDTO;
+	}
+
+	@Override
+	public Car save(Car Car) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Car save(Car vozilo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteVoziloById(Long idVozilo) {
+	public void deleteCarById(Long carId) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Car editVoziloById(Long idVozilo) {
+	public Car editCarById(Long carId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Car> findAllVoziloByModel(CarModel modelaVozila) {
+	public List<Car> findAllCarByModel(CarModel carModel) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Car> findAllVoziloByMarka(CarBrand markaVozila) {
+	public List<Car> findAllCarByBrand(CarBrand carBrand) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Car> findAllVoziloByTipMenjaca(GearboxType tipMenjaca) {
+	public List<Car> findAllCarByGearboxType(GearboxType gearboxType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Car> findAllVoziloByVrstaGoriva(FuelType vrstaGoriva) {
+	public List<Car> findAllCarByFuelType(FuelType fuelType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Car> findAllVoziloByKlasa(CarClass klasaVozila) {
+	public List<Car> findAllCarByClass(CarClass carClass) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void updateKilometrazaById(Long idVozilo, double kilometraza) {
+	public void updateMileageById(Long carId, double mileage) {
 		// TODO Auto-generated method stub
 		
 	}
