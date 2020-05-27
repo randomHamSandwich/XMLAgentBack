@@ -19,9 +19,9 @@ public class GearboxTypeServiceImp implements GearboxTypeService {
 	private GearboxTypeRepo gearboxTypeRepo;
 
 	@Override
-	public GearboxType findGearBoxTypeById(Long id) {
+	public GearboxTypeDTO findGearBoxTypeById(Long id) {
 
-		return gearboxTypeRepo.getOne(id);
+		return new GearboxTypeDTO( gearboxTypeRepo.getOne(id));
 	}
 
 	@Override
@@ -40,6 +40,17 @@ public class GearboxTypeServiceImp implements GearboxTypeService {
 		GearboxType gearboxType = new GearboxType(gearboxTypeDTO);
 		gearboxType = gearboxTypeRepo.save(gearboxType);
 		return null;
+	}
+
+	@Override
+	@Transactional
+	public GearboxTypeDTO update(Long id, GearboxTypeDTO gearboxTypeDTO) {
+		GearboxType old = gearboxTypeRepo.getOne(id);
+		old.setName(gearboxTypeDTO.getName());
+//		now its updated
+		old= gearboxTypeRepo.save(old);
+		
+		return new GearboxTypeDTO(old);
 	}
 
 }

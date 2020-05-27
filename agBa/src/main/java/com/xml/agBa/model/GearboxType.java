@@ -20,7 +20,7 @@ public class GearboxType {
 	@Column
 	private String name;
 
-	@OneToMany(mappedBy = "gearboxType", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "gearboxType", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private Set<Car> car;
 
 	public GearboxType() {

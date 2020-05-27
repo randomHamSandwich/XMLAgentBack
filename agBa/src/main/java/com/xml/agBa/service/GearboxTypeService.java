@@ -8,11 +8,13 @@ import com.xml.agBa.model.Car;
 
 public interface GearboxTypeService {
 
-	GearboxType findGearBoxTypeById(Long id);
+	GearboxTypeDTO findGearBoxTypeById(Long id);
 
 	List<GearboxTypeDTO> findAll();
 	
 	GearboxTypeDTO save(GearboxTypeDTO gearboxTypeDTO);
+
+	GearboxTypeDTO update(Long id, GearboxTypeDTO gearboxTypeDTO);
 	
 	
 }

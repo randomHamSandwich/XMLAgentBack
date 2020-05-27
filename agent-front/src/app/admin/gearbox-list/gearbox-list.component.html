@@ -1,27 +1,37 @@
 <p>gearbox-list works!</p>
 
-<table class="table table-dark">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            
-        </tr>
-    </thead>
+<div *ngIf="!isUpdate; else update">
 
-    <tbody *ngFor="let gearboxType of gearboxTypes | async ; let i = index;">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
 
-        <tr class="info">
-            <th scope="row">{{i+1}}</th>
-            <th scope="row">{{gearboxType.idGearboxType}}</th>
-            <th scope="row">{{gearboxType.name}}</th>
-            
+            </tr>
+        </thead>
 
+        <tbody *ngFor="let gearboxType of gearboxTypes | async ; let i = index;">
 
-        </tr>
+            <tr class="info">
+                <th scope="row">{{i+1}}</th>
+                <th scope="row">{{gearboxType.idGearboxType}}</th>
+                <th scope="row">{{gearboxType.name}}</th>
+                <th scope="row">
 
+                    <button class="btn btn-success"
+                        (click)="onGearboxTypeUpdate(gearboxType)">edit</button> </th>
 
-    </tbody>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-</table>
+<ng-template #update>
+    
+    <!-- <app-gearbox [korisnik]='korisnik'> </app-gearbox> -->
+    <app-gearbox [gearBoxType]='gearBoxType'> </app-gearbox>
+
+</ng-template>

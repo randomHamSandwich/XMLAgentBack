@@ -23,6 +23,7 @@ import { CarClassListComponent } from './admin/car-class-list/car-class-list.com
 import { CarModelListComponent } from './admin/car-model-list/car-model-list.component';
 import { FuelTypeListComponent } from './admin/fuel-type-list/fuel-type-list.component';
 import { GearboxListComponent } from './admin/gearbox-list/gearbox-list.component';
+import { GearboxComponent } from './admin/gearbox-list/gearbox/gearbox.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { GearboxListComponent } from './admin/gearbox-list/gearbox-list.componen
 
     FuelTypeListComponent,
 
-    GearboxListComponent
+    GearboxListComponent,
+
+    GearboxComponent
   ],
   imports: [
     BrowserModule,

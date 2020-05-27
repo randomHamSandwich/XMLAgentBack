@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GearboxService } from 'src/app/services/gearbox.service';
-import { GearboxType } from 'src/app/admin/gearbox-list/GearboxType'
+import { GearboxTypeDTO } from 'src/app/admin/gearbox-list/GearboxTypeDTO'
 
 @Component({
   selector: 'app-gearbox-list',
@@ -10,9 +10,14 @@ import { GearboxType } from 'src/app/admin/gearbox-list/GearboxType'
 })
 export class GearboxListComponent implements OnInit {
 
-  gearboxTypes: Observable<GearboxType[]>;
+  gearBoxType: GearboxTypeDTO;
 
-  constructor(private gearboxService: GearboxService) { }
+  isUpdate: boolean;
+  gearboxTypes: Observable<GearboxTypeDTO[]>;
+
+  constructor(private gearboxService: GearboxService) {
+    this.isUpdate = false;
+  }
 
   ngOnInit() {
     this.reloadData();
@@ -21,5 +26,16 @@ export class GearboxListComponent implements OnInit {
   reloadData() {
     this.gearboxTypes = this.gearboxService.getGearboxs();
   }
+
+
+  onGearboxTypeUpdate(gear: GearboxTypeDTO): void {
+    console.log("xxxxxxxxxsssssssssssssssxxxxxxxxxxxxxxxxxx________" + gear.idGearboxType
+      + " _____" + this.isUpdate);
+    this.gearBoxType = gear;
+    this.isUpdate = !this.isUpdate;
+    console.log(this.isUpdate);
+  }
+
+
 
 }

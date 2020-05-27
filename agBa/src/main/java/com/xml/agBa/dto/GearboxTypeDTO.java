@@ -17,7 +17,7 @@ public class GearboxTypeDTO {
 		this.idGearboxType = idGearboxType;
 		this.name = name;
 	}
-	
+
 	public GearboxTypeDTO(GearboxType gearboxType) {
 		this(gearboxType.getIdGearboxType(), gearboxType.getName());
 	}
