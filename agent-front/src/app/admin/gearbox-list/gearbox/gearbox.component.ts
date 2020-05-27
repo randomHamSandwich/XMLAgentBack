@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { GearboxTypeDTO } from 'src/app/admin/gearbox-list/GearboxTypeDTO';
 import { GearboxService } from 'src/app/services/gearbox.service';
 
+// This component is used for updating GearboxType
+
 @Component({
   selector: 'app-gearbox',
   templateUrl: './gearbox.component.html',

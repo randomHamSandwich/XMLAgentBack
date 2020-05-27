@@ -39,7 +39,8 @@ public class GearboxTypeServiceImp implements GearboxTypeService {
 	public GearboxTypeDTO save(GearboxTypeDTO gearboxTypeDTO) {
 		GearboxType gearboxType = new GearboxType(gearboxTypeDTO);
 		gearboxType = gearboxTypeRepo.save(gearboxType);
-		return null;
+		
+		return new GearboxTypeDTO(gearboxType);
 	}
 
 	@Override
@@ -52,5 +53,18 @@ public class GearboxTypeServiceImp implements GearboxTypeService {
 		
 		return new GearboxTypeDTO(old);
 	}
+
+	@Override
+	@Transactional
+	public GearboxTypeDTO add(GearboxTypeDTO gearboxTypeDTO) {
+		GearboxType gearboxType = new GearboxType();
+		gearboxType.setName(gearboxTypeDTO.getName());
+		
+		gearboxType= gearboxTypeRepo.save(gearboxType);
+		
+		return new GearboxTypeDTO(gearboxType);
+	}
+	
+	
 
 }

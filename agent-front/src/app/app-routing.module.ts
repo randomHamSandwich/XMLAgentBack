@@ -8,6 +8,7 @@ import { CarListComponent } from './car-list/car-list.component';
 import { AdminComponent } from './admin/admin.component'; 
 import { ChangeAuthoriyComponent} from './admin/change-authoriy/change-authoriy.component';
 import { GearboxListComponent  } from './admin/gearbox-list/gearbox-list.component';
+import { FuelTypeListComponent } from './admin/fuel-type-list/fuel-type-list.component';
 
 const routes: Routes = [
     {
@@ -31,7 +32,10 @@ const routes: Routes = [
         path: 'gearbox',
         component: GearboxListComponent
     },
-
+    {
+        path: 'fueltype',
+        component: FuelTypeListComponent
+    },
 
 
     {

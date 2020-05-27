@@ -19,6 +19,10 @@
           <a class="nav-link" routerLink="gearbox">Gearbox</a>
         </li>
 
+        <li *ngIf="authority ==='admin'" class="nav-item">
+          <a class="nav-link" routerLink="fueltype">Fueltype</a>
+        </li>
+        
         
       </ul>
     </div>

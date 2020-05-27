@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GearboxTypeDTO} from '../admin/gearbox-list/GearboxTypeDTO';
+import { GearboxTypeDTO } from '../admin/gearbox-list/GearboxTypeDTO';
 
 
 @Injectable({
@@ -24,12 +24,15 @@ export class GearboxService {
   public getGearboxs(): Observable<any> {
     return this.http.get(this.GearboxUrl);
   }
-  updateGearboxType(updateGearBoxType :any) : Observable<any> {
-    console.log( "gears on servis is: " +updateGearBoxType.idGearboxType+ " " + updateGearBoxType.name);
-    
+  updateGearboxType(updateGearBoxType: any): Observable<any> {
+    console.log("gears on servis is: " + updateGearBoxType.idGearboxType + " " + updateGearBoxType.name);
+    // const roleName = new HttpParams().set('updateGearBoxType', updateGearBoxType.roleName);
+    return this.http.put(this.GearboxUrl + '/' + updateGearBoxType.idGearboxType, updateGearBoxType);
+  }
 
-   const roleName = new HttpParams().set('updateGearBoxType', updateGearBoxType.roleName);
-   return this.http.put(this.GearboxUrl + '/'+updateGearBoxType.idGearboxType, updateGearBoxType );
+
+  addGearboxType(name: GearboxTypeDTO): Observable<any> {
+    return this.http.post(this.GearboxUrl, name);
   }
 
 

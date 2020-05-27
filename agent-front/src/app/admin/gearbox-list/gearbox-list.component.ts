@@ -13,10 +13,12 @@ export class GearboxListComponent implements OnInit {
   gearBoxType: GearboxTypeDTO;
 
   isUpdate: boolean;
+  isAdd: boolean;
   gearboxTypes: Observable<GearboxTypeDTO[]>;
 
   constructor(private gearboxService: GearboxService) {
     this.isUpdate = false;
+    this.isAdd = false;
   }
 
   ngOnInit() {
@@ -36,6 +38,9 @@ export class GearboxListComponent implements OnInit {
     console.log(this.isUpdate);
   }
 
+  onGearboxTypeAdd():void{
+    this.isAdd=!this.isAdd;
+  }
 
 
 }

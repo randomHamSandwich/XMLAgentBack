@@ -1,5 +1,5 @@
-<p>gearbox works!</p>
-<!-- This component is used for updating GearboxType -->
+<p>gearbox-add works!</p>
+
 
 <div class="row col-sm-6" style="max-width:350px;">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
@@ -16,11 +16,10 @@
 
         <div class="form-group">
             <button class="btn btn-primary">Update</button>
-            <div *ngIf="f.submitted && gearboxTypeName.invalid" class="alert alert-warning">
+            <div *ngIf="f.submitted && gearboxTypeName.invaliad" class="alert alert-warning">
                 Submit failed!<br />{{errorMessage}}
             </div>
         </div>
-
 
     </form>
 

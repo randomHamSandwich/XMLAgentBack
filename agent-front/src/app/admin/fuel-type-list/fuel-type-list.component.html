@@ -1,1 +1,46 @@
 <p>fuel-type-list works!</p>
+
+<div *ngIf="!isUpdate && !isAdd">
+    <!-- <div *ngIf="!isUpdate; else update"> -->
+
+        <button class="btn btn-success"
+        (click)="onFuelTypeAdd()">Add new</button>
+
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+
+        <tbody *ngFor="let fuelType of fuelTypes | async ; let i = index;">
+
+            <tr class="info">
+                <th scope="row">{{i+1}}</th>
+                <th scope="row">{{fuelType.idFuelType}}</th>
+                <th scope="row">{{fuelType.name}}</th>
+                <th scope="row">
+
+                    <button class="btn btn-info"
+                        (click)="onFuelTypeUpdate(fuelType)">edit</button> </th>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<div *ngIf="isUpdate">
+    <app-fuel-type-update [fuelType]='fuelType'> </app-fuel-type-update>
+
+</div>
+
+<div *ngIf="isAdd">
+    <app-fuel-type-add> </app-fuel-type-add>
+</div>

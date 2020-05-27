@@ -2,14 +2,18 @@ package com.xml.agBa.service;
 
 import java.util.List;
 
-import com.xml.agBa.model.FuelType;
+import com.xml.agBa.dto.FuelTypeDTO;
 
 public interface FuelTypeService {
 	
-	FuelType findVrstaGorivaById();
+	FuelTypeDTO findfuelTypeById(Long id);
 	
-	List<FuelType> findAll();
+	List<FuelTypeDTO> findAll();
 	
-	FuelType save(FuelType vrstaGoriva);
+	FuelTypeDTO save(FuelTypeDTO fuelTypeDTO);
+	
+	FuelTypeDTO update(Long id, FuelTypeDTO fuelTypeDTO);
+	
+	FuelTypeDTO add(FuelTypeDTO fuelTypeDTO);
 
 }

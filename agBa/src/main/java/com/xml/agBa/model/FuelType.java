@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.xml.agBa.dto.FuelTypeDTO;
 @Entity
 public class FuelType {
 	@Id
@@ -30,6 +32,11 @@ public class FuelType {
 		this.idFuelType = idFuelType;
 		this.name = name;
 		this.cars = cars;
+	}
+
+	public FuelType(FuelTypeDTO fuelTypeDTO) {
+		super();
+		this.name = fuelTypeDTO.getName();
 	}
 
 	public Long getIdFuelType() {

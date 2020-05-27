@@ -24,6 +24,9 @@ import { CarModelListComponent } from './admin/car-model-list/car-model-list.com
 import { FuelTypeListComponent } from './admin/fuel-type-list/fuel-type-list.component';
 import { GearboxListComponent } from './admin/gearbox-list/gearbox-list.component';
 import { GearboxComponent } from './admin/gearbox-list/gearbox/gearbox.component';
+import { GearboxAddComponent } from './admin/gearbox-list/gearbox-add/gearbox-add.component';
+import { FuelTypeUpdateComponent } from './admin/fuel-type-list/fuel-type-update/fuel-type-update.component';
+import { FuelTypeAddComponent } from './admin/fuel-type-list/fuel-type-add/fuel-type-add.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,13 @@ import { GearboxComponent } from './admin/gearbox-list/gearbox/gearbox.component
 
     GearboxListComponent,
 
-    GearboxComponent
+    GearboxComponent,
+
+    GearboxAddComponent,
+
+    FuelTypeUpdateComponent,
+
+    FuelTypeAddComponent
   ],
   imports: [
     BrowserModule,

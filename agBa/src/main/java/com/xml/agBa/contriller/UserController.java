@@ -67,7 +67,7 @@ public class UserController {
 	public ResponseEntity<UserDTO> changUserRole(@PathVariable("id") Long id, RoleDTO testDTO) {
 		UserDTO userDto = userService.chageUserRole(id, testDTO.getRoleName());
 
-		return new ResponseEntity<>(userDto, HttpStatus.OK);
+		return new ResponseEntity<>(userDto, HttpStatus.CREATED);
 	}
 
 }
