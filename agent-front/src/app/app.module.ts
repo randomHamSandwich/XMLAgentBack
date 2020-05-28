@@ -33,6 +33,8 @@ import { CarBrandUpdateComponent } from './admin/car-brand-list/car-brand-update
 import { CarBrandAddComponent } from './admin/car-brand-list/car-brand-add/car-brand-add.component';
 import { CarModelAddComponent } from './admin/car-model-list/car-model-add/car-model-add.component';
 import { CarModelUpdateComponent } from './admin/car-model-list/car-model-update/car-model-update.component';
+import { DiscountCreateComponent } from './ad/discount-create/discount-create.component';
+import { DiscountListComponent } from './ad/discount-list/discount-list.component';
 
 
 @NgModule({
@@ -77,7 +79,9 @@ import { CarModelUpdateComponent } from './admin/car-model-list/car-model-update
 
     CarModelAddComponent,
 
-    CarModelUpdateComponent
+    CarModelUpdateComponent,
+    DiscountCreateComponent,
+    DiscountListComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ import com.xml.agBa.dto.DiscountDTO;
 
 public interface DiscountService {
 
-	DiscountDTO createPopust(DiscountDTO popustData);
+	DiscountDTO createDiscount(DiscountDTO discountDTO);
 
 	List<DiscountDTO> getAllDiscounts();
 

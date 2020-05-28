@@ -15,27 +15,25 @@ public class DiscountServiceImpl implements DiscountService {
 	
 	@Autowired
 	private DiscountRepo discountRepo;
-	
+
 	@Override
-	public DiscountDTO createPopust(DiscountDTO discountDTO) {
-		Discount discount = new Discount();
-		discount.setForMoreThenXDays(discountDTO.getMoreThenXDays());
-		discount.setDiscount(discountDTO.getDiscount());
-		
+	public DiscountDTO createDiscount(DiscountDTO discountDTO) {
+		Discount discount = new Discount(discountDTO);
 		discount = discountRepo.save(discount);
+		
 		return new DiscountDTO(discount);
 	}
-	
-	
+
+	@Override
 	public List<DiscountDTO> getAllDiscounts() {
-		List<Discount> popusti = discountRepo.findAll();
-		List<DiscountDTO> popustiList = new ArrayList<>();
+		List<Discount> discountList = discountRepo.findAll();
+		List<DiscountDTO> dDTO = new ArrayList<DiscountDTO>();
 		
-		for (Discount p: popusti) {
-			popustiList.add(new DiscountDTO(p));
+		for (Discount dTemp : discountList) {
+			dDTO.add(new DiscountDTO(dTemp));
 		}
 		
-		return popustiList;
+		return dDTO;
 	}
 
 

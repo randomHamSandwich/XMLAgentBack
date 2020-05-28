@@ -1,0 +1,30 @@
+<div class="row col-sm-6" style="max-width:350px;">
+
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="moreThanXDays">Number of days for reaching discount:</label>
+            <input type="number" class="form-control" name="moreThanXDays" [(ngModel)]="form.moreThanXDays"
+                #moreThanXDays="ngModel" required>
+            <div *ngIf="f.submitted && moreThanXDays.invalid">
+                <div *ngIf="moreThanXDays.errors.required">Number of days is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="discount">Discount (%):</label>
+            <input type="number" class="form-control" name="discount" [(ngModel)]="form.discount"
+                #discount="ngModel" required>
+            <div *ngIf="f.submitted && discount.invalid">
+                <div *ngIf="discount.errors.required">Discount is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Create</button>
+           <!-- <div *ngIf="f.submitted && f.invaliad" class="alert alert-warning">
+                Submit failed!<br />{{errorMessage}}
+            </div>-->
+        </div>
+
+    </form>
+</div>

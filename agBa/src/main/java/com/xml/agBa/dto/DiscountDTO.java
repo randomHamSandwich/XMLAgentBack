@@ -4,37 +4,46 @@ import com.xml.agBa.model.Discount;
 
 public class DiscountDTO {
 
-	private int moreThenXDays;
-	private int discount;
+	private Long idDiscount;
+	private Integer moreThanXDays;
+	private Integer discount;
 
 	public DiscountDTO() {
 
 	}
-
-	public DiscountDTO(int moreThenXDays, int discount) {
+	
+	public DiscountDTO(Long idDiscount, Integer moreThanXDays, Integer discount) {
 		super();
-		this.moreThenXDays = moreThenXDays;
+		this.idDiscount = idDiscount;
+		this.moreThanXDays = moreThanXDays;
 		this.discount = discount;
 	}
 
-	public DiscountDTO(Discount d) {
-		this(d.getForMoreThenXDays(), d.getDiscount());
-	}
-	public int getMoreThenXDays() {
-		return moreThenXDays;
+	public DiscountDTO(Discount discount) {
+		this(discount.getIdDiscount(), discount.getForMoreThanXDays(), discount.getDiscount());
 	}
 
-	public void setMoreThenXDays(int moreThenXDays) {
-		this.moreThenXDays = moreThenXDays;
+	public Long getIdDiscount() {
+		return idDiscount;
 	}
 
-	public int getDiscount() {
+	public void setIdDiscount(Long idDiscount) {
+		this.idDiscount = idDiscount;
+	}
+
+	public Integer getMoreThanXDays() {
+		return moreThanXDays;
+	}
+
+	public void setMoreThanXDays(Integer moreThanXDays) {
+		this.moreThanXDays = moreThanXDays;
+	}
+
+	public Integer getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(int discount) {
+	public void setDiscount(Integer discount) {
 		this.discount = discount;
 	}
-
-
 }
