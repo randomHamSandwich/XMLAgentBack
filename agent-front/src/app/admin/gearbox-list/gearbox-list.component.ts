@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GearboxService } from 'src/app/services/gearbox.service';
 import { GearboxTypeDTO } from 'src/app/admin/gearbox-list/GearboxTypeDTO'

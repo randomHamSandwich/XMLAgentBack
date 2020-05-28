@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CarBrandDTO } from './CarBrandDTO';
+import { CarBrandService } from 'src/app/services/carbrand.service';
 
 @Component({
   selector: 'app-car-brand-list',
@@ -7,9 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarBrandListComponent implements OnInit {
 
-  constructor() { }
+  carBrand: CarBrandDTO;
+
+  isUpdate: boolean;
+  isAdd: boolean;
+  carBrands: Observable<CarBrandDTO[]>;
+
+
+
+  constructor(private carBrandService: CarBrandService) {
+    this.isUpdate = false;
+    this.isAdd = false;
+  }
 
   ngOnInit() {
+    this.reloadData();
   }
+  reloadData() {
+    this.carBrands = this.carBrandService.getCarBrands();
+  }
+
+  onCarBrandUpdate(carBrandDTO: CarBrandDTO): void {
+    console.log("xxxxxxxxxsssssssssssssssxxxxxxxxxxxxxxxxxx________" + carBrandDTO.idCarBrand
+      + " _____" + this.isUpdate);
+    this.carBrand = carBrandDTO;
+    this.isUpdate = !this.isUpdate;
+    console.log(this.isUpdate);
+  }
+
+  onCarBrandAdd(): void {
+    this.isAdd = !this.isAdd;
+  }
+
+
+
+
 
 }

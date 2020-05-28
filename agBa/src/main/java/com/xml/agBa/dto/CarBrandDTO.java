@@ -17,6 +17,10 @@ public class CarBrandDTO {
 		this.idCarBrand = idCarBrand;
 		this.name = name;
 	}
+	
+	public CarBrandDTO(CarBrandDTO brandDTO) {
+		this(brandDTO.getIdCarBrand(), brandDTO.getName());
+	}
 
 	public CarBrandDTO(CarBrand carBrand) {
 		this(carBrand.getIdCarBrand(), carBrand.getName());

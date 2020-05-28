@@ -1,0 +1,27 @@
+<p>car-model-add works!</p>
+
+
+<div class="row col-sm-6" style="max-width:350px;">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <div class="form-group">
+            <label for="carModelName">Name:</label>
+            <input type="text" class="form-control" name="carModelName" [(ngModel)]="form.carModelName"
+                #carModelName="ngModel" required minlength="3" />
+            <div *ngIf="f.submitted && carModelName.invalid">
+                <div *ngIf="carModelName.errors.required">Gearbox name is required</div>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Update</button>
+            <div *ngIf="f.submitted && carModelName.invaliad" class="alert alert-warning">
+                Submit failed!<br />{{errorMessage}}
+            </div>
+        </div>
+
+    </form>
+
+
+</div>

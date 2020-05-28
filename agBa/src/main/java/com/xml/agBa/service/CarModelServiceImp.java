@@ -1,37 +1,68 @@
 package com.xml.agBa.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xml.agBa.dto.CarModelDTO;
 import com.xml.agBa.model.CarModel;
-import com.xml.agBa.repository.ModelVozilaRepo;
+import com.xml.agBa.repository.CarModelRepo;
 
 @Service
 @Transactional(readOnly = true)
 public class CarModelServiceImp implements CarModelService{
 	
 	@Autowired
-	private ModelVozilaRepo modelVozilaRepo;
+	private CarModelRepo carModelRepo;
 
 	@Override
-	public CarModel findModelVozilaById() {
-		// TODO Auto-generated method stub
-		return null;
+	public CarModelDTO findCarModelId(Long id) {
+		return new CarModelDTO( carModelRepo.getOne(id));
 	}
 
 	@Override
-	public List<CarModel> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CarModelDTO> findAll() {
+		List<CarModel> carModels = carModelRepo.findAll();
+		List<CarModelDTO> carModelDTOs = new ArrayList<CarModelDTO>();
+		for (CarModel car : carModels) {
+			carModelDTOs.add(new CarModelDTO(car));
+		}
+		
+		return carModelDTOs;
 	}
 
 	@Override
-	public CarModel save(CarModel modelVozila) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public CarModelDTO save(CarModelDTO carModelDTO) {
+		CarModel carModel = new CarModel(carModelDTO);
+		
+		return new CarModelDTO(carModel);
 	}
+
+	@Override
+	@Transactional
+	public CarModelDTO update(Long id, CarModelDTO carModelDTO) {
+		CarModel old = carModelRepo.getOne(id);
+		old.setName(carModelDTO.getName());
+		
+		old= carModelRepo.save(old);
+		
+		return new CarModelDTO(old);
+	}
+
+	@Override
+	@Transactional
+	public CarModelDTO add(CarModelDTO carModelDTO) {
+		CarModel carModel = new CarModel();
+		carModel.setName(carModelDTO.getName());
+		
+		carModel = carModelRepo.save(carModel);
+		
+		return new CarModelDTO(carModel);
+	}
+
 
 }

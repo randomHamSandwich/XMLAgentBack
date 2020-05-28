@@ -1,1 +1,50 @@
 <p>car-class-list works!</p>
+
+
+<div *ngIf="!isUpdate && !isAdd">
+    <!-- <div *ngIf="!isUpdate; else update"> -->
+
+        <button class="btn btn-success"
+        (click)="onCarClassAdd()">Add new</button>
+
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+
+        <tbody *ngFor="let carClass of carClasses | async ; let i = index;">
+
+            <tr class="info">
+                <th scope="row">{{i+1}}</th>
+                <th scope="row">{{carClass.idCarClass}}</th>
+                <th scope="row">{{carClass.name}}</th>
+                <th scope="row">
+
+                    <button class="btn btn-info"
+                        (click)="onCarClassUpdate(carClass)">edit</button> </th>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<div *ngIf="isUpdate">
+    
+    <app-car-class-update [carClass]='carClass'> </app-car-class-update>
+
+</div>
+
+<div *ngIf="isAdd">
+    
+    <app-car-class-add> </app-car-class-add>
+
+</div>

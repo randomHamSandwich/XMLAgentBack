@@ -1,1 +1,49 @@
 <p>car-brand-list works!</p>
+
+<div *ngIf="!isUpdate && !isAdd">
+    <!-- <div *ngIf="!isUpdate; else update"> -->
+
+        <button class="btn btn-success"
+        (click)="onCarBrandAdd()">Add new</button>
+
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+
+        <tbody *ngFor="let carBrand of carBrands | async ; let i = index;">
+
+            <tr class="info">
+                <th scope="row">{{i+1}}</th>
+                <th scope="row">{{carBrand.idCarBrand}}</th>
+                <th scope="row">{{carBrand.name}}</th>
+                <th scope="row">
+
+                    <button class="btn btn-info"
+                        (click)="onCarBrandUpdate(carBrand)">edit</button> </th>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<div *ngIf="isUpdate">
+    
+    <app-car-brand-update [carBrand]='carBrand'> </app-car-brand-update>
+
+</div>
+
+<div *ngIf="isAdd">
+    
+    <app-car-brand-add> </app-car-brand-add>
+
+</div>

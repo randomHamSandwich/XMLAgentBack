@@ -9,7 +9,9 @@ import { AdminComponent } from './admin/admin.component';
 import { ChangeAuthoriyComponent} from './admin/change-authoriy/change-authoriy.component';
 import { GearboxListComponent  } from './admin/gearbox-list/gearbox-list.component';
 import { FuelTypeListComponent } from './admin/fuel-type-list/fuel-type-list.component';
-
+import { CarClassListComponent } from './admin/car-class-list/car-class-list.component';
+import {CarBrandListComponent} from './admin/car-brand-list/car-brand-list.component';
+import { CarModelListComponent} from './admin/car-model-list/car-model-list.component'; 
 const routes: Routes = [
     {
         path: 'home',
@@ -36,6 +38,22 @@ const routes: Routes = [
         path: 'fueltype',
         component: FuelTypeListComponent
     },
+
+    {
+        path: 'carclass',
+        component: CarClassListComponent
+    },
+    {
+        path: 'carbrand',
+        component: CarBrandListComponent
+
+    },
+    {
+        path: 'carmodel',
+        component: CarModelListComponent
+
+    },
+
 
 
     {

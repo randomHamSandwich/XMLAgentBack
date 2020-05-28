@@ -27,6 +27,13 @@ import { GearboxComponent } from './admin/gearbox-list/gearbox/gearbox.component
 import { GearboxAddComponent } from './admin/gearbox-list/gearbox-add/gearbox-add.component';
 import { FuelTypeUpdateComponent } from './admin/fuel-type-list/fuel-type-update/fuel-type-update.component';
 import { FuelTypeAddComponent } from './admin/fuel-type-list/fuel-type-add/fuel-type-add.component';
+import { CarClassAddComponent } from './admin/car-class-list/car-class-add/car-class-add.component';
+import { CarClassUpdateComponent } from './admin/car-class-list/car-class-update/car-class-update.component';
+import { CarBrandUpdateComponent } from './admin/car-brand-list/car-brand-update/car-brand-update.component';
+import { CarBrandAddComponent } from './admin/car-brand-list/car-brand-add/car-brand-add.component';
+import { CarModelAddComponent } from './admin/car-model-list/car-model-add/car-model-add.component';
+import { CarModelUpdateComponent } from './admin/car-model-list/car-model-update/car-model-update.component';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +65,19 @@ import { FuelTypeAddComponent } from './admin/fuel-type-list/fuel-type-add/fuel-
 
     FuelTypeUpdateComponent,
 
-    FuelTypeAddComponent
+    FuelTypeAddComponent,
+
+    CarClassAddComponent,
+
+    CarClassUpdateComponent,
+
+    CarBrandUpdateComponent,
+
+    CarBrandAddComponent,
+
+    CarModelAddComponent,
+
+    CarModelUpdateComponent
   ],
   imports: [
     BrowserModule,

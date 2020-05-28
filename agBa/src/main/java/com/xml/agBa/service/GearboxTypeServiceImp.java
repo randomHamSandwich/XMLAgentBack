@@ -36,6 +36,7 @@ public class GearboxTypeServiceImp implements GearboxTypeService {
 	}
 
 	@Override
+	@Transactional
 	public GearboxTypeDTO save(GearboxTypeDTO gearboxTypeDTO) {
 		GearboxType gearboxType = new GearboxType(gearboxTypeDTO);
 		gearboxType = gearboxTypeRepo.save(gearboxType);

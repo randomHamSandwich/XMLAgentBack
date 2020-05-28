@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CarModelDTO } from './CarModel';
+import { CarModelService } from 'src/app/services/carmodel.service';
 
 @Component({
   selector: 'app-car-model-list',
@@ -7,9 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarModelListComponent implements OnInit {
 
-  constructor() { }
+  carModel : CarModelDTO;
+
+  isUpdate: boolean;
+  isAdd: boolean;
+  carModels: Observable<CarModelDTO[]>;
+
+  constructor(private carModelService: CarModelService) {
+    this.isUpdate = false;
+    this.isAdd = false;
+   }
 
   ngOnInit() {
+    this.reloadData();
   }
+
+  reloadData() {
+    this.carModels = this.carModelService.getCarModels();
+  }
+
+  onCarModelUpdate(carModelDTO: CarModelDTO): void {
+
+    this.carModel = carModelDTO;
+    this.isUpdate = !this.isUpdate;
+
+  }
+
+  onCarModelAdd():void{
+    this.isAdd=!this.isAdd;
+  }
+
+
 
 }

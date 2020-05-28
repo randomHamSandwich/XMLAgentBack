@@ -19,6 +19,10 @@ public class CarClassDTO {
 		this.name = name;
 	}
 
+	public CarClassDTO(CarClass carClass) {
+		this(carClass.getIdCarClass(),carClass.getName());
+	}
+
 	public Long getIdCarClass() {
 		return idCarClass;
 	}

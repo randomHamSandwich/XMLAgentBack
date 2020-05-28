@@ -30,11 +30,9 @@ export class GearboxService {
     return this.http.put(this.GearboxUrl + '/' + updateGearBoxType.idGearboxType, updateGearBoxType);
   }
 
-
   addGearboxType(name: GearboxTypeDTO): Observable<any> {
     return this.http.post(this.GearboxUrl, name);
   }
-
 
   // TODO
   //   public updateGeatbox(id: number, value: RoleDTO): Observable<any> {

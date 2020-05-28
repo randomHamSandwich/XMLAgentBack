@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.xml.agBa.dto.CarModelDTO;
+
 @Entity
 public class CarModel {
 	@Id
@@ -31,6 +33,13 @@ public class CarModel {
 		this.idCarModel = idCarModel;
 		this.name = name;
 		this.cars = cars;
+	}
+
+	public CarModel(CarModelDTO carModelDTO) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.idCarModel = carModelDTO.getIdCarModel();
+		this.name = carModelDTO.getName();
 	}
 
 	public Long getIdCarModel() {

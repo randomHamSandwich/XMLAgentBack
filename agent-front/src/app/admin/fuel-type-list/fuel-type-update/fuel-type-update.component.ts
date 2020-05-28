@@ -41,7 +41,7 @@ export class FuelTypeUpdateComponent implements OnInit {
         },
         error => console.log(error)
       );
-      // window.location.reload();
+      window.location.reload();
   }
 
 }

@@ -2,14 +2,21 @@ package com.xml.agBa.service;
 
 import java.util.List;
 
-import com.xml.agBa.model.CarModel;
+import com.xml.agBa.dto.CarModelDTO;
 
 public interface CarModelService {
 	
-	CarModel findModelVozilaById();
 	
-	List<CarModel> findAll();
+	CarModelDTO findCarModelId(Long id);
+
+	List<CarModelDTO> findAll();
 	
-	CarModel save(CarModel modelVozila);
+	CarModelDTO save(CarModelDTO carModelDTO);
+
+	CarModelDTO update(Long id, CarModelDTO carModelDTO);
+
+	CarModelDTO add( CarModelDTO carModelDTO);
+	
+	
 
 }

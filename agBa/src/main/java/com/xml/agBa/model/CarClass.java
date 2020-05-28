@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.xml.agBa.dto.CarClassDTO;
 @Entity
 public class CarClass {
 	@Id
@@ -32,6 +34,15 @@ public class CarClass {
 		this.idCarClass = idCarClass;
 		this.name = name;
 		this.cars = cars;
+	}
+
+
+
+	public CarClass(CarClassDTO carClassDTO) {
+		super();
+		this.idCarClass = carClassDTO.getIdCarClass();
+		this.name = carClassDTO.getName();
+
 	}
 
 
