@@ -17,6 +17,8 @@ public interface GearboxTypeService {
 	GearboxTypeDTO update(Long id, GearboxTypeDTO gearboxTypeDTO);
 
 	GearboxTypeDTO add( GearboxTypeDTO gearboxTypeDTO);
+
+	Boolean delete(Long id);
 	
 	
 }

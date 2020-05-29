@@ -38,6 +38,21 @@ export class GearboxListComponent implements OnInit {
     console.log(this.isUpdate);
   }
 
+  
+  onGearboxTypeDelete(gear: GearboxTypeDTO): void {
+    this.gearboxService.deleteGearbox(gear)
+    .subscribe(
+      data => {
+        console.log(data);
+        // gear = data as GearboxTypeDTO;
+      },
+      error => console.log(error)
+    );
+    window.location.reload();
+  }
+
+  
+
   onGearboxTypeAdd():void{
     this.isAdd=!this.isAdd;
   }

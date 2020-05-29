@@ -4,8 +4,7 @@
 <div *ngIf="!isUpdate && !isAdd">
     <!-- <div *ngIf="!isUpdate; else update"> -->
 
-        <button class="btn btn-success"
-        (click)="onCarClassAdd()">Add new</button>
+    <button class="btn btn-success" (click)="onCarClassAdd()">Add new</button>
 
 
     <table class="table table-dark">
@@ -14,7 +13,7 @@
                 <th scope="col">#</th>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Action</th>
+                <th scope="col " colspan="2">Actions</th>
 
             </tr>
         </thead>
@@ -27,9 +26,13 @@
                 <th scope="row">{{carClass.name}}</th>
                 <th scope="row">
 
-                    <button class="btn btn-info"
-                        (click)="onCarClassUpdate(carClass)">edit</button> </th>
+                    <button class="btn btn-info" (click)="onCarClassUpdate(carClass)">edit</button>
+                </th>
 
+                <th scope="row">
+
+                    <button class="btn btn-info" (click)="onCarClassDelete(carClass)">Delete</button>
+                </th>
             </tr>
         </tbody>
     </table>
@@ -38,13 +41,13 @@
 </div>
 
 <div *ngIf="isUpdate">
-    
+
     <app-car-class-update [carClass]='carClass'> </app-car-class-update>
 
 </div>
 
 <div *ngIf="isAdd">
-    
+
     <app-car-class-add> </app-car-class-add>
 
 </div>

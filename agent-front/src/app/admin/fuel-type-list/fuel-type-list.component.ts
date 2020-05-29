@@ -41,7 +41,20 @@ export class FuelTypeListComponent implements OnInit {
     console.log(this.isUpdate);
   }
 
+  onFuelTypeDelete(ft: FuelTypeDTO): void {
+    this.fuelTypeService.deleteGearbox(ft)
+    .subscribe(
+      data => {
+        console.log(data);
+        // gear = data as GearboxTypeDTO;
+      },
+      error => console.log(error)
+    );
+    window.location.reload();
+  }
+
   onFuelTypeAdd():void{
     this.isAdd=!this.isAdd;
   }
 }
+// 

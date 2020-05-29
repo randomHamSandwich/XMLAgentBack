@@ -18,4 +18,6 @@ public interface CarBrandService {
 	CarBrandDTO update(Long id, CarBrandDTO carBrandDTO);
 
 	CarBrandDTO add( CarBrandDTO carBrandDTO);
+
+	Boolean delete(Long id);
 }

@@ -11,9 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.Where;
+
 import com.xml.agBa.dto.GearboxTypeDTO;
 
 @Entity
+@Where(clause = "isdeleted = false")
 public class GearboxType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +24,16 @@ public class GearboxType {
 	@Column
 	private String name;
 
-	@OneToMany(mappedBy = "gearboxType", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@OneToMany(mappedBy = "gearboxType", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
 	private Set<Car> car;
-	
-    @Version
-    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
-    private int version;
+
+	@Version
+	@Column(name = "version", nullable = false, columnDefinition = "int default 0")
+	private int version;
+
+	@Column
+	private boolean isdeleted;
 
 	public GearboxType() {
 		super();
@@ -39,7 +46,7 @@ public class GearboxType {
 		this.name = name;
 		this.car = car;
 	}
-	
+
 	public GearboxType(GearboxTypeDTO gearboxTypeDTO) {
 		super();
 		this.idGearboxType = gearboxTypeDTO.getIdGearboxType();
@@ -77,7 +84,13 @@ public class GearboxType {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
-	
+
+	public boolean isIsdeleted() {
+		return isdeleted;
+	}
+
+	public void setIsdeleted(boolean isdeleted) {
+		this.isdeleted = isdeleted;
+	}
 
 }

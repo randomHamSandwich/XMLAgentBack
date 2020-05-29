@@ -16,6 +16,8 @@ public interface CarModelService {
 	CarModelDTO update(Long id, CarModelDTO carModelDTO);
 
 	CarModelDTO add( CarModelDTO carModelDTO);
+
+	Boolean delete(Long id);
 	
 	
 

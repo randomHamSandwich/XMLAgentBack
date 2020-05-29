@@ -30,14 +30,16 @@ export class CarModelService {
         return this.http.put(this.carModelUrl + '/' + updateCarModel.idCarModel, updateCarModel);
     }
 
+    deleteCarModel(carModel: CarModelDTO): Observable<any> {
+
+        return this.http.delete(this.carModelUrl + '/' + carModel.idCarModel);
+    }
+
     addGearboxType(name: CarModelDTO): Observable<any> {
         return this.http.post(this.carModelUrl, name);
     }
 
-    // TODO
-    //   public updateGeatbox(id: number, value: RoleDTO): Observable<any> {
-    //     return this.http.put(this.carModelUrl + '/' + id, value)
-    //   }
+
 
 
 }

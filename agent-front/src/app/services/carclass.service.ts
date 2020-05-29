@@ -5,10 +5,10 @@ import { CarClassDTO } from '../admin/car-class-list/CarClassDTO';
 
 
 @Injectable({
-    providedIn: 'root'
-  })
-  
-  export class CarClassService {
+  providedIn: 'root'
+})
+
+export class CarClassService {
 
   private carClassUrl = 'http://localhost:8080/api/carclass';
 
@@ -27,9 +27,14 @@ import { CarClassDTO } from '../admin/car-class-list/CarClassDTO';
     return this.http.put(this.carClassUrl + '/' + updateGearBoxType.idGearboxType, updateGearBoxType);
   }
 
+  deleteCarClass(carClass: CarClassDTO): Observable<any> {
+
+    return this.http.delete(this.carClassUrl + '/' + carClass.idCarClass);
+  }
+
   addCarClass(name: CarClassDTO): Observable<any> {
     return this.http.post(this.carClassUrl, name);
   }
 
 
-  }  
+}  

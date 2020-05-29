@@ -11,22 +11,28 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.Where;
+
 import com.xml.agBa.dto.CarModelDTO;
 
 @Entity
+@Where(clause = "isdeleted = false")
 public class CarModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCarModel;
 	@Column
 	private String name;
-	
-    @Version
-    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
-    private int version;
+
+	@Version
+	@Column(name = "version", nullable = false, columnDefinition = "int default 0")
+	private int version;
 
 	@OneToMany(mappedBy = "carModel", cascade = CascadeType.ALL)
 	private Set<Car> cars;
+
+	@Column
+	private boolean isdeleted;
 
 	public CarModel() {
 		super();
@@ -78,7 +84,13 @@ public class CarModel {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
-	
+
+	public boolean isIsdeleted() {
+		return isdeleted;
+	}
+
+	public void setIsdeleted(boolean isdeleted) {
+		this.isdeleted = isdeleted;
+	}
 
 }

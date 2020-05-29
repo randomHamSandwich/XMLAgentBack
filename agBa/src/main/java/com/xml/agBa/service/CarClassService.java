@@ -17,4 +17,6 @@ public interface CarClassService {
 
 	CarClassDTO add( CarClassDTO carClassDTO);
 
+	Boolean delete(Long id);
+
 }

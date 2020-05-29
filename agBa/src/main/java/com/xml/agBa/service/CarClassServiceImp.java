@@ -9,12 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.CarClassDTO;
 import com.xml.agBa.model.CarClass;
+import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.repository.CarClassRepo;
 
 @Service
 @Transactional(readOnly = true)
-public class CarClassServiceImp implements CarClassService{
-	
+public class CarClassServiceImp implements CarClassService {
+
 	@Autowired
 	private CarClassRepo carClassRepo;
 
@@ -30,7 +31,7 @@ public class CarClassServiceImp implements CarClassService{
 		for (CarClass cc : carClass) {
 			carClassDTOs.add(new CarClassDTO(cc));
 		}
-		
+
 		return carClassDTOs;
 	}
 
@@ -38,8 +39,8 @@ public class CarClassServiceImp implements CarClassService{
 	@Transactional
 	public CarClassDTO save(CarClassDTO carClassDTO) {
 		CarClass carClass = new CarClass(carClassDTO);
-		carClass  = carClassRepo.save(carClass);
-		
+		carClass = carClassRepo.save(carClass);
+
 		return new CarClassDTO(carClass);
 	}
 
@@ -48,25 +49,31 @@ public class CarClassServiceImp implements CarClassService{
 	public CarClassDTO update(Long id, CarClassDTO carClassDTO) {
 		CarClass old = carClassRepo.getOne(id);
 		old.setName(carClassDTO.getName());
-		
-		old= carClassRepo.save(old);
-		
-		return new  CarClassDTO(old);
+
+		old = carClassRepo.save(old);
+
+		return new CarClassDTO(old);
 	}
 
 	@Override
 	@Transactional
 	public CarClassDTO add(CarClassDTO carClassDTO) {
 		CarClass carClass = new CarClass();
-		carClass .setName(carClassDTO.getName());
-		
+		carClass.setName(carClassDTO.getName());
+
 		carClass = carClassRepo.save(carClass);
-		
+
 		return new CarClassDTO(carClass);
 
-		
-		
 	}
 
+	@Override
+	@Transactional
+	public Boolean delete(Long id) {
+		CarClass carClass = carClassRepo.getOne(id);
+		carClass.setIsdeleted(true);
+		carClass = carClassRepo.save(carClass);
+		return true;
+	}
 
 }

@@ -29,6 +29,12 @@ export class FuelTypeService{
     //   const roleName = new HttpParams().set('updateFuelType', updateFuelType.roleName);
       return this.http.put(this.FuelTypeUrl + '/' + updateFuelType.idGearboxType, updateFuelType);
     }
+
+    deleteGearbox(ft: FuelTypeDTO) : Observable<any> {
+
+      return this.http.delete(this.FuelTypeUrl + '/' + ft.idFuelType);
+    }
+  
   
     addFuelType(name: FuelTypeDTO): Observable<any> {
       return this.http.post(this.FuelTypeUrl, name);

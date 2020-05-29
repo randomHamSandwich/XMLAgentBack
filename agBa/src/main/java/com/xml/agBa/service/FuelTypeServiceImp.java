@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.FuelTypeDTO;
 import com.xml.agBa.model.FuelType;
+import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.repository.FuelTypeRepo;
 
 @Service
@@ -63,6 +64,15 @@ public class FuelTypeServiceImp implements FuelTypeService{
 		return new FuelTypeDTO(fuelType);
 	}
 
+	@Override
+	@Transactional
+	public Boolean delete(Long id) {
+		FuelType fuelType = fuelTypeRepo.getOne(id);
+		fuelType.setIsdeleted(true);
+		fuelType= fuelTypeRepo.save(fuelType);
+		return true;
+	}
+	
 
 
 

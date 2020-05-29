@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.CarBrandDTO;
 import com.xml.agBa.model.CarBrand;
+import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.repository.CarBrandRepo;
 
 @Service
@@ -59,10 +60,19 @@ public class CarBrandServiceImp implements CarBrandService {
 	public CarBrandDTO add(CarBrandDTO carBrandDTO) {
 		CarBrand carBrand = new CarBrand();
 		carBrand.setName(carBrandDTO.getName());
-		
+
 		carBrand = carBrandRepo.save(carBrand);
-		
+
 		return new CarBrandDTO(carBrand);
+	}
+
+	@Override
+	@Transactional
+	public Boolean delete(Long id) {
+		CarBrand carBrand = carBrandRepo.getOne(id);
+		carBrand.setIsdeleted(true);
+		carBrand = carBrandRepo.save(carBrand);
+		return true;
 	}
 
 }

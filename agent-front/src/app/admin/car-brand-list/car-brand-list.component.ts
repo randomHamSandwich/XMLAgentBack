@@ -38,6 +38,18 @@ export class CarBrandListComponent implements OnInit {
     console.log(this.isUpdate);
   }
 
+  onCarBrandDelete(carBrand: CarBrandDTO): void {
+    this.carBrandService.deleteCarBrand(carBrand)
+    .subscribe(
+      data => {
+        console.log(data);
+        // gear = data as GearboxTypeDTO;
+      },
+      error => console.log(error)
+    );
+    window.location.reload();
+  }
+  
   onCarBrandAdd(): void {
     this.isAdd = !this.isAdd;
   }

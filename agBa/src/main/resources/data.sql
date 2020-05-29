@@ -24,71 +24,71 @@ values ('END_USER', '909090909090909090', '64', 'Srbija', 'lugaspring@gmail.com 
  '$2a$10$./yRHDMtr84Dr8w5Zr9Y/eaG3MPVzDmpH.uL3NCMmC/6Syy8RWCoa', 'ACTIVE', 'Zlatiborska');
  insert into user_role(id_role, id_user) values ('1','4');
  
-INSERT INTO car_brand (name)
-VALUES ('Mitsubishi');
+INSERT INTO car_brand (name, isdeleted)
+VALUES ('Mitsubishi',false);
 
-INSERT INTO car_brand (name)
-VALUES ('Suzuki');
+INSERT INTO car_brand (name, isdeleted)
+VALUES ('Suzuki',false);
 
-INSERT INTO car_brand (name)
-VALUES ('Toyota');
+INSERT INTO car_brand (name, isdeleted)
+VALUES ('Toyota',false);
 
-INSERT INTO car_brand (name)
-VALUES ('Honda');
+INSERT INTO car_brand (name, isdeleted)
+VALUES ('Honda',false);
 
-INSERT INTO car_class (name)
-VALUES ('Sedan');
+INSERT INTO car_class (name, isdeleted)
+VALUES ('Sedan',false);
 
-INSERT INTO car_class (name)
-VALUES ('SUV');
+INSERT INTO car_class (name, isdeleted)
+VALUES ('SUV',false);
 
-INSERT INTO car_class (name)
-VALUES ('Limousine');
+INSERT INTO car_class (name, isdeleted)
+VALUES ('Limousine',false);
 
-INSERT INTO car_class (name)
-VALUES ('Convertible');
+INSERT INTO car_class (name, isdeleted)
+VALUES ('Convertible',false);
 
-INSERT INTO car_class (name)
-VALUES ('Sport');
+INSERT INTO car_class (name, isdeleted)
+VALUES ('Sport',false);
 
-INSERT INTO car_model (name)
-VALUES ('Corolla');
+INSERT INTO car_model (name, isdeleted)
+VALUES ('Corolla',false);
 
-INSERT INTO car_model (name)
-VALUES ('Yaris');
+INSERT INTO car_model (name, isdeleted)
+VALUES ('Yaris',false);
 
-INSERT INTO car_model (name)
-VALUES ('Samurai');
+INSERT INTO car_model (name, isdeleted)
+VALUES ('Samurai',false);
 
-INSERT INTO car_model (name)
-VALUES ('Vitara');
+INSERT INTO car_model (name, isdeleted)
+VALUES ('Vitara',false);
 
-INSERT INTO car_model (name)
-VALUES ('Pajero');
+INSERT INTO car_model (name, isdeleted)
+VALUES ('Pajero',false);
 
-INSERT INTO car_model (name)
-VALUES ('Accord');
+INSERT INTO car_model (name, isdeleted)
+VALUES ('Accord',false);
 
-INSERT INTO car_model (name)
-VALUES ('Evo');
+INSERT INTO car_model (name, isdeleted)
+VALUES ('Evo',false);
 
-INSERT INTO fuel_type (name)
-VALUES('TNG');
+INSERT INTO fuel_type (name, isdeleted)
+VALUES('TNG',false);
 
-INSERT INTO fuel_type (name)
-VALUES('Gasoline');
+INSERT INTO fuel_type (name, isdeleted)
+VALUES('Gasoline',false);
 
-INSERT INTO fuel_type (name)
-VALUES('Diesel');
+INSERT INTO fuel_type (name, isdeleted)
+VALUES('Diesel',false);
 
-INSERT INTO fuel_type (name)
-VALUES('Electric');
+INSERT INTO fuel_type (name, isdeleted)
+VALUES('Electric',false);
 
-INSERT INTO gearbox_type (name)
-VALUES ('Manual');
+INSERT INTO gearbox_type (name, isdeleted)
+VALUES ('Manual', false);
 
-INSERT INTO gearbox_type (name)
-VALUES ('Automatic');
+INSERT INTO gearbox_type (name, isdeleted)
+VALUES ('Automatic', false);
 
 INSERT INTO car (allowedkm, cdw, children_seats, city, country , km, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
 VALUES ('100', 1, '2', 'Tokyo', 'Japan', '19000', 'Tokugawa Blwd.', '1600', 

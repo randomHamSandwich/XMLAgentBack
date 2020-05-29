@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,27 +37,36 @@ public class GearboxTypeController {
 
 		return new ResponseEntity<>(gearboxTypeDTOs, HttpStatus.OK);
 	}
+
 	@GetMapping(value = "/gearbox/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<GearboxTypeDTO> getGearboxType(@PathVariable Long id) {
 		GearboxTypeDTO gearboxTypeDTO = gearboxTypeService.findGearBoxTypeById(id);
-		
+
 		return new ResponseEntity<GearboxTypeDTO>(gearboxTypeDTO, HttpStatus.OK);
 	}
+
 	@PutMapping(value = "/gearbox/{id}")
 	@PreAuthorize("hasAuthority('ADMIN')")
-	public ResponseEntity<GearboxTypeDTO> updateGearboxType(@PathVariable Long id, @RequestBody GearboxTypeDTO gearboxTypeDTO) {
-		GearboxTypeDTO updatedGearboxTypeDTO = gearboxTypeService.update(id,gearboxTypeDTO);
+	public ResponseEntity<GearboxTypeDTO> updateGearboxType(@PathVariable Long id,
+			@RequestBody GearboxTypeDTO gearboxTypeDTO) {
+		GearboxTypeDTO updatedGearboxTypeDTO = gearboxTypeService.update(id, gearboxTypeDTO);
 		return new ResponseEntity<GearboxTypeDTO>(updatedGearboxTypeDTO, HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value = "/gearbox", consumes = "application/json")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<GearboxTypeDTO> addGearboxType(@RequestBody GearboxTypeDTO gearboxTypeDTO) {
-		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx__________________"+gearboxTypeDTO.getName());
 		GearboxTypeDTO newGearboxTypeDTO = gearboxTypeService.add(gearboxTypeDTO);
 		return new ResponseEntity<GearboxTypeDTO>(newGearboxTypeDTO, HttpStatus.CREATED);
 	}
-	
-	
+
+	@DeleteMapping(value = "/gearbox/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public ResponseEntity<Boolean> deleteGearboxType(@PathVariable Long id) {
+		Boolean isDeleted = gearboxTypeService.delete(id);
+		
+		return new ResponseEntity<Boolean>(isDeleted, HttpStatus.OK);
+	}
+
 }

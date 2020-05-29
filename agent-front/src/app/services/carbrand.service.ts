@@ -30,14 +30,17 @@ export class CarBrandService {
     return this.http.put(this.carBrandUrl + '/' + updateGearBoxType.idGearboxType, updateGearBoxType);
   }
 
+  deleteCarBrand(carBrand: CarBrandDTO) : Observable<any> {
+
+    return this.http.delete(this.carBrandUrl + '/' + carBrand.idCarBrand);
+  }
+
   addCarBrand(name: CarBrandDTO): Observable<any> {
     return this.http.post(this.carBrandUrl, name);
   }
 
-  // TODO
-  //   public updateGeatbox(id: number, value: RoleDTO): Observable<any> {
-  //     return this.http.put(this.carBrandUrl + '/' + id, value)
-  //   }
+
+
 
 
 }

@@ -38,6 +38,20 @@ export class CarClassListComponent implements OnInit {
     this.isUpdate = !this.isUpdate;
     console.log(this.isUpdate);
   }
+  // onCarClassDelete
+
+    
+  onCarClassDelete(carClass: CarClassDTO): void {
+    this.carClassService.deleteCarClass(carClass)
+    .subscribe(
+      data => {
+        console.log(data);
+        // gear = data as GearboxTypeDTO;
+      },
+      error => console.log(error)
+    );
+    window.location.reload();
+  }
 
   onCarClassAdd():void{
     this.isAdd=!this.isAdd;

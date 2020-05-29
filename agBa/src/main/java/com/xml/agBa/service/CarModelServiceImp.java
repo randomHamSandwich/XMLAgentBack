@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.CarModelDTO;
 import com.xml.agBa.model.CarModel;
+import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.repository.CarModelRepo;
 
 @Service
@@ -64,5 +65,15 @@ public class CarModelServiceImp implements CarModelService{
 		return new CarModelDTO(carModel);
 	}
 
+	@Override
+	@Transactional
+	public Boolean delete(Long id) {
+		CarModel  carModel= carModelRepo.getOne(id);
+		carModel.setIsdeleted(true);
+		carModel= carModelRepo.save(carModel);
+		return true;
+	}
+	
+	
 
 }

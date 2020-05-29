@@ -11,9 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.Where;
+
 import com.xml.agBa.dto.CarBrandDTO;
 
 @Entity
+@Where(clause = "isdeleted = false")
 public class CarBrand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +31,10 @@ public class CarBrand {
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private int version;
+    
+	@Column
+	private boolean isdeleted;
+    
 	public CarBrand() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -76,6 +83,14 @@ public class CarBrand {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public boolean isIsdeleted() {
+		return isdeleted;
+	}
+
+	public void setIsdeleted(boolean isdeleted) {
+		this.isdeleted = isdeleted;
 	}
 	
 	

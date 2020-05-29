@@ -65,6 +65,15 @@ public class GearboxTypeServiceImp implements GearboxTypeService {
 		
 		return new GearboxTypeDTO(gearboxType);
 	}
+
+	@Override
+	@Transactional
+	public Boolean delete(Long id) {
+		GearboxType gearboxType = gearboxTypeRepo.getOne(id);
+		gearboxType.setIsdeleted(true);
+		gearboxType= gearboxTypeRepo.save(gearboxType);
+		return true;
+	}
 	
 	
 

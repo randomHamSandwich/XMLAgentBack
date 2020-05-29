@@ -16,4 +16,6 @@ public interface FuelTypeService {
 	
 	FuelTypeDTO add(FuelTypeDTO fuelTypeDTO);
 
+	Boolean delete(Long id);
+
 }

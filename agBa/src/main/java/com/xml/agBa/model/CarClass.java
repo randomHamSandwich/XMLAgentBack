@@ -11,28 +11,33 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.Where;
+
 import com.xml.agBa.dto.CarClassDTO;
+
 @Entity
+@Where(clause = "isdeleted = false")
 public class CarClass {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCarClass;
 	@Column
 	private String name;
-	
+
 	@OneToMany(mappedBy = "carClass", cascade = CascadeType.ALL)
 	private Set<Car> cars;
-	
-    @Version
-    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
-    private int version;
+
+	@Version
+	@Column(name = "version", nullable = false, columnDefinition = "int default 0")
+	private int version;
+
+	@Column
+	private boolean isdeleted;
 
 	public CarClass() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public CarClass(Long idCarClass, String name, Set<Car> cars) {
 		super();
@@ -41,16 +46,12 @@ public class CarClass {
 		this.cars = cars;
 	}
 
-
-
 	public CarClass(CarClassDTO carClassDTO) {
 		super();
 		this.idCarClass = carClassDTO.getIdCarClass();
 		this.name = carClassDTO.getName();
 
 	}
-
-
 
 	public Long getIdCarClass() {
 		return idCarClass;
@@ -76,19 +77,20 @@ public class CarClass {
 		this.cars = cars;
 	}
 
-
-
 	public int getVersion() {
 		return version;
 	}
 
-
-
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
-	
 
-	
+	public boolean isIsdeleted() {
+		return isdeleted;
+	}
+
+	public void setIsdeleted(boolean isdeleted) {
+		this.isdeleted = isdeleted;
+	}
+
 }

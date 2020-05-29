@@ -30,6 +30,12 @@ export class GearboxService {
     return this.http.put(this.GearboxUrl + '/' + updateGearBoxType.idGearboxType, updateGearBoxType);
   }
 
+  deleteGearbox(gear: GearboxTypeDTO) : Observable<any> {
+    console.log("gears on servis is: " + gear.idGearboxType + " " + gear.name);
+    return this.http.delete(this.GearboxUrl + '/' + gear.idGearboxType);
+  }
+
+
   addGearboxType(name: GearboxTypeDTO): Observable<any> {
     return this.http.post(this.GearboxUrl, name);
   }

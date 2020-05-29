@@ -36,6 +36,18 @@ export class CarModelListComponent implements OnInit {
 
   }
 
+  onCarModelDelete(carModel: CarModelDTO): void {
+    this.carModelService.deleteCarModel(carModel)
+    .subscribe(
+      data => {
+        console.log(data);
+        // gear = data as GearboxTypeDTO;
+      },
+      error => console.log(error)
+    );
+    window.location.reload();
+  }
+
   onCarModelAdd():void{
     this.isAdd=!this.isAdd;
   }
