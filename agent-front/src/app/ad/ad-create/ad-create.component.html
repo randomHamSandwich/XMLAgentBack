@@ -1,1 +1,27 @@
-<p>ad-create works!</p>
+<div class="row col-sm-6" style="max-width:350px;">
+
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="startDate">Pick start date: </label>
+            <input type="date" class="form-control" name="startDate" [(ngModel)]="form.startDate"
+                #startDate="ngModel" required>
+        </div>
+        <div class="form-group">
+            <label for="endDate">Pick end date: </label>
+            <input type="date" class="form-control" name="endDate" [(ngModel)]="form.endDate"
+                #endDate="ngModel" required>
+        </div>
+
+        <div class="form-group">
+            <label for="car">Car: </label>
+            <select class="form-control"  id="car" required [(ngModel)]="form.car" name="car">
+                <option *ngFor="let c of cars" [value]="c.idCar">{{ c.carBrand }} {{c.carModel}}</option>
+             </select>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Create ad</button>
+        </div>
+    </form>
+
+</div>

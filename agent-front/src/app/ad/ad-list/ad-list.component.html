@@ -1,1 +1,33 @@
-<p>ad-list works!</p>
+<div class="container">
+    <div class="row col-sm-8" style="max-width:900px;">
+      <button class="btn btn-success" (click)="createAd()">Add new ad</button>
+      <hr>
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Start date and time: </th>
+                <th scope="col">End date and time: </th>
+                <th scope="col">Car: </th>
+                <th scope="col">Price per day: </th>
+            </tr>
+        </thead>
+  
+        <tbody *ngFor="let a of ads | async ; let i = index;">
+  
+            <tr>
+                <th scope="row">{{i+1}}</th>
+                <th scope="row">{{a.startDate | date:"dd/MM/yyy HH:mm"}}</th>
+                <th scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</th>
+                <div *ngFor="let c of cars">
+                    <th *ngIf="c.idCar == a.car" scope="row" rowspan="2">{{c.carBrand}} {{c.carModel}}</th>
+                </div>
+                <th scope="row"> placeholder </th>
+            </tr>
+        </tbody>
+    </table>
+  
+    <button class="btn btn-info" (click)="onBack()">Back</button>
+            
+    </div>
+  </div>

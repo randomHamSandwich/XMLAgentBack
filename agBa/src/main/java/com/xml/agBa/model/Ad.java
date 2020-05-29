@@ -1,6 +1,7 @@
 package com.xml.agBa.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,8 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
-import lombok.val;
-
 
 @Entity
 public class Ad {
@@ -27,13 +26,13 @@ public class Ad {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAd;
 	@Column
-	private LocalDate starts;
+	private LocalDateTime startDate;
 	@Column
-	private LocalDate ends;
+	private LocalDateTime endDate;
 	
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
-    private int version;
+    private Integer version;
 	
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -59,19 +58,6 @@ public class Ad {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ad(Long idAd, LocalDate starts, LocalDate ends, Set<UserRequest> userRequest, Set<Rating> rating,
-			Set<Comment> comments, PriceList priceList, Car car) {
-		super();
-		this.idAd = idAd;
-		this.starts = starts;
-		this.ends = ends;
-		this.userRequest = userRequest;
-		this.rating = rating;
-		this.comments = comments;
-		this.priceList = priceList;
-		this.car = car;
-	}
-
 	public Long getIdAd() {
 		return idAd;
 	}
@@ -80,20 +66,28 @@ public class Ad {
 		this.idAd = idAd;
 	}
 
-	public LocalDate getStarts() {
-		return starts;
+	public LocalDateTime getStartDate() {
+		return startDate;
 	}
 
-	public void setStarts(LocalDate starts) {
-		this.starts = starts;
+	public void setStartDate(LocalDateTime startDate) {
+		this.startDate = startDate;
 	}
 
-	public LocalDate getEnds() {
-		return ends;
+	public LocalDateTime getEndDate() {
+		return endDate;
 	}
 
-	public void setEnds(LocalDate ends) {
-		this.ends = ends;
+	public void setEndDate(LocalDateTime endDate) {
+		this.endDate = endDate;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
 	public Set<UserRequest> getUserRequest() {
@@ -135,17 +129,4 @@ public class Ad {
 	public void setCar(Car car) {
 		this.car = car;
 	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	
-	
-	
-	
 }
