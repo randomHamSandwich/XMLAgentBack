@@ -64,7 +64,7 @@ public class User {
 	private Set<Roles> roles;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<PriceList> priceList;
+	private Set<Pricelist> priceList;
 
 	@OneToMany(mappedBy = "seller")
 	private Set<Chat> chats;
@@ -78,7 +78,7 @@ public class User {
 	}
 
 	public User(Long idUser, String email, String password, String phoneNumber, String street, String streetNumber,
-			String city, String country, StatusUser status, Set<Roles> roles, Set<PriceList> priceList, Set<Chat> chats,
+			String city, String country, StatusUser status, Set<Roles> roles, Set<Pricelist> priceList, Set<Chat> chats,
 			Set<Message> messages) {
 		super();
 		this.idUser = idUser;
@@ -177,11 +177,11 @@ public class User {
 		this.roles = roles;
 	}
 
-	public Set<PriceList> getPriceList() {
+	public Set<Pricelist> getPriceList() {
 		return priceList;
 	}
 
-	public void setPriceList(Set<PriceList> priceList) {
+	public void setPriceList(Set<Pricelist> priceList) {
 		this.priceList = priceList;
 	}
 

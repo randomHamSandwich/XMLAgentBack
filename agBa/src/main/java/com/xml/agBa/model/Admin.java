@@ -22,7 +22,7 @@ public class Admin extends User {
 	}
 
 	public Admin(Long idUser, String email, String password, String phoneNumber, String street, String streetNumber,
-			String city, String country, StatusUser status, Set<Roles> roles, Set<PriceList> priceList, Set<Chat> chats,
+			String city, String country, StatusUser status, Set<Roles> roles, Set<Pricelist> priceList, Set<Chat> chats,
 			Set<Message> messages) {
 		super(idUser, email, password, phoneNumber, street, streetNumber, city, country, status, roles, priceList, chats,
 				messages);

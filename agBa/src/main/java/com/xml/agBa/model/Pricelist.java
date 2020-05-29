@@ -14,12 +14,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 @Entity
-public class PriceList {
+public class Pricelist {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPriceList;
+	
 	@Column
 	private double priceForOneDay;
+	
 	@Column
 	private double priceForKM;
 	
@@ -38,12 +40,12 @@ public class PriceList {
 	@OneToMany(mappedBy="priceList" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	private Set<Ad> ad;
 
-	public PriceList() {
+	public Pricelist() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public PriceList(Long idPriceList, double priceForOneDay, double priceForKM, int version, User user,
+	public Pricelist(Long idPriceList, double priceForOneDay, double priceForKM, int version, User user,
 			Set<Discount> discounts, Set<Ad> ad) {
 		super();
 		this.idPriceList = idPriceList;

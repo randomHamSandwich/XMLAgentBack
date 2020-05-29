@@ -6,8 +6,8 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Start date and time: </th>
-                <th scope="col">End date and time: </th>
+                <th scope="col">Available from: </th>
+                <th scope="col">Available to: </th>
                 <th scope="col">Car: </th>
                 <th scope="col">Price per day: </th>
             </tr>
@@ -23,6 +23,7 @@
                     <th *ngIf="c.idCar == a.car" scope="row" rowspan="2">{{c.carBrand}} {{c.carModel}}</th>
                 </div>
                 <th scope="row"> placeholder </th>
+                <th scope="row"> more info </th>
             </tr>
         </tbody>
     </table>

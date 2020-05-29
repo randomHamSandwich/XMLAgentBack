@@ -37,7 +37,9 @@ import { DiscountCreateComponent } from './ad/discount-create/discount-create.co
 import { DiscountListComponent } from './ad/discount-list/discount-list.component';
 import { AdCreateComponent } from './ad/ad-create/ad-create.component';
 import { AdListComponent } from './ad/ad-list/ad-list.component';
-
+import { AdComponent } from './ad/ad.component';
+import { PricelistListComponent } from './ad/pricelist-list/pricelist-list.component';
+import { PricelistCreateComponent } from './ad/pricelist-create/pricelist-create.component';
 
 
 @NgModule({
@@ -70,7 +72,10 @@ import { AdListComponent } from './ad/ad-list/ad-list.component';
     DiscountCreateComponent,
     DiscountListComponent,
     AdCreateComponent,
-    AdListComponent
+    AdListComponent,
+    AdComponent,
+    PricelistListComponent,
+    PricelistCreateComponent
 
   ],
   imports: [

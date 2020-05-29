@@ -23,7 +23,7 @@ export class DiscountListComponent implements OnInit {
   }
 
   findAllDiscounts() {
-    console.log("in find all discounts");
+    //console.log("in find all discounts");
     
     this.discounts = this.discountService.getAllDiscounts();
 
@@ -35,11 +35,11 @@ export class DiscountListComponent implements OnInit {
 
   onDiscountAdd(): void {
     this.isAdd = !this.isAdd;
-    console.log("isAdd: " + this.isAdd);
+    //console.log("isAdd: " + this.isAdd);
   }
 
   pickDiscount(id: number) {
-    console.log("choosen discount: " + id);
+    //console.log("choosen discount: " + id);
     
   }
 

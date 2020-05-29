@@ -12,4 +12,8 @@ export class PricelistCreateComponent implements OnInit {
   ngOnInit() {
   }
 
+  goBackToList() {
+    window.location.reload();
+  }
+
 }

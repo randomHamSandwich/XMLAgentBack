@@ -58,4 +58,8 @@ export class AdCreateComponent implements OnInit {
 
   }
 
+  goBack() {
+    window.location.reload();
+  }
+
 }

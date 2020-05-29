@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row col-sm-6" style="max-width:500px;">
+        <h4>Dashboard for creating new ads, pricelists and discounts!</h4>
+
+        <div *ngIf="!isAdd">
+            <button class="btn btn-success" (click)="onAdAdd()">Add new ad</button>
+        </div>
+        <div *ngIf="isAdd">
+            <app-ad-create></app-ad-create>
+        <hr>
+        </div>
+        <hr>
+        <h4>Pricelists:</h4>
+        <hr>
+        <app-pricelist-list></app-pricelist-list>
+    
+        <hr>
+
+        <h4>Discounts:</h4>
+        <hr>
+        <app-discount-list></app-discount-list>
+        
+        <hr>
+        <br>
+        <button class="btn btn-danger" (click)="Back()">Back</button>
+    </div>
+  </div>

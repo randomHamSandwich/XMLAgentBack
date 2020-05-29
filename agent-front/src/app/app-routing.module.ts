@@ -13,8 +13,8 @@ import { CarClassListComponent } from './admin/car-class-list/car-class-list.com
 import {CarBrandListComponent} from './admin/car-brand-list/car-brand-list.component';
 import { CarModelListComponent} from './admin/car-model-list/car-model-list.component'; 
 import { DiscountListComponent } from './ad/discount-list/discount-list.component';
-import { AdCreateComponent } from './ad/ad-create/ad-create.component';
 import { AdListComponent } from './ad/ad-list/ad-list.component';
+import { AdComponent } from './ad/ad.component';
 
 const routes: Routes = [
     {
@@ -66,6 +66,9 @@ const routes: Routes = [
         path: 'ads',
         component: AdListComponent
 
+    }, {
+        path: 'ads-dashboard',
+        component: AdComponent
     },
 
      

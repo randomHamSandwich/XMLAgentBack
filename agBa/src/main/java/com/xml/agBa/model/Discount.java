@@ -24,7 +24,7 @@ public class Discount {
 
 	@ManyToOne
 	@JoinColumn(name = "id_price_list")
-	private PriceList priceList;
+	private Pricelist priceList;
 
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
@@ -35,7 +35,7 @@ public class Discount {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Discount(Long idDiscount, Integer forMoreThanXDays, Integer discount, PriceList priceList) {
+	public Discount(Long idDiscount, Integer forMoreThanXDays, Integer discount, Pricelist priceList) {
 		super();
 		this.idDiscount = idDiscount;
 		this.forMoreThanXDays = forMoreThanXDays;
@@ -73,11 +73,11 @@ public class Discount {
 		this.discount = discount;
 	}
 
-	public PriceList getPriceList() {
+	public Pricelist getPriceList() {
 		return priceList;
 	}
 
-	public void setPriceList(PriceList priceList) {
+	public void setPriceList(Pricelist priceList) {
 		this.priceList = priceList;
 	}
 

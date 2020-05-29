@@ -47,7 +47,7 @@ public class Ad {
 	
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST ,CascadeType.REFRESH} )
 	@JoinColumn(name = "id_price_list")
-	private PriceList priceList;
+	private Pricelist priceList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "id_car", nullable = true)
@@ -114,11 +114,11 @@ public class Ad {
 		this.comments = comments;
 	}
 
-	public PriceList getPriceList() {
+	public Pricelist getPriceList() {
 		return priceList;
 	}
 
-	public void setPriceList(PriceList priceList) {
+	public void setPriceList(Pricelist priceList) {
 		this.priceList = priceList;
 	}
 
