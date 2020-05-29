@@ -35,6 +35,8 @@ import { CarModelAddComponent } from './admin/car-model-list/car-model-add/car-m
 import { CarModelUpdateComponent } from './admin/car-model-list/car-model-update/car-model-update.component';
 import { DiscountCreateComponent } from './ad/discount-create/discount-create.component';
 import { DiscountListComponent } from './ad/discount-list/discount-list.component';
+import { AdCreateComponent } from './ad/ad-create/ad-create.component';
+import { AdListComponent } from './ad/ad-list/ad-list.component';
 
 
 
@@ -49,40 +51,26 @@ import { DiscountListComponent } from './ad/discount-list/discount-list.componen
     AgentComponent,
     CarCreateComponent,
     CarListComponent,
-
     ChangeAuthoriyComponent,
-
     CarBrandListComponent,
-
     CarClassListComponent,
-
     CarModelListComponent,
-
     FuelTypeListComponent,
-
     GearboxListComponent,
-
     GearboxComponent,
-
     GearboxAddComponent,
-
     FuelTypeUpdateComponent,
-
     FuelTypeAddComponent,
-
     CarClassAddComponent,
-
     CarClassUpdateComponent,
-
     CarBrandUpdateComponent,
-
     CarBrandAddComponent,
-
     CarModelAddComponent,
-
     CarModelUpdateComponent,
     DiscountCreateComponent,
     DiscountListComponent,
+    AdCreateComponent,
+    AdListComponent
 
   ],
   imports: [
