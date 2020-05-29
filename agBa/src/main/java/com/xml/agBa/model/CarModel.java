@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 import com.xml.agBa.dto.CarModelDTO;
 
@@ -19,6 +20,10 @@ public class CarModel {
 	private Long idCarModel;
 	@Column
 	private String name;
+	
+    @Version
+    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
+    private int version;
 
 	@OneToMany(mappedBy = "carModel", cascade = CascadeType.ALL)
 	private Set<Car> cars;
@@ -65,5 +70,15 @@ public class CarModel {
 	public void setCars(Set<Car> cars) {
 		this.cars = cars;
 	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
+	
 
 }

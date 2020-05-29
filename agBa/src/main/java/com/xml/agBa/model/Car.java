@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Version;
 
 @Entity
 public class Car {
@@ -35,6 +36,10 @@ public class Car {
 	private String city;
 	@Column
 	private String country;
+	
+    @Version
+    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
+    private int version;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_car_brand", nullable = true)
@@ -216,5 +221,14 @@ public class Car {
 	public void setAd(Ad ad) {
 		this.ad = ad;
 	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
 
 }

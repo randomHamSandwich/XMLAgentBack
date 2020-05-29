@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 import com.xml.agBa.dto.GearboxTypeDTO;
 
@@ -22,6 +23,10 @@ public class GearboxType {
 
 	@OneToMany(mappedBy = "gearboxType", cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private Set<Car> car;
+	
+    @Version
+    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
+    private int version;
 
 	public GearboxType() {
 		super();
@@ -64,5 +69,15 @@ public class GearboxType {
 	public void setCar(Set<Car> car) {
 		this.car = car;
 	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
+	
 
 }

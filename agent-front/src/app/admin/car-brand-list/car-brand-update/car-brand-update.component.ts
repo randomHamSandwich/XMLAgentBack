@@ -43,7 +43,7 @@ export class CarBrandUpdateComponent implements OnInit {
         },
         error => console.log(error)
       );
-      // window.location.reload();
+      window.location.reload();
 
 
   }

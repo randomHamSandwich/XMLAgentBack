@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Version;
 
 import lombok.val;
 
@@ -29,6 +30,10 @@ public class Ad {
 	private LocalDate starts;
 	@Column
 	private LocalDate ends;
+	
+    @Version
+    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
+    private int version;
 	
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -131,6 +136,15 @@ public class Ad {
 		this.car = car;
 	}
 
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	
 	
 	
 	

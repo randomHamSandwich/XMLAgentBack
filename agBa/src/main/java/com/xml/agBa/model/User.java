@@ -21,6 +21,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = SINGLE_TABLE)
@@ -43,6 +44,10 @@ public class User {
 	private String city;
 	@Column
 	private String country;
+	
+    @Version
+    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
+    private int version;
 
 	@Enumerated(EnumType.STRING)
 	private StatusUser status;
@@ -187,6 +192,14 @@ public class User {
 
 	public void setMessages(Set<Message> messages) {
 		this.messages = messages;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 

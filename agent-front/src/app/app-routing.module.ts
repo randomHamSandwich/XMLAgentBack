@@ -13,6 +13,7 @@ import { CarClassListComponent } from './admin/car-class-list/car-class-list.com
 import {CarBrandListComponent} from './admin/car-brand-list/car-brand-list.component';
 import { CarModelListComponent} from './admin/car-model-list/car-model-list.component'; 
 import { DiscountListComponent } from './ad/discount-list/discount-list.component';
+
 const routes: Routes = [
     {
         path: 'home',
@@ -60,6 +61,7 @@ const routes: Routes = [
 
     },
 
+     
 
 
     {

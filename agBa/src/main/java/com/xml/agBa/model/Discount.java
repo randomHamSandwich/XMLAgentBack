@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 import com.xml.agBa.dto.DiscountDTO;
 
@@ -25,6 +26,10 @@ public class Discount {
 	@JoinColumn(name = "id_price_list")
 	private PriceList priceList;
 
+    @Version
+    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
+    private int version;
+    
 	public Discount() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -75,4 +80,13 @@ public class Discount {
 	public void setPriceList(PriceList priceList) {
 		this.priceList = priceList;
 	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
 }

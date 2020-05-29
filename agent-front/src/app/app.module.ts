@@ -37,6 +37,7 @@ import { DiscountCreateComponent } from './ad/discount-create/discount-create.co
 import { DiscountListComponent } from './ad/discount-list/discount-list.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +82,8 @@ import { DiscountListComponent } from './ad/discount-list/discount-list.componen
 
     CarModelUpdateComponent,
     DiscountCreateComponent,
-    DiscountListComponent
+    DiscountListComponent,
+
   ],
   imports: [
     BrowserModule,

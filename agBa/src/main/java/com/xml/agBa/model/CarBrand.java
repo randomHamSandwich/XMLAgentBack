@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 import com.xml.agBa.dto.CarBrandDTO;
 
@@ -23,6 +24,10 @@ public class CarBrand {
 	@OneToMany(mappedBy = "carBrand", cascade = CascadeType.ALL)
 	private Set<Car> cars;
 
+	
+    @Version
+    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
+    private int version;
 	public CarBrand() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -64,5 +69,15 @@ public class CarBrand {
 	public void setCars(Set<Car> cars) {
 		this.cars = cars;
 	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
+	
 
 }
