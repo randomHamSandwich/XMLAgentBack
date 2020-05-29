@@ -7,7 +7,10 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Where;
+
 @Entity
+@Where(clause = "isdeleted = false")
 @DiscriminatorValue("END_USER")
 public class EndUser extends User {
 

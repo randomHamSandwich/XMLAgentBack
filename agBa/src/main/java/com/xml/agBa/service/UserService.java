@@ -22,4 +22,8 @@ public interface UserService {
 
 	EndUser save(EndUser krajnjiKorisnik);
 
+	Boolean delete(Long id);
+
+	User getOne(Long id);
+
 }

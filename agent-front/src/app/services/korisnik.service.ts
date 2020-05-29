@@ -39,6 +39,11 @@ export class KorisnikService {
   public updateKorisnik(id: number, value: RoleDTO): Observable<any> {
     return this.http.put(this.korisnikUrl + '/' + id, value)
   }
- 
+
+
+  deleteUser(id: string) : Observable<any> {
+  
+    return this.http.delete(this.korisnikUrl + '/' + id);
+  }
 
 }

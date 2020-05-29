@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.UserDTO;
 import com.xml.agBa.model.EndUser;
+import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.model.RoleName;
 import com.xml.agBa.model.Roles;
 import com.xml.agBa.model.User;
@@ -92,5 +93,24 @@ public class UserServiceImp implements UserService {
 		
 		return new UserDTO(user, roleCasted );
 	}
+	
+	@Override
+	@Transactional
+	public Boolean delete(Long id) {
+		User user= userRepo.getOne(id);
+		user.setIsdeleted(true);
+		user= userRepo.save(user);
+		return true;
+	}
+
+
+	@Override
+	public User getOne(Long id) {
+		
+		return userRepo.getOne(id);
+	}
+	
+	
+	
 
 }

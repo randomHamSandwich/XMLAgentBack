@@ -23,7 +23,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import org.hibernate.annotations.Where;
+
 @Entity
+@Where(clause = "isdeleted = false")
 @Inheritance(strategy = SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type", discriminatorType = STRING)
 public class User {
@@ -44,24 +47,28 @@ public class User {
 	private String city;
 	@Column
 	private String country;
-	
-    @Version
-    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
-    private int version;
+
+	@Version
+	@Column(name = "version", nullable = false, columnDefinition = "int default 0")
+	private int version;
+
+	@Column
+	private boolean isdeleted;
 
 	@Enumerated(EnumType.STRING)
 	private StatusUser status;
 
-	@ManyToMany(fetch = FetchType.EAGER ,cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "idRole"))
 	private Set<Roles> roles;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<PriceList> priceList;
-	
+
 	@OneToMany(mappedBy = "seller")
 	private Set<Chat> chats;
-	
+
 	@OneToMany(mappedBy = "messageSender")
 	private Set<Message> messages;
 
@@ -162,7 +169,7 @@ public class User {
 	}
 
 	public Set<Roles> getRoles() {
-				
+
 		return roles;
 	}
 
@@ -202,8 +209,12 @@ public class User {
 		this.version = version;
 	}
 
+	public boolean isIsdeleted() {
+		return isdeleted;
+	}
 
-	
-	
+	public void setIsdeleted(boolean isdeleted) {
+		this.isdeleted = isdeleted;
+	}
 
 }

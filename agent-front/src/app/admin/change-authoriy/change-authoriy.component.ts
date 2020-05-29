@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Korisnik } from 'src/app/home/Korisnik';
 import { Observable } from 'rxjs';
 import { KorisnikService } from 'src/app/services/korisnik.service';
@@ -27,23 +27,40 @@ export class ChangeAuthoriyComponent implements OnInit {
     this.roleDTO = new RoleDTO();
     this.roleDTO.roleName = permmision;
 
-    
+
     this.korisnikService.changeRole(
-      user.idUser,       
+      user.idUser,
       {
         roleName: this.roleDTO.roleName,
       }
     ).subscribe(
-    data =>{
-      console.log(data);
-            this.roleDTO = data as RoleDTO;
-        },
-        error => console.log(error)
-        );
+      data => {
+        console.log(data);
+        this.roleDTO = data as RoleDTO;
+      },
+      error => console.log(error)
+    );
 
-        window.location.reload();
-    };
+    window.location.reload();
+  };
 
 
-  }
+  onDeleteUser(user: Korisnik) {
+
+    this.korisnikService.deleteUser(
+      user.idUser
+    ).subscribe(
+      data => {
+        console.log(data);
+        // this.roleDTO = data as RoleDTO;
+      }, 
+          error => console.log(error)
+    );
+
+    window.location.reload();
+  };
+
+
+
+}
 

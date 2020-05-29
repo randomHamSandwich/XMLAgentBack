@@ -11,6 +11,7 @@
             <th>action</th>
             <th>action</th>
             <th>action</th>
+            <th>action</th>
         </tr>
     </thead>
 
@@ -36,10 +37,11 @@
                     (click)="onUpdateUserAccess(user,'END_USER')">Full access</button>
             </td>
             
-            <!-- <td *ngIf="!isOcenjenLekar(operacija)">
-                <button class="btn btn-info" [disabled]="!isOcenaLekar[i]"
-                    (click)="onOceniLekara(operacija,oceneLekara[i])">Oceni Lekara</button>
-            </td> -->
+            <td>
+                <button class="btn btn-info"
+                    (click)="onDeleteUser(user)">Delete</button>
+            </td>
+            
 
 
         </tr>

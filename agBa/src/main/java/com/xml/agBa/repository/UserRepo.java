@@ -10,7 +10,7 @@ import com.xml.agBa.model.User;
 
 public interface UserRepo extends JpaRepository<User, Long> {
 	
-	@Query(value = "SELECT * FROM user u where u.user_type= 'END_USER';", nativeQuery = true)
+	@Query(value = "SELECT * FROM user u where u.user_type= 'END_USER' and isdeleted = false;", nativeQuery = true)
 	List<User> findAllEndUsers();
 
 	Optional<User> findByEmail(String idKorisnik);
