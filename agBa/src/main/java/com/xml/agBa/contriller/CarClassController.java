@@ -29,14 +29,14 @@ public class CarClassController {
 	private CarClassService carClassService;
 
 	@GetMapping(value = "/carclass")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('END_USER')")
 	public ResponseEntity<List<CarClassDTO>> getCarClass() {
 		List<CarClassDTO> carClassDTOs = carClassService.findAll();
 
 		return new ResponseEntity<>(carClassDTOs, HttpStatus.OK);
 	}
 	@GetMapping(value = "/carclass/{id}")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('END_USER')")
 	public ResponseEntity<CarClassDTO> getCarClass(@PathVariable Long id) {
 		CarClassDTO carClassDTO = carClassService.findCarClassById(id);
 		

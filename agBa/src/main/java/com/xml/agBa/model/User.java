@@ -65,6 +65,9 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Pricelist> priceList;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Car> cars;
 
 	@OneToMany(mappedBy = "seller")
 	private Set<Chat> chats;
@@ -72,14 +75,9 @@ public class User {
 	@OneToMany(mappedBy = "messageSender")
 	private Set<Message> messages;
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public User(Long idUser, String email, String password, String phoneNumber, String street, String streetNumber,
-			String city, String country, StatusUser status, Set<Roles> roles, Set<Pricelist> priceList, Set<Chat> chats,
-			Set<Message> messages) {
+			String city, String country, int version, boolean isdeleted, StatusUser status, Set<Roles> roles,
+			Set<Pricelist> priceList, Set<Car> cars, Set<Chat> chats, Set<Message> messages) {
 		super();
 		this.idUser = idUser;
 		this.email = email;
@@ -89,11 +87,19 @@ public class User {
 		this.streetNumber = streetNumber;
 		this.city = city;
 		this.country = country;
+		this.version = version;
+		this.isdeleted = isdeleted;
 		this.status = status;
 		this.roles = roles;
 		this.priceList = priceList;
+		this.cars = cars;
 		this.chats = chats;
 		this.messages = messages;
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getIdUser() {
@@ -160,6 +166,22 @@ public class User {
 		this.country = country;
 	}
 
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public boolean isIsdeleted() {
+		return isdeleted;
+	}
+
+	public void setIsdeleted(boolean isdeleted) {
+		this.isdeleted = isdeleted;
+	}
+
 	public StatusUser getStatus() {
 		return status;
 	}
@@ -169,7 +191,6 @@ public class User {
 	}
 
 	public Set<Roles> getRoles() {
-
 		return roles;
 	}
 
@@ -183,6 +204,14 @@ public class User {
 
 	public void setPriceList(Set<Pricelist> priceList) {
 		this.priceList = priceList;
+	}
+
+	public Set<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(Set<Car> cars) {
+		this.cars = cars;
 	}
 
 	public Set<Chat> getChats() {
@@ -201,20 +230,5 @@ public class User {
 		this.messages = messages;
 	}
 
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public boolean isIsdeleted() {
-		return isdeleted;
-	}
-
-	public void setIsdeleted(boolean isdeleted) {
-		this.isdeleted = isdeleted;
-	}
-
+	
 }

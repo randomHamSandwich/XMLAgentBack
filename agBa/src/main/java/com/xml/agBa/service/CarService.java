@@ -12,6 +12,8 @@ import com.xml.agBa.dto.CarDTO;
 
 public interface CarService {
 	
+	CarDTO createCar(CarDTO carDTO);
+	
 	Car findCarById();
 	
 	List<CarDTO> getAllCars();

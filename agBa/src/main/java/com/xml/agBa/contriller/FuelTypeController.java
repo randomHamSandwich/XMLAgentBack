@@ -29,7 +29,7 @@ public class FuelTypeController {
 	private FuelTypeService fuelTypeService;
 
 	@GetMapping(value = "/fuelType")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('END_USER')")
 	public ResponseEntity<List<FuelTypeDTO>> getFuelType() {
 		List<FuelTypeDTO> fuelTypeDTOs = fuelTypeService.findAll();
 
@@ -37,7 +37,7 @@ public class FuelTypeController {
 	}
 
 	@GetMapping(value = "/fuelType/{id}")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('END_USER')")
 	public ResponseEntity<FuelTypeDTO> getFuelType(@PathVariable Long id) {
 		FuelTypeDTO fuelTypeDTO = fuelTypeService.findfuelTypeById(id);
 

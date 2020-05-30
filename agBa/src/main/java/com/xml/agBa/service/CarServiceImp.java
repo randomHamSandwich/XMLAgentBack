@@ -98,4 +98,18 @@ public class CarServiceImp implements CarService{
 		
 	}
 
+	@Override
+	public CarDTO createCar(CarDTO carDTO) {
+//		Car newCar = new Car();
+//		newCar.setCarBrand(new CarBrand());
+//		newCar.setCarModel(new CarModel());
+//		newCar.setCarClass(new CarClass());
+//		newCar.setFuelType(new FuelType());
+//		newCar.setGearboxType(new GearboxType());
+//		newCar = carRepo.save(newCar);
+//		
+//		return new CarDTO(newCar);
+		return null;
+	}
+
 }

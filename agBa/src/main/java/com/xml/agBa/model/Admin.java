@@ -21,13 +21,13 @@ public class Admin extends User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(Long idUser, String email, String password, String phoneNumber, String street, String streetNumber,
-			String city, String country, StatusUser status, Set<Roles> roles, Set<Pricelist> priceList, Set<Chat> chats,
-			Set<Message> messages) {
-		super(idUser, email, password, phoneNumber, street, streetNumber, city, country, status, roles, priceList, chats,
-				messages);
-		// TODO Auto-generated constructor stub
-	}
+//	public Admin(Long idUser, String email, String password, String phoneNumber, String street, String streetNumber,
+//			String city, String country, StatusUser status, Set<Roles> roles, Set<Pricelist> priceList, Set<Car> cars, Set<Chat> chats,
+//			Set<Message> messages) {
+//		super(idUser, email, password, phoneNumber, street, streetNumber, city, country, status, roles, priceList, cars, chats,
+//				messages);
+//		// TODO Auto-generated constructor stub
+//	}
 
 	public Admin(String companyName, String brn) {
 		super();

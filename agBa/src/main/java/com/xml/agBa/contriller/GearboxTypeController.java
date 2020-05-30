@@ -31,7 +31,7 @@ public class GearboxTypeController {
 	private GearboxTypeService gearboxTypeService;
 
 	@GetMapping(value = "/gearbox")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('END_USER')")
 	public ResponseEntity<List<GearboxTypeDTO>> getGearboxTypes() {
 		List<GearboxTypeDTO> gearboxTypeDTOs = gearboxTypeService.findAll();
 
@@ -39,7 +39,7 @@ public class GearboxTypeController {
 	}
 
 	@GetMapping(value = "/gearbox/{id}")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN') or hasAuthority('END_USER')")
 	public ResponseEntity<GearboxTypeDTO> getGearboxType(@PathVariable Long id) {
 		GearboxTypeDTO gearboxTypeDTO = gearboxTypeService.findGearBoxTypeById(id);
 
