@@ -40,6 +40,7 @@ import { AdListComponent } from './ad/ad-list/ad-list.component';
 import { AdComponent } from './ad/ad.component';
 import { PricelistListComponent } from './ad/pricelist-list/pricelist-list.component';
 import { PricelistCreateComponent } from './ad/pricelist-create/pricelist-create.component';
+import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { PricelistCreateComponent } from './ad/pricelist-create/pricelist-create
     AdListComponent,
     AdComponent,
     PricelistListComponent,
-    PricelistCreateComponent
+    PricelistCreateComponent,
+    AdDetailsComponent
 
   ],
   imports: [

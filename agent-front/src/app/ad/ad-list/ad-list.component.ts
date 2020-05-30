@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AdService } from 'src/app/services/ad.service';
 import { CarService } from 'src/app/services/car.service';
 import { Router } from '@angular/router';
+import { PricelistService } from 'src/app/services/pricelist.service';
 
 @Component({
   selector: 'app-ad-list',
@@ -15,18 +16,21 @@ export class AdListComponent implements OnInit {
   ads: Observable<AdDTO[]>
 
   cars: any;
+  pricelists: any;
   errorMessage: any;
 
   constructor(private adService: AdService,
               private carService: CarService,
+              private pricelistService: PricelistService,
               private router: Router) { }
 
   ngOnInit() {
-    this.findAllAds();
+    this.getAllAds();
     this.getAllCars();
+    this.getAllPricelists();
   }
 
-  findAllAds() {
+  getAllAds() {
     this.ads = this.adService.getAllAds();
   }
 
@@ -43,13 +47,22 @@ export class AdListComponent implements OnInit {
     );
   }
 
+  getAllPricelists() {
+    this.pricelistService.getAllPricelists().subscribe(
+      data => {
+        this.pricelists = data;
+      },
+      error => {
+        this.errorMessage = error.error.message;
+        console.log("Error: " + this.errorMessage);
+        
+      }
+    );
+  }
+
   createAd() {
     console.log("creating ad page/form");
     
-  }
-
-  navigate() {
-    this.router.navigate(['/']);
   }
 
   onBack() {

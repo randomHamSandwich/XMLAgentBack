@@ -19,16 +19,24 @@
                 <th scope="row">{{i+1}}</th>
                 <th scope="row">{{a.startDate | date:"dd/MM/yyy HH:mm"}}</th>
                 <th scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</th>
-                <div *ngFor="let c of cars">
+
+                <ng-container *ngFor="let c of cars">
                     <th *ngIf="c.idCar == a.car" scope="row" rowspan="2">{{c.carBrand}} {{c.carModel}}</th>
-                </div>
-                <th scope="row"> placeholder </th>
-                <th scope="row"> more info </th>
+                </ng-container>
+                <ng-container *ngFor="let p of pricelists">
+                    <th *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</th>
+                </ng-container>
+
+                <th scope="row"> <a routerLink="/ad-details/{{a.idAd}}"> Reserve </a></th>
+               
             </tr>
         </tbody>
     </table>
   
     <button class="btn btn-info" (click)="onBack()">Back</button>
             
+    <div *ngFor="let p of pricelists">
+        <label for="temp"> pricelist: {{ p.pricelistId }}</label>    
+    </div>
     </div>
   </div>

@@ -20,8 +20,10 @@ export class AdService {
 
   }
 
-  getAdById() {
-
+  getAdById(id): Observable<any> {
+    console.log("in service " + id);
+    
+    return this.http.get(this.baseUrl + '/' + id);
   }
 
   getAllAds(): Observable<any> {

@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row col-sm-6" style="max-width:500px;">
+        <h3>Ad details: </h3>
+        <div>
+            <table class="table">
+                <tbody>
+                  <tr>
+                    <td> <b> Car available from: </b></td>
+                    <td>{{ ad?.startDate | date:"dd/MM/yyy HH:mm" }} </td>
+                  </tr>
+                  <tr>
+                    <td><b>Car available from: </b></td>
+                    <td>{{ ad?.endDate | date:"dd/MM/yyy HH:mm" }} </td>
+                  </tr>
+                  <tr>
+                    <td><b>Price per day:</b></td>
+                    <td> placeholder </td>
+                  </tr>
+                  <tr>
+                    <td><b>Price per extra km:</b></td>
+                    <td> placeholder </td>
+                  </tr>
+                  <tr>
+                    <td><b>Car data:</b></td>
+                    <td> placeholder </td>
+                  </tr>
+                  <tr>
+                    <td><b>Car data:</b></td>
+                    <td> placeholder </td>
+                  </tr>
+                  <tr>
+                    <td><b>Car data:</b></td>
+                    <td> placeholder </td>
+                  </tr>
+                  <tr>
+                    <td><b>Car data:</b></td>
+                    <td> placeholder </td>
+                  </tr>
+                  <tr>
+                    <td><b>Car data:</b></td>
+                    <td> placeholder </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+        <button class="btn">Add to cart</button>
+        <button class="btn btn-info" (click)="onBack()">Back</button>
+    </div>
+</div>

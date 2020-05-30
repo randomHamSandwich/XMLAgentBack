@@ -75,7 +75,12 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public AdDTO getAdById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		System.out.println("===================================");
+		System.out.println("IN HERE, id: " + id);
+		System.out.println("===================================");
+		
+		return new AdDTO(adRepo.getOne(id));
 	}
 
 }

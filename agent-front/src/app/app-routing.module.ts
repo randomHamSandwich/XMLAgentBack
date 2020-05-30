@@ -16,6 +16,7 @@ import { DiscountListComponent } from './ad/discount-list/discount-list.componen
 import { AdListComponent } from './ad/ad-list/ad-list.component';
 import { AdComponent } from './ad/ad.component';
 import { AdCreateComponent } from './ad/ad-create/ad-create.component';
+import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 
 const routes: Routes = [
     {
@@ -74,9 +75,10 @@ const routes: Routes = [
     {
         path: 'ad-create',
         component: AdCreateComponent
-    },
-
-     
+    },{
+        path: 'ad-details/:idAd',
+        component: AdDetailsComponent
+    },   
 
 
     {

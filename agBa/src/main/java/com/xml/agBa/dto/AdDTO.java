@@ -24,6 +24,7 @@ public class AdDTO {
 	}
 
 	public AdDTO(Ad newAd) {
+		this.idAd = newAd.getIdAd();
 		this.startDate = newAd.getStartDate().toString();
 		this.endDate = newAd.getEndDate().toString();
 		this.pricelist = newAd.getPriceList().getIdPriceList();

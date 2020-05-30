@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,11 +30,6 @@ public class AdController {
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO) {
 		AdDTO newAd = adService.createAd(adDTO);
-		
-		
-		//System.out.println("Startni datum koji je stigao: " + adDTO.getStartDate());
-		
-		//return null;
 		if (newAd != null) {
 			return new ResponseEntity<AdDTO>(newAd, HttpStatus.OK);
 		}
@@ -53,4 +49,23 @@ public class AdController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
+	@GetMapping(value="/ad/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<?> getAdById(@PathVariable("id") Long id) {
+		
+		System.out.println("===================================");
+		System.out.println("IN HERE controller, id: " + id);
+		System.out.println("===================================");
+		
+		AdDTO foundAd = adService.getAdById(id);
+		
+		if (foundAd != null) {
+			return new ResponseEntity<>(foundAd, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		
+		
+	}
+ 	
 }
