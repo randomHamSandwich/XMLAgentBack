@@ -1,14 +1,14 @@
 export class AdDTO {
     idAd: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     pricelist: string;
     car: string;
     
     constructor() {
         this.idAd = "";
-        this.startDate = null;
-        this.endDate = null;
+        this.startDate = "";
+        this.endDate = "";
         this.pricelist = "";
         this.car = "";
     }

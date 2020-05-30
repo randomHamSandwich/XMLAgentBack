@@ -1,7 +1,6 @@
 package com.xml.agBa.model;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -25,8 +24,10 @@ public class Ad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAd;
+	
 	@Column
 	private LocalDateTime startDate;
+	
 	@Column
 	private LocalDateTime endDate;
 	
@@ -56,6 +57,20 @@ public class Ad {
 	public Ad() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version, Set<UserRequest> userRequest,
+			Set<Rating> rating, Set<Comment> comments, Pricelist priceList, Car car) {
+		super();
+		this.idAd = idAd;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.version = version;
+		this.userRequest = userRequest;
+		this.rating = rating;
+		this.comments = comments;
+		this.priceList = priceList;
+		this.car = car;
 	}
 
 	public Long getIdAd() {

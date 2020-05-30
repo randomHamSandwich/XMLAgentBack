@@ -20,6 +20,7 @@ public class PricelistDTO {
 	}
 
 	public PricelistDTO(Pricelist pTemp) {
+		this.pricelistId = pTemp.getIdPriceList();
 		this.priceForOneDay = pTemp.getPriceForOneDay();
 		this.priceForKM = pTemp.getPriceForKM();
 	}

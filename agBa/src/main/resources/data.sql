@@ -138,13 +138,12 @@ VALUES ('300', 0, '0', 'Osaka', 'Japan', '999', 'DriftKings Str.', '2000',
 ( SELECT id_fuel_type FROM fuel_type WHERE name ='Gasoline' ),
 ( SELECT id_gearbox_type FROM gearbox_type WHERE name ='Manual' ));
 
-INSERT INTO pricelist(id_price_list, price_forkm, price_for_one_day, id_user) VALUES (1, 10, 12, 1);
-INSERT INTO pricelist(id_price_list, price_forkm, price_for_one_day, id_user) VALUES (2, 12, 11, 1);
-INSERT INTO pricelist(id_price_list, price_forkm, price_for_one_day, id_user) VALUES (3, 14, 12, 1);
+INSERT INTO pricelist(price_forkm, price_for_one_day, id_user) VALUES (10, 12, 1);
+INSERT INTO pricelist(price_forkm, price_for_one_day, id_user) VALUES (12, 11, 1);
+INSERT INTO pricelist(price_forkm, price_for_one_day, id_user) VALUES (14, 12, 1);
 
-INSERT INTO ad(id_ad, end_date, start_date, id_car, id_price_list) VALUES (1, '2020-06-12 11:00:00', '2020-06-14 11:00:00', 1, 1);
-INSERT INTO ad(id_ad, end_date, start_date, id_car, id_price_list) VALUES (2, '2020-05-29 11:00:00', '2020-05-30 11:00:00', 2, 2);
+INSERT INTO ad(end_date, start_date, id_car, id_price_list) VALUES ('2020-06-12 11:00:00', '2020-06-14 11:00:00', 1, 1);
 
-INSERT INTO discount(id_discount, discount, for_more_thanxdays, version, id_price_list) VALUES (1, 5, 15, 0, 1);
+INSERT INTO discount(discount, for_more_thanxdays, version, id_price_list) VALUES (5, 15, 0, 1);
 
 

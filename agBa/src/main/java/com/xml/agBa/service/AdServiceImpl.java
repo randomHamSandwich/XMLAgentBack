@@ -1,5 +1,6 @@
 package com.xml.agBa.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,32 +11,48 @@ import org.springframework.stereotype.Service;
 
 import com.xml.agBa.dto.AdDTO;
 import com.xml.agBa.model.Ad;
+import com.xml.agBa.model.Car;
+import com.xml.agBa.model.Pricelist;
 import com.xml.agBa.repository.AdRepo;
+import com.xml.agBa.repository.CarRepo;
+import com.xml.agBa.repository.PricelistRepo;
 
 @Service
 public class AdServiceImpl implements AdService {
 	
 	@Autowired
 	private AdRepo adRepo;
+	
+	@Autowired
+	private CarRepo carRepo;
+	
+	@Autowired
+	private PricelistRepo pricelistRepo;
 
 	@Override
 	public AdDTO createAd(AdDTO adDTO) {
+		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
-		System.out.println("===================================");
-		System.out.println("ad service impl");
-		System.out.println("===================================");
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"); 
-		LocalDateTime startDateDTO = LocalDateTime.parse(adDTO.getStartDate(), formatter);
-		LocalDateTime endDateDTO = LocalDateTime.parse(adDTO.getEndDate(), formatter);
-		
+	    LocalDate sdTemp = LocalDate.parse(adDTO.getStartDate(), DATEFORMATTER);
+	    LocalDateTime sdTemo_ldt = LocalDateTime.of(sdTemp, LocalDateTime.now().toLocalTime());
+	    
+	    LocalDate edTemp = LocalDate.parse(adDTO.getEndDate(), DATEFORMATTER);
+	    LocalDateTime edTemo_ldt = LocalDateTime.of(edTemp, LocalDateTime.now().toLocalTime());
+	    
+	    Long carID = Long.valueOf(adDTO.getCar());
+	    Car car = carRepo.findById(carID).get();
+	    
+	    Long pricelistID = Long.valueOf(adDTO.getPricelist());
+	    Pricelist pricelist = pricelistRepo.findById(pricelistID).get();
+	    
+	    
 		Ad newAd = new Ad();
 		
-		newAd.setStartDate(startDateDTO);
-		newAd.setEndDate(endDateDTO);
-		newAd.getPriceList().setIdPriceList(adDTO.getPricelist());
-		newAd.getCar().setIdCar(adDTO.getCar());
-		
+		newAd.setStartDate(sdTemo_ldt);
+		newAd.setEndDate(edTemo_ldt);
+		newAd.setPriceList(pricelist);
+		newAd.setCar(car);
+	
 		newAd = adRepo.save(newAd);
 		
 		return new AdDTO(newAd);

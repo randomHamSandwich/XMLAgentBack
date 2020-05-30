@@ -1,19 +1,13 @@
 <div class="container">
-<div class="row col-sm-6" style="max-width:350px;">
-    <p>ad-create works!</p>
-    <h3>coming soon...</h3>
-    <button class="btn" (click)="goBack()">Go back</button>
-    
-
-    <!--
+<div class="row col-sm-6" style="max-width:350px;">    
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
-            <label for="startDate">Pick start date: </label>
+            <label for="startDate">Car is available from: </label>
             <input type="date" class="form-control" name="startDate" [(ngModel)]="form.startDate"
                 #startDate="ngModel" required>
         </div>
         <div class="form-group">
-            <label for="endDate">Pick end date: </label>
+            <label for="endDate">Car is available until: </label>
             <input type="date" class="form-control" name="endDate" [(ngModel)]="form.endDate"
                 #endDate="ngModel" required>
         </div>
@@ -26,9 +20,19 @@
         </div>
 
         <div class="form-group">
+            <label for="pricelist">Pricelist: </label>
+            <select class="form-control"  id="pricelist" required [(ngModel)]="form.pricelist" name="pricelist">
+                <option *ngFor="let p of pricelists" [value]="p.pricelistId">Dnevna cena: {{ p.pricelistId }}, dodatni km: {{p.priceForKM}}</option>
+             </select>
+        </div>
+
+        <div class="form-group">
             <button class="btn btn-primary">Create ad</button>
         </div>
+        <div *ngIf="f.submitted && !f.valid" class="alert alert-warning">
+            Submit failed!<br />{{errorMessage}}
+        </div>
     </form>
--->
+    <button class="btn btn-danger" routerLink="/ads-dashboard" novalidate>Back</button>
 </div>
 </div>

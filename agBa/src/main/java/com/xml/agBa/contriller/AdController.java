@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,18 +24,22 @@ public class AdController {
 	@Autowired
 	private AdService adService;
 	
-	/*
+	
 	@PostMapping(value="/ad")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO) {
 		AdDTO newAd = adService.createAd(adDTO);
 		
-		//if (newAd != null) {
-			return new ResponseEntity<AdDTO>(newAd, HttpStatus.OK);
-		//}
 		
-		//return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}*/
+		//System.out.println("Startni datum koji je stigao: " + adDTO.getStartDate());
+		
+		//return null;
+		if (newAd != null) {
+			return new ResponseEntity<AdDTO>(newAd, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
 
 	@GetMapping(value="/ad")
 	@PreAuthorize("hasAuthority('END_USER')")

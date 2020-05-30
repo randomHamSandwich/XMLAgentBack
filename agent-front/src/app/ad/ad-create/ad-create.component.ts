@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AdDTO } from './AdDTO';
 import { AdService } from 'src/app/services/ad.service';
 import { CarService } from 'src/app/services/car.service';
+import { PricelistService } from 'src/app/services/pricelist.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ad-create',
@@ -13,14 +15,19 @@ export class AdCreateComponent implements OnInit {
   form: any = {};
   newAd = new AdDTO;
   cars: any;
+  pricelists: any;
   
   errorMessage: any;
+  submitted = false ;
 
   constructor(private adService: AdService,
-              private carService: CarService) { }
+              private carService: CarService,
+              private pricelistService: PricelistService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getAllCars();
+    this.getAllPricelists();
   }
 
   getAllCars() {
@@ -36,15 +43,32 @@ export class AdCreateComponent implements OnInit {
     );
   }
 
+  getAllPricelists() {
+    this.pricelistService.getAllPricelists().subscribe(
+      data => {
+        this.pricelists = data;
+      },
+      error => {
+        this.errorMessage = error.error.errorMessage;
+        console.log("Error: " + this.errorMessage);
+      }
+    );
+  }
+
   onSubmit() {
+    this.submitted = true;
+
     this.newAd = new AdDTO();
     this.newAd.startDate = this.form.startDate;
     this.newAd.endDate = this.form.endDate;
+    this.newAd.pricelist = this.form.pricelist;
     this.newAd.car = this.form.car;
 
+    /*
+    console.log("pricelist: " + this.form.pricelist);
     console.log("start date: " + this.form.startDate);
     console.log("end date: " + this.form.endDate);
-    //console.log("car: " + this.form.car);
+    console.log("car: " + this.form.car);*/
     
     this.adService.createNewAd(this.newAd).subscribe(
       data => {
@@ -55,11 +79,12 @@ export class AdCreateComponent implements OnInit {
         console.log(error);
       }
     );
-
+      window.location.reload();
   }
 
   goBack() {
-    window.location.reload();
+    //window.location.reload();
+    this.router.navigate(['/ads-dashboard']);
   }
 
 }

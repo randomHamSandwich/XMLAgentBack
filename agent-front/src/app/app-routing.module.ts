@@ -15,6 +15,7 @@ import { CarModelListComponent} from './admin/car-model-list/car-model-list.comp
 import { DiscountListComponent } from './ad/discount-list/discount-list.component';
 import { AdListComponent } from './ad/ad-list/ad-list.component';
 import { AdComponent } from './ad/ad.component';
+import { AdCreateComponent } from './ad/ad-create/ad-create.component';
 
 const routes: Routes = [
     {
@@ -69,6 +70,10 @@ const routes: Routes = [
     }, {
         path: 'ads-dashboard',
         component: AdComponent
+    },
+    {
+        path: 'ad-create',
+        component: AdCreateComponent
     },
 
      

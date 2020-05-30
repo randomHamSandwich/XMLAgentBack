@@ -3,7 +3,7 @@
         <h4>Dashboard for creating new ads, pricelists and discounts!</h4>
 
         <div *ngIf="!isAdd">
-            <button class="btn btn-success" (click)="onAdAdd()">Add new ad</button>
+            <button class="btn btn-success" routerLink="/ad-create">Add new ad</button>
         </div>
         <div *ngIf="isAdd">
             <app-ad-create></app-ad-create>
