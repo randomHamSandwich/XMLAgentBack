@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import com.xml.agBa.dto.PricelistDTO;
+
 @Entity
 public class Pricelist {
 	@Id
@@ -55,6 +57,11 @@ public class Pricelist {
 		this.user = user;
 		this.discounts = discounts;
 		this.ad = ad;
+	}
+
+	public Pricelist(PricelistDTO pricelistDTO) {
+		this.priceForOneDay = pricelistDTO.getPriceForOneDay();
+		this.priceForKM = pricelistDTO.getPriceForKM();
 	}
 
 	public Long getIdPriceList() {

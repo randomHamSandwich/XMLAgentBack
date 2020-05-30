@@ -43,6 +43,7 @@ export class DiscountCreateComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate(['/']);
+    //this.router.navigate(['/']);
+    window.location.reload();
   }
 }

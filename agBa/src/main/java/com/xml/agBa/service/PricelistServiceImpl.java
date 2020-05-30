@@ -19,27 +19,23 @@ public class PricelistServiceImpl implements PricelistService {
 	private PricelistRepo pricelistRepo;
 
 	@Override
+	@Transactional
 	public PricelistDTO createPricelist(PricelistDTO pricelistDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		Pricelist pricelist = new Pricelist(pricelistDTO);
+		pricelist = pricelistRepo.save(pricelist);
+		
+		return new PricelistDTO(pricelist);
 	}
 
 	@Override
 	public List<PricelistDTO> getAllPricelists() {
 		List<Pricelist> pricelists = pricelistRepo.findAll();
-		System.out.println("========================================");
-		System.out.println("Here: " + pricelists);
-		System.out.println("========================================");
 		
 		List<PricelistDTO> pricelistsDTO = new ArrayList<PricelistDTO>();
 		
 		for (Pricelist pTemp: pricelists) {
 			pricelistsDTO.add(new PricelistDTO(pTemp));
 		}
-		
-		System.out.println("========================================");
-		System.out.println("Here: " + pricelistsDTO);
-		System.out.println("========================================");
 		
 		return pricelistsDTO;
 	}

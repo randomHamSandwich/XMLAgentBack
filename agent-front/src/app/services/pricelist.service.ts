@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PricelistDTO } from '../ad/pricelist-create/PricelistDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,10 @@ export class PricelistService {
 
   constructor(private http: HttpClient) { }
 
-  createNewPricelist() {
-
+  createNewPricelist(data: PricelistDTO): Observable<any> {
+    console.log("in here");
+    
+    return this.http.post(this.baseUrl, data);
   }
 
   updatePricelist() {

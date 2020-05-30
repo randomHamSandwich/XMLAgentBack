@@ -1,4 +1,33 @@
-<p>pricelist-create works!</p>
-<h3>coming soon...</h3>
-<button class="btn" (click)="goBackToList()">Go back to list</button>
+<div class="container">
+    <div class="row col-sm-6" style="max-width:350px;">
+            <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="priceForOneDay">Price per day: </label>
+                    <input type="number" class="form-control" name="priceForOneDay" [(ngModel)]="form.priceForOneDay"
+                        #priceForOneDay="ngModel" required>
+                    <div *ngIf="f.submitted && priceForOneDay.invalid">
+                        <div *ngIf="priceForOneDay.errors.required">Price is required</div>
+                    </div>
+                </div>
     
+                <div class="form-group">
+                    <label for="priceForKM">Price for extra KM: </label>
+                    <input type="number" class="form-control" name="priceForKM" [(ngModel)]="form.priceForKM"
+                        #priceForKM="ngModel" required>
+                    <div *ngIf="f.submitted && priceForKM.invalid">
+                        <div *ngIf="priceForKM.errors.required">Price is required</div>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <button class="btn btn-primary">Create</button>
+                    <!-- <div *ngIf="f.submitted && f.invaliad" class="alert alert-warning">
+                        Submit failed!<br />{{errorMessage}}
+                    </div>-->
+                </div>
+            
+            </form>
+
+            <button class="btn btn-danger" (click)="onBack()">Back</button>
+    </div>
+</div>

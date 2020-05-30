@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,11 +30,6 @@ public class PricelistController {
 		
 		List<PricelistDTO> pricelistDTOs = pricelistService.getAllPricelists();
 		
-		
-		System.out.println("========================================");
-		System.out.println("Here, controller: " + pricelistDTOs);
-		System.out.println("========================================");
-		
 		if (!pricelistDTOs.isEmpty()) {
 			return new ResponseEntity<>(pricelistDTOs, HttpStatus.OK);
 		}
@@ -41,7 +37,10 @@ public class PricelistController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
+	@PostMapping(value="/pricelist")
+	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<PricelistDTO> createPricelist(@RequestBody PricelistDTO pricelistDTO) {
+		
 		PricelistDTO newPricelist = pricelistService.createPricelist(pricelistDTO);
 		
 		return new ResponseEntity<PricelistDTO>(newPricelist, HttpStatus.OK);
