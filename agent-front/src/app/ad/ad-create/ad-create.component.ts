@@ -64,11 +64,11 @@ export class AdCreateComponent implements OnInit {
     this.newAd.pricelist = this.form.pricelist;
     this.newAd.car = this.form.car;
 
-    /*
+    
     console.log("pricelist: " + this.form.pricelist);
     console.log("start date: " + this.form.startDate);
     console.log("end date: " + this.form.endDate);
-    console.log("car: " + this.form.car);*/
+    console.log("car: " + this.form.car);
     
     this.adService.createNewAd(this.newAd).subscribe(
       data => {
@@ -79,7 +79,7 @@ export class AdCreateComponent implements OnInit {
         console.log(error);
       }
     );
-      window.location.reload();
+      // window.location.reload();
   }
 
   goBack() {

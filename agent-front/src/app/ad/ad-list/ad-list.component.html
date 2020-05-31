@@ -1,22 +1,8 @@
-<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" required>
+<form name="form" (ngSubmit)="f.form.valid && onSearch()" #f="ngForm" required>
 
     <div class="row">
 
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
-            <div class="input-group">
-                <!-- <div class="col-xs-12 col-12 col-md-4 form-group"> -->
-                <label for="date">Date:</label>
-                <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker name=date
-                    [(ngModel)]="form.date" [minDate]="minDate" readonly #date="ngModel" required
-                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'  }">
-                <!-- </div> -->
-                <div *ngIf="f.submitted && date.invalid">
-                    <div *ngIf="date.errors.required">Date is required</div>
-                </div>
 
-            </div>
-
-        </div><!-- /col-xs-2 co -->
 
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
             <div class="input-group">
@@ -26,13 +12,35 @@
             </div>
         </div>
 
-    </div><!-- /.row -->
+
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+        <div class="input-group">
+            <label for="startDateTime">startDateTime:</label>
+            <input type="datetime-local" class="form-control" name="startDateTime" [(ngModel)]="form.startDateTime"
+                #startDateTime="ngModel" />
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+        <div class="input-group">
+            <label for="endDateTime">endDateTime:</label>
+            <input type="datetime-local" class="form-control" name="endDateTime" [(ngModel)]="form.endDateTime"
+                #endDateTime="ngModel" />
+        </div>
+    </div>
+
+
+</div>
+
     <br>
     <div class="form-group">
-        <button class="btn btn-primary">Pretrazi</button>
+        <button class="btn btn-primary">Search</button>
 
     </div>
 </form>
+<br><br><br><br>
 
 
 
@@ -69,7 +77,7 @@
                     <th scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</th>
 
                     <ng-container *ngFor="let c of cars">
-                        <th *ngIf="c.idCar == a.car" scope="row" rowspan="2">{{c.carBrand}} {{c.carModel}}</th>
+                        <th *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.carBrand}} {{c.carModel}}</th>
                     </ng-container>
                     <ng-container *ngFor="let p of pricelists">
                         <th *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</th>

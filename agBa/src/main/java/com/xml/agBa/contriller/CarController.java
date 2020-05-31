@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.agBa.dto.AdDTO;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-//@RequestMapping(value = "api")
+@RequestMapping(value = "api")
 public class CarController {
 
 	@Autowired
@@ -36,7 +37,7 @@ public class CarController {
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
-
+//TODO change carList to car
 	@GetMapping(value = "/carList")
 //	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<List<CarDTO>> getAllCars() {
@@ -44,4 +45,7 @@ public class CarController {
 		
 		return new ResponseEntity<>(carListDTO, HttpStatus.OK);
 	}
+
+
+	
 }

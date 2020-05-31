@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { AdDTO } from '../ad/ad-create/AdDTO';
 import { Observable } from 'rxjs';
 
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdService {
+
 
   private baseUrl = 'http://localhost:8080/api/ad';
 
@@ -28,5 +29,11 @@ export class AdService {
 
   getAllAds(): Observable<any> {
     return this.http.get(this.baseUrl);
+  }
+
+
+  searchAdd(city: string , date : string): Observable<any> {
+    const params = new HttpParams().set('city', city).set('date', date);
+    return this.http.get(this.baseUrl+'/search', {params} );
   }
 }

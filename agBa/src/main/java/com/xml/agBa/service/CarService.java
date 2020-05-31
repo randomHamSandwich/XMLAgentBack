@@ -35,4 +35,6 @@ public interface CarService {
 	List<Car> findAllCarByClass(CarClass carClass);
 	
 	void updateMileageById(Long idCar, double mileage);
+
+	List<CarDTO> getAllCarsFromACity(String city);
 }

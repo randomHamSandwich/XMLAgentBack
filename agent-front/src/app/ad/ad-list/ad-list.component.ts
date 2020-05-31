@@ -21,9 +21,9 @@ export class AdListComponent implements OnInit {
   errorMessage: any;
 
   constructor(private adService: AdService,
-              private carService: CarService,
-              private pricelistService: PricelistService,
-              private router: Router) { }
+    private carService: CarService,
+    private pricelistService: PricelistService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getAllAds();
@@ -43,7 +43,7 @@ export class AdListComponent implements OnInit {
       error => {
         this.errorMessage = error.error.message;
 
-        console.log("Error: " +  this.errorMessage);
+        console.log("Error: " + this.errorMessage);
       }
     );
   }
@@ -56,18 +56,33 @@ export class AdListComponent implements OnInit {
       error => {
         this.errorMessage = error.error.message;
         console.log("Error: " + this.errorMessage);
-        
+
       }
     );
   }
 
   createAd() {
     console.log("creating ad page/form");
-    
+
   }
 
   onBack() {
     this.router.navigate(['/']);
+  }
+
+
+  onSearch() {
+
+    this.adService.searchAdd(this.form.city,this.form.startDateTime).subscribe(
+      data => {
+        this.form.city = data,this.form.startDateTim =data;
+      },
+      error => {
+        this.errorMessage = error.error.message;
+        console.log("Error: " + this.errorMessage);
+      }
+    );
+
   }
 
 }
