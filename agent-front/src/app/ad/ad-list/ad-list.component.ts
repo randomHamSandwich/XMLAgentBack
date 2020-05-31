@@ -12,6 +12,7 @@ import { PricelistService } from 'src/app/services/pricelist.service';
   styleUrls: ['./ad-list.component.css']
 })
 export class AdListComponent implements OnInit {
+  form: any = {};
   ad: AdDTO;
   ads: Observable<AdDTO[]>
 

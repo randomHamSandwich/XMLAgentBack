@@ -41,6 +41,8 @@ import { AdComponent } from './ad/ad.component';
 import { PricelistListComponent } from './ad/pricelist-list/pricelist-list.component';
 import { PricelistCreateComponent } from './ad/pricelist-create/pricelist-create.component';
 import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -84,7 +86,9 @@ import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BsDatepickerModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

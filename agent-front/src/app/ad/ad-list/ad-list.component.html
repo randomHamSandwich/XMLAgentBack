@@ -1,42 +1,90 @@
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" required>
+
+    <div class="row">
+
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
+            <div class="input-group">
+                <!-- <div class="col-xs-12 col-12 col-md-4 form-group"> -->
+                <label for="date">Date:</label>
+                <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker name=date
+                    [(ngModel)]="form.date" [minDate]="minDate" readonly #date="ngModel" required
+                    [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'  }">
+                <!-- </div> -->
+                <div *ngIf="f.submitted && date.invalid">
+                    <div *ngIf="date.errors.required">Date is required</div>
+                </div>
+
+            </div>
+
+        </div><!-- /col-xs-2 co -->
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+            <div class="input-group">
+                <label for="city">city:</label>
+                <input type="text" class="form-control" name="city" [(ngModel)]="form.city"
+                    #city="ngModel" />
+            </div>
+        </div>
+
+    </div><!-- /.row -->
+    <br>
+    <div class="form-group">
+        <button class="btn btn-primary">Pretrazi</button>
+
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container">
     <div class="row col-sm-8" style="max-width:900px;">
-      <button class="btn btn-success" (click)="createAd()">Add new ad</button>
-      <hr>
-      <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Available from: </th>
-                <th scope="col">Available to: </th>
-                <th scope="col">Car: </th>
-                <th scope="col">Price per day: </th>
-            </tr>
-        </thead>
-  
-        <tbody *ngFor="let a of ads | async ; let i = index;">
-  
-            <tr>
-                <th scope="row">{{i+1}}</th>
-                <th scope="row">{{a.startDate | date:"dd/MM/yyy HH:mm"}}</th>
-                <th scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</th>
+        <button class="btn btn-success" (click)="createAd()">Add new ad</button>
+        <hr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Available from: </th>
+                    <th scope="col">Available to: </th>
+                    <th scope="col">Car: </th>
+                    <th scope="col">Price per day: </th>
+                </tr>
+            </thead>
 
-                <ng-container *ngFor="let c of cars">
-                    <th *ngIf="c.idCar == a.car" scope="row" rowspan="2">{{c.carBrand}} {{c.carModel}}</th>
-                </ng-container>
-                <ng-container *ngFor="let p of pricelists">
-                    <th *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</th>
-                </ng-container>
+            <tbody *ngFor="let a of ads | async ; let i = index;">
 
-                <th scope="row"> <a routerLink="/ad-details/{{a.idAd}}"> Reserve </a></th>
-               
-            </tr>
-        </tbody>
-    </table>
-  
-    <button class="btn btn-info" (click)="onBack()">Back</button>
-            
-    <div *ngFor="let p of pricelists">
-        <label for="temp"> pricelist: {{ p.pricelistId }}</label>    
+                <tr>
+                    <th scope="row">{{i+1}}</th>
+                    <th scope="row">{{a.startDate | date:"dd/MM/yyy HH:mm"}}</th>
+                    <th scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</th>
+
+                    <ng-container *ngFor="let c of cars">
+                        <th *ngIf="c.idCar == a.car" scope="row" rowspan="2">{{c.carBrand}} {{c.carModel}}</th>
+                    </ng-container>
+                    <ng-container *ngFor="let p of pricelists">
+                        <th *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</th>
+                    </ng-container>
+
+                    <th scope="row"> <a routerLink="/ad-details/{{a.idAd}}"> Reserve </a></th>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-info" (click)="onBack()">Back</button>
+
+        <div *ngFor="let p of pricelists">
+            <label for="temp"> pricelist: {{ p.pricelistId }}</label>
+        </div>
     </div>
-    </div>
-  </div>
+</div>
