@@ -13,8 +13,19 @@ import com.xml.agBa.model.CarModel;
 import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.model.Car;
 import com.xml.agBa.model.FuelType;
+import com.xml.agBa.repository.CarBrandRepo;
+import com.xml.agBa.repository.CarClassRepo;
+import com.xml.agBa.repository.CarModelRepo;
 import com.xml.agBa.repository.CarRepo;
+import com.xml.agBa.repository.FuelTypeRepo;
+import com.xml.agBa.repository.GearboxTypeRepo;
+import com.xml.agBa.dto.CarBrandDTO;
+import com.xml.agBa.dto.CarClassDTO;
 import com.xml.agBa.dto.CarDTO;
+import com.xml.agBa.dto.CarModelDTO;
+import com.xml.agBa.dto.FuelTypeDTO;
+import com.xml.agBa.dto.GearboxTypeDTO;
+
 import java.util.List;
 
 @Service
@@ -24,6 +35,21 @@ public class CarServiceImp implements CarService{
 
 	@Autowired
 	private CarRepo carRepo;
+	
+	@Autowired
+	private CarBrandRepo carBrandRepo;
+	
+	@Autowired
+	private CarModelRepo carModelRepo;
+	
+	@Autowired
+	private CarClassRepo carClassRepo;
+	
+	@Autowired
+	private GearboxTypeRepo gearboxTypeRepo;
+	
+	@Autowired
+	private FuelTypeRepo fuelTypeRepo;
 	
 	@Override
 	public Car findCarById() {
@@ -99,17 +125,19 @@ public class CarServiceImp implements CarService{
 	}
 
 	@Override
+	@Transactional
 	public CarDTO createCar(CarDTO carDTO) {
-//		Car newCar = new Car();
-//		newCar.setCarBrand(new CarBrand());
-//		newCar.setCarModel(new CarModel());
-//		newCar.setCarClass(new CarClass());
-//		newCar.setFuelType(new FuelType());
-//		newCar.setGearboxType(new GearboxType());
-//		newCar = carRepo.save(newCar);
-//		
-//		return new CarDTO(newCar);
-		return null;
+		Car newCar = new Car();
+//		newCar.setCarBrand(new CarBrand(new CarBrandDTO(carBrandRepo.findIdByCarBrandName(carDTO.getCarBrand()), carDTO.getCarBrand())));
+		newCar.setCarBrand(new CarBrand(carBrandRepo.findIdByCarBrandName(carDTO.getCarBrand()), carDTO.getCarBrand()));
+		newCar.setCarModel(new CarModel(new CarModelDTO(carModelRepo.findIdByCarModelName(carDTO.getCarModel()), carDTO.getCarModel())));
+		newCar.setCarClass(new CarClass(new CarClassDTO(carClassRepo.findIdByCarClassName(carDTO.getCarClass()), carDTO.getCarClass())));
+		newCar.setFuelType(new FuelType(new FuelTypeDTO(fuelTypeRepo.findIdByFuelTypeName(carDTO.getCarBrand()), carDTO.getCarBrand())));
+		newCar.setGearboxType(new GearboxType(new GearboxTypeDTO(gearboxTypeRepo.findIdByGearboxTypeName(carDTO.getGearboxType()), carDTO.getCarBrand())));
+		newCar = carRepo.save(newCar);
+		
+		return new CarDTO(newCar);
+//		return null;
 	}
 
 	@Override

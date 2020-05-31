@@ -48,6 +48,7 @@ public class FuelType {
 
 	public FuelType(FuelTypeDTO fuelTypeDTO) {
 		super();
+		this.idFuelType = fuelTypeDTO.getIdFuelType();
 		this.name = fuelTypeDTO.getName();
 	}
 

@@ -37,8 +37,8 @@ public class CarController {
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
-//TODO change carList to car
-	@GetMapping(value = "/carList")
+
+	@GetMapping(value = "/car")
 //	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<List<CarDTO>> getAllCars() {
 		List<CarDTO> carListDTO = carService.getAllCars();
