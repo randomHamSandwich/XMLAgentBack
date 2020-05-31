@@ -16,7 +16,7 @@
         <div class="form-group">
             <label for="carClass">Choose a car class: </label>
             <select class="form-control"  id="carClass" required [(ngModel)]="form.carClass" name="carClass">
-                <option *ngFor="let s of carClasses" [value]="s.idCarclass">{{ s.name }}</option>
+                <option *ngFor="let s of carClasses" [value]="s.idCarClass">{{ s.name }}</option>
              </select>
         </div>
         <div class="form-group">

@@ -31,8 +31,6 @@ public class CarDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 	public CarDTO(CarBrand carBrand, CarModel carModel, CarClass carClass, FuelType fuelType, GearboxType gearboxType,
 			Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street, String streetNumber,
 			String city, String country) {

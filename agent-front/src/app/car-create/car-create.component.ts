@@ -40,7 +40,6 @@ export class CarCreateComponent implements OnInit {
   }
 
   getAllCarBrands() {
-    this.carBrands = 
     this.carBrandService.getCarBrands().subscribe(
       data => {
         this.carBrands = data;
@@ -124,7 +123,7 @@ export class CarCreateComponent implements OnInit {
       }
     );
     
-    window.location.reload();
+    // window.location.reload();
     
   }
   goBack() {

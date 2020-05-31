@@ -18,7 +18,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-//@RequestMapping(value = "api")
+@RequestMapping(value = "api")
 public class CarController {
 
 	@Autowired
@@ -37,7 +37,7 @@ public class CarController {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(value = "/carList")
+	@GetMapping(value = "/car")
 //	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<List<CarDTO>> getAllCars() {
 		List<CarDTO> carListDTO = carService.getAllCars();

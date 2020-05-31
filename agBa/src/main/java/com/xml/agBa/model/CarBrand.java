@@ -46,6 +46,12 @@ public class CarBrand {
 		this.name = name;
 		this.cars = cars;
 	}
+	
+	public CarBrand(Long idCarBrand, String name) {
+		super();
+		this.idCarBrand = idCarBrand;
+		this.name = name;
+	}
 
 	public CarBrand(CarBrandDTO carBrandDTO) {
 		super();

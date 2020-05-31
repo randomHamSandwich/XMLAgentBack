@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class CarService {
 
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:8080/api';
 
   constructor(private http:HttpClient) {}
 
   createNewCar(data: CarDTO): Observable<any> {
-    return this.http.post(this.baseUrl, data);
+    return this.http.post(this.baseUrl + '/car', data);
   }
 
   public updateCar() {
@@ -25,6 +25,6 @@ export class CarService {
   }
 
   public getCarsList() {
-    return this.http.get(this.baseUrl + '/carList');
+    return this.http.get(this.baseUrl + '/car');
   }
 }
