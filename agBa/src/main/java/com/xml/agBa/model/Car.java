@@ -36,6 +36,9 @@ public class Car {
 	private String city;
 	@Column
 	private String country;
+//	@Column
+//	private String registrationPlate;
+	
 	
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
@@ -60,6 +63,10 @@ public class Car {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_gearbox_type", nullable = true)
 	private GearboxType gearboxType;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_user", nullable = true)
+	private User user;
 
 	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
 	private Set<Report> reports;
@@ -67,14 +74,9 @@ public class Car {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
 	private Ad ad;
 
-	public Car() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public Car(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street,
-			String streetNumber, String city, String country, CarBrand carBrand, CarClass carClass, CarModel carModel,
-			FuelType fuelType, GearboxType gearboxType, Set<Report> reports, Ad ad) {
+			String streetNumber, String city, String country, int version, CarBrand carBrand, CarClass carClass,
+			CarModel carModel, FuelType fuelType, GearboxType gearboxType, User user, Set<Report> reports, Ad ad) {
 		super();
 		this.idCar = idCar;
 		this.km = km;
@@ -85,13 +87,20 @@ public class Car {
 		this.streetNumber = streetNumber;
 		this.city = city;
 		this.country = country;
+		this.version = version;
 		this.carBrand = carBrand;
 		this.carClass = carClass;
 		this.carModel = carModel;
 		this.fuelType = fuelType;
 		this.gearboxType = gearboxType;
+		this.user = user;
 		this.reports = reports;
 		this.ad = ad;
+	}
+
+	public Car() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getIdCar() {
@@ -166,6 +175,14 @@ public class Car {
 		this.country = country;
 	}
 
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 	public CarBrand getCarBrand() {
 		return carBrand;
 	}
@@ -206,6 +223,14 @@ public class Car {
 		this.gearboxType = gearboxType;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Set<Report> getReports() {
 		return reports;
 	}
@@ -221,14 +246,7 @@ public class Car {
 	public void setAd(Ad ad) {
 		this.ad = ad;
 	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
 	
 
 }
+	

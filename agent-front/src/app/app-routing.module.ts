@@ -17,11 +17,17 @@ import { AdListComponent } from './ad/ad-list/ad-list.component';
 import { AdComponent } from './ad/ad.component';
 import { AdCreateComponent } from './ad/ad-create/ad-create.component';
 import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
+import { CarCreateComponent } from './car-create/car-create.component';
 
 const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent
+    },
+    // app-car-create
+    {
+        path: 'carCreate',
+        component: CarCreateComponent
     },
     {
         path: 'carList',

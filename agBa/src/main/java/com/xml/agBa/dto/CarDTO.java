@@ -10,13 +10,13 @@ import com.xml.agBa.model.FuelType;
 import com.xml.agBa.model.GearboxType;
 
 public class CarDTO {
-
+	
+	private Long idCar;
 	private String carBrand;
 	private String carModel;
 	private String carClass;
 	private String fuelType;
 	private String gearboxType;
-	private Long idCar;
 	private double km;
 	private double allowedKM;
 	private int childrenSeats;

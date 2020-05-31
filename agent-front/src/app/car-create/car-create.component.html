@@ -1,1 +1,43 @@
-<p>car-create works!</p>
+<div class="container">
+    <div class="row col-sm-6" style="max-width:350px;">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="carBrand">Choose a car brand: </label>
+            <select class="form-control"  id="carBrand" required [(ngModel)]="form.carBrand" name="carBrand">
+                <option *ngFor="let b of carBrands" [value]="b.idCarBrand">{{ b.name }}</option>
+             </select>
+        </div>
+        <div class="form-group">
+            <label for="carModel">Choose a car model: </label>
+            <select class="form-control"  id="carModel" required [(ngModel)]="form.carModel" name="carModel">
+                <option *ngFor="let m of carModels" [value]="m.idCarModel">{{ m.name }}</option>
+             </select>
+        </div>
+        <div class="form-group">
+            <label for="carClass">Choose a car class: </label>
+            <select class="form-control"  id="carClass" required [(ngModel)]="form.carClass" name="carClass">
+                <option *ngFor="let s of carClasses" [value]="s.idCarclass">{{ s.name }}</option>
+             </select>
+        </div>
+        <div class="form-group">
+            <label for="gearboxType">Choose a gearbox type: </label>
+            <select class="form-control"  id="gearboxType" required [(ngModel)]="form.gearboxType" name="gearboxType">
+                <option *ngFor="let g of gearboxTypes" [value]="g.idGearboxType">{{ g.name }}</option>
+             </select>
+        </div>
+        <div class="form-group">
+            <label for="fuelType">Choose a fuel type: </label>
+            <select class="form-control"  id="fuelType" required [(ngModel)]="form.fuelType" name="fuelType">
+                <option *ngFor="let f of fuelTypes" [value]="f.idFuelType">{{ f.name }}</option>
+             </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">Create a car</button>
+        </div>
+        <div *ngIf="f.submitted && !f.valid" class="alert alert-warning">
+            Submit failed!<br />{{errorMessage}}
+        </div>
+    </form>
+    <button class="btn btn-danger" routerLink="/carList" novalidate>Back</button>
+    </div>
+</div>
