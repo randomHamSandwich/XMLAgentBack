@@ -140,11 +140,11 @@ public class CarServiceImp implements CarService{
 //		return null;
 	}
 
-	@Override
-	public List<CarDTO> getAllCarsFromACity(String city) {
-		Car c = carRepo.findByCity(city); 
-		return null;
+//	@Override
+//	public List<CarDTO> getAllCarsFromACity(String city) {
+//		Car c = carRepo.findByCity(city); 
+//		return null;
 //		return new CarDTO(c);
-	}
+//	}
 
 }

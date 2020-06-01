@@ -26,13 +26,13 @@ export class AdListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.getAllAds();
+    this.getAllAds("","","");
     this.getAllCars();
     this.getAllPricelists();
   }
 
-  getAllAds() {
-    this.ads = this.adService.getAllAds();
+  getAllAds(c: string , s: string, e:string) {
+    this.ads = this.adService.getAllAds(c, s, e);
   }
 
   getAllCars() {
@@ -73,15 +73,17 @@ export class AdListComponent implements OnInit {
 
   onSearch() {
 
-    this.adService.searchAdd(this.form.city,this.form.startDateTime).subscribe(
-      data => {
-        this.form.city = data,this.form.startDateTim =data;
-      },
-      error => {
-        this.errorMessage = error.error.message;
-        console.log("Error: " + this.errorMessage);
-      }
-    );
+    this.getAllAds(this.form.city, this.form.startDateTime, this.form.endDateTime);
+
+    // this.ads = this.adService.getAllAds(this.form.city, this.form.startDateTime, this.form.endDateTime).subscribe(
+    //   data => {
+    //     this.form.city = data, this.form.startDateTim = data, this.form.endDateTime  = data;
+    //   },
+    //   error => {
+    //     this.errorMessage = error.error.message;
+    //     console.log("Error: " + this.errorMessage);
+    //   }
+    // );
 
   }
 

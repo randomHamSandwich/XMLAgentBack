@@ -16,6 +16,7 @@ import com.xml.agBa.model.Pricelist;
 import com.xml.agBa.repository.AdRepo;
 import com.xml.agBa.repository.CarRepo;
 import com.xml.agBa.repository.PricelistRepo;
+import com.xml.agBa.util.DateChecker;
 
 @Service
 public class AdServiceImpl implements AdService {
@@ -81,6 +82,56 @@ public class AdServiceImpl implements AdService {
 		System.out.println("===================================");
 		
 		return new AdDTO(adRepo.getOne(id));
+	}
+
+	@Override
+	public List<AdDTO> search(String city, String startDateTime, String endDateTime) {
+		
+		String startDateTimeRemoveT =startDateTime.replace("T", "-");
+		String endDateTimeRemoveT =endDateTime.replace("T", "-");
+		DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
+		
+		LocalDateTime startLocalDateTime= LocalDateTime.parse(startDateTimeRemoveT, formater);
+		LocalDateTime endLocalDateTime= LocalDateTime.parse(endDateTimeRemoveT, formater);
+		
+		List<Ad> adsCity = new ArrayList<Ad>();
+		List<Ad> ads = adRepo.findAll();
+//		is car from that city
+		for (Ad ad : ads) {
+			if(ad.getCar().getCity().toLowerCase().equals(city.toLowerCase())) {
+				adsCity.add(ad);
+			}
+			
+		}
+//		if start is after end swap them
+		if(startLocalDateTime.isAfter(endLocalDateTime)) {
+			LocalDateTime startTemp = startLocalDateTime;
+			startLocalDateTime = endLocalDateTime;
+			endLocalDateTime = startTemp;
+		}
+		
+		System.out.println("************** all cars in the city");
+		for (Ad ad : adsCity) {
+			System.out.println(" id" +ad.getCar().getIdCar()+ " ---- city" + ad.getCar().getCity());
+		}
+		
+		
+//		ads that have cars form that city and time(specified my end user) is within limits of that add
+		List<AdDTO> adsDTO = new ArrayList<AdDTO>();
+		for (Ad ad : adsCity) {
+			if(DateChecker.isBetween(ad.getStartDate(), ad.getEndDate(), startLocalDateTime)) {
+				System.out.println("111111111111 true" );
+				if(DateChecker.isBetween(ad.getStartDate(), ad.getEndDate(), endLocalDateTime)) {
+					adsDTO.add(new AdDTO(ad));
+					System.out.println("22222222 true");
+				}else {System.out.println("111111111111 false");}
+			}else {System.out.println("222222222 false");}
+	
+		}
+		
+		
+		
+		return adsDTO;
 	}
 
 }

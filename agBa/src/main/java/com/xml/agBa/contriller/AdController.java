@@ -20,76 +20,80 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.agBa.dto.AdDTO;
 import com.xml.agBa.dto.CarDTO;
+import com.xml.agBa.repository.CarRepo;
 import com.xml.agBa.service.AdService;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "api")
 public class AdController {
-	
+
 	@Autowired
 	private AdService adService;
-	
-	
-	@PostMapping(value="/ad")
+
+	@PostMapping(value = "/ad")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<AdDTO> createAd(@RequestBody AdDTO adDTO) {
 		AdDTO newAd = adService.createAd(adDTO);
 		if (newAd != null) {
 			return new ResponseEntity<AdDTO>(newAd, HttpStatus.OK);
 		}
-		
+
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping(value="/ad")
+	@GetMapping(value = "/ad")
 	@PreAuthorize("hasAuthority('END_USER')")
-	public ResponseEntity<List<AdDTO>> getAllAds() {
-		List<AdDTO> adDTOs = adService.getAllAds();
-		
-		if (!adDTOs.isEmpty()) {
-			return new ResponseEntity<>(adDTOs, HttpStatus.OK);
+	public ResponseEntity<List<AdDTO>> getAllAds(@RequestParam String city, @RequestParam String startDateTime,
+			@RequestParam String endDateTime) {
+
+		if (city.equals("") || city.equals(null) || startDateTime.equals("") || startDateTime.equals(null)
+				|| endDateTime.equals("") || endDateTime.equals(null)) {
+
+			List<AdDTO> adDTOs = adService.getAllAds();
+
+			if (!adDTOs.isEmpty()) {
+				return new ResponseEntity<>(adDTOs, HttpStatus.OK);
+			}
+
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			
+			List<AdDTO> cDTO = adService.search(city, startDateTime, endDateTime);
+
+			return new ResponseEntity<>(cDTO, HttpStatus.OK);
+			
 		}
-		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			
+
 	}
-	
-	@GetMapping(value="/ad/{id}")
+
+	@GetMapping(value = "/ad/{id}")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<?> getAdById(@PathVariable("id") Long id) {
-		
+
 		System.out.println("===================================");
 		System.out.println("IN HERE controller, id: " + id);
 		System.out.println("===================================");
-		
+
 		AdDTO foundAd = adService.getAdById(id);
-		
+
 		if (foundAd != null) {
 			return new ResponseEntity<>(foundAd, HttpStatus.OK);
 		}
-		
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		
-		
-	}
-	
-	
-	@GetMapping(value = "/ad/search")
-	@PreAuthorize("hasAuthority('END_USER')")
-	public ResponseEntity<List<CarDTO>> getAllCarsFromACity(@RequestParam String city, @RequestParam String date) {
-		System.out.println(")))))))))))))))))))))))000000000000000000xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-//		List<CarDTO> carListDTO = carService.getAllCarsFromACity(city);
-//		return new ResponseEntity<>(carListDTO, HttpStatus.OK);
-			System.out.println("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]])))))) _"+ city + "  ppp" + date);
-//			String dateTimeRemoveT =  date.substring(10, 11);
-			String dateTimeRemoveT =date.replace("T", "-");
-			System.out.println(" ------------------------------"+dateTimeRemoveT);
-			DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
-			LocalDateTime sdTemp = LocalDateTime.parse(dateTimeRemoveT, formater);
-			
 
-			return new ResponseEntity<>(null, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
 	}
-	
- 	
+
+//	@GetMapping(value = "/ad/search")
+//	@PreAuthorize("hasAuthority('END_USER')")
+//	public ResponseEntity<List<AdDTO>> getAllCarsFromACity(@RequestParam String city,
+//			@RequestParam String startDateTime, @RequestParam String endDateTime) {
+//
+//		List<AdDTO> cDTO = adService.search(city, startDateTime, endDateTime);
+//
+//		return new ResponseEntity<>(cDTO, HttpStatus.OK);
+//	}
+
 }

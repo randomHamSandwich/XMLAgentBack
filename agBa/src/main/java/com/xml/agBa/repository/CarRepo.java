@@ -12,9 +12,12 @@ public interface CarRepo extends JpaRepository<Car, Long> {
 //	Optional<Car> findByIdVozilo(String idVozilo);
 //
 //	Boolean existsByIdVozilo(String idVozilo);
-	@Query(value = "SELECT * FROM car c where c.city= ?1", nativeQuery = true)
-	Car findByCity(String city);
+	@Query(value = "SELECT * FROM car c where c.city= ?1;", nativeQuery = true)
+	List<Car> findAllByCity(String city);
 	
 	List<Car> findAll();
+	
+
+
 	
 }
