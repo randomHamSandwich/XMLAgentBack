@@ -128,16 +128,21 @@ public class CarServiceImp implements CarService{
 	@Transactional
 	public CarDTO createCar(CarDTO carDTO) {
 		Car newCar = new Car();
-//		newCar.setCarBrand(new CarBrand(new CarBrandDTO(carBrandRepo.findIdByCarBrandName(carDTO.getCarBrand()), carDTO.getCarBrand())));
-		newCar.setCarBrand(new CarBrand(carBrandRepo.findIdByCarBrandName(carDTO.getCarBrand()), carDTO.getCarBrand()));
-		newCar.setCarModel(new CarModel(new CarModelDTO(carModelRepo.findIdByCarModelName(carDTO.getCarModel()), carDTO.getCarModel())));
-		newCar.setCarClass(new CarClass(new CarClassDTO(carClassRepo.findIdByCarClassName(carDTO.getCarClass()), carDTO.getCarClass())));
-		newCar.setFuelType(new FuelType(new FuelTypeDTO(fuelTypeRepo.findIdByFuelTypeName(carDTO.getCarBrand()), carDTO.getCarBrand())));
-		newCar.setGearboxType(new GearboxType(new GearboxTypeDTO(gearboxTypeRepo.findIdByGearboxTypeName(carDTO.getGearboxType()), carDTO.getCarBrand())));
+		newCar.setCarBrand(new CarBrand(Long.valueOf(carDTO.getCarBrand()), carBrandRepo.findNameByCarBrandId(Long.valueOf(carDTO.getCarBrand()))));
+		newCar.setCarModel(new CarModel(Long.valueOf(carDTO.getCarModel()), carModelRepo.findNameByCarModelId(Long.valueOf(carDTO.getCarModel()))));
+		newCar.setCarClass(new CarClass(Long.valueOf(carDTO.getCarClass()), carClassRepo.findNameByCarClassId(Long.valueOf(carDTO.getCarClass()))));
+		newCar.setFuelType(new FuelType(Long.valueOf(carDTO.getFuelType()), fuelTypeRepo.findNameByFuelTypeId(Long.valueOf(carDTO.getFuelType()))));
+		newCar.setGearboxType(new GearboxType(Long.valueOf(carDTO.getGearboxType()), gearboxTypeRepo.findNameByGearboxTypeId(Long.valueOf(carDTO.getGearboxType()))));
 		newCar = carRepo.save(newCar);
 		
 		return new CarDTO(newCar);
 //		return null;
+	}
+
+	@Override
+	public List<CarDTO> getAllCarsFromACity(String city) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 //	@Override

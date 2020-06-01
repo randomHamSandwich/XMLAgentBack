@@ -123,7 +123,7 @@ export class CarCreateComponent implements OnInit {
       }
     );
     
-    // window.location.reload();
+    window.location.reload();
     
   }
   goBack() {

@@ -53,6 +53,12 @@ public class CarClass {
 
 	}
 
+	public CarClass(Long idCarClass, String name) {
+		super();
+		this.idCarClass = idCarClass;
+		this.name = name;
+	}
+	
 	public Long getIdCarClass() {
 		return idCarClass;
 	}

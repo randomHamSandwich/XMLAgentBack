@@ -44,23 +44,23 @@ public class Car {
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private int version;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_car_brand", nullable = true)
 	private CarBrand carBrand;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_car_class", nullable = true)
 	private CarClass carClass;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_car_model", nullable = true)
 	private CarModel carModel;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_fuel_Type", nullable = true)
 	private FuelType fuelType;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_gearbox_type", nullable = true)
 	private GearboxType gearboxType;
 	

@@ -45,6 +45,12 @@ public class FuelType {
 		this.name = name;
 		this.cars = cars;
 	}
+	
+	public FuelType(Long idFuelType, String name) {
+		super();
+		this.idFuelType = idFuelType;
+		this.name = name;
+	}
 
 	public FuelType(FuelTypeDTO fuelTypeDTO) {
 		super();
