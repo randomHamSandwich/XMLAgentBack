@@ -6,6 +6,9 @@
         <li *ngIf="!authority" class="nav-item">
           <a class="nav-link" routerLink="auth/login">Login</a>
         </li>
+
+        <!--End user-->
+
         <li *ngIf="authority ==='end_user'" class="nav-item">
           <a class="nav-link" routerLink="carList">Cars</a>
         </li>
@@ -18,12 +21,16 @@
         <li *ngIf="authority ==='end_user'" class="nav-item">
           <a class="nav-link" routerLink="ads-dashboard">Ads dashboard</a>
         </li>
+        <li *ngIf="authority ==='end_user'" class="nav-item">
+          <a class="nav-link" routerLink="cart-list">Cart</a>
+        </li>
+        
+        <!--Admin-->
 
         <li *ngIf="authority ==='admin'" class="nav-item">
           <a class="nav-link" routerLink="users">Users</a>
         </li>
-
-        
+      
         <li *ngIf="authority ==='admin'" class="nav-item">
           <a class="nav-link" routerLink="gearbox">Gearbox</a>
         </li>
