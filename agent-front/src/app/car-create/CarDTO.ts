@@ -1,3 +1,5 @@
+import { TokenStorageService } from '../auth/token-storage.service';
+
 export class CarDTO {
     idCar: string;
     carBrand: string;
@@ -13,6 +15,8 @@ export class CarDTO {
     streetNumber: string;
     city: string;
     country: string;
+    user: number;
+    registrationPlate: string;
     
     constructor() {
         this.idCar = "";
@@ -29,6 +33,8 @@ export class CarDTO {
         this.streetNumber = "";
         this.city = "";
         this.country = "";
+        this.user = 0;
+        this.registrationPlate = "";
     }
 
 }

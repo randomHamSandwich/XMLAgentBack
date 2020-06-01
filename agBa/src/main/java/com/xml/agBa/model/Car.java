@@ -36,9 +36,8 @@ public class Car {
 	private String city;
 	@Column
 	private String country;
-//	@Column
-//	private String registrationPlate;
-	
+	@Column(unique = true)
+	private String registrationPlate;
 	
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
@@ -64,7 +63,7 @@ public class Car {
 	@JoinColumn(name = "id_gearbox_type", nullable = true)
 	private GearboxType gearboxType;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_user", nullable = true)
 	private User user;
 
@@ -76,7 +75,7 @@ public class Car {
 
 	public Car(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street,
 			String streetNumber, String city, String country, int version, CarBrand carBrand, CarClass carClass,
-			CarModel carModel, FuelType fuelType, GearboxType gearboxType, User user, Set<Report> reports, Ad ad) {
+			CarModel carModel, FuelType fuelType, GearboxType gearboxType, User user, Set<Report> reports, Ad ad, String registrationPlate) {
 		super();
 		this.idCar = idCar;
 		this.km = km;
@@ -96,6 +95,7 @@ public class Car {
 		this.user = user;
 		this.reports = reports;
 		this.ad = ad;
+		this.registrationPlate = registrationPlate;
 	}
 
 	public Car() {
@@ -245,6 +245,14 @@ public class Car {
 
 	public void setAd(Ad ad) {
 		this.ad = ad;
+	}
+
+	public String getRegistrationPlate() {
+		return registrationPlate;
+	}
+
+	public void setRegistrationPlate(String registrationPlate) {
+		this.registrationPlate = registrationPlate;
 	}
 	
 
