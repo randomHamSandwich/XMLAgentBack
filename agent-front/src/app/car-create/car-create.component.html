@@ -31,9 +31,44 @@
                 <option *ngFor="let f of fuelTypes" [value]="f.idFuelType">{{ f.name }}</option>
              </select>
         </div>
+        <div class="input-group">
+            <label for="km">km:</label>
+            <input type="text" class="form-control" name="km" [(ngModel)]="form.km" #city="ngModel" />
+        </div>
+        <div class="input-group">
+            <label for="allowedKM">allowedKM:</label>
+            <input type="text" class="form-control" name="allowedKM" [(ngModel)]="form.allowedKM" #city="ngModel" />
+        </div>
+        <div class="input-group">
+            <label for="country">country:</label>
+            <input type="text" class="form-control" name="country" [(ngModel)]="form.country" #city="ngModel" />
+        </div>
+        <div class="input-group">
+            <label for="city">city:</label>
+            <input type="text" class="form-control" name="city" [(ngModel)]="form.city" #city="ngModel" />
+        </div>
+        <div class="input-group">
+            <label for="street">street:</label>
+            <input type="text" class="form-control" name="street" [(ngModel)]="form.street" #city="ngModel" />
+        </div>
+        <div class="input-group">
+            <label for="streetNumber">street number:</label>
+            <input type="text" class="form-control" name="streetNumber" [(ngModel)]="form.streetNumber" #city="ngModel" />
+        </div>
+        <div class="input-group">
+            <label for="cdw">cdw:</label>
+            <input type="checkbox" class="form-control" name="cdw" [(ngModel)]="form.cdw" #city="ngModel" />
+        </div>
+        <div class="input-group">
+            <label for="childrenSeats">children seats:</label>
+            <input type="text" class="form-control" name="childrenSeats" [(ngModel)]="form.childrenSeats" #city="ngModel" />
+        </div>
+
+        <hr>
         <div class="form-group">
             <button class="btn btn-primary">Create a car</button>
         </div>
+        
         <div *ngIf="f.submitted && !f.valid" class="alert alert-warning">
             Submit failed!<br />{{errorMessage}}
         </div>

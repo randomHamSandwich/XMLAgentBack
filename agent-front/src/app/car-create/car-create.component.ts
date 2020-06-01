@@ -20,6 +20,15 @@ export class CarCreateComponent implements OnInit {
   carClasses: any;
   gearboxTypes: any;
   fuelTypes: any;
+  allowedKM: number;
+  km: number;
+  country: string;
+  city: string;
+  street: string;
+  streetNumber: string;
+  cdw: boolean;
+  childrenSeats: number;
+
   errorMessage: any;
   submitted = false;
   constructor(
@@ -112,6 +121,14 @@ export class CarCreateComponent implements OnInit {
     this.newCar.carClass = this.form.carClass;
     this.newCar.gearboxType = this.form.gearboxType;
     this.newCar.fuelType = this.form.fuelType;
+    this.newCar.allowedKM = this.form.allowedKM;
+    this.newCar.km = this.form.km;
+    this.newCar.country = this.form.country;
+    this.newCar.city = this.form.city;
+    this.newCar.street = this.form.street;
+    this.newCar.streetNumber = this.form.streetNumber;
+    this.newCar.cdw = this.form.cdw;
+    this.newCar.childrenSeats = this.form.childrenSeats;  
 
     this.carService.createNewCar(this.newCar).subscribe(
       data => {
@@ -123,7 +140,7 @@ export class CarCreateComponent implements OnInit {
       }
     );
     
-    window.location.reload();
+    // window.location.reload();
     
   }
   goBack() {

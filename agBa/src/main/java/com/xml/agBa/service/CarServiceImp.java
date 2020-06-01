@@ -133,10 +133,17 @@ public class CarServiceImp implements CarService{
 		newCar.setCarClass(new CarClass(Long.valueOf(carDTO.getCarClass()), carClassRepo.findNameByCarClassId(Long.valueOf(carDTO.getCarClass()))));
 		newCar.setFuelType(new FuelType(Long.valueOf(carDTO.getFuelType()), fuelTypeRepo.findNameByFuelTypeId(Long.valueOf(carDTO.getFuelType()))));
 		newCar.setGearboxType(new GearboxType(Long.valueOf(carDTO.getGearboxType()), gearboxTypeRepo.findNameByGearboxTypeId(Long.valueOf(carDTO.getGearboxType()))));
+		newCar.setAllowedKM(carDTO.getAllowedKM());
+		newCar.setKm(carDTO.getKm());
+		newCar.setCountry(carDTO.getCountry());
+		newCar.setCity(carDTO.getCity());
+		newCar.setStreet(carDTO.getStreet());
+		newCar.setStreetNumber(carDTO.getStreetNumber());
+		newCar.setChildrenSeats(carDTO.getChildrenSeats());
+		newCar.setCdw(carDTO.getCdw());
 		newCar = carRepo.save(newCar);
 		
 		return new CarDTO(newCar);
-//		return null;
 	}
 
 	@Override
