@@ -12,6 +12,7 @@ import com.xml.agBa.model.CarBrand;
 import com.xml.agBa.model.CarModel;
 import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.model.Car;
+import com.xml.agBa.model.User;
 import com.xml.agBa.model.FuelType;
 import com.xml.agBa.repository.CarBrandRepo;
 import com.xml.agBa.repository.CarClassRepo;
@@ -141,8 +142,10 @@ public class CarServiceImp implements CarService{
 		newCar.setStreetNumber(carDTO.getStreetNumber());
 		newCar.setChildrenSeats(carDTO.getChildrenSeats());
 		newCar.setCdw(carDTO.getCdw());
+		newCar.setRegistrationPlate(carDTO.getRegistrationPlate());
+		newCar.setUser(new User(carDTO.getUser()));
 		newCar = carRepo.save(newCar);
-		
+				
 		return new CarDTO(newCar);
 	}
 

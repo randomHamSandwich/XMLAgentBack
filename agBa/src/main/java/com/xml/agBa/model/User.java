@@ -101,6 +101,10 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public User(Long idUser) {
+		this.idUser = idUser;
+	}
 
 	public Long getIdUser() {
 		return idUser;
