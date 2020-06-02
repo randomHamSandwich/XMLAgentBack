@@ -3,6 +3,9 @@ export class AdDTO {
     startDate: string;
     endDate: string;
     pricelist: string;
+    priceForOneDay: string;
+    priceForKM: string;
+    discount: string;
     car: string;
     
     constructor() {
@@ -10,7 +13,9 @@ export class AdDTO {
         this.startDate = "";
         this.endDate = "";
         this.pricelist = "";
+        this.priceForOneDay = "";
+        this.priceForKM = "";
+        this.discount = "";
         this.car = "";
     }
-
 }

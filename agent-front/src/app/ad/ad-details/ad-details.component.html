@@ -14,37 +14,96 @@
                   </tr>
                   <tr>
                     <td><b>Price per day:</b></td>
-                    <td> placeholder </td>
+                    <td> {{ ad?.priceForOneDay }} </td>
                   </tr>
                   <tr>
                     <td><b>Price per extra km:</b></td>
-                    <td> placeholder </td>
+                    <td> {{ ad?.priceForKM }} </td>
                   </tr>
-                  <tr>
-                    <td><b>Car data:</b></td>
-                    <td> placeholder </td>
-                  </tr>
-                  <tr>
-                    <td><b>Car data:</b></td>
-                    <td> placeholder </td>
-                  </tr>
-                  <tr>
-                    <td><b>Car data:</b></td>
-                    <td> placeholder </td>
-                  </tr>
-                  <tr>
-                    <td><b>Car data:</b></td>
-                    <td> placeholder </td>
-                  </tr>
-                  <tr>
-                    <td><b>Car data:</b></td>
-                    <td> placeholder </td>
-                  </tr>
+                  <ng-container *ngFor="let c of cars">
+                    <ng-container *ngIf="c.idCar == ad.car">
+                      <tr>
+                        <td><b>Car:</b></td>
+                        <td> {{ c.carBrand }} {{ c.carModel}} </td>
+                      </tr>
+                      <tr>
+                        <td><b>Class:</b></td>
+                        <td> {{ c.carClass }} </td>
+                      </tr>
+                      <tr>
+                        <td><b>Fuel type:</b></td>
+                        <td> {{ c.fuelType }} </td>
+                      </tr>
+                      <tr>
+                        <td><b>Gearbox type:</b></td>
+                        <td> {{ c.gearboxType}} </td>
+                      </tr>
+                      <tr>
+                        <td><b>Children seats:</b></td>
+                        <td> {{ c.childrenSeats }} </td>
+                      </tr>
+                      <tr>
+                        <td><b>CDW:</b></td>
+                        <td> {{ c.cdw }} </td>
+                      </tr>
+                      <tr>
+                        <td><b>KMs:</b></td>
+                        <td> {{ c.km }} </td>
+                      </tr>
+                      <tr>
+                        <td><b>Allowed KMs:</b></td>
+                        <td> {{ c.allowedKM }} </td>
+                      </tr>
+                      <tr>
+                        <td><b>Registration plate:</b></td>
+                        <td> {{ c.registrationPlate }} </td>
+                      </tr>
+                      <tr>
+                        <td><b>Address:</b></td>
+                        <td> {{ c.street }} {{ c.streetNumber }} , {{ c.city }} </td>
+                      </tr>
+                      <tr>
+                        <td><b>Country:</b></td>
+                        <td> {{ c.country }} </td>
+                      </tr>
+                    </ng-container>
+                </ng-container>
                 </tbody>
               </table>
         </div>
 
-        <button class="btn">Add to cart</button>
-        <button class="btn btn-info" (click)="onBack()">Back</button>
-    </div>
+        <hr>
+
+        <div>
+          <form name="form" (ngSubmit)="f.form.valid && onAddToCart()" #f="ngForm" required>
+           <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+                    <div class="input-group">
+                        <label for="startDateTime">Choose renting date:</label>
+                        <input type="datetime-local" class="form-control" name="startDateTime" [(ngModel)]="form.startDateTime"
+                            #startDateTime="ngModel" />
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+                    <div class="input-group">
+                        <label for="endDateTime">Choose returning date:</label>
+                        <input type="datetime-local" class="form-control" name="endDateTime" [(ngModel)]="form.endDateTime"
+                            #endDateTime="ngModel" />
+                    </div>
+                </div>
+            </div>
+               
+            <br>
+            <div class="form-group">
+                <button class="btn btn-primary">AddToCart</button>
+        
+            </div>
+        </form>
+        </div>
+        <button class="btn btn-danger" (click)="onBack()">Back</button>
+        <br><br>
+      </div>
 </div>

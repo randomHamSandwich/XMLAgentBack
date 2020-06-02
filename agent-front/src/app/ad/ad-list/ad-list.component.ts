@@ -61,11 +61,6 @@ export class AdListComponent implements OnInit {
     );
   }
 
-  createAd() {
-    console.log("creating ad page/form");
-
-  }
-
   onBack() {
     this.router.navigate(['/']);
   }

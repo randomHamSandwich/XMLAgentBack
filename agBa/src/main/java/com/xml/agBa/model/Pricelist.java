@@ -22,10 +22,10 @@ public class Pricelist {
 	private Long idPriceList;
 	
 	@Column
-	private double priceForOneDay;
+	private Double priceForOneDay;
 	
 	@Column
-	private double priceForKM;
+	private Double priceForKM;
 	
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
@@ -47,7 +47,7 @@ public class Pricelist {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Pricelist(Long idPriceList, double priceForOneDay, double priceForKM, int version, User user,
+	public Pricelist(Long idPriceList, Double priceForOneDay, Double priceForKM, int version, User user,
 			Set<Discount> discounts, Set<Ad> ad) {
 		super();
 		this.idPriceList = idPriceList;
@@ -72,19 +72,19 @@ public class Pricelist {
 		this.idPriceList = idPriceList;
 	}
 
-	public double getPriceForOneDay() {
+	public Double getPriceForOneDay() {
 		return priceForOneDay;
 	}
 
-	public void setPriceForOneDay(double priceForOneDay) {
+	public void setPriceForOneDay(Double priceForOneDay) {
 		this.priceForOneDay = priceForOneDay;
 	}
 
-	public double getPriceForKM() {
+	public Double getPriceForKM() {
 		return priceForKM;
 	}
 
-	public void setPriceForKM(double priceForKM) {
+	public void setPriceForKM(Double priceForKM) {
 		this.priceForKM = priceForKM;
 	}
 
@@ -119,7 +119,4 @@ public class Pricelist {
 	public void setAd(Set<Ad> ad) {
 		this.ad = ad;
 	}
-	
-	
-	
 }

@@ -53,6 +53,7 @@
                     <th scope="col">Available from: </th>
                     <th scope="col">Available to: </th>
                     <th scope="col">Car: </th>
+                    <th scope="col">Car location: </th>
                     <th scope="col">Price per day: </th>
                 </tr>
             </thead>
@@ -66,6 +67,7 @@
 
                     <ng-container *ngFor="let c of cars">
                         <th *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.carBrand}} {{c.carModel}}</th>
+                        <th *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.city}} {{c.country}}</th>
                     </ng-container>
                     <ng-container *ngFor="let p of pricelists">
                         <th *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</th>

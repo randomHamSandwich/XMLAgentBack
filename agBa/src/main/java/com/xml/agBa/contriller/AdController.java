@@ -72,10 +72,6 @@ public class AdController {
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<?> getAdById(@PathVariable("id") Long id) {
 
-		System.out.println("===================================");
-		System.out.println("IN HERE controller, id: " + id);
-		System.out.println("===================================");
-
 		AdDTO foundAd = adService.getAdById(id);
 
 		if (foundAd != null) {
