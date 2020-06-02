@@ -39,6 +39,9 @@ public class Car {
 	@Column(unique = true)
 	private String registrationPlate;
 	
+//	@Column
+//	private boolean isdeleted;
+	
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private int version;
@@ -96,6 +99,7 @@ public class Car {
 		this.reports = reports;
 		this.ad = ad;
 		this.registrationPlate = registrationPlate;
+//		this.isdeleted = false;
 	}
 
 	public Car() {
@@ -254,6 +258,14 @@ public class Car {
 	public void setRegistrationPlate(String registrationPlate) {
 		this.registrationPlate = registrationPlate;
 	}
+
+//	public boolean isIsdeleted() {
+//		return isdeleted;
+//	}
+//
+//	public void setIsdeleted(boolean isdeleted) {
+//		this.isdeleted = isdeleted;
+//	}
 	
 
 }
