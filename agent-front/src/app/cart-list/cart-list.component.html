@@ -1,18 +1,42 @@
 <div class="container">
     <div class="row col-sm-6" style="max-width:500px;">
-        <h1>My cart:</h1>
-
-
-       
-        <div>   
-            <button class="btn btn-danger">Send request</button>
-        </div>
-
-            <button class="btn btn-danger">Delete</button>  
-
         <div>
-            <button class="btn btn-info" (click)="onBack()">Back</button>
-        </div>
+            <h1>My cart:</h1>
+
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr>
+                     <th scope="col">#</th>
+                     <th scope="col">Car brand: </th>
+                     <th scope="col">Car model: </th>
+                     <th scope="col">Date: </th>
+                     <th scope="col">Price per day: </th>
+                     <th scope="col">Discount: </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <th scope="row"></th>
+                    <td>Car brand</td>
+                    <td>Car model</td>
+                    <td>Date</td>
+                    <td>Price</td>
+                    <td>Discount</td>
+                       
+                    <button class="btn btn-success">Send request</button>
+                    <button class="btn btn-danger">Delete</button>  
+            
+
+                </tbody>
+
+            </table>
+
+            <div>
+                <button class="btn btn-info" (click)="onBack()">Back</button>
+            </div>
+
+         </div>
             
         
     </div>
