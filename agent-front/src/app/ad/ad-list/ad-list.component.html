@@ -72,13 +72,13 @@
                     <ng-container *ngFor="let p of pricelists">
                         <th *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</th>
                     </ng-container>
-
-                    <th scope="row"> <a routerLink="/ad-details/{{a.idAd}}"> Reserve </a></th>
+                    
+                    <th scope="row"> <button class="btn btn-info" routerLink="/ad-details/{{a.idAd}}"> Reserve </button></th>
 
                 </tr>
             </tbody>
         </table>
 
-        <button class="btn btn-info" (click)="onBack()">Back</button>
+        <button class="btn btn-danger" (click)="onBack()">Back</button>
     </div>
 </div>
