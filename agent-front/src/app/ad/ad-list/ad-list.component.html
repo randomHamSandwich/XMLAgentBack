@@ -44,18 +44,6 @@
 </form>
 <br><br><br><br>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="container">
     <div class="row col-sm-8" style="max-width:900px;">
         <button class="btn btn-success" (click)="createAd()">Add new ad</button>
@@ -92,9 +80,5 @@
         </table>
 
         <button class="btn btn-info" (click)="onBack()">Back</button>
-
-        <div *ngFor="let p of pricelists">
-            <label for="temp"> pricelist: {{ p.pricelistId }}</label>
-        </div>
     </div>
 </div>
