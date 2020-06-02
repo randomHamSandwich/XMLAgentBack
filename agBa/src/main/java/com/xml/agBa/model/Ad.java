@@ -53,14 +53,18 @@ public class Ad {
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "id_car", nullable = true)
     private Car car;
+	
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@JoinColumn(name = "id_user")
+	private EndUser endUser;
 
 	public Ad() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version, Set<UserRequest> userRequest,
-			Set<Rating> rating, Set<Comment> comments, Pricelist priceList, Car car) {
+			Set<Rating> rating, Set<Comment> comments, Pricelist priceList, Car car, EndUser endUser) {
 		super();
 		this.idAd = idAd;
 		this.startDate = startDate;
@@ -71,6 +75,7 @@ public class Ad {
 		this.comments = comments;
 		this.priceList = priceList;
 		this.car = car;
+		this.endUser = endUser;
 	}
 
 	public Long getIdAd() {
@@ -143,5 +148,13 @@ public class Ad {
 
 	public void setCar(Car car) {
 		this.car = car;
+	}
+
+	public EndUser getEndUser() {
+		return endUser;
+	}
+
+	public void setEndUser(EndUser endUser) {
+		this.endUser = endUser;
 	}
 }

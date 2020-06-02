@@ -1,7 +1,10 @@
 package com.xml.agBa.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +14,8 @@ import com.xml.agBa.model.CarClass;
 import com.xml.agBa.model.CarBrand;
 import com.xml.agBa.model.CarModel;
 import com.xml.agBa.model.GearboxType;
+import com.xml.agBa.model.RoleName;
+import com.xml.agBa.model.Roles;
 import com.xml.agBa.model.Car;
 import com.xml.agBa.model.User;
 import com.xml.agBa.model.FuelType;
@@ -26,6 +31,7 @@ import com.xml.agBa.dto.CarDTO;
 import com.xml.agBa.dto.CarModelDTO;
 import com.xml.agBa.dto.FuelTypeDTO;
 import com.xml.agBa.dto.GearboxTypeDTO;
+import com.xml.agBa.dto.UserDTO;
 
 import java.util.List;
 
@@ -54,10 +60,16 @@ public class CarServiceImp implements CarService{
 	
 	@Override
 	public Car findCarById() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
+	@Override
+	public Car getOne(Long idCar) {
+		
+		return carRepo.getOne(idCar);
+	}
+	
 	@Override
 	public List<CarDTO> getAllCars() {
 		
@@ -124,6 +136,30 @@ public class CarServiceImp implements CarService{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	@Transactional
+	public CarDTO editCar(Long idCar, CarDTO carDTO) {
+		Car editedCar = carRepo.getOne(idCar);
+		editedCar.setCarBrand(new CarBrand(Long.valueOf(carDTO.getCarBrand()), carBrandRepo.findNameByCarBrandId(Long.valueOf(carDTO.getCarBrand()))));
+		editedCar.setCarModel(new CarModel(Long.valueOf(carDTO.getCarModel()), carModelRepo.findNameByCarModelId(Long.valueOf(carDTO.getCarModel()))));
+		editedCar.setCarClass(new CarClass(Long.valueOf(carDTO.getCarClass()), carClassRepo.findNameByCarClassId(Long.valueOf(carDTO.getCarClass()))));
+		editedCar.setFuelType(new FuelType(Long.valueOf(carDTO.getFuelType()), fuelTypeRepo.findNameByFuelTypeId(Long.valueOf(carDTO.getFuelType()))));
+		editedCar.setGearboxType(new GearboxType(Long.valueOf(carDTO.getGearboxType()), gearboxTypeRepo.findNameByGearboxTypeId(Long.valueOf(carDTO.getGearboxType()))));
+		editedCar.setAllowedKM(carDTO.getAllowedKM());
+		editedCar.setKm(carDTO.getKm());
+		editedCar.setCountry(carDTO.getCountry());
+		editedCar.setCity(carDTO.getCity());
+		editedCar.setStreet(carDTO.getStreet());
+		editedCar.setStreetNumber(carDTO.getStreetNumber());
+		editedCar.setChildrenSeats(carDTO.getChildrenSeats());
+		editedCar.setCdw(carDTO.getCdw());
+		editedCar.setRegistrationPlate(carDTO.getRegistrationPlate());
+		editedCar.setUser(new User(carDTO.getUser()));
+		editedCar = carRepo.save(editedCar);
+				
+		return new CarDTO(editedCar);
+	}
 
 	@Override
 	@Transactional
@@ -153,6 +189,14 @@ public class CarServiceImp implements CarService{
 	public List<CarDTO> getAllCarsFromACity(String city) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	@Transactional
+	public Boolean delete(Long idCar) {
+		Long car = carRepo.deleteByIdCar(idCar);
+		System.out.println("Izbrisan: "+car);
+		return true;
 	}
 
 //	@Override

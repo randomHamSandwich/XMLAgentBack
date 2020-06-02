@@ -25,6 +25,9 @@ public class EndUser extends User {
 
 	@OneToMany(mappedBy = "byer")
 	private Set<Chat> chats;
+	
+	@OneToMany(mappedBy = "endUser", cascade = CascadeType.ALL)
+	private Set<Ad> ads;
 
 	public EndUser() {
 		super();

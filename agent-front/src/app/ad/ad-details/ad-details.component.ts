@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdService } from 'src/app/services/ad.service';
 import { CarService } from 'src/app/services/car.service';
-import { Observable } from 'rxjs';
 import { AdDTO } from '../ad-create/AdDTO';
 
 @Component({
@@ -12,7 +11,13 @@ import { AdDTO } from '../ad-create/AdDTO';
 })
 export class AdDetailsComponent implements OnInit {
   adId: number;
-  ad: Observable<AdDTO>;
+  ad: AdDTO = new AdDTO();
+
+  form: any = {};
+  startTime: any;
+  endTime: any;
+
+  cars: any;
 
   errorMessage: any;
 
@@ -24,6 +29,7 @@ export class AdDetailsComponent implements OnInit {
   ngOnInit() {
     this.adId = this.route.snapshot.params['idAd'];
     this.getAdById();
+    this.getAllCars();
   }
 
   getAdById() {
@@ -32,18 +38,38 @@ export class AdDetailsComponent implements OnInit {
         this.ad = data;
       },
       error => {
-        this.errorMessage = error.error.errorMessage;
-        console.log("Error: " + error);
-        
+        {
+          console.log("ERROR je: " + error.errorMessage);
+          
+        }
+      }
+    )
+  }
+
+  getAllCars() {
+    this.carService.getCarsList().subscribe(
+      data => {
+        this.cars = data;        
+      },
+      error => {
+        this.errorMessage = error.error.message;
+
+        console.log("Error: " + this.errorMessage);
       }
     );
   }
 
-  getCarById() {
-    // geting car data
-  }
   
-  onBack() {
+  onAddToCart() {
+    this.startTime = this.form.startDateTime;
+    this.endTime = this.form.endDateTime;
 
+    //console.log("startno vreme: " + this.startTime);
+    //console.log("krajnje vreme: " + this.endTime);
+    
+  }
+
+  onBack() {
+    this.router.navigate(['/']);
   }
 }

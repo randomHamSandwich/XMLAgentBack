@@ -5,14 +5,14 @@ import com.xml.agBa.model.Pricelist;
 public class PricelistDTO {
 	
 	private Long pricelistId;
-	private double priceForOneDay;
-	private double priceForKM;
+	private Double priceForOneDay;
+	private Double priceForKM;
 	
 	public PricelistDTO() {
 		
 	}
 
-	public PricelistDTO(Long pricelistId, double priceForOneDay, double priceForKM) {
+	public PricelistDTO(Long pricelistId, Double priceForOneDay, Double priceForKM) {
 		super();
 		this.pricelistId = pricelistId;
 		this.priceForOneDay = priceForOneDay;
@@ -33,19 +33,19 @@ public class PricelistDTO {
 		this.pricelistId = pricelistId;
 	}
 
-	public double getPriceForOneDay() {
+	public Double getPriceForOneDay() {
 		return priceForOneDay;
 	}
 
-	public void setPriceForOneDay(double priceForOneDay) {
+	public void setPriceForOneDay(Double priceForOneDay) {
 		this.priceForOneDay = priceForOneDay;
 	}
 
-	public double getPriceForKM() {
+	public Double getPriceForKM() {
 		return priceForKM;
 	}
 
-	public void setPriceForKM(double priceForKM) {
+	public void setPriceForKM(Double priceForKM) {
 		this.priceForKM = priceForKM;
 	}
 }
