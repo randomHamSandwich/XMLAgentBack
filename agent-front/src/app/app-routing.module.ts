@@ -18,6 +18,7 @@ import { AdComponent } from './ad/ad.component';
 import { AdCreateComponent } from './ad/ad-create/ad-create.component';
 import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 import { CarCreateComponent } from './car-create/car-create.component';
+import { CartListComponent } from './cart-list/cart-list.component';
 
 const routes: Routes = [
     {
@@ -74,17 +75,23 @@ const routes: Routes = [
         path: 'ads',
         component: AdListComponent
 
-    }, {
+    }, 
+    {
         path: 'ads-dashboard',
         component: AdComponent
     },
     {
         path: 'ad-create',
         component: AdCreateComponent
-    },{
+    },
+    {
         path: 'ad-details/:idAd',
         component: AdDetailsComponent
-    },   
+    },  
+    {
+        path: 'cart-list',
+        component: CartListComponent
+    }, 
 
 
     {

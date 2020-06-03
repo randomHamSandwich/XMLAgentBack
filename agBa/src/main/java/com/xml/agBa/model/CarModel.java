@@ -45,6 +45,12 @@ public class CarModel {
 		this.name = name;
 		this.cars = cars;
 	}
+	
+	public CarModel(Long idCarModel, String name) {
+		super();
+		this.idCarModel = idCarModel;
+		this.name = name;
+	}
 
 	public CarModel(CarModelDTO carModelDTO) {
 		// TODO Auto-generated constructor stub

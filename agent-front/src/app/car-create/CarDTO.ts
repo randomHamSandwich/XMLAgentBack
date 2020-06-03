@@ -1,3 +1,5 @@
+import { TokenStorageService } from '../auth/token-storage.service';
+
 export class CarDTO {
     idCar: string;
     carBrand: string;
@@ -5,14 +7,16 @@ export class CarDTO {
     carClass: string;
     fuelType: string;
     gearboxType: string;
-    km: string;
-    allowedKM: string;
-    childrenSeats: string;
-    cdw: string;
+    km: number;
+    allowedKM: number;
+    childrenSeats: number;
+    cdw: boolean;
     street: string;
     streetNumber: string;
     city: string;
     country: string;
+    user: number;
+    registrationPlate: string;
     
     constructor() {
         this.idCar = "";
@@ -21,14 +25,16 @@ export class CarDTO {
         this.carClass = "";
         this.fuelType = "";
         this.gearboxType = "";
-        this.km = "";
-        this.allowedKM = "";
-        this.childrenSeats = "";
-        this.cdw = "";
+        this.km = 0;
+        this.allowedKM = 0;
+        this.childrenSeats = 0;
+        this.cdw = false;
         this.street = "";
         this.streetNumber = "";
         this.city = "";
         this.country = "";
+        this.user = 0;
+        this.registrationPlate = "";
     }
 
 }

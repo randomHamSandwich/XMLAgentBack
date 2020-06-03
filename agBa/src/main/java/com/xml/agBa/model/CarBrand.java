@@ -24,7 +24,7 @@ public class CarBrand {
 	@Column
 	private String name;
 
-	@OneToMany(mappedBy = "carBrand", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "carBrand", cascade = CascadeType.MERGE)
 	private Set<Car> cars;
 
 	

@@ -7,6 +7,7 @@ import { CarClassService } from '../services/carclass.service';
 import { GearboxService } from '../services/gearbox.service';
 import { FuelTypeService } from '../services/fueltype.service';
 import { CarService } from '../services/car.service';
+import { TokenStorageService } from '../auth/token-storage.service';
 @Component({
   selector: 'app-car-create',
   templateUrl: './car-create.component.html',
@@ -20,6 +21,17 @@ export class CarCreateComponent implements OnInit {
   carClasses: any;
   gearboxTypes: any;
   fuelTypes: any;
+  allowedKM: number;
+  km: number;
+  country: string;
+  city: string;
+  street: string;
+  streetNumber: string;
+  cdw: boolean;
+  childrenSeats: number;
+  user: number;
+  registrationPlate: string;
+
   errorMessage: any;
   submitted = false;
   constructor(
@@ -112,6 +124,16 @@ export class CarCreateComponent implements OnInit {
     this.newCar.carClass = this.form.carClass;
     this.newCar.gearboxType = this.form.gearboxType;
     this.newCar.fuelType = this.form.fuelType;
+    this.newCar.allowedKM = this.form.allowedKM;
+    this.newCar.km = this.form.km;
+    this.newCar.country = this.form.country;
+    this.newCar.city = this.form.city;
+    this.newCar.street = this.form.street;
+    this.newCar.streetNumber = this.form.streetNumber;
+    this.newCar.cdw = this.form.cdw;
+    this.newCar.childrenSeats = this.form.childrenSeats;
+    this.newCar.registrationPlate = this.form.registrationPlate;
+    this.newCar.user = 3;  
 
     this.carService.createNewCar(this.newCar).subscribe(
       data => {

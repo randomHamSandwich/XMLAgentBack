@@ -43,6 +43,8 @@ import { PricelistCreateComponent } from './ad/pricelist-create/pricelist-create
 import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CartListComponent } from './cart-list/cart-list.component';
+
 
 
 @NgModule({
@@ -79,7 +81,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdComponent,
     PricelistListComponent,
     PricelistCreateComponent,
-    AdDetailsComponent
+    AdDetailsComponent,
+    CartListComponent,
+
 
   ],
   imports: [

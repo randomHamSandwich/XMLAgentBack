@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row col-sm-6" style="max-width:500px;">
+    <div class="row col-sm-8" style="max-width:900px;">
         <h4>Dashboard for creating new ads, pricelists and discounts!</h4>
 
         <div *ngIf="!isAdd">
@@ -19,9 +19,43 @@
         <h4>Discounts:</h4>
         <hr>
         <app-discount-list></app-discount-list>
-        
+
         <hr>
-        <br>
+        <h4><b> My ads: </b></h4>
+        <hr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Available from: </th>
+                    <th scope="col">Available to: </th>
+                    <th scope="col">Car: </th>
+                    <th scope="col">Car location: </th>
+                    <th scope="col">Price per day: </th>
+                </tr>
+            </thead>
+
+            <tbody *ngFor="let a of ads | async ; let i = index;">
+
+                <tr *ngIf="a.endUser == userID">
+                    <th scope="row">{{i+1}}</th>
+                    <th scope="row">{{a.startDate | date:"dd/MM/yyy HH:mm"}}</th>
+                    <th scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</th>
+
+                    <ng-container *ngFor="let c of cars">
+                        <th *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.carBrand}} {{c.carModel}}</th>
+                        <th *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.city}} {{c.country}}</th>
+                    </ng-container>
+                    <ng-container *ngFor="let p of pricelists">
+                        <th *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</th>
+                    </ng-container>
+                    <th scope="row"> <button class="btn btn-info" (click)="onReserve()">Reserve for me</button></th>
+
+                </tr>
+            </tbody>
+        </table>
+        <hr>
         <button class="btn btn-danger" (click)="onBack()">Back</button>
+        <br><br>
     </div>
   </div>

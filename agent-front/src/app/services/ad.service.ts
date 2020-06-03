@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { AdDTO } from '../ad/ad-create/AdDTO';
 import { Observable } from 'rxjs';
-import { start } from 'repl';
+//import { start } from 'repl';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +18,12 @@ export class AdService {
     return this.http.post(this.baseUrl, data);
   }
 
-  updateAd() {
-
+  getAdById(idAd: any): Observable<any> {
+    return this.http.get(this.baseUrl + '/' + idAd);
   }
 
-  getAdById(id): Observable<any> {
-    console.log("in service " + id);
-    
-    return this.http.get(this.baseUrl + '/' + id);
+  updateAd() {
+
   }
 
   getAllAds(city: string , startDateTime : string, endDateTime: string): Observable<any> {

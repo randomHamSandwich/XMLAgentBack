@@ -46,6 +46,12 @@ public class GearboxType {
 		this.name = name;
 		this.car = car;
 	}
+	
+	public GearboxType(Long idGearboxType, String name) {
+		super();
+		this.idGearboxType = idGearboxType;
+		this.name = name;
+	}
 
 	public GearboxType(GearboxTypeDTO gearboxTypeDTO) {
 		super();
