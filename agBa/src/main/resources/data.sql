@@ -4,6 +4,7 @@ insert into roles (role_name) values ('END_USER_LIMITED_ACCESS');
 insert into roles (role_name) values ('ADMIN');
 insert into roles (role_name) values ('AGENT');
 
+
 insert into user (user_type, phone_number,street_number, country, email, city, password, status, street, isdeleted)
 values ('END_USER', '111111111111', '15', 'Srbija', 'peraspringuser19@gmail.com', 'Novi Sad',
  '$2a$10$./yRHDMtr84Dr8w5Zr9Y/eaG3MPVzDmpH.uL3NCMmC/6Syy8RWCoa', 'ACTIVE', 'Gogoljeva', false);
@@ -148,4 +149,9 @@ INSERT INTO ad(end_date, start_date, id_car, id_user, id_price_list) VALUES ('20
 
 INSERT INTO discount(discount, for_more_thanxdays, version, id_price_list) VALUES (5, 15, 0, 1);
 
+insert into images (name, image_loc)
+values ('mitsubishi_pajero', '../agBa/images/mitsubishi-pajero.jpg');
+
+insert into images (name, image_loc)
+values ('toyota_corrola', '../agBa/images/toyota-corrola.jpg');
 
