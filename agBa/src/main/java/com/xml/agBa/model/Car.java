@@ -36,7 +36,8 @@ public class Car {
 	private String city;
 	@Column
 	private String country;
-	@Column(unique = true)
+//	@Column(unique = true)
+	@Column()
 	private String registrationPlate;
 	
 //	@Column
