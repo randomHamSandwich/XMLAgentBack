@@ -7,10 +7,10 @@ services:
      - "8761:8761"
     tty: true
 
-  ad-service:
+  ad:
     build: ./ad
     ports:
-    - "8080:8080"
+    - "8081:8081"
     environment:
       - REGISTRY_HOST=eureka-serviceregistry
     tty: true
@@ -26,7 +26,7 @@ services:
     tty: true
     depends_on:
       - eureka-serviceregistry
-      - ad-service
+      - ad
 
   
 

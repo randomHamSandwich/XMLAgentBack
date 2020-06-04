@@ -41,23 +41,23 @@ public class AuthFilter extends ZuulFilter {
     @Override
     public Object run() {
 
-        RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest request = ctx.getRequest();
-
-        if (request.getHeader("email") == null) {
-            return null;
-        };
-
-        String email = request.getHeader("email");
-        try {
-            authClient.verify(email);
-
-            ctx.addZuulRequestHeader("username", email);
-            ctx.addZuulRequestHeader("role", "SIMPLE_USER");
-
-        } catch (FeignException.NotFound e) {
-            setFailedRequest("Consumer does not exist!", 403);
-        }
+//        RequestContext ctx = RequestContext.getCurrentContext();
+//        HttpServletRequest request = ctx.getRequest();
+//
+//        if (request.getHeader("email") == null) {
+//            return null;
+//        };
+//
+//        String email = request.getHeader("email");
+//        try {
+//            authClient.verify(email);
+//
+//            ctx.addZuulRequestHeader("username", email);
+//            ctx.addZuulRequestHeader("role", "SIMPLE_USER");
+//
+//        } catch (FeignException.NotFound e) {
+//            setFailedRequest("Consumer does not exist!", 403);
+//        }
 
         return null;
     }
