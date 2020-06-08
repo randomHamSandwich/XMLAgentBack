@@ -60,16 +60,16 @@ public class AdController {
 //	}
 
 	@GetMapping(value = "/ad/{id}")
-	@PreAuthorize("hasAuthority('END_USER')")
+//	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<?> getAdById(@PathVariable("id") Long id) {
-
+System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 		AdDTO foundAd = adService.getAdById(id);
 
 		if (foundAd != null) {
 			return new ResponseEntity<>(foundAd, HttpStatus.OK);
 		}
 
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.CONFLICT);
 
 	}
 
