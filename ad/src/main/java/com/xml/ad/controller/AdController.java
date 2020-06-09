@@ -14,6 +14,7 @@ import com.xml.ad.dto.AdDTO;
 import com.xml.ad.service.AdService;
 
 
+// TODO remove "api"
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "api")

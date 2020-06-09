@@ -9,9 +9,9 @@ import com.xml.ad.model.Ad;
 
 public interface AdRepo extends JpaRepository<Ad, Long> {
 	
-	Optional<Ad> findByIdAd(String idAd);
+	Optional<Ad> findByIdAd(Long idAd);
 
-	Boolean existsByIdAd(String idAd);
+	Boolean existsByIdAd(Long idAd);
 	
 
 }

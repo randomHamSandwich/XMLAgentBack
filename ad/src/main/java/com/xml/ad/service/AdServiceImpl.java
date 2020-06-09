@@ -74,7 +74,7 @@ public class AdServiceImpl implements AdService {
 		System.out.println("IN HERE, id: " + id);
 		System.out.println("===================================");
 		
-		return new AdDTO(adRepo.getOne(id));
+		return new AdDTO(adRepo.findById(id).get());
 	}
 
 //	@Override
