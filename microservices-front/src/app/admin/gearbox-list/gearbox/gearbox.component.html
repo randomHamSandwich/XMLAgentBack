@@ -1,0 +1,28 @@
+<p>gearbox works!</p>
+<!-- This component is used for updating GearboxType -->
+
+<div class="row col-sm-6" style="max-width:350px;">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <div class="form-group">
+            <label for="gearboxTypeName">Name:</label>
+            <input type="text" class="form-control" name="gearboxTypeName" [(ngModel)]="form.gearboxTypeName"
+                #gearboxTypeName="ngModel" required minlength="3" />
+            <div *ngIf="f.submitted && gearboxTypeName.invalid">
+                <div *ngIf="gearboxTypeName.errors.required">Gearbox name is required</div>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Update</button>
+            <div *ngIf="f.submitted && gearboxTypeName.invalid" class="alert alert-warning">
+                Submit failed!<br />{{errorMessage}}
+            </div>
+        </div>
+
+
+    </form>
+
+
+</div>

@@ -10,41 +10,41 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.xml.auts.model.Korisnik;
+import com.xml.auts.model.User;
 
 public class UserDetailsImpl implements UserDetails {
 	private Long id;
 	private String email;
 	@JsonIgnore
-	private String lozinka;
-	private String ulica;
-	private String brojUlice;
-	private String grad;
-	private String drzava;
-	private String brojTelefona;
+	private String password;
+	private String street;
+	private String streetNumber;
+	private String city;
+	private String country;
+	private String phoneNumber;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsImpl(Long id, String email, String lozinka, String ulica, String brojUlice, String grad,
-			String drzava, String brojTelefona, Collection<? extends GrantedAuthority> authorities) {
+	public UserDetailsImpl(Long id, String email, String password, String street, String streetNumber, String city,
+			String country, String phoneNumber, Collection<? extends GrantedAuthority> authorities) {
 		super();
 		this.id = id;
 		this.email = email;
-		this.lozinka = lozinka;
-		this.ulica = ulica;
-		this.brojUlice = brojUlice;
-		this.grad = grad;
-		this.drzava = drzava;
-		this.brojTelefona = brojTelefona;
+		this.password = password;
+		this.street = street;
+		this.streetNumber = streetNumber;
+		this.city = city;
+		this.country = country;
+		this.phoneNumber = phoneNumber;
 		this.authorities = authorities;
 	}
 
-	public static UserDetailsImpl build(Korisnik user) {
+	public static UserDetailsImpl build(User user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
-				.map(role -> new SimpleGrantedAuthority(role.getNazivRole().name())).collect(Collectors.toList());
+				.map(role -> new SimpleGrantedAuthority(role.getRoleName().name())).collect(Collectors.toList());
 
-		return new UserDetailsImpl(user.getIdKorisnik(), user.getEmail(), user.getLozinka(), user.getUlica(),
-				user.getBrojUlice(), user.getGrad(), user.getDrzava(), user.getBrojTelefona(), authorities);
+		return new UserDetailsImpl(user.getIdUser(), user.getEmail(), user.getPassword(), user.getStreet(),
+				user.getStreetNumber(), user.getCity(), user.getCountry(), user.getPhoneNumber(), authorities);
 
 	}
 
@@ -52,28 +52,24 @@ public class UserDetailsImpl implements UserDetails {
 		return id;
 	}
 
-	public String getLozinka() {
-		return lozinka;
+	public String getStreet() {
+		return street;
 	}
 
-	public String getUlica() {
-		return ulica;
+	public String getStreetNumber() {
+		return streetNumber;
 	}
 
-	public String getBrojUlice() {
-		return brojUlice;
+	public String getCity() {
+		return city;
 	}
 
-	public String getGrad() {
-		return grad;
+	public String getCountry() {
+		return country;
 	}
 
-	public String getDrzava() {
-		return drzava;
-	}
-
-	public String getBrojTelefona() {
-		return brojTelefona;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
 	public String getEmail() {
@@ -87,7 +83,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		return lozinka;
+		return password;
 	}
 
 	@Override

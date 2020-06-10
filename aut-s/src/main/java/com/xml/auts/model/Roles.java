@@ -2,6 +2,8 @@ package com.xml.auts.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,55 +14,60 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Version;
 
 @Entity
 public class Roles {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idRola;
+	private Long idRole;
 
 	@Enumerated(EnumType.STRING)
-	private RoleNaziv nazivRole;
+	private RoleName roleName;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "korisnik_role", joinColumns = @JoinColumn(name = "idRola"), inverseJoinColumns = @JoinColumn(name = "idKorisnik"))
-	private Set<Korisnik> korisnici;
+	@ManyToMany(fetch = FetchType.EAGER ,cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "idRole"), inverseJoinColumns = @JoinColumn(name = "idUser"))
+	private Set<User> users;
+	
+    @Version
+    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
+    private int version;
 
 	public Roles() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Roles(Long idRola, RoleNaziv nazivRole, Set<Korisnik> korisnici) {
+	public Roles(Long idRole, RoleName roleName, Set<User> users) {
 		super();
-		this.idRola = idRola;
-		this.nazivRole = nazivRole;
-		this.korisnici = korisnici;
+		this.idRole = idRole;
+		this.roleName = roleName;
+		this.users = users;
 	}
 
-	public Long getIdRola() {
-		return idRola;
+	public Long getIdRole() {
+		return idRole;
 	}
 
-	public void setIdRola(Long idRola) {
-		this.idRola = idRola;
+	public void setIdRole(Long idRole) {
+		this.idRole = idRole;
 	}
 
-	public RoleNaziv getNazivRole() {
-		return nazivRole;
+	public RoleName getRoleName() {
+		return roleName;
 	}
 
-	public void setNazivRole(RoleNaziv nazivRole) {
-		this.nazivRole = nazivRole;
+	public void setRoleName(RoleName roleName) {
+		this.roleName = roleName;
 	}
 
-	public Set<Korisnik> getKorisnici() {
-		return korisnici;
+	public Set<User> getUsers() {
+		return users;
 	}
 
-	public void setKorisnici(Set<Korisnik> korisnici) {
-		this.korisnici = korisnici;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 }

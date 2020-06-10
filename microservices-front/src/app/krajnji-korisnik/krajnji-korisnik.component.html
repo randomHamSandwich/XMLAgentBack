@@ -1,0 +1,17 @@
+<p>krajnji-korisnik works!</p>
+<div *ngIf="korisnik; else noInfo">
+    <p>Email: {{korisnik.email}}</p>
+    <p>city: {{korisnik.city}}</p>
+
+    <p>Street: {{korisnik.street}}</p>
+    <p>Street Number: {{korisnik.streetNumber}}</p>
+    <p>Country: {{korisnik.country}}</p>
+    <p>Phone number: {{korisnik.phoneNumber}}</p>
+
+</div>
+
+
+
+<ng-template #noInfo>
+    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+</ng-template>

@@ -25,17 +25,15 @@ import com.xml.auts.message.request.LoginForm;
 import com.xml.auts.message.request.SignUpForm;
 import com.xml.auts.message.response.JwtResponse;
 import com.xml.auts.message.response.ResponseMessage;
-import com.xml.auts.model.KrajnjiKorisnik;
-import com.xml.auts.model.RoleNaziv;
+import com.xml.auts.model.EndUser;
+import com.xml.auts.model.RoleName;
 import com.xml.auts.model.Roles;
-import com.xml.auts.model.StatusKorisnika;
-import com.xml.auts.repository.KorisnikRepo;
+import com.xml.auts.model.StatusUser;
 import com.xml.auts.repository.RolesRepo;
+import com.xml.auts.repository.UserRepo;
 import com.xml.auts.security.jwt.JwtProvider;
 import com.xml.auts.security.service.UserDetailsImpl;
-import com.xml.auts.service.KorisnikService;
-
-
+import com.xml.auts.service.UserService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -46,10 +44,10 @@ public class AuthController {
 // TODO PROMENI U KORISNIK SERVICE I REPO SERVICE
 
 	@Autowired
-	KorisnikRepo userRepository;
+	UserRepo userRepository;
 
 	@Autowired
-	KorisnikService korisnikService;
+	UserService korisnikService;
 
 	@Autowired
 	RolesRepo roleRepository;
@@ -60,6 +58,9 @@ public class AuthController {
 	@Autowired
 	JwtProvider jwtProvider;
 
+//	@Autowired
+//	EmailService emailService;
+
 	@Autowired
 	private Environment env;
 
@@ -68,27 +69,25 @@ public class AuthController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
-		
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-		
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+
 		String jwt = jwtProvider.generateJwtToken(authentication);
+
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		
 
 		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities(),
 				String.valueOf(((UserDetailsImpl) authentication.getPrincipal()).getId())));
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
+	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) throws InterruptedException {
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already taken!"), HttpStatus.BAD_REQUEST);
 		}
-
 
 //		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
 //			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
@@ -96,42 +95,42 @@ public class AuthController {
 //		}
 
 		// Creating user's account
-		KrajnjiKorisnik user = new KrajnjiKorisnik();
+		EndUser user = new EndUser();
 		user.setEmail(signUpRequest.getEmail());
-		user.setBrojTelefona(signUpRequest.getBrojTelefona());
-		user.setBrojUlice(signUpRequest.getBrojUlice());
-		user.setDrzava(signUpRequest.getDrzava());
-		user.setGrad(signUpRequest.getGrad());
-		user.setUlica(signUpRequest.getUlica());
-		user.setStatus(StatusKorisnika.ACTIVE);
-		user.setLozinka(encoder.encode(signUpRequest.getPassword()));
+		user.setPhoneNumber(signUpRequest.getBrojTelefona());
+		user.setStreetNumber(signUpRequest.getBrojUlice());
+		user.setCountry(signUpRequest.getDrzava());
+		user.setCity(signUpRequest.getGrad());
+		user.setStreet(signUpRequest.getUlica());
+		user.setStatus(StatusUser.ACTIVE);
+		user.setPassword(encoder.encode(signUpRequest.getPassword()));
 
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Roles> roles = new HashSet<>();
 
 		strRoles.forEach(role -> {
 			switch (role) {
-			case "ad":
-				Roles adminRole = roleRepository.findByNazivRole(RoleNaziv.ADMIN)
+			case "admin":
+				Roles adminRole = roleRepository.findByRoleName(RoleName.ADMIN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(adminRole);
 				break;
-			case "ag":
-				Roles lekarRole = roleRepository.findByNazivRole(RoleNaziv.AGENT)
+			case "agent":
+				Roles lekarRole = roleRepository.findByRoleName(RoleName.AGENT)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(lekarRole);
 
-			case "kop":
-				Roles medicinskaSestraROle = roleRepository.findByNazivRole(RoleNaziv.KORISNIK_OGRANI_PRISTUP)
+			case "end_user_limited_access":
+				Roles medicinskaSestraROle = roleRepository.findByRoleName(RoleName.END_USER_LIMITED_ACCESS)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(medicinskaSestraROle);
-			case "kz":
-				Roles administratorKlinickogCentraRole = roleRepository.findByNazivRole(RoleNaziv.KORISNIK_ZABRANJEN)
+			case "end_user_forbidden":
+				Roles administratorKlinickogCentraRole = roleRepository.findByRoleName(RoleName.END_USER_FORBIDDEN)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(administratorKlinickogCentraRole);
 
-			default:
-				Roles userRole = roleRepository.findByNazivRole(RoleNaziv.KORISNIK)
+			case "end_user":
+				Roles userRole = roleRepository.findByRoleName(RoleName.END_USER)
 						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
 				roles.add(userRole);
 			}
@@ -139,6 +138,13 @@ public class AuthController {
 		user.setRoles(roles);
 
 		korisnikService.save(user);
+
+//		try {
+//			emailService.sendSuccessfulRegistrationMail(user);
+//		} catch (MailException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 		return new ResponseEntity<>(new ResponseMessage("Activate account on your mail!"), HttpStatus.OK);
 	}

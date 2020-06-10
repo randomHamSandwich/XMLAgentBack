@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row col-sm-6" style="max-width:500px;">
+        <div *ngIf="!isAdd">   
+            <button class="btn btn-success" (click)="onPricelistAdd()">Add new pricelist</button>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Price per day: </th>
+                        <th scope="col">Price for extra km: </th>
+        
+                    </tr>
+                </thead>
+        
+                <tbody *ngFor="let p of pricelists | async ; let i = index;">
+        
+                    <tr>
+                        <th scope="row">{{i+1}}</th>
+                        <th scope="row">{{p.priceForOneDay}}</th>
+                        <th scope="row">{{p.priceForKM}}</th>
+                    </tr>
+                </tbody>
+            </table>      
+        </div>
+        <div *ngIf="isAdd">
+            <app-pricelist-create> </app-pricelist-create>
+        
+        </div>
+ </div>
+</div>
