@@ -28,7 +28,9 @@ public class Ad {
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private Integer version;
-	
+    
+    
+//    INSERT INTO ad(end_date, start_date, id_price_list) VALUES ('2025-01-11 01:00:00', '2023-06-14 04:00:00', 1);
 
 //	@ManyToMany(fetch = FetchType.LAZY)
 //	@JoinTable(name = "user_request_ad", joinColumns = @JoinColumn(name = "id_ad"), inverseJoinColumns = @JoinColumn(name = "id_user_request"))

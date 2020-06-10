@@ -41,8 +41,8 @@ public class AuthFilter extends ZuulFilter {
     @Override
     public Object run() {
 
-//        RequestContext ctx = RequestContext.getCurrentContext();
-//        HttpServletRequest request = ctx.getRequest();
+        RequestContext ctx = RequestContext.getCurrentContext();
+        HttpServletRequest request = ctx.getRequest();
 //
 //        if (request.getHeader("email") == null) {
 //            return null;

@@ -1,19 +1,46 @@
 <div class="container">
     <div class="row col-sm-6" style="max-width:500px;">
-        <h1>My cart:</h1>
-
-
-       
-        <div>   
-            <button class="btn btn-danger">Send request</button>
-        </div>
-
-            <button class="btn btn-danger">Delete</button>  
-
         <div>
-            <button class="btn btn-info" (click)="onBack()">Back</button>
-        </div>
+            <h1>My cart:</h1>
+
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr>
+                     <th scope="col">#</th>
+                     <th scope="col">Car brand: </th>
+                     <th scope="col">Car model: </th>
+                     <th scope="col">Start date: </th>
+                     <th scope="col">Return date: </th>
+                     <th scope="col">Price per day: </th>
+                     <th scope="col">Discount: </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor= "let c of cartItems; index as i">
+                    <th scope="row">{{ i + 1}}</th>
+                    <!-- <td>{{cartItem.id}}</td> -->
+                    <td>{{c.carBrand}}</td>
+                    <td>{{c.carModel}}</td>
+                    <td>{{c.startDate}}</td>
+                    <td>{{c.endDate}}</td>
+                    <td>{{c.priceDay}}</td>
+                    <td>{{c.discount}}</td>
+                       
+                    <button class="btn btn-success">Send request</button>
+                    <button class="btn btn-danger">Delete</button>  
             
-        
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <div>
+                <button class="btn btn-info" (click)="onBack()">Back</button>
+            </div>
+
+         </div>
+                  
     </div>
 </div>
