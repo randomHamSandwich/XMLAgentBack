@@ -14,7 +14,8 @@ import { RoleDTO } from '../admin/change-authoriy/RoleDTO';
 export class KorisnikService {
 
 
-  private korisnikUrl = 'http://localhost:8080/api/user';
+  private korisnikUrl = 'http://localhost:8083/aut-s/user';
+  // private korisnikUrl = 'http://localhost:8080/api/user';
 
   
   changeRole( idUser : string, info: any): Observable<any>  {
