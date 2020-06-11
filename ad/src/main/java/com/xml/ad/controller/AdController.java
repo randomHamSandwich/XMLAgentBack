@@ -17,7 +17,8 @@ import com.xml.ad.service.AdService;
 // TODO remove "api"
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "api")
+//@RequestMapping(value = "api")
+@RequestMapping()
 public class AdController {
 
 	@Autowired

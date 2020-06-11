@@ -8,6 +8,7 @@ services:
     tty: true
 
   ad:
+  
     build: ./ad
     ports:
     - "8081:8081"
@@ -16,7 +17,22 @@ services:
     tty: true
     depends_on:
       - eureka-serviceregistry
+      
+      
 
+
+
+
+  aut-s:
+    build: ./aut-s
+    ports:
+    - "8082:8082"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
+  
   zuul:
     build: ./Zuul
     ports:
@@ -30,7 +46,7 @@ services:
 
   docker-mysql:
     restart: always
-    container_name: docker-mysql
+    container_name: docker-mysql-ad-service
     image: mysql
     environment:
       MYSQL_DATABASE: ad_db
@@ -48,5 +64,23 @@ services:
       timeout: 20s
       retries: 10
   
+  docker-mysql-aut-s:
+    restart: always
+    container_name: docker-mysql-aut-service
+    image: mysql
+    environment:
+      MYSQL_DATABASE: aut_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
 
+    volumes:
+
+      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "52001:3306"
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root--execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
   

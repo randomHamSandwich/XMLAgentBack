@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class AuthFilter extends ZuulFilter {
 
-    @Autowired
-    private AuthClient authClient;
+//    @Autowired
+//    private AuthClient authClient;
 
     @Override
     public String filterType() {

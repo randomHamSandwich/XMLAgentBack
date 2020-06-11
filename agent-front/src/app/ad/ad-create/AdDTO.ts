@@ -8,7 +8,7 @@ export class AdDTO {
     discount: string;
     car: string;
     endUser: string
-    
+
     constructor() {
         this.idAd = "";
         this.startDate = "";
@@ -20,4 +20,7 @@ export class AdDTO {
         this.car = "";
         this.endUser = "";
     }
+
+
+
 }

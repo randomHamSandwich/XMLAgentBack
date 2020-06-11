@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("AGENT")
-public class Agent extends Korisnik{
+public class Agent extends User{
 	
 //	@OneToMany(mappedBy = "agent", cascade = CascadeType.ALL)
 //	private Set<Cenovnik> cenovnici;

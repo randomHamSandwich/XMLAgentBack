@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AdService } from 'src/app/services/ad.service';
 import { CarService } from 'src/app/services/car.service';
 import { AdDTO } from '../ad-create/AdDTO';
+import { CartStorageService } from 'src/app/services/cart-storage.service';
 
 @Component({
   selector: 'app-ad-details',
@@ -24,7 +25,8 @@ export class AdDetailsComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private adService: AdService,
-              private carService: CarService) { }
+              private carService: CarService,
+              private cartStorageService : CartStorageService) { }
 
   ngOnInit() {
     this.adId = this.route.snapshot.params['idAd'];
@@ -63,13 +65,19 @@ export class AdDetailsComponent implements OnInit {
   onAddToCart() {
     this.startTime = this.form.startDateTime;
     this.endTime = this.form.endDateTime;
-
-    //console.log("startno vreme: " + this.startTime);
-    //console.log("krajnje vreme: " + this.endTime);
+    console.log(" ad dateil ad j e " + this.ad.idAd);
+    
+    // this.cartStorageService.addCartDTO(this.ad);
+    this.cartStorageService.addCartAdId(this.ad);
     
   }
 
   onBack() {
     this.router.navigate(['/']);
+  }
+
+
+  emptyCart(){
+    this.cartStorageService.emptyCart();
   }
 }

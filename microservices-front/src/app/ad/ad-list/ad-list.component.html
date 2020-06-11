@@ -1,0 +1,84 @@
+<form name="form" (ngSubmit)="f.form.valid && onSearch()" #f="ngForm" required>
+
+    <div class="row">
+
+
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+            <div class="input-group">
+                <label for="city">city:</label>
+                <input type="text" class="form-control" name="city" [(ngModel)]="form.city" #city="ngModel" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+            <div class="input-group">
+                <label for="startDateTime">startDateTime:</label>
+                <input type="datetime-local" class="form-control" name="startDateTime" [(ngModel)]="form.startDateTime"
+                    #startDateTime="ngModel" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 ">
+            <div class="input-group">
+                <label for="endDateTime">endDateTime:</label>
+                <input type="datetime-local" class="form-control" name="endDateTime" [(ngModel)]="form.endDateTime"
+                    #endDateTime="ngModel" />
+            </div>
+        </div>
+
+    </div>
+
+
+    <br>
+    <div class="form-group">
+        <button class="btn btn-primary">Search</button>
+
+    </div>
+</form>
+<br><br><br><br>
+
+<div class="container">
+    <div class="row col-sm-8" style="max-width:900px;">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Available from: </th>
+                    <th scope="col">Available to: </th>
+                    <th scope="col">Car: </th>
+                    <th scope="col">Car location: </th>
+                    <th scope="col">Price per day: </th>
+                </tr>
+            </thead>
+
+            <tbody *ngFor="let a of ads | async ; let i = index;">
+
+                <tr>
+                    <th scope="row">{{i+1}}</th>
+                    <th scope="row">{{a.startDate | date:"dd/MM/yyy HH:mm"}}</th>
+                    <th scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</th>
+
+                    <ng-container *ngFor="let c of cars">
+                        <th *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.carBrand}} {{c.carModel}}</th>
+                        <th *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.city}} {{c.country}}</th>
+                    </ng-container>
+                    <ng-container *ngFor="let p of pricelists">
+                        <th *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</th>
+                    </ng-container>
+                    
+                    <th scope="row"> <button class="btn btn-info" routerLink="/ad-details/{{a.idAd}}"> Reserve </button></th>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-danger" (click)="onBack()">Back</button>
+    </div>
+</div>
