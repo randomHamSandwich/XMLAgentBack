@@ -1,0 +1,16 @@
+package com.xml.auts.model;
+
+public enum RoleName {
+	END_USER,
+	END_USER_FORBIDDEN,
+	END_USER_LIMITED_ACCESS,
+	ADMIN,
+	AGENT
+	
+//	KORISNIK, 
+//	KORISNIK_ZABRANJEN,
+//	KORISNIK_OGRANI_PRISTUP,
+//	ADMIN, 
+//	AGENT,
+	
+}

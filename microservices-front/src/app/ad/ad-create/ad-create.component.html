@@ -1,0 +1,38 @@
+<div class="container">
+<div class="row col-sm-6" style="max-width:350px;">    
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="startDate">Car is available from: </label>
+            <input type="date" class="form-control" name="startDate" [(ngModel)]="form.startDate"
+                #startDate="ngModel" required>
+        </div>
+        <div class="form-group">
+            <label for="endDate">Car is available until: </label>
+            <input type="date" class="form-control" name="endDate" [(ngModel)]="form.endDate"
+                #endDate="ngModel" required>
+        </div>
+
+        <div class="form-group">
+            <label for="car">Car: </label>
+            <select class="form-control"  id="car" required [(ngModel)]="form.car" name="car">
+                <option *ngFor="let c of cars" [value]="c.idCar">{{ c.carBrand }} {{c.carModel}}</option>
+             </select>
+        </div>
+
+        <div class="form-group">
+            <label for="pricelist">Pricelist: </label>
+            <select class="form-control"  id="pricelist" required [(ngModel)]="form.pricelist" name="pricelist">
+                <option *ngFor="let p of pricelists" [value]="p.pricelistId">Dnevna cena: {{ p.pricelistId }}, dodatni km: {{p.priceForKM}}</option>
+             </select>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Create ad</button>
+        </div>
+        <div *ngIf="f.submitted && !f.valid" class="alert alert-warning">
+            Submit failed!<br />{{errorMessage}}
+        </div>
+    </form>
+    <button class="btn btn-danger" routerLink="/ads-dashboard" novalidate>Back</button>
+</div>
+</div>

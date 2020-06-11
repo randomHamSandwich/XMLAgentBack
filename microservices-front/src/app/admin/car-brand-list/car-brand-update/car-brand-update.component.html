@@ -1,0 +1,27 @@
+<p>car-brand-update works!</p>
+
+<div class="row col-sm-6" style="max-width:350px;">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <div class="form-group">
+            <label for="carBrandName">Name:</label>
+            <input type="text" class="form-control" name="carBrandName" [(ngModel)]="form.carBrandName"
+                #carBrandName="ngModel" required minlength="3" />
+            <div *ngIf="f.submitted && carBrandName.invalid">
+                <div *ngIf="carBrandName.errors.required">CarBrand name is required</div>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Add</button>
+            <div *ngIf="f.submitted && carBrandName.invalid" class="alert alert-warning">
+                Submit failed!<br />{{errorMessage}}
+            </div>
+        </div>
+
+
+    </form>
+
+
+</div>

@@ -31,6 +31,7 @@ export class CarCreateComponent implements OnInit {
   childrenSeats: number;
   user: number;
   registrationPlate: string;
+  userIdFromToken: number;
 
   errorMessage: any;
   submitted = false;
@@ -41,7 +42,8 @@ export class CarCreateComponent implements OnInit {
           private carModelService: CarModelService,
           private carClassService: CarClassService,
           private gearboxTypeService: GearboxService, 
-          private fuelTypeService: FuelTypeService) {}
+          private fuelTypeService: FuelTypeService,
+          private token: TokenStorageService) {}
 
   ngOnInit() {
     this.getAllCarBrands();
@@ -49,6 +51,7 @@ export class CarCreateComponent implements OnInit {
     this.getAllCarClasses();
     this.getAllgearboxTypes();
     this.getAllFuelTypes();
+    this.userIdFromToken = parseInt(this.token.getIdKorisnik()) ;
   }
 
   getAllCarBrands() {
@@ -133,7 +136,7 @@ export class CarCreateComponent implements OnInit {
     this.newCar.cdw = this.form.cdw;
     this.newCar.childrenSeats = this.form.childrenSeats;
     this.newCar.registrationPlate = this.form.registrationPlate;
-    this.newCar.user = 3;  
+    this.newCar.user = this.userIdFromToken;  
 
     this.carService.createNewCar(this.newCar).subscribe(
       data => {

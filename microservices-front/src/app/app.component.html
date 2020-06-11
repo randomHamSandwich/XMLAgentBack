@@ -1,0 +1,57 @@
+<div class="container-fluid bg-primary">microservices  front </div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid bg-primary">
+      <ul class="nav navbar-nav bg-primary" routerLinkActive="active">
+        <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
+        
+        <li *ngIf="!authority" class="nav-item">
+          <a class="nav-link" routerLink="auth/login">Login</a>
+        </li>
+
+        <!--End user-->
+
+        <li *ngIf="authority ==='end_user'" class="nav-item">
+          <a class="nav-link" routerLink="carList">Cars</a>
+        </li>
+        <li *ngIf="authority ==='end_user'" class="nav-item">
+          <a class="nav-link" routerLink="ads">Ads</a>
+        </li>
+        <li *ngIf="authority ==='end_user'" class="nav-item">
+          <a class="nav-link" routerLink="ads-dashboard">Ads dashboard</a>
+        </li>
+        <li *ngIf="authority ==='end_user'" class="nav-item">
+          <a class="nav-link" routerLink="cart-list">Cart</a>
+        </li>
+        
+        <!--Admin-->
+
+        <li *ngIf="authority ==='admin'" class="nav-item">
+          <a class="nav-link" routerLink="users">Users</a>
+        </li>
+      
+        <li *ngIf="authority ==='admin'" class="nav-item">
+          <a class="nav-link" routerLink="gearbox">Gearbox</a>
+        </li>
+
+        <li *ngIf="authority ==='admin'" class="nav-item">
+          <a class="nav-link" routerLink="fueltype">Fueltype</a>
+        </li>
+
+        <li *ngIf="authority ==='admin'" class="nav-item">
+          <a class="nav-link" routerLink="carclass">CarClass</a>
+        </li>
+        
+        <li *ngIf="authority ==='admin'" class="nav-item">
+          <a class="nav-link" routerLink="carbrand">CarBrand</a>
+        </li>
+
+        <li *ngIf="authority ==='admin'" class="nav-item">
+          <a class="nav-link" routerLink="carmodel">CarModel</a>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
