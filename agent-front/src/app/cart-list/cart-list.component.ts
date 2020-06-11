@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CartStorageService } from '../services/cart-storage.service';
 import { AdDTO } from '../ad/ad-create/AdDTO';
 import { AdService } from '../services/ad.service';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-cart-list',
@@ -14,9 +15,10 @@ import { AdService } from '../services/ad.service';
 export class CartListComponent implements OnInit {
 
   adItemsSource: AdDTO[] = [];
+  tempAd: AdDTO = new AdDTO(); 
+
   cartItems: CartItemDTO[] = [];
   cartItemSessions: CartItemDTO[] = [];
- 
 
   constructor(
     private adService: AdService,
@@ -26,18 +28,16 @@ export class CartListComponent implements OnInit {
   ngOnInit() {
 
     this.populateData();
-    this.retrieveSessionData();
-
   }
 
   populateData() {
-
     let ids = this.cartStorageService.getCartAdIds();
     ids.forEach( id => {
-      this.adService.getAdById(id).subscribe(
+      this.adService.getAdById(parseInt(id)).subscribe(
         data => {
-          let ad = data;
-          this.adItemsSource.push(ad);
+         this.tempAd = data;
+         //console.log("Attempted adding AdDTO with ID: " + this.tempAd.idAd + ". Car: " + this.tempAd.car);
+         console.log("Data fetched type: " + typeof(data));
         },
         error => {
           {
@@ -45,6 +45,7 @@ export class CartListComponent implements OnInit {
           }
         }
       )
+      this.adItemsSource.push(this.tempAd);
     });
 
     // this.cartItemSessions.push(new CartItemDTO(1, "Toyota", "Corolla","10-12-2020","15-12-2020", 15, 5));
@@ -55,13 +56,6 @@ export class CartListComponent implements OnInit {
     // this.cartItemSessions.push(new CartItemDTO(6, "Mitsubishi", "Evo","25-10-2020","05-11-2020", 17, 12));
    
     // sessionStorage.setItem("cart", JSON.stringify(this.cartItemSessions));
-    
-  }
-
-  retrieveSessionData() {
-
-    this.cartItems = JSON.parse(sessionStorage.getItem("cart"));
-
   }
 
   onBack() {

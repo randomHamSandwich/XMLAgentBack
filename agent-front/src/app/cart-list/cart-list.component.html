@@ -8,7 +8,7 @@
                 <thead>
                     <tr>
                      <th scope="col">#</th>
-                     <th scope="col">Car brand: </th>
+                     <!-- <th scope="col">Car brand: </th> -->
                      <th scope="col">Car model: </th>
                      <th scope="col">Start date: </th>
                      <th scope="col">Return date: </th>
@@ -18,18 +18,16 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor= "let a of adItemsSource; index as i">
-                    <th scope="row">{{ i + 1}}</th>
-                    <!-- <td>{{cartItem.id}}</td> -->
-                    <!-- <td>{{c.carBrand}}</td> -->
-                    <td>{{a.car}}</td>
-                    <td>{{a.startDate}}</td>
-                    <td>{{a.endDate}}</td>
-                    <td>{{a.priceForOneDay}}</td>
-                    <td>{{a.discount}}</td>
+                    <tr *ngFor= "let ad of adItemsSource; index as i">
+                      <th scope="row">{{ i + 1}}</th>
+                      <td>{{ad.car}}</td>
+                      <td>{{ad.startDate}}</td>
+                      <td>{{ad.endDate}}</td>
+                      <td>{{ad.priceForOneDay}}</td>
+                      <td>{{ad.discount}}</td>
                        
-                    <button class="btn btn-success">Send request</button>
-                    <button class="btn btn-danger">Delete</button>  
+                      <button class="btn btn-success">Send request</button>
+                      <button class="btn btn-danger">Delete</button>  
             
                     </tr>
                 </tbody>
