@@ -68,9 +68,15 @@ export class AdDetailsComponent implements OnInit {
     console.log(" ad dateil ad j e " + this.ad.idAd);
     
     // this.cartStorageService.addCartDTO(this.ad);
-    this.cartStorageService.addCartAdId(this.ad);
+    this.cartStorageService.addCartAdId(parseInt(this.ad.idAd));
     
   }
+
+  addToCart() {
+    this.cartStorageService.addCartAdId(this.adId);
+    this.router.navigate(["/cart-list"]);
+  }
+
 
   onBack() {
     this.router.navigate(['/']);

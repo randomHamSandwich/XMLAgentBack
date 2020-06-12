@@ -24,6 +24,7 @@ export class CartStorageService {
         window.sessionStorage.removeItem(SESSION_CART);
     }
 
+    //TODO refactor this service
     public getCartAdIds(): string[] {
         this.adIds = [];
 
@@ -38,18 +39,18 @@ export class CartStorageService {
     }
 
 
-    public addCartAdId(newAd: AdDTO) {
+    public addCartAdId(newAd: number) {
         this.getCartAdIds();
         this.isAdIdPresent= false;
         this.adIds.forEach((value, index)=> {
-            if(value===newAd.idAd){
-                this.isAdIdPresent =true;
+            if(parseInt(value) === newAd){
+                this.isAdIdPresent = true;
             }
             
         });
 
             if(!this.isAdIdPresent){
-                this.adIds.push(newAd.idAd);
+                this.adIds.push(newAd.toString());
             }
             
         
