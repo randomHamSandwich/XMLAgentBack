@@ -43,6 +43,12 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
+
+        console.log("token:_" + data.accessToken);
+        console.log("\nuserName:_"+ data.username);
+        console.log("\nidKorisnik:_"+ data.idUser+"\n");
+        console.log(this.tokenStorage.getAuthorities());
+
         this.reloadPage();
       },
       error => {

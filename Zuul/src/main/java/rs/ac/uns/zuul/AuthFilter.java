@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class AuthFilter extends ZuulFilter {
 
-//    @Autowired
-//    private AuthClient authClient;
+    @Autowired
+    private AuthClient authClient;
 
     @Override
     public String filterType() {
@@ -43,17 +43,19 @@ public class AuthFilter extends ZuulFilter {
 
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-//
-//        if (request.getHeader("email") == null) {
-//            return null;
-//        };
-//
-//        String email = request.getHeader("email");
+
+        if (request.getHeader("Authorization") == null) {
+            return null;
+        };
+
+//        String jwtToken= request.getHeader("Authorization");
+//        ctx.addZuulRequestHeader("Authorization", jwtToken);
+//        
 //        try {
-//            authClient.verify(email);
+//            authClient.verify(jwtToken);
 //
-//            ctx.addZuulRequestHeader("username", email);
-//            ctx.addZuulRequestHeader("role", "SIMPLE_USER");
+////            ctx.addZuulRequestHeader("username", email);
+////            ctx.addZuulRequestHeader("role", "SIMPLE_USER");
 //
 //        } catch (FeignException.NotFound e) {
 //            setFailedRequest("Consumer does not exist!", 403);

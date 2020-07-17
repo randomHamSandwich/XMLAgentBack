@@ -42,15 +42,22 @@ public class UserController {
 
 	@GetMapping(value = "/user/{id}")
 	@PreAuthorize("hasAuthority('END_USER')")
-	public ResponseEntity<?> getMyUserInfo(@PathVariable("id") Long id, @AuthenticationPrincipal UserDetailsImpl user) {
-		if (!user.getId().equals(id)) {
+//	public ResponseEntity<?> getMyUserInfo(@PathVariable("id") Long id, @AuthenticationPrincipal UserDetailsImpl user) {
+//		if (!user.getId().equals(id)) {
+//
+//			return new ResponseEntity<>(new ResponseMessage("You can only access your information"),
+//					HttpStatus.FORBIDDEN);
+//		}
+//		UserDTO userDTO = userService.getUserDTO(id);
+//		return new ResponseEntity<>(userDTO, HttpStatus.OK);
+//	}
+	
+	public ResponseEntity<?> getMyUserInfo(@PathVariable("id") Long id) {
 
-			return new ResponseEntity<>(new ResponseMessage("You can only access your information"),
-					HttpStatus.FORBIDDEN);
-		}
 		UserDTO userDTO = userService.getUserDTO(id);
 		return new ResponseEntity<>(userDTO, HttpStatus.OK);
 	}
+
 
 	@PostMapping(value = "/user", consumes = "application/json")
 	public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO KorisnikDTO) {
@@ -59,6 +66,10 @@ public class UserController {
 
 		return new ResponseEntity<>(newUser, HttpStatus.CREATED);
 	}
+	
+
+
+
 
 	/**
 	 * Change end user permissions to: END_USER, END_USER_FORBIDDEN,
