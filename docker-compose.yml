@@ -34,11 +34,13 @@ services:
       - eureka-serviceregistry
   
   zuul:
+
     build: ./Zuul
     ports:
     - "8083:8083"
     environment:
       - REGISTRY_HOST=eureka-serviceregistry
+
     tty: true
     depends_on:
       - eureka-serviceregistry
