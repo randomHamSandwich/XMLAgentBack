@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
@@ -44,6 +44,7 @@ import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartListComponent } from './cart-list/cart-list.component';
+import { CarDetailsComponent } from './car-details/car-details.component';
 
 
 
@@ -83,6 +84,7 @@ import { CartListComponent } from './cart-list/cart-list.component';
     PricelistCreateComponent,
     AdDetailsComponent,
     CartListComponent,
+    CarDetailsComponent,
 
 
   ],
@@ -92,7 +94,8 @@ import { CartListComponent } from './cart-list/cart-list.component';
     FormsModule,
     HttpClientModule,
     BsDatepickerModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SlickCarouselModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

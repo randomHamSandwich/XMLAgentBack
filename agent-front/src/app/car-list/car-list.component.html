@@ -1,4 +1,4 @@
-<div class="container">
+<div class="row">
     <div class="row col-sm-6" style="max-width:500px;">
         <div>
             <hr>
@@ -13,7 +13,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Car brand: </th>
                     <th scope="col">Car model: </th>
-                    <th scope="col">Gearbox type: </th>
+                    <!-- <th scope="col">Gearbox type: </th>
                     <th scope="col">Fuel type: </th>
                     <th scope="col">Car class: </th>
                     <th scope="col">Km: </th>
@@ -23,7 +23,7 @@
                     <th scope="col">Country: </th>
                     <th scope="col">City: </th>
                     <th scope="col">Street: </th>
-                    <th scope="col">Street number: </th>
+                    <th scope="col">Street number: </th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@
                     <th scope="row"> {{ i + 1}}</th>
                     <td>{{ c.carBrand }}</td>
                     <td>{{ c.carModel}}</td>
-                    <td>{{ c.gearboxType }}</td>
+                    <!-- <td>{{ c.gearboxType }}</td>
                     <td>{{ c.fuelType }}</td>
                     <td>{{ c.carClass }}</td>
                     <td>{{ c.km }}</td>
@@ -41,14 +41,17 @@
                     <td>{{ c.country }}</td>
                     <td>{{ c.city }}</td>
                     <td>{{ c.street }}</td>
-                    <td>{{ c.streetNumber }}</td>
+                    <td>{{ c.streetNumber }}</td> -->
                     <td><button class="btn btn-danger">Add to Cart</button></td>
-                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td><button class="btn btn-danger" (click)="onDetails(c)">Details</button></td>
                   </tr>
                 </tbody>
               </table>
           <button class="btn btn-info" (click)="onBack()">Back</button>
             
         </div>
+    </div>
+    <div class="row col-sm-6" style="max-width:500px;">
+        <app-car-details></app-car-details>
     </div>
 </div>
