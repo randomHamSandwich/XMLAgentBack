@@ -35,6 +35,9 @@ services:
   
   zuul:
 
+    
+    
+
     build: ./Zuul
     ports:
     - "8083:8083"
@@ -42,6 +45,7 @@ services:
       - REGISTRY_HOST=eureka-serviceregistry
 
     tty: true
+ 
     depends_on:
       - eureka-serviceregistry
       - ad

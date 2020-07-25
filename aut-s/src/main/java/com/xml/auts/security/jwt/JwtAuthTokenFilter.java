@@ -57,7 +57,10 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 	}
 
 	private String getJwt(HttpServletRequest request) {
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa \n  req:_" +request.getHeader("Authorization") );
+		System.out.println("getJWT \n  request Authorization header:_" +request.getHeader("Authorization") );
+		System.out.println("request.getServletPath():_" +request.getServletPath());
+		System.out.println("Mehtond:_"+ request.getMethod());
+		
 		Enumeration<String> headerNames = request.getHeaderNames();
 		System.out.println("---------------- all headers -------------");
 		while (headerNames.hasMoreElements()) {
