@@ -1,9 +1,7 @@
 package com.xml.auts.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.auts.dto.RoleDTO;
@@ -51,14 +48,14 @@ public class UserController {
 
 	@PostMapping("/verify")
     public ResponseEntity<?> verify(@RequestBody  String authorizationJWT) {
-        System.out.println("Verification invoked!");
+        System.out.println("in auth-s UserController Verification invoked!");
         
         
-        String authority =jtVerificationService.filter(authorizationJWT);
-        System.out.println("pppppppppppp authority:_" + authority);
+        ArrayList<String>authAndMail =jtVerificationService.filter(authorizationJWT);
+//        System.out.println("in auth-s UserController  /verify authority:_" + authority);
 //        
 //        return new ResponseEntity<>(this.consumerService.verify(email), HttpStatus.OK);
-		return new ResponseEntity<>(true, HttpStatus.OK);
+		return new ResponseEntity<>(authAndMail, HttpStatus.OK);
     }
 
 	@GetMapping(value = "/user")

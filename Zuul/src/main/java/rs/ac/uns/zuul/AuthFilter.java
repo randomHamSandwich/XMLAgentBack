@@ -1,5 +1,6 @@
 package rs.ac.uns.zuul;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,14 @@ public class AuthFilter extends ZuulFilter {
 //				authClient.verify(ctx.getRequest());
 				
 				System.out.println("passing authorization zuul filter " + ctx.getRequest().getHeader("authorization"));
-				authClient.verify(ctx.getRequest().getHeader("authorization"));
+				
+
+				ArrayList<String> authAndMail = authClient.verify(ctx.getRequest().getHeader("authorization"));
+				
+				System.out.println("Zuul AuthFilter user authority:_"+ authAndMail.get(0));
+				System.out.println("Zuul AuthFilter user username(we use email as username):_"  + authAndMail.get(1));
+	            ctx.addZuulRequestHeader("username", authAndMail.get(1));
+	            ctx.addZuulRequestHeader("role", authAndMail.get(0));
 				
 			} catch (Exception e) {
 				System.out.println("Verification error " + e);
@@ -76,3 +84,18 @@ public class AuthFilter extends ZuulFilter {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,7 @@
 package rs.ac.uns.zuul;
 
+import java.util.ArrayList;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -7,7 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface AuthClient {
 
 	@GetMapping("/verify")
-	boolean verify(String jwt);
+	ArrayList<String> verify(String jwt);
+
+//	@GetMapping("/verify")
+//	String verify(String jwt);
+//	
 
 //    @PostMapping("/verify")
 //    boolean verify(HttpServletRequest request);
