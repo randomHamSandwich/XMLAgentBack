@@ -14,11 +14,11 @@
                   </tr>
                   <tr>
                     <td><b>Price per day:</b></td>
-                    <td> {{ ad?.priceForOneDay }} </td>
+                    <td> {{ ad?.priceForOneDay }} € </td>
                   </tr>
                   <tr>
                     <td><b>Price per extra km:</b></td>
-                    <td> {{ ad?.priceForKM }} </td>
+                    <td> {{ ad?.priceForKM }} € </td>
                   </tr>
                   <ng-container *ngFor="let c of cars">
                     <ng-container *ngIf="c.idCar == ad.car">

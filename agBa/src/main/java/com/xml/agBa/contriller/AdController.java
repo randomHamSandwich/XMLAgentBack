@@ -1,8 +1,5 @@
 package com.xml.agBa.contriller;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.agBa.dto.AdDTO;
-import com.xml.agBa.dto.CarDTO;
-import com.xml.agBa.repository.CarRepo;
 import com.xml.agBa.service.AdService;
 
 @CrossOrigin(origins = "*")

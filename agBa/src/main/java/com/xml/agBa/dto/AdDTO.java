@@ -18,6 +18,7 @@ public class AdDTO {
 	public AdDTO() {
 		
 	}
+	
 
 	public AdDTO(Long idAd, String startDate, String endDate, Long pricelist, Double priceForOneDay, Double priceForKM,
 			String discount, Long car, Long endUser) {
@@ -31,7 +32,6 @@ public class AdDTO {
 		this.discount = discount;
 		this.car = car;
 		this.endUser = endUser;
-		
 	}
 
 	public AdDTO(Ad newAd) {
@@ -86,22 +86,6 @@ public class AdDTO {
 		this.car = car;
 	}
 
-	public Double getPriceForOneDay() {
-		return priceForOneDay;
-	}
-
-	public void setPriceForOneDay(Double priceForOneDay) {
-		this.priceForOneDay = priceForOneDay;
-	}
-
-	public Double getPriceForKM() {
-		return priceForKM;
-	}
-
-	public void setPriceForKM(Double priceForKM) {
-		this.priceForKM = priceForKM;
-	}
-
 	public String getDiscount() {
 		return discount;
 	}
@@ -116,5 +100,21 @@ public class AdDTO {
 
 	public void setEndUser(Long endUser) {
 		this.endUser = endUser;
+	}
+
+	public Double getPriceForOneDay() {
+		return priceForOneDay;
+	}
+
+	public void setPriceForOneDay(Double priceForOneDay) {
+		this.priceForOneDay = priceForOneDay;
+	}
+
+	public Double getPriceForKM() {
+		return priceForKM;
+	}
+
+	public void setPriceForKM(Double priceForKM) {
+		this.priceForKM = priceForKM;
 	}
 }
