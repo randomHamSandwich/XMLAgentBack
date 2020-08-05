@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DiscountDTO } from '../discount-create/DiscountDTO';
 import { Observable } from 'rxjs';
 import { DiscountService } from 'src/app/services/discount.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-discount-list',
@@ -14,17 +15,18 @@ export class DiscountListComponent implements OnInit {
   discounts: Observable<DiscountDTO[]>
 
   isAdd = false;
+  userId: number;
 
   constructor(private discountService: DiscountService,
+              private tokenService: TokenStorageService,
               private router: Router) { }
 
   ngOnInit() {
+    this.userId = +this.tokenService.getIdKorisnik();
     this.findAllDiscounts();
   }
 
-  findAllDiscounts() {
-    //console.log("in find all discounts");
-    
+  findAllDiscounts() {    
     this.discounts = this.discountService.getAllDiscounts();
 
   }

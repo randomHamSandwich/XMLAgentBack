@@ -17,11 +17,11 @@
                 <tbody *ngFor="let p of pricelists | async ; let i = index;">
                     <tr *ngIf="p.user == userId">
                         <th scope="row">{{i+1}}</th>
-                        <th scope="row">{{p.priceForOneDay}}</th>
-                        <th scope="row">{{p.priceForKM}}</th>
+                        <td scope="row">{{p.priceForOneDay}} €</td>
+                        <td scope="row">{{p.priceForKM}} €</td>
                         <ng-container *ngFor="let d of discounts" >
-                            <th *ngIf="d.idDiscount == p.discount" scope="row">{{ d.moreThanXDays }}</th>
-                            <th *ngIf="d.idDiscount == p.discount" scope="row">{{ d.discount }} %</th>
+                            <td *ngIf="d.idDiscount == p.discount" scope="row">{{ d.moreThanXDays }}</td>
+                            <td *ngIf="d.idDiscount == p.discount" scope="row">{{ d.discount }} %</td>
                         </ng-container>
                     </tr>
                 </tbody>

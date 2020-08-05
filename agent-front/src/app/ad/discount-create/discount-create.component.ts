@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DiscountDTO } from './DiscountDTO';
 import { DiscountService } from 'src/app/services/discount.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-discount-create',
@@ -11,8 +12,10 @@ import { DiscountService } from 'src/app/services/discount.service';
 export class DiscountCreateComponent implements OnInit {
   form: any = {};
   newDiscount = new DiscountDTO;
+  userId: number;
 
   constructor(private discountService: DiscountService,
+              private tokenService: TokenStorageService,
               private router: Router) {
 
   }
@@ -25,6 +28,7 @@ export class DiscountCreateComponent implements OnInit {
     this.newDiscount = new DiscountDTO();
     this.newDiscount.moreThanXDays = this.form.moreThanXDays;
     this.newDiscount.discount = this.form.discount;
+    this.newDiscount.user = + this.tokenService.getIdKorisnik(); 
 
     this.discountService.createNewDiscount(this.newDiscount).subscribe(
       data => {
