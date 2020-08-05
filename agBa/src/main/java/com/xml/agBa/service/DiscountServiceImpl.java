@@ -29,7 +29,7 @@ public class DiscountServiceImpl implements DiscountService {
 		List<Discount> discountList = discountRepo.findAll();
 		List<DiscountDTO> dDTO = new ArrayList<DiscountDTO>();
 		
-		for (Discount dTemp : discountList) {
+		for (Discount dTemp : discountList) {			
 			dDTO.add(new DiscountDTO(dTemp));
 		}
 		

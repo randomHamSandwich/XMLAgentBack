@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.PricelistDTO;
+import com.xml.agBa.model.Discount;
 import com.xml.agBa.model.Pricelist;
+import com.xml.agBa.model.User;
+import com.xml.agBa.repository.DiscountRepo;
 import com.xml.agBa.repository.PricelistRepo;
+import com.xml.agBa.repository.UserRepo;
 
 @Service
 @Transactional(readOnly = true)
@@ -17,11 +21,22 @@ public class PricelistServiceImpl implements PricelistService {
 	
 	@Autowired
 	private PricelistRepo pricelistRepo;
+	
+	@Autowired
+	private DiscountRepo discountRepo;
+	
+	@Autowired
+	private UserRepo userRepo;
 
 	@Override
 	@Transactional
 	public PricelistDTO createPricelist(PricelistDTO pricelistDTO) {
+		Discount discount = discountRepo.findById(pricelistDTO.getDiscount()).get();
+		User user = userRepo.findById(pricelistDTO.getUser()).get();
+		
 		Pricelist pricelist = new Pricelist(pricelistDTO);
+		pricelist.setDiscount(discount);
+		pricelist.setUser(user);
 		pricelist = pricelistRepo.save(pricelist);
 		
 		return new PricelistDTO(pricelist);

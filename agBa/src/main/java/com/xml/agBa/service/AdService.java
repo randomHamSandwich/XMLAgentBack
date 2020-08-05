@@ -3,7 +3,6 @@ package com.xml.agBa.service;
 import java.util.List;
 
 import com.xml.agBa.dto.AdDTO;
-import com.xml.agBa.dto.CarDTO;
 
 public interface AdService {
 

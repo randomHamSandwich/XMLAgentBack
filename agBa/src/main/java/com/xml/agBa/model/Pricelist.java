@@ -36,26 +36,28 @@ public class Pricelist {
 	@JoinColumn(name = "id_user", nullable = true)
 	private User user;
 
-	@OneToMany(mappedBy="priceList" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-	private Set<Discount> discounts;
+	//OneToMany(mappedBy="priceList" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	//private Set<Discount> discounts;
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	@JoinColumn(name = "id_discount", nullable = true)
+	private Discount discount;
 	
 	@OneToMany(mappedBy="priceList" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	private Set<Ad> ad;
 
 	public Pricelist() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Pricelist(Long idPriceList, Double priceForOneDay, Double priceForKM, int version, User user,
-			Set<Discount> discounts, Set<Ad> ad) {
+			Discount discount, Set<Ad> ad) {
 		super();
 		this.idPriceList = idPriceList;
 		this.priceForOneDay = priceForOneDay;
 		this.priceForKM = priceForKM;
 		this.version = version;
 		this.user = user;
-		this.discounts = discounts;
+		this.discount = discount;
 		this.ad = ad;
 	}
 
@@ -104,19 +106,19 @@ public class Pricelist {
 		this.user = user;
 	}
 
-	public Set<Discount> getDiscounts() {
-		return discounts;
-	}
-
-	public void setDiscounts(Set<Discount> discounts) {
-		this.discounts = discounts;
-	}
-
 	public Set<Ad> getAd() {
 		return ad;
 	}
 
 	public void setAd(Set<Ad> ad) {
 		this.ad = ad;
+	}
+
+	public Discount getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Discount discount) {
+		this.discount = discount;
 	}
 }

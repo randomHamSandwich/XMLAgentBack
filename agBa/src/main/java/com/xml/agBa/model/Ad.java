@@ -35,7 +35,6 @@ public class Ad {
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private Integer version;
 	
-
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_request_ad", joinColumns = @JoinColumn(name = "id_ad"), inverseJoinColumns = @JoinColumn(name = "id_user_request"))
 	private Set<UserRequest> userRequest;
