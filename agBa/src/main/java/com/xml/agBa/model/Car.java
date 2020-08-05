@@ -76,10 +76,13 @@ public class Car {
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
 	private Ad ad;
+	
+	@Column
+	private Boolean advertised;
 
 	public Car(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street,
 			String streetNumber, String city, String country, int version, CarBrand carBrand, CarClass carClass,
-			CarModel carModel, FuelType fuelType, GearboxType gearboxType, User user, Set<Report> reports, Ad ad, String registrationPlate) {
+			CarModel carModel, FuelType fuelType, GearboxType gearboxType, User user, Set<Report> reports, Ad ad, String registrationPlate, Boolean advertised) {
 		super();
 		this.idCar = idCar;
 		this.km = km;
@@ -100,6 +103,7 @@ public class Car {
 		this.reports = reports;
 		this.ad = ad;
 		this.registrationPlate = registrationPlate;
+		this.advertised = advertised;
 //		this.isdeleted = false;
 	}
 
@@ -258,6 +262,14 @@ public class Car {
 
 	public void setRegistrationPlate(String registrationPlate) {
 		this.registrationPlate = registrationPlate;
+	}
+
+	public Boolean getAdvertised() {
+		return advertised;
+	}
+
+	public void setAdvertised(Boolean advertised) {
+		this.advertised = advertised;
 	}
 
 //	public boolean isIsdeleted() {

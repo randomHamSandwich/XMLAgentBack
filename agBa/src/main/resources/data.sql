@@ -91,48 +91,48 @@ VALUES ('Manual', false);
 INSERT INTO gearbox_type (name, isdeleted)
 VALUES ('Automatic', false);
 
-INSERT INTO car (allowedkm, cdw, children_seats, city, country , km, registration_plate, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
-VALUES ('100', 1, '2', 'Tokyo', 'Japan', '19000', 'BG4561-TB', 'Tokugawa Blwd.', '1600', 
+INSERT INTO car (advertised, allowedkm, cdw, children_seats, city, country , km, registration_plate, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
+VALUES (1, '100', 1, '2', 'Tokyo', 'Japan', '19000', 'BG4561-TB', 'Tokugawa Blwd.', '1600', 
 ( SELECT id_car_brand FROM car_brand WHERE name ='Mitsubishi' ),
 ( SELECT id_car_class FROM car_class WHERE name ='SUV' ), 
 ( SELECT id_car_model FROM car_model WHERE name ='Pajero' ), 
 ( SELECT id_fuel_type FROM fuel_type WHERE name ='Gasoline' ),
 ( SELECT id_gearbox_type FROM gearbox_type WHERE name ='Manual' ));
 
-INSERT INTO car (allowedkm, cdw, children_seats, city, country , km, street, registration_plate, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
-VALUES ('120', 0, '1', 'Satsuma', 'Japan', '4000','IN12345-CZ',  'Emperor Meiji Str.', '20', 
+INSERT INTO car (advertised, allowedkm, cdw, children_seats, city, country , km, registration_plate, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
+VALUES (1, '120', 0, '1', 'Satsuma', 'Japan', '4000','IN12345-CZ',  'Emperor Meiji Str.', '20', 
 ( SELECT id_car_brand FROM car_brand WHERE name ='Honda' ),
 ( SELECT id_car_class FROM car_class WHERE name ='Sedan' ), 
 ( SELECT id_car_model FROM car_model WHERE name ='Accord' ), 
 ( SELECT id_fuel_type FROM fuel_type WHERE name ='Diesel' ),
 ( SELECT id_gearbox_type FROM gearbox_type WHERE name ='Automatic' ));
 
-INSERT INTO car (allowedkm, cdw, children_seats, city, country , km, street, registration_plate, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
-VALUES ('100', 1, '2', 'Yokohama', 'Japan', '109000', 'NS12345-AB', 'Shigurui Str.', '101', 
+INSERT INTO car (advertised, allowedkm, cdw, children_seats, city, country , km, registration_plate, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
+VALUES (1, '100', 1, '2', 'Yokohama', 'Japan', '109000', 'NS12345-AB', 'Shigurui Str.', '101', 
 ( SELECT id_car_brand FROM car_brand WHERE name ='Toyota' ),
 ( SELECT id_car_class FROM car_class WHERE name ='Sedan' ), 
 ( SELECT id_car_model FROM car_model WHERE name ='Corolla' ), 
 ( SELECT id_fuel_type FROM fuel_type WHERE name ='Gasoline' ),
 ( SELECT id_gearbox_type FROM gearbox_type WHERE name ='Manual' ));
 
-INSERT INTO car (allowedkm, cdw, children_seats, city, country , km, street, registration_plate, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
-VALUES ('200', 0, '0', 'NeoTokyo', 'Japan', '200000', 'BG12345-ZA', 'Belgrade Str.', '1389', 
+INSERT INTO car (advertised, allowedkm, cdw, children_seats, city, country , km,  registration_plate, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
+VALUES (0, '200', 0, '0', 'NeoTokyo', 'Japan', '200000', 'BG12345-ZA', 'Belgrade Str.', '1389', 
 ( SELECT id_car_brand FROM car_brand WHERE name ='Suzuki' ),
 ( SELECT id_car_class FROM car_class WHERE name ='Convertible' ), 
 ( SELECT id_car_model FROM car_model WHERE name ='Samurai' ), 
 ( SELECT id_fuel_type FROM fuel_type WHERE name ='TNG' ),
 ( SELECT id_gearbox_type FROM gearbox_type WHERE name ='Manual' ));
 
-INSERT INTO car (allowedkm, cdw, children_seats, city, country , km, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
-VALUES ('130', 1, '1', 'Nagoya', 'Japan', '3000', 'ShinShin Ave.', '203', 
+INSERT INTO car (advertised, allowedkm, cdw, children_seats, city, country , km,  registration_plate, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
+VALUES (0, '130', 1, '1', 'Nagoya', 'Japan', '3000', 'BG2589-AC','ShinShin Ave.', '203', 
 ( SELECT id_car_brand FROM car_brand WHERE name ='Suzuki' ),
 ( SELECT id_car_class FROM car_class WHERE name ='Sport' ), 
 ( SELECT id_car_model FROM car_model WHERE name ='Vitara' ), 
 ( SELECT id_fuel_type FROM fuel_type WHERE name ='Gasoline' ),
 ( SELECT id_gearbox_type FROM gearbox_type WHERE name ='Automatic' ));
 
-INSERT INTO car (allowedkm, cdw, children_seats, city, country , km, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
-VALUES ('300', 0, '0', 'Osaka', 'Japan', '999', 'DriftKings Str.', '2000', 
+INSERT INTO car (advertised, allowedkm, cdw, children_seats, city, country , km, registration_plate, street, street_number, id_car_brand, id_car_class, id_car_model, id_fuel_type, id_gearbox_type)
+VALUES (0, '300', 0, '0', 'Osaka', 'Japan', '999', 'BG8569-DS', 'DriftKings Str.', '2000', 
 ( SELECT id_car_brand FROM car_brand WHERE name ='Mitsubishi' ),
 ( SELECT id_car_class FROM car_class WHERE name ='Sport' ), 
 ( SELECT id_car_model FROM car_model WHERE name ='Evo' ), 
@@ -140,14 +140,16 @@ VALUES ('300', 0, '0', 'Osaka', 'Japan', '999', 'DriftKings Str.', '2000',
 ( SELECT id_gearbox_type FROM gearbox_type WHERE name ='Manual' ));
 
 INSERT INTO pricelist(price_forkm, price_for_one_day, id_discount, id_user) VALUES (10, 12, 1, 1);
-INSERT INTO pricelist(price_forkm, price_for_one_day, id_discount, id_user) VALUES (12, 11, 1, 1);
+INSERT INTO pricelist(price_forkm, price_for_one_day, id_discount, id_user) VALUES (12, 11, 2, 2);
 INSERT INTO pricelist(price_forkm, price_for_one_day, id_discount, id_user) VALUES (14, 12, 1, 1);
 
 INSERT INTO ad(end_date, start_date, id_car, id_user, id_price_list) VALUES ('2025-01-11 01:00:00', '2020-06-14 04:00:00', 1, 1, 1);
 INSERT INTO ad(end_date, start_date, id_car, id_user, id_price_list) VALUES ('2024-02-12 02:00:00', '2020-07-15 05:00:00', 3, 3, 1);
 INSERT INTO ad(end_date, start_date, id_car, id_user, id_price_list) VALUES ('2023-03-13 03:00:00', '2020-08-16 06:00:00', 2, 1, 1);
 
-INSERT INTO discount(discount, for_more_thanxdays, version) VALUES (5, 15, 0);
+INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (5, 15, 0, 1);
+INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (10, 30, 0, 2);
+INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (7, 18, 0, 1);
 
 insert into images (name, image_loc)
 values ('mitsubishi_pajero', '../agBa/images/mitsubishi-pajero.jpg');

@@ -7,7 +7,7 @@ export class AdDTO {
     priceForKM: string;
     discount: string;
     car: string;
-    endUser: string
+    user: number;
 
     constructor() {
         this.idAd = "";
@@ -18,9 +18,6 @@ export class AdDTO {
         this.priceForKM = "";
         this.discount = "";
         this.car = "";
-        this.endUser = "";
+        this.user = 0;
     }
-
-
-
 }

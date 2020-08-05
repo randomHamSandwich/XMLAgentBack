@@ -4,6 +4,7 @@ import { AdService } from 'src/app/services/ad.service';
 import { CarService } from 'src/app/services/car.service';
 import { PricelistService } from 'src/app/services/pricelist.service';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-ad-create',
@@ -20,12 +21,17 @@ export class AdCreateComponent implements OnInit {
   errorMessage: any;
   submitted = false ;
 
+  ads: any;
+  userId: number;
+
   constructor(private adService: AdService,
               private carService: CarService,
               private pricelistService: PricelistService,
+              private tokenService: TokenStorageService,
               private router: Router) { }
 
   ngOnInit() {
+    this.userId = +this.tokenService.getIdKorisnik();
     this.getAllCars();
     this.getAllPricelists();
   }
@@ -63,12 +69,7 @@ export class AdCreateComponent implements OnInit {
     this.newAd.endDate = this.form.endDate;
     this.newAd.pricelist = this.form.pricelist;
     this.newAd.car = this.form.car;
-
-    
-    console.log("pricelist: " + this.form.pricelist);
-    console.log("start date: " + this.form.startDate);
-    console.log("end date: " + this.form.endDate);
-    console.log("car: " + this.form.car);
+    this.newAd.user = this.userId;
     
     this.adService.createNewAd(this.newAd).subscribe(
       data => {
@@ -79,7 +80,7 @@ export class AdCreateComponent implements OnInit {
         console.log(error);
       }
     );
-      // window.location.reload();
+     window.location.reload();
   }
 
   goBack() {

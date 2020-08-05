@@ -59,8 +59,6 @@ public class AdController {
 			return new ResponseEntity<>(cDTO, HttpStatus.OK);
 			
 		}
-			
-
 	}
 
 	@GetMapping(value = "/ad/{id}")

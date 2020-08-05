@@ -13,7 +13,7 @@ public class AdDTO {
 	//private Set<String discount;
 	private Long car;
 	
-	private Long endUser;
+	private Long user;
 	
 	public AdDTO() {
 		
@@ -21,7 +21,7 @@ public class AdDTO {
 	
 
 	public AdDTO(Long idAd, String startDate, String endDate, Long pricelist, Double priceForOneDay, Double priceForKM,
-			Long car, Long endUser) {
+			Long car, Long user) {
 		super();
 		this.idAd = idAd;
 		this.startDate = startDate;
@@ -30,7 +30,7 @@ public class AdDTO {
 		this.priceForOneDay = priceForOneDay;
 		this.priceForKM = priceForKM;
 		this.car = car;
-		this.endUser = endUser;
+		this.user = user;
 	}
 
 	public AdDTO(Ad newAd) {
@@ -41,7 +41,7 @@ public class AdDTO {
 		this.priceForOneDay = newAd.getPriceList().getPriceForOneDay();
 		this.priceForKM = newAd.getPriceList().getPriceForKM();
 		this.car = newAd.getCar().getIdCar();
-		this.endUser = newAd.getEndUser().getIdUser();
+		this.user = newAd.getEndUser().getIdUser();
 	}
 
 	public Long getIdAd() {
@@ -84,13 +84,14 @@ public class AdDTO {
 		this.car = car;
 	}
 
-	public Long getEndUser() {
-		return endUser;
+	public Long getUser() {
+		return user;
 	}
 
-	public void setEndUser(Long endUser) {
-		this.endUser = endUser;
+	public void setUser(Long user) {
+		this.user = user;
 	}
+
 
 	public Double getPriceForOneDay() {
 		return priceForOneDay;

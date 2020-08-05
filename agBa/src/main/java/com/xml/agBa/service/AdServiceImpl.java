@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 import com.xml.agBa.dto.AdDTO;
 import com.xml.agBa.model.Ad;
 import com.xml.agBa.model.Car;
+import com.xml.agBa.model.EndUser;
 import com.xml.agBa.model.Pricelist;
 import com.xml.agBa.repository.AdRepo;
 import com.xml.agBa.repository.CarRepo;
+import com.xml.agBa.repository.EndUserRepo;
 import com.xml.agBa.repository.PricelistRepo;
 import com.xml.agBa.util.DateChecker;
 
@@ -29,6 +31,9 @@ public class AdServiceImpl implements AdService {
 	
 	@Autowired
 	private PricelistRepo pricelistRepo;
+	
+	@Autowired
+	private EndUserRepo endUserRepo;
 
 	@Override
 	public AdDTO createAd(AdDTO adDTO) {
@@ -46,6 +51,7 @@ public class AdServiceImpl implements AdService {
 	    Long pricelistID = Long.valueOf(adDTO.getPricelist());
 	    Pricelist pricelist = pricelistRepo.findById(pricelistID).get();
 	    
+	    EndUser user = (EndUser) endUserRepo.findById(adDTO.getUser()).get();
 	    
 		Ad newAd = new Ad();
 		
@@ -53,6 +59,7 @@ public class AdServiceImpl implements AdService {
 		newAd.setEndDate(edTemo_ldt);
 		newAd.setPriceList(pricelist);
 		newAd.setCar(car);
+		newAd.setEndUser(user);
 	
 		newAd = adRepo.save(newAd);
 		
@@ -74,13 +81,7 @@ public class AdServiceImpl implements AdService {
 	}
 
 	@Override
-	public AdDTO getAdById(Long id) {
-		// TODO Auto-generated method stub
-		
-		System.out.println("===================================");
-		System.out.println("IN HERE, id: " + id);
-		System.out.println("===================================");
-		
+	public AdDTO getAdById(Long id) {		
 		return new AdDTO(adRepo.getOne(id));
 	}
 

@@ -15,14 +15,18 @@
         <div class="form-group">
             <label for="car">Car: </label>
             <select class="form-control"  id="car" required [(ngModel)]="form.car" name="car">
-                <option *ngFor="let c of cars" [value]="c.idCar">{{ c.carBrand }} {{c.carModel}}</option>
+                <ng-container *ngFor="let c of cars">
+                    <option *ngIf="!c.advertised" [value]="c.idCar">{{ c.carBrand }} {{c.carModel}}</option>
+                </ng-container>
              </select>
         </div>
 
         <div class="form-group">
             <label for="pricelist">Pricelist: </label>
             <select class="form-control"  id="pricelist" required [(ngModel)]="form.pricelist" name="pricelist">
-                <option *ngFor="let p of pricelists" [value]="p.pricelistId">Dnevna cena: {{ p.pricelistId }}, dodatni km: {{p.priceForKM}}</option>
+                <ng-container *ngFor="let p of pricelists">
+                    <option *ngIf="p.user == userId" [value]="p.pricelistId">Dnevna cena: {{ p.pricelistId }}, dodatni km: {{p.priceForKM}}</option>
+                </ng-container>
              </select>
         </div>
 

@@ -31,7 +31,6 @@ export class AdService {
     return this.http.get(this.baseUrl, {params});
   }
 
-
   // searchAdd(city: string , startDateTime : string, endDateTime: string): Observable<any> {
   //   const params = new HttpParams().set('city', city).set('startDateTime', startDateTime).set('endDateTime', endDateTime);
   //   return this.http.get(this.baseUrl+'/search', {params} );

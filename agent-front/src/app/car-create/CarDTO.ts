@@ -7,6 +7,7 @@ export class CarDTO {
     carClass: string;
     fuelType: string;
     gearboxType: string;
+    advertised: boolean;
     km: number;
     allowedKM: number;
     childrenSeats: number;
@@ -25,6 +26,7 @@ export class CarDTO {
         this.carClass = "";
         this.fuelType = "";
         this.gearboxType = "";
+        this.advertised = false;
         this.km = 0;
         this.allowedKM = 0;
         this.childrenSeats = 0;
