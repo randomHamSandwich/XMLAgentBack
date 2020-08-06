@@ -25,8 +25,6 @@ export class DiscountService {
   }
 
   getAllDiscounts():Observable<any> {
-    console.log("in get all discounts service");
-    
     return this.http.get(this.baseUrl);
   }
 }

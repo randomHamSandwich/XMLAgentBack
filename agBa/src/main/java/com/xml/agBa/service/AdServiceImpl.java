@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.xml.agBa.dto.AdDTO;
 import com.xml.agBa.model.Ad;
 import com.xml.agBa.model.Car;
+import com.xml.agBa.model.CarClass;
 import com.xml.agBa.model.EndUser;
 import com.xml.agBa.model.Pricelist;
 import com.xml.agBa.repository.AdRepo;
@@ -133,6 +134,15 @@ public class AdServiceImpl implements AdService {
 		
 		
 		return adsDTO;
+	}
+
+	@Override
+	public Boolean deleteAd(Long id) {
+		Ad ad = adRepo.findById(id).get();
+		ad.setActive(false);
+		ad = adRepo.save(ad);
+		
+		return true;
 	}
 
 }

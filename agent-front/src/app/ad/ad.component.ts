@@ -21,6 +21,7 @@ export class AdComponent implements OnInit {
   userID: any;
 
   errorMessage: any;
+  isDeleted = false;
 
   constructor(private router: Router,
               private adService: AdService,
@@ -71,11 +72,24 @@ export class AdComponent implements OnInit {
 
   onAdAdd(): void {
     this.isAdd = !this.isAdd;
-    //console.log("isAdd: " + this.isAdd);
   }
 
   onReserve() {
     console.log("DAJ KALENDAR DA REZERVISEM SEBI HEHE");
+  }
+
+  onUpdate() {
+    console.log("update ad");
+    
+  }
+
+  onDelete(idAd: any) {
+    this.adService.deleteAd(idAd).subscribe(
+      data => {
+        this.isDeleted = true;
+        window.location.reload();
+      }
+    );
     
   }
 

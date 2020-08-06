@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,15 +75,12 @@ public class AdController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 	}
-
-//	@GetMapping(value = "/ad/search")
-//	@PreAuthorize("hasAuthority('END_USER')")
-//	public ResponseEntity<List<AdDTO>> getAllCarsFromACity(@RequestParam String city,
-//			@RequestParam String startDateTime, @RequestParam String endDateTime) {
-//
-//		List<AdDTO> cDTO = adService.search(city, startDateTime, endDateTime);
-//
-//		return new ResponseEntity<>(cDTO, HttpStatus.OK);
-//	}
-
+	
+	@DeleteMapping(value = "/ad/delete/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<Boolean> deleteAd(@PathVariable Long id) {
+		Boolean isDeleted = adService.deleteAd(id);
+		
+		return new ResponseEntity<Boolean>(isDeleted, HttpStatus.OK);
+	}
 }

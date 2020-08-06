@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { AdDTO } from '../ad/ad-create/AdDTO';
 import { Observable } from 'rxjs';
+import { LoginComponent } from '../login/login.component';
 //import { start } from 'repl';
 
 @Injectable({
@@ -24,6 +25,10 @@ export class AdService {
 
   updateAd() {
 
+  }
+
+  deleteAd(id: number) : Observable<any> {
+    return this.http.delete(this.baseUrl + '/delete/' + id);
   }
 
   getAllAds(city: string , startDateTime : string, endDateTime: string): Observable<any> {

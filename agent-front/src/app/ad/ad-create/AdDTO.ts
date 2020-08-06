@@ -8,6 +8,7 @@ export class AdDTO {
     discount: string;
     car: string;
     user: number;
+    active: boolean;
 
     constructor() {
         this.idAd = "";
@@ -19,5 +20,6 @@ export class AdDTO {
         this.discount = "";
         this.car = "";
         this.user = 0;
+        this.active = true;
     }
 }

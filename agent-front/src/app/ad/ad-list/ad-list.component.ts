@@ -31,7 +31,7 @@ export class AdListComponent implements OnInit {
     this.getAllPricelists();
   }
 
-  getAllAds(c: string , s: string, e:string) {
+  getAllAds(c: string , s: string, e:string) {    
     this.ads = this.adService.getAllAds(c, s, e);
   }
 

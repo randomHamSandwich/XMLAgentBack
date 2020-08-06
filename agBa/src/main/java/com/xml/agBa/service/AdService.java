@@ -14,5 +14,6 @@ public interface AdService {
 
 	List<AdDTO> search(String city, String startDateTime, String endDateTime);
 
+	Boolean deleteAd(Long id);
 
 }
