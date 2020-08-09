@@ -45,18 +45,30 @@ export class PricelistCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("submitted");
+    this.submitted = true;
+
     this.newPricelist = new PricelistDTO();
     this.newPricelist.priceForOneDay = this.form.priceForOneDay;
     this.newPricelist.priceForKM = this.form.priceForKM;
-    this.newPricelist.discount = this.form.discount;
+    this.newPricelist.discountId = this.form.discount;
     this.newPricelist.user = +this.userId;
     
-    this.pricelistService.createNewPricelist(this.newPricelist).subscribe();
+    this.pricelistService.createNewPricelist(this.newPricelist).subscribe(
+      data => {
+        //console.log("created");
+        this.isCreated = true;
+      },
+      error => {
+        this.isFailed = true;
+        console.log("error: " + error.error.message);
+      }
+    );
 
     window.location.reload();
   }
 
-  onBack(): void {
+  onCancel(): void {
     window.location.reload();
   }
 

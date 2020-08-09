@@ -29,9 +29,9 @@ public class PricelistServiceImpl implements PricelistService {
 	private UserRepo userRepo;
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = false)
 	public PricelistDTO createPricelist(PricelistDTO pricelistDTO) {
-		Discount discount = discountRepo.findById(pricelistDTO.getDiscount()).get();
+		Discount discount = discountRepo.findById(pricelistDTO.getDiscountId()).get();
 		User user = userRepo.findById(pricelistDTO.getUser()).get();
 		
 		Pricelist pricelist = new Pricelist(pricelistDTO);
