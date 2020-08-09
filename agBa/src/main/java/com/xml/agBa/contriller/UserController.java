@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xml.agBa.dto.EndUserDTO;
 import com.xml.agBa.dto.RoleDTO;
 import com.xml.agBa.dto.UserDTO;
 import com.xml.agBa.message.response.ResponseMessage;
+import com.xml.agBa.model.EndUser;
 import com.xml.agBa.security.service.UserDetailsImpl;
 import com.xml.agBa.service.UserService;
 
@@ -50,6 +52,18 @@ public class UserController {
 		UserDTO userDTO = userService.getUserDTO(id);
 		return new ResponseEntity<>(userDTO, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/user/enduser/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<?> getEndUserData(@PathVariable("id") Long id) {
+		EndUser user = userService.getEndUserData(id);
+		
+		if (user != null) {
+			EndUserDTO endUserDTO = new EndUserDTO(user);
+			return new ResponseEntity<>(endUserDTO, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 
 	@PostMapping(value = "/user", consumes = "application/json")
 	public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO KorisnikDTO) {
@@ -79,4 +93,6 @@ public class UserController {
 		
 		return new ResponseEntity<Boolean>(isDeleted, HttpStatus.OK);
 	}
+	
+	
 }

@@ -3,13 +3,16 @@
         <h4>Dashboard for creating new ads, pricelists and discounts!</h4>
 
         <div *ngIf="!isAdd">
-            <button class="btn btn-success" routerLink="/ad-create">Add new ad</button>
+            <ng-container *ngIf="endUserData.adsNumber != 3; else hideAdd">
+                <button class="btn btn-success" routerLink="/ad-create">Add new ad</button>
+            </ng-container>
         </div>
         <div *ngIf="isAdd">
             <app-ad-create></app-ad-create>
         <hr>
         </div>
         <hr>
+
         <h4>My pricelists:</h4>
         <hr>
         <app-pricelist-list></app-pricelist-list>
@@ -61,3 +64,7 @@
         <br><br>
     </div>
   </div>
+
+  <ng-template #hideAdd>
+      <h3>We're sorry, you already have 3 active ads. To create a new ad, please delete some of the existing ones.</h3>
+  </ng-template>

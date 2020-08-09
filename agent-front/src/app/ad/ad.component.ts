@@ -7,6 +7,8 @@ import { CarService } from '../services/car.service';
 import { CarDTO } from '../car-create/CarDTO';
 import { PricelistService } from '../services/pricelist.service';
 import { TokenStorageService } from '../auth/token-storage.service';
+import { KorisnikService } from '../services/korisnik.service';
+import { EndUser } from '../krajnji-korisnik/EndUserDTO';
 
 @Component({
   selector: 'app-ad',
@@ -23,17 +25,33 @@ export class AdComponent implements OnInit {
   errorMessage: any;
   isDeleted = false;
 
+  endUserData = new EndUser();
+
   constructor(private router: Router,
               private adService: AdService,
               private carService: CarService,
               private pricelistService: PricelistService,
-              private tokenStorageService: TokenStorageService) { }
+              private tokenStorageService: TokenStorageService,
+              private userService: KorisnikService) { }
 
   ngOnInit() {
     this.userID = this.tokenStorageService.getIdKorisnik();
+    this.getEndUserData();
     this.getAllAds();
     this.getAllCars();
     this.getAllPricelists();
+  }
+
+  getEndUserData() {
+    this.userService.getEndUserData(this.userID).subscribe(
+      data => {
+        this.endUserData = data;
+      },
+      error => {
+        console.log("Error: " + error.errorMessage);
+        
+      }
+    );
   }
 
   getAllAds() {

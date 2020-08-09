@@ -52,6 +52,8 @@ public class AdServiceImpl implements AdService {
 	    Pricelist pricelist = pricelistRepo.findById(pricelistID).get();
 	    
 	    EndUser user = (EndUser) endUserRepo.findById(adDTO.getUser()).get();
+	    Integer endUserAds = user.getAdsNumber();
+	    endUserAds = endUserAds + 1;
 	    
 		Ad newAd = new Ad();
 		
@@ -60,12 +62,14 @@ public class AdServiceImpl implements AdService {
 		newAd.setPriceList(pricelist);
 		newAd.setCar(car);
 		newAd.setEndUser(user);
+		newAd.setActive(true);
 	
 		newAd = adRepo.save(newAd);
 		
-		return new AdDTO(newAd);
+		user.setAdsNumber(endUserAds);
+		endUserRepo.save(user);
 		
-		
+		return new AdDTO(newAd);		
 	}
 
 	@Override
@@ -140,6 +144,12 @@ public class AdServiceImpl implements AdService {
 		Ad ad = adRepo.findById(id).get();
 		ad.setActive(false);
 		ad = adRepo.save(ad);
+		
+		EndUser endUser = ad.getEndUser();
+		Integer adsNumber = endUser.getAdsNumber();
+		adsNumber = adsNumber - 1;
+		endUser.setAdsNumber(adsNumber);
+		endUserRepo.save(endUser);
 		
 		return true;
 	}
