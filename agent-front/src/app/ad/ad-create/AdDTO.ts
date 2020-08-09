@@ -7,6 +7,9 @@ export class AdDTO {
     priceForKM: string;
     discount: string;
     car: string;
+    carModel: string;
+    carClass: string;
+    carBrand: string;
     user: number;
     active: boolean;
 
@@ -19,6 +22,9 @@ export class AdDTO {
         this.priceForKM = "";
         this.discount = "";
         this.car = "";
+        this.carModel = "";
+        this.carClass = "";
+        this.carBrand = "";
         this.user = 0;
         this.active = true;
     }

@@ -23,8 +23,8 @@ export class AdService {
     return this.http.get(this.baseUrl + '/' + idAd);
   }
 
-  updateAd() {
-
+  updateAd(idAd: number, adData: any): Observable<any> {
+    return this.http.put(this.baseUrl + '/' + idAd, adData);
   }
 
   deleteAd(id: number) : Observable<any> {

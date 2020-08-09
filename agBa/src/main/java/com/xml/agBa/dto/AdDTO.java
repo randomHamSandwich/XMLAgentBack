@@ -10,18 +10,19 @@ public class AdDTO {
 	private Long pricelist;
 	private Double priceForOneDay;
 	private Double priceForKM;
-	//private Set<String discount;
 	private Long car;
+	private String carModel;
+	private String carClass;
+	private String carBrand;
 	private Long user;
 	private Boolean active;
 	
 	public AdDTO() {
 		
-	}
-	
+	}	
 
 	public AdDTO(Long idAd, String startDate, String endDate, Long pricelist, Double priceForOneDay, Double priceForKM,
-			Long car, Long user, Boolean active) {
+			Long car, String carModel, String carClass, String carBrand, Long user, Boolean active) {
 		super();
 		this.idAd = idAd;
 		this.startDate = startDate;
@@ -30,6 +31,9 @@ public class AdDTO {
 		this.priceForOneDay = priceForOneDay;
 		this.priceForKM = priceForKM;
 		this.car = car;
+		this.carModel = carModel;
+		this.carClass = carClass;
+		this.carBrand = carBrand;
 		this.user = user;
 		this.active = active;
 	}
@@ -42,6 +46,9 @@ public class AdDTO {
 		this.priceForOneDay = newAd.getPriceList().getPriceForOneDay();
 		this.priceForKM = newAd.getPriceList().getPriceForKM();
 		this.car = newAd.getCar().getIdCar();
+		this.carModel = newAd.getCar().getCarModel().getName();
+		this.carClass = newAd.getCar().getCarClass().getName();
+		this.carBrand = newAd.getCar().getCarBrand().getName();
 		this.user = newAd.getEndUser().getIdUser();
 		this.active = newAd.getActive();
 	}
@@ -94,7 +101,6 @@ public class AdDTO {
 		this.user = user;
 	}
 
-
 	public Double getPriceForOneDay() {
 		return priceForOneDay;
 	}
@@ -117,5 +123,29 @@ public class AdDTO {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public String getCarModel() {
+		return carModel;
+	}
+
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
+	}
+
+	public String getCarClass() {
+		return carClass;
+	}
+
+	public void setCarClass(String carClass) {
+		this.carClass = carClass;
+	}
+
+	public String getCarBrand() {
+		return carBrand;
+	}
+
+	public void setCarBrand(String carBrand) {
+		this.carBrand = carBrand;
 	}
 }

@@ -3,6 +3,7 @@ package com.xml.agBa.service;
 import java.util.List;
 
 import com.xml.agBa.dto.AdDTO;
+import com.xml.agBa.model.Ad;
 
 public interface AdService {
 
@@ -15,5 +16,7 @@ public interface AdService {
 	List<AdDTO> search(String city, String startDateTime, String endDateTime);
 
 	Boolean deleteAd(Long id);
+	
+	Ad updateAd(Long adId, AdDTO adDTO);
 
 }

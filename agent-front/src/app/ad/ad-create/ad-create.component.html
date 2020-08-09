@@ -25,7 +25,7 @@
             <label for="pricelist">Pricelist: </label>
             <select class="form-control"  id="pricelist" required [(ngModel)]="form.pricelist" name="pricelist">
                 <ng-container *ngFor="let p of pricelists">
-                    <option *ngIf="p.user == userId" [value]="p.pricelistId">Dnevna cena: {{ p.pricelistId }}, dodatni km: {{p.priceForKM}}</option>
+                    <option *ngIf="p.user == userId" [value]="p.pricelistId">Price per day {{ p.pricelistId }}, extra km: {{p.priceForKM}}</option>
                 </ng-container>
              </select>
         </div>

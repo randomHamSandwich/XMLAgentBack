@@ -50,7 +50,7 @@
                         <td *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</td>
                     </ng-container>
                     <td scope="row"> <button class="btn btn-info" (click)="onReserve()">Reserve</button></td>
-                    <td scope="row"> <button class="btn btn-secondary" (click)="onUpdate()">Update</button></td>
+                    <td scope="row"> <button class="btn btn-secondary" routerLink="/ad-edit/{{a.idAd}}">Update</button></td>
                     <td scope="row"> <button class="btn btn-danger" (click)="onDelete(a.idAd)">Delete</button></td>
 
                 </tr>

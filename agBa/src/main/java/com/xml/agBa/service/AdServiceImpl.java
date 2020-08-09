@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.xml.agBa.dto.AdDTO;
 import com.xml.agBa.model.Ad;
 import com.xml.agBa.model.Car;
-import com.xml.agBa.model.CarClass;
 import com.xml.agBa.model.EndUser;
 import com.xml.agBa.model.Pricelist;
 import com.xml.agBa.repository.AdRepo;
@@ -143,6 +142,26 @@ public class AdServiceImpl implements AdService {
 		ad = adRepo.save(ad);
 		
 		return true;
+	}
+
+	@Override
+	public Ad updateAd(Long id, AdDTO adDTO) {
+		Ad ad = adRepo.findById(id).get();
+		Pricelist pricelist = pricelistRepo.findById(adDTO.getPricelist()).get();
+		
+		String startDateTimeRemoveT =adDTO.getStartDate().replace("T", "-");
+		String endDateTimeRemoveT =adDTO.getEndDate().replace("T", "-");
+		DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
+		
+		LocalDateTime startLocalDateTime= LocalDateTime.parse(startDateTimeRemoveT, formater);
+		LocalDateTime endLocalDateTime= LocalDateTime.parse(endDateTimeRemoveT, formater);
+		
+		ad.setStartDate(startLocalDateTime);
+		ad.setEndDate(endLocalDateTime);
+		ad.setPriceList(pricelist);
+		
+		ad = adRepo.save(ad);
+		return ad;
 	}
 
 }
