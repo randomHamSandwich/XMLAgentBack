@@ -8,5 +8,5 @@ public interface PricelistService {
 	
 	PricelistDTO createPricelist(PricelistDTO pricelistDTO);
 	List<PricelistDTO> getAllPricelists();
-	PricelistDTO getPricelistById(Long id);
+	Boolean deletePricelist(Long id);
 }

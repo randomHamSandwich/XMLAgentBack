@@ -14,13 +14,15 @@
                 </thead>
         
                 <tbody *ngFor="let p of pricelists | async">
-                    <tr *ngIf="p.user == userId">
-                       <td scope="row">{{p.priceForOneDay}} €</td>
+                    <tr *ngIf="!p.isDeleted">
+                        <ng-container *ngIf="p.user == userId">
+                            <td scope="row">{{p.priceForOneDay}} €</td>
                        <td scope="row">{{p.priceForKM}} €</td>
                        <td scope="row">{{p.numberOfDays}} </td>
                        <td scope="row">{{p.discount}} %</td>
                        <td scope="row"> <button class="btn btn-secondary">Update</button></td>
                        <td scope="row"> <button class="btn btn-danger" (click)="onDelete(p.pricelistId)">Delete</button></td>
+                        </ng-container>
                     </tr>
                 </tbody>
             </table> 

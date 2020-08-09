@@ -14,8 +14,6 @@ export class PricelistService {
   constructor(private http: HttpClient) { }
 
   createNewPricelist(data: PricelistDTO): Observable<any> {
-    console.log("in here");
-    
     return this.http.post(this.baseUrl, data);
   }
 
@@ -23,8 +21,8 @@ export class PricelistService {
 
   }
 
-  getPricelistById() {
-
+  deletePricelist(id: number): Observable<any> {
+    return this.http.delete(this.baseUrl + '/' + id);
   }
 
   getAllPricelists(): Observable<any> {

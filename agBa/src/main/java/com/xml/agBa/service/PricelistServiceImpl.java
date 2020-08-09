@@ -37,6 +37,7 @@ public class PricelistServiceImpl implements PricelistService {
 		Pricelist pricelist = new Pricelist(pricelistDTO);
 		pricelist.setDiscount(discount);
 		pricelist.setUser(user);
+		pricelist.setIsDeleted(false);
 		pricelist = pricelistRepo.save(pricelist);
 		
 		return new PricelistDTO(pricelist);
@@ -56,9 +57,13 @@ public class PricelistServiceImpl implements PricelistService {
 	}
 
 	@Override
-	public PricelistDTO getPricelistById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional(readOnly = false)
+	public Boolean deletePricelist(Long id) {
+		Pricelist pricelist = pricelistRepo.findById(id).get();
+		pricelist.setIsDeleted(true);
+		pricelistRepo.save(pricelist);
+		
+		return true;
 	}
 
 }

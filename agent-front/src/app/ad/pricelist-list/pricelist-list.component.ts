@@ -20,6 +20,11 @@ export class PricelistListComponent implements OnInit {
   isAdd = false;
   userId: number;
 
+  isDeleted = false;
+  isUpdated = false;
+  isDeleteError = false;
+  isUpdateError = false;
+
   constructor(private pricelistService: PricelistService,
               private discountService: DiscountService,
               private tokenStorage: TokenStorageService) { }
@@ -45,6 +50,20 @@ export class PricelistListComponent implements OnInit {
         this.discounts = data;
       }
     );
+  }
+
+  onDelete(id) {
+    this.pricelistService.deletePricelist(id).subscribe(
+      data => {
+        this.isDeleted = true;
+      },
+      error => {
+        this.isDeleteError = true;
+        console.log("error: " + error.error.message);
+        
+      }
+    );
+    window.location.reload();
   }
 
 }
