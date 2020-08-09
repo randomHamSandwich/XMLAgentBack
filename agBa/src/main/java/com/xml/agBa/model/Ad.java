@@ -35,7 +35,6 @@ public class Ad {
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private Integer version;
 	
-
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_request_ad", joinColumns = @JoinColumn(name = "id_ad"), inverseJoinColumns = @JoinColumn(name = "id_user_request"))
 	private Set<UserRequest> userRequest;
@@ -57,14 +56,16 @@ public class Ad {
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "id_user")
 	private EndUser endUser;
+	
+	@Column
+	private Boolean active;
 
 	public Ad() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version, Set<UserRequest> userRequest,
-			Set<Rating> rating, Set<Comment> comments, Pricelist priceList, Car car, EndUser endUser) {
+			Set<Rating> rating, Set<Comment> comments, Pricelist priceList, Car car, EndUser endUser, Boolean active) {
 		super();
 		this.idAd = idAd;
 		this.startDate = startDate;
@@ -76,6 +77,7 @@ public class Ad {
 		this.priceList = priceList;
 		this.car = car;
 		this.endUser = endUser;
+		this.active = active;
 	}
 
 	public Long getIdAd() {
@@ -156,5 +158,13 @@ public class Ad {
 
 	public void setEndUser(EndUser endUser) {
 		this.endUser = endUser;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 }

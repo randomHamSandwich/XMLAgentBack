@@ -40,7 +40,6 @@ public class PricelistController {
 	@PostMapping(value="/pricelist")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<PricelistDTO> createPricelist(@RequestBody PricelistDTO pricelistDTO) {
-		
 		PricelistDTO newPricelist = pricelistService.createPricelist(pricelistDTO);
 		
 		return new ResponseEntity<PricelistDTO>(newPricelist, HttpStatus.OK);

@@ -18,6 +18,13 @@
                         <div *ngIf="priceForKM.errors.required">Price is required</div>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="Discount">Discount: </label>
+                    <select class="form-control"  id="discount" required [(ngModel)]="form.discount" name="discount">
+                        <option *ngFor="let d of discounts" [value]="d.idDiscount">Za vise od: {{ d.moreThanXDays }} dana, popust: {{ d.discount }} %</option>
+                    </select>
+                </div>
     
                 <div class="form-group">
                     <button class="btn btn-primary">Create</button>
@@ -27,6 +34,6 @@
                 </div>
             
             </form>
-            <button class="btn btn-danger" (click)="onBack()">Back</button>
+            <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
     </div>
 </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { AdDTO } from '../ad/ad-create/AdDTO';
 import { Observable } from 'rxjs';
+import { LoginComponent } from '../login/login.component';
 //import { start } from 'repl';
 
 @Injectable({
@@ -22,15 +23,18 @@ export class AdService {
     return this.http.get(this.baseUrl + '/' + idAd);
   }
 
-  updateAd() {
+  updateAd(idAd: number, adData: any): Observable<any> {
+    return this.http.put(this.baseUrl + '/' + idAd, adData);
+  }
 
+  deleteAd(id: number) : Observable<any> {
+    return this.http.delete(this.baseUrl + '/delete/' + id);
   }
 
   getAllAds(city: string , startDateTime : string, endDateTime: string): Observable<any> {
     const params = new HttpParams().set('city', city).set('startDateTime', startDateTime).set('endDateTime', endDateTime);
     return this.http.get(this.baseUrl, {params});
   }
-
 
   // searchAdd(city: string , startDateTime : string, endDateTime: string): Observable<any> {
   //   const params = new HttpParams().set('city', city).set('startDateTime', startDateTime).set('endDateTime', endDateTime);

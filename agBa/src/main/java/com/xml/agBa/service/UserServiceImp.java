@@ -12,10 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.UserDTO;
 import com.xml.agBa.model.EndUser;
-import com.xml.agBa.model.GearboxType;
 import com.xml.agBa.model.RoleName;
 import com.xml.agBa.model.Roles;
 import com.xml.agBa.model.User;
+import com.xml.agBa.repository.EndUserRepo;
 import com.xml.agBa.repository.UserRepo;
 import com.xml.agBa.security.repository.RolesRepo;
 
@@ -28,6 +28,9 @@ public class UserServiceImp implements UserService {
 	
 	@Autowired
 	private  RolesRepo rolesRepo;
+	
+	@Autowired
+	private EndUserRepo endUserRepo;
 
 	@Override
 	@Transactional
@@ -109,8 +112,13 @@ public class UserServiceImp implements UserService {
 		
 		return userRepo.getOne(id);
 	}
-	
-	
-	
 
+
+	@Override
+	public EndUser getEndUserData(Long id) {
+		EndUser user = endUserRepo.findById(id).get();
+		
+		return user;
+	}
+	
 }

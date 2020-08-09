@@ -27,6 +27,7 @@ public class CarDTO {
 	private String country;
 	private String registrationPlate;
 	private Long user;
+	private Boolean advertised;
 
 	public CarDTO() {
 		super();
@@ -35,7 +36,7 @@ public class CarDTO {
 
 	public CarDTO(CarBrand carBrand, CarModel carModel, CarClass carClass, FuelType fuelType, GearboxType gearboxType,
 			Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street, String streetNumber,
-			String city, String country, String registrationPlate, Long user) {
+			String city, String country, String registrationPlate, Long user, Boolean advertised) {
 		super();
 		this.carBrand = carBrand.getName();
 		this.carModel = carModel.getName();
@@ -53,10 +54,11 @@ public class CarDTO {
 		this.country = country;
 		this.registrationPlate = registrationPlate;
 		this.user = user;
+		this.advertised = advertised;
 	}
 
 	public CarDTO(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street, String streetNumber,
-			String city, String country) {
+			String city, String country, Boolean advertised) {
 		super();
 		this.idCar = idCar;
 		this.km = km;
@@ -67,6 +69,7 @@ public class CarDTO {
 		this.streetNumber = streetNumber;
 		this.city = city;
 		this.country = country;
+		this.advertised = advertised;
 	}
 
 
@@ -78,7 +81,7 @@ public class CarDTO {
 	public CarDTO(Car car) {
 		this(car.getCarBrand(), car.getCarModel(), car.getCarClass(), car.getFuelType(), car.getGearboxType(),
 				car.getIdCar(), car.getKm(), car.getAllowedKM(), car.getChildrenSeats(), car.getCdw(),
-				car.getStreet(), car.getStreetNumber(), car.getCity(), car.getCountry(), car.getRegistrationPlate(), 1L);
+				car.getStreet(), car.getStreetNumber(), car.getCity(), car.getCountry(), car.getRegistrationPlate(), 1L, car.getAdvertised());
 	}
 
 	public Long getIdCar() {
@@ -230,5 +233,15 @@ public class CarDTO {
 	public void setGearboxType(String gearboxType) {
 		this.gearboxType = gearboxType;
 	}
+
+	public Boolean getAdvertised() {
+		return advertised;
+	}
+
+	public void setAdvertised(Boolean advertised) {
+		this.advertised = advertised;
+	}
+	
+	
 
 	}

@@ -19,7 +19,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
@@ -67,6 +66,9 @@ public class User {
 	private Set<Pricelist> priceList;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Discount> discount;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Car> cars;
 
 	@OneToMany(mappedBy = "seller")
@@ -77,7 +79,7 @@ public class User {
 
 	public User(Long idUser, String email, String password, String phoneNumber, String street, String streetNumber,
 			String city, String country, int version, boolean isdeleted, StatusUser status, Set<Roles> roles,
-			Set<Pricelist> priceList, Set<Car> cars, Set<Chat> chats, Set<Message> messages) {
+			Set<Pricelist> priceList, Set<Discount> discount, Set<Car> cars, Set<Chat> chats, Set<Message> messages) {
 		super();
 		this.idUser = idUser;
 		this.email = email;
@@ -92,14 +94,13 @@ public class User {
 		this.status = status;
 		this.roles = roles;
 		this.priceList = priceList;
+		this.discount = discount;
 		this.cars = cars;
 		this.chats = chats;
 		this.messages = messages;
 	}
 
 	public User() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public User(Long idUser) {
@@ -234,5 +235,11 @@ public class User {
 		this.messages = messages;
 	}
 
-	
+	public Set<Discount> getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Set<Discount> discount) {
+		this.discount = discount;
+	}	
 }

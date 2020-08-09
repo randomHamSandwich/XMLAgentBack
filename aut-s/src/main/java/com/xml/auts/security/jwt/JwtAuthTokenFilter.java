@@ -2,6 +2,7 @@ package com.xml.auts.security.jwt;
 
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -56,6 +57,22 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 	}
 
 	private String getJwt(HttpServletRequest request) {
+		System.out.println("getJWT \n  request Authorization header:_" +request.getHeader("Authorization") );
+		System.out.println("request.getServletPath():_" +request.getServletPath());
+		System.out.println("Mehtond:_"+ request.getMethod());
+		
+		Enumeration<String> headerNames = request.getHeaderNames();
+		System.out.println("---------------- all headers -------------");
+		while (headerNames.hasMoreElements()) {
+			String headerName = headerNames.nextElement();
+			System.out.println("------");
+			System.out.println("Header Name: " + headerName);
+			String headerValue = request.getHeader(headerName);
+			System.out.println("Header Value: " + headerValue);
+			
+		}
+		System.out.println("---------------- all headers -------------");
+		
 		String authHeader = request.getHeader("Authorization");
 
 		if (authHeader != null && authHeader.startsWith("Bearer ")) {

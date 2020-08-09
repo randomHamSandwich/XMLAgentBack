@@ -27,6 +27,7 @@ public class DiscountController {
 	@GetMapping(value="/discounts")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<List<DiscountDTO>> getAllDiscounts() {
+		
 		List<DiscountDTO> discountDTOs = discountService.getAllDiscounts();
 		
 		if (!discountDTOs.isEmpty()) {

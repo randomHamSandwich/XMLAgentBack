@@ -1,66 +1,101 @@
 package rs.ac.uns.zuul;
 
-import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.RequestContext;
-import feign.FeignException;
+import java.util.ArrayList;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
+import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
 
 @Component
 public class AuthFilter extends ZuulFilter {
 
-//    @Autowired
-//    private AuthClient authClient;
+	@Autowired
+	private AuthClient authClient;
 
-    @Override
-    public String filterType() {
-        return "pre";
-    }
+	private void setFailedRequest(String body, int code) {
+		RequestContext ctx = RequestContext.getCurrentContext();
+		ctx.setResponseStatusCode(code);
+		if (ctx.getResponseBody() == null) {
+			ctx.setResponseBody(body);
+			ctx.setSendZuulResponse(false);
+		}
+	}
 
-    @Override
-    public int filterOrder() {
-        return 1;
-    }
+	@Override
+	public Object run() {
+		RequestContext ctx = RequestContext.getCurrentContext();
+		// zuul does not send authorization header and you can't add it with
+		// addZullRequestHeader
 
-    @Override
-    public boolean shouldFilter() {
-        return true;
-    }
+		// workaround : https://github.com/spring-cloud/spring-cloud-netflix/issues/944
+		// Alter ignored headers as per:
+		// https://gitter.im/spring-cloud/spring-cloud?at=56fea31f11ea211749c3ed22
+		Set<String> headers = (Set<String>) ctx.get("ignoredHeaders");
+		// We need our JWT tokens relayed to resource servers
+		headers.remove("authorization");
 
-    private void setFailedRequest(String body, int code) {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        ctx.setResponseStatusCode(code);
-        if (ctx.getResponseBody() == null) {
-            ctx.setResponseBody(body);
-            ctx.setSendZuulResponse(false);
-        }
-    }
+		String s = ctx.getRequest().getRequestURI();
+		if (!s.contains("api") && !s.contains("user")) {
+			try {
+				System.out.println("zuul filter " + s);
+				//we dont need send autorization to other microservices just to our aut-s for verification
+				//so we will send jwt as argument of verify method
+//				ctx.addZuulRequestHeader("newauthheader", ctx.getRequest().getHeader("authorization"));
+//				authClient.verify(ctx.getRequest());
+				
+				System.out.println("passing authorization zuul filter " + ctx.getRequest().getHeader("authorization"));
+				
 
-    @Override
-    public Object run() {
+				ArrayList<String> authAndMail = authClient.verify(ctx.getRequest().getHeader("authorization"));
+				
+				System.out.println("Zuul AuthFilter user authority:_"+ authAndMail.get(0));
+				System.out.println("Zuul AuthFilter user username(we use email as username):_"  + authAndMail.get(1));
+	            ctx.addZuulRequestHeader("username", authAndMail.get(1));
+	            ctx.addZuulRequestHeader("role", authAndMail.get(0));
+				
+			} catch (Exception e) {
+				System.out.println("Verification error " + e);
+				e.printStackTrace();
+			}
 
-        RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest request = ctx.getRequest();
-//
-//        if (request.getHeader("email") == null) {
-//            return null;
-//        };
-//
-//        String email = request.getHeader("email");
-//        try {
-//            authClient.verify(email);
-//
-//            ctx.addZuulRequestHeader("username", email);
-//            ctx.addZuulRequestHeader("role", "SIMPLE_USER");
-//
-//        } catch (FeignException.NotFound e) {
-//            setFailedRequest("Consumer does not exist!", 403);
-//        }
+		}
 
-        return null;
-    }
+		return null;
 
+	}
+
+	@Override
+	public boolean shouldFilter() {
+		return true;
+	}
+
+	@Override
+	public String filterType() {
+		return "pre";
+	}
+
+	@Override
+	public int filterOrder() {
+		return 10000;
+
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

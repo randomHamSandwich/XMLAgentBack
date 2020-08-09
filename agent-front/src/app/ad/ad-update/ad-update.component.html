@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row col-sm-6" style="max-width:350px;">    
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group">
+                <label for="startDate">Car is available from: </label>
+                <input type="datetime-local" class="form-control" name="startDate" [(ngModel)]="form.startDate"
+                    #startDate="ngModel" value="{{ adData?.startDate }}" required>
+            </div>
+            <div class="form-group">
+                <label for="endDate">Car is available until: </label>
+                <input type="datetime-local" class="form-control" name="endDate" [(ngModel)]="form.endDate"
+                    #endDate="ngModel" value="{{ adData?.endDate }}" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="car">Car: </label>
+                <input type="text" class="form-control" name="car" id="car" value="{{ adData?.carBrand }} {{ adData?.carModel }}" disabled>
+            </div>
+    
+            <div class="form-group">
+                <label for="pricelist">Pricelist: </label>
+               <select class="form-control"  id="pricelist" required [(ngModel)]="form.pricelist" name="pricelist">
+                    <ng-container *ngFor="let p of pricelists">
+                        <option *ngIf="p.user == userId" [value]="p.pricelistId">Price per day: {{ p.pricelistId }}, extra km: {{p.priceForKM}}</option>
+                    </ng-container>
+                 </select>
+            </div>
+    
+            <div class="form-group">
+                <button class="btn btn-primary">Update ad</button>
+            </div>
+            <div *ngIf="f.submitted && !f.valid" class="alert alert-warning">
+                Submit failed!<br />{{errorMessage}}
+            </div>
+        </form>
+        <button class="btn btn-danger" routerLink="/ads-dashboard" novalidate>Back</button>
+    </div>
+    </div>
+    

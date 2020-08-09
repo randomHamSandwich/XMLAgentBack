@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 import com.xml.agBa.dto.AdDTO;
 import com.xml.agBa.model.Ad;
 import com.xml.agBa.model.Car;
+import com.xml.agBa.model.EndUser;
 import com.xml.agBa.model.Pricelist;
 import com.xml.agBa.repository.AdRepo;
 import com.xml.agBa.repository.CarRepo;
+import com.xml.agBa.repository.EndUserRepo;
 import com.xml.agBa.repository.PricelistRepo;
 import com.xml.agBa.util.DateChecker;
 
@@ -29,36 +31,56 @@ public class AdServiceImpl implements AdService {
 	
 	@Autowired
 	private PricelistRepo pricelistRepo;
+	
+	@Autowired
+	private EndUserRepo endUserRepo;
 
 	@Override
 	public AdDTO createAd(AdDTO adDTO) {
-		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		/*DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 	    LocalDate sdTemp = LocalDate.parse(adDTO.getStartDate(), DATEFORMATTER);
 	    LocalDateTime sdTemo_ldt = LocalDateTime.of(sdTemp, LocalDateTime.now().toLocalTime());
 	    
 	    LocalDate edTemp = LocalDate.parse(adDTO.getEndDate(), DATEFORMATTER);
 	    LocalDateTime edTemo_ldt = LocalDateTime.of(edTemp, LocalDateTime.now().toLocalTime());
-	    
+	    */
+		
+		String startDateTimeRemoveT =adDTO.getStartDate().replace("T", "-");
+		String endDateTimeRemoveT =adDTO.getEndDate().replace("T", "-");
+		DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
+		
+		LocalDateTime startLocalDateTime= LocalDateTime.parse(startDateTimeRemoveT, formater);
+		LocalDateTime endLocalDateTime= LocalDateTime.parse(endDateTimeRemoveT, formater);
+		
 	    Long carID = Long.valueOf(adDTO.getCar());
 	    Car car = carRepo.findById(carID).get();
 	    
 	    Long pricelistID = Long.valueOf(adDTO.getPricelist());
 	    Pricelist pricelist = pricelistRepo.findById(pricelistID).get();
 	    
+	    EndUser user = (EndUser) endUserRepo.findById(adDTO.getUser()).get();
+	    Integer endUserAds = user.getAdsNumber();
+	    endUserAds = endUserAds + 1;
 	    
 		Ad newAd = new Ad();
 		
-		newAd.setStartDate(sdTemo_ldt);
-		newAd.setEndDate(edTemo_ldt);
+		newAd.setStartDate(startLocalDateTime);
+		newAd.setEndDate(endLocalDateTime);
 		newAd.setPriceList(pricelist);
 		newAd.setCar(car);
+		newAd.setEndUser(user);
+		newAd.setActive(true);
 	
 		newAd = adRepo.save(newAd);
 		
-		return new AdDTO(newAd);
+		user.setAdsNumber(endUserAds);
+		endUserRepo.save(user);
 		
+		car.setAdvertised(true);
+		carRepo.save(car);
 		
+		return new AdDTO(newAd);		
 	}
 
 	@Override
@@ -74,13 +96,7 @@ public class AdServiceImpl implements AdService {
 	}
 
 	@Override
-	public AdDTO getAdById(Long id) {
-		// TODO Auto-generated method stub
-		
-		System.out.println("===================================");
-		System.out.println("IN HERE, id: " + id);
-		System.out.println("===================================");
-		
+	public AdDTO getAdById(Long id) {		
 		return new AdDTO(adRepo.getOne(id));
 	}
 
@@ -132,6 +148,45 @@ public class AdServiceImpl implements AdService {
 		
 		
 		return adsDTO;
+	}
+
+	@Override
+	public Boolean deleteAd(Long id) {
+		Ad ad = adRepo.findById(id).get();
+		ad.setActive(false);
+		ad = adRepo.save(ad);
+		
+		Car car = ad.getCar();
+		car.setAdvertised(false);
+		carRepo.save(car);
+		
+		EndUser endUser = ad.getEndUser();
+		Integer adsNumber = endUser.getAdsNumber();
+		adsNumber = adsNumber - 1;
+		endUser.setAdsNumber(adsNumber);
+		endUserRepo.save(endUser);
+		
+		return true;
+	}
+
+	@Override
+	public Ad updateAd(Long id, AdDTO adDTO) {
+		Ad ad = adRepo.findById(id).get();
+		Pricelist pricelist = pricelistRepo.findById(adDTO.getPricelist()).get();
+		
+		String startDateTimeRemoveT =adDTO.getStartDate().replace("T", "-");
+		String endDateTimeRemoveT =adDTO.getEndDate().replace("T", "-");
+		DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
+		
+		LocalDateTime startLocalDateTime= LocalDateTime.parse(startDateTimeRemoveT, formater);
+		LocalDateTime endLocalDateTime= LocalDateTime.parse(endDateTimeRemoveT, formater);
+		
+		ad.setStartDate(startLocalDateTime);
+		ad.setEndDate(endLocalDateTime);
+		ad.setPriceList(pricelist);
+		
+		ad = adRepo.save(ad);
+		return ad;
 	}
 
 }
