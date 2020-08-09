@@ -37,14 +37,22 @@ public class AdServiceImpl implements AdService {
 
 	@Override
 	public AdDTO createAd(AdDTO adDTO) {
-		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		/*DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 	    LocalDate sdTemp = LocalDate.parse(adDTO.getStartDate(), DATEFORMATTER);
 	    LocalDateTime sdTemo_ldt = LocalDateTime.of(sdTemp, LocalDateTime.now().toLocalTime());
 	    
 	    LocalDate edTemp = LocalDate.parse(adDTO.getEndDate(), DATEFORMATTER);
 	    LocalDateTime edTemo_ldt = LocalDateTime.of(edTemp, LocalDateTime.now().toLocalTime());
-	    
+	    */
+		
+		String startDateTimeRemoveT =adDTO.getStartDate().replace("T", "-");
+		String endDateTimeRemoveT =adDTO.getEndDate().replace("T", "-");
+		DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
+		
+		LocalDateTime startLocalDateTime= LocalDateTime.parse(startDateTimeRemoveT, formater);
+		LocalDateTime endLocalDateTime= LocalDateTime.parse(endDateTimeRemoveT, formater);
+		
 	    Long carID = Long.valueOf(adDTO.getCar());
 	    Car car = carRepo.findById(carID).get();
 	    
@@ -57,8 +65,8 @@ public class AdServiceImpl implements AdService {
 	    
 		Ad newAd = new Ad();
 		
-		newAd.setStartDate(sdTemo_ldt);
-		newAd.setEndDate(edTemo_ldt);
+		newAd.setStartDate(startLocalDateTime);
+		newAd.setEndDate(endLocalDateTime);
 		newAd.setPriceList(pricelist);
 		newAd.setCar(car);
 		newAd.setEndUser(user);
@@ -68,6 +76,9 @@ public class AdServiceImpl implements AdService {
 		
 		user.setAdsNumber(endUserAds);
 		endUserRepo.save(user);
+		
+		car.setAdvertised(true);
+		carRepo.save(car);
 		
 		return new AdDTO(newAd);		
 	}
@@ -144,6 +155,10 @@ public class AdServiceImpl implements AdService {
 		Ad ad = adRepo.findById(id).get();
 		ad.setActive(false);
 		ad = adRepo.save(ad);
+		
+		Car car = ad.getCar();
+		car.setAdvertised(false);
+		carRepo.save(car);
 		
 		EndUser endUser = ad.getEndUser();
 		Integer adsNumber = endUser.getAdsNumber();

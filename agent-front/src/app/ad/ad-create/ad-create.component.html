@@ -1,14 +1,16 @@
 <div class="container">
-<div class="row col-sm-6" style="max-width:350px;">    
+<div class="row col-sm-6" style="max-width:450px;"> 
+    <h3> Create new ad:</h3>
+    <hr>
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
             <label for="startDate">Car is available from: </label>
-            <input type="date" class="form-control" name="startDate" [(ngModel)]="form.startDate"
+            <input type="datetime-local" class="form-control" name="startDate" [(ngModel)]="form.startDate"
                 #startDate="ngModel" required>
         </div>
         <div class="form-group">
             <label for="endDate">Car is available until: </label>
-            <input type="date" class="form-control" name="endDate" [(ngModel)]="form.endDate"
+            <input type="datetime-local" class="form-control" name="endDate" [(ngModel)]="form.endDate"
                 #endDate="ngModel" required>
         </div>
 
@@ -25,7 +27,8 @@
             <label for="pricelist">Pricelist: </label>
             <select class="form-control"  id="pricelist" required [(ngModel)]="form.pricelist" name="pricelist">
                 <ng-container *ngFor="let p of pricelists">
-                    <option *ngIf="p.user == userId" [value]="p.pricelistId">Price per day {{ p.pricelistId }}, extra km: {{p.priceForKM}}</option>
+                    <option *ngIf="p.user == userId" [value]="p.pricelistId">Price per day {{ p.pricelistId }}, extra km: {{p.priceForKM}}, 
+                        days for discount: {{ p.numberOfDays }}, discount {{ p.discount }} %</option>
                 </ng-container>
              </select>
         </div>
@@ -37,6 +40,6 @@
             Submit failed!<br />{{errorMessage}}
         </div>
     </form>
-    <button class="btn btn-danger" routerLink="/ads-dashboard" novalidate>Back</button>
+    <button class="btn btn-danger" routerLink="/ads-dashboard" novalidate>Cancel</button>
 </div>
 </div>

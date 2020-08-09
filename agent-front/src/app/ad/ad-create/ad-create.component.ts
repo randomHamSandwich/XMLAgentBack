@@ -80,7 +80,12 @@ export class AdCreateComponent implements OnInit {
         console.log(error);
       }
     );
-     window.location.reload();
+
+    this.navigate();
+  }
+
+  navigate() {
+    this.router.navigate(['/ads-dashboard']);
   }
 
   goBack() {
