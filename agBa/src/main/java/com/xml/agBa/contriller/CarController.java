@@ -19,6 +19,7 @@ import com.xml.agBa.dto.AdDTO;
 import com.xml.agBa.dto.CarDTO;
 import com.xml.agBa.dto.RoleDTO;
 import com.xml.agBa.dto.UserDTO;
+import com.xml.agBa.model.Car;
 import com.xml.agBa.service.CarService;
 import java.util.List;
 
@@ -57,6 +58,20 @@ public class CarController {
 		CarDTO carDTO = carService.editCar(idCar, ccarDTO);
 
 		return new ResponseEntity<>(carDTO, HttpStatus.CREATED);
+	}
+	
+	@GetMapping(value = "/car/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<?> getCarById(@PathVariable("id") Long id) {
+
+		CarDTO car = new CarDTO(carService.getOne(id));
+
+		if (car != null) {
+			return new ResponseEntity<>(car, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
 	}
 
 	

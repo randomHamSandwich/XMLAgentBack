@@ -19,12 +19,18 @@ import { AdCreateComponent } from './ad/ad-create/ad-create.component';
 import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 import { CarCreateComponent } from './car-create/car-create.component';
 import { CartListComponent } from './cart-list/cart-list.component';
+import { CarDetailsComponent } from './car-details/car-details.component';
 import { AdUpdateComponent } from './ad/ad-update/ad-update.component';
+
 
 const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent
+    },
+    {
+        path: 'carDetails',
+        component: CarDetailsComponent
     },
     // app-car-create
     {

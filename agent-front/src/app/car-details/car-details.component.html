@@ -1,9 +1,23 @@
 <div class="column">
     <div>
-        <p>carBrand:</p>
-        <p>{{car.carBrand}}</p>
+        <p>Car Brand: {{car.carBrand}}</p>
+        <p>Car Model: {{car.carModel}}</p>
+        <p>Car Class: {{car.carClass}}</p>
+        <p>Fuel Type: {{car.fuelType}}</p>
+        <p>Gearbox Type: {{car.gearboxType}}</p>
+        <p>Km: {{car.km}}</p>
+        <p>Allowed km: {{car.allowedKM}}</p>
+        <p>Childrens eats: {{car.childrenSeats}}</p>
+        <p>CDW package: {{car.cdw}}</p>
+        <p>Street: {{car.street}}</p>
+        <p>Street Number: {{car.streetNumber}}</p>
+        <p>City: {{car.city}}</p>
+        <p>Country: {{car.country}}</p>
+        <p>Reg. Plate: {{car.registrationPlate}}</p>
         
     </div>
+    <hr>
+        <button class="btn btn-danger" (click)="onBack()">Back</button>
     <div>
         <ngx-slick-carousel class="carousel" 
                         #slickModal="slick-carousel" 

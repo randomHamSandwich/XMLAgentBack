@@ -8,23 +8,23 @@ import { Observable } from 'rxjs';
 })
 export class CarService {
 
-  private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = 'http://localhost:8080/api/car';
 
   constructor(private http:HttpClient) {}
 
   createNewCar(data: CarDTO): Observable<any> {
-    return this.http.post(this.baseUrl + '/car', data);
+    return this.http.post(this.baseUrl, data);
   }
 
   public updateCar() {
 
   }
 
-  public getCarById() {
-
+  public getCarById(idCar: any): Observable<any> {
+      return this.http.get(this.baseUrl + '/' + idCar);
   }
 
   public getCarsList() {
-    return this.http.get(this.baseUrl + '/car');
+    return this.http.get(this.baseUrl);
   }
 }
