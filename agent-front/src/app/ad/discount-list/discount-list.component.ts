@@ -17,6 +17,9 @@ export class DiscountListComponent implements OnInit {
   isAdd = false;
   userId: number;
 
+  idDiscount: number;
+  isUpdate = false;
+
   constructor(private discountService: DiscountService,
               private tokenService: TokenStorageService,
               private router: Router) { }
@@ -40,9 +43,13 @@ export class DiscountListComponent implements OnInit {
     //console.log("isAdd: " + this.isAdd);
   }
 
-  pickDiscount(id: number) {
-    //console.log("choosen discount: " + id);
+  
+
+  onDiscountUpdate(id): void {
+    this.idDiscount = id;
+    console.log("pricelistId: " + this.idDiscount);
     
+    this.isUpdate = !this.isUpdate;
   }
 
 }

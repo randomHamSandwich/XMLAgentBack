@@ -14,6 +14,8 @@ export class DiscountCreateComponent implements OnInit {
   newDiscount = new DiscountDTO;
   userId: number;
 
+  submitted = false;
+
   constructor(private discountService: DiscountService,
               private tokenService: TokenStorageService,
               private router: Router) {
@@ -25,6 +27,8 @@ export class DiscountCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
+    
     this.newDiscount = new DiscountDTO();
     this.newDiscount.moreThanXDays = this.form.moreThanXDays;
     this.newDiscount.discount = this.form.discount;

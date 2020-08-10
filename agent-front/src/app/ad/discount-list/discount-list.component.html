@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row col-sm-6" style="max-width:500px;">
-    <div *ngIf="!isAdd">   
+    <div *ngIf="!isAdd && !isUpdate">   
         <button class="btn btn-success" (click)="onDiscountAdd()">Add new discount</button>
         <hr>
         <table class="table table-bordered">
           <thead>
               <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Number of days</th>
-                  <th scope="col">Discount</th>
+                  <th scope="col">Number of days: </th>
+                  <th scope="col">Discount: </th>
               </tr>
           </thead>
 
@@ -17,14 +17,16 @@
                   <th scope="row">{{i+1}}</th>
                   <td scope="row">{{d.moreThanXDays}}</td>
                   <td scope="row">{{d.discount}} %</td>
-                  <td scope="row"> <button class="btn btn-secondary">Update</button></td>
-                  <td scope="row"> <button class="btn btn-danger" (click)="onDelete(d.discountId)">Delete</button></td>
+                  <td scope="row"> <button class="btn btn-secondary" (click)="onDiscountUpdate(d.idDiscount)">Update</button></td>
               </tr>
           </tbody>
         </table>  
     </div>
     <div *ngIf="isAdd">
       <app-discount-create> </app-discount-create>
+    </div>
+    <div *ngIf="isUpdate">
+      <app-discount-update [idDiscount]='idDiscount'> </app-discount-update>
     </div>
   </div>
 </div>
