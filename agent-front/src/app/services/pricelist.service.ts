@@ -17,8 +17,14 @@ export class PricelistService {
     return this.http.post(this.baseUrl, data);
   }
 
-  updatePricelist() {
+  updatePricelist(id: number, updateData: any): Observable<any> {
+    console.log("in service");
+    
+    return this.http.put(this.baseUrl + '/' + id, updateData);
+  }
 
+  getPricelistById(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/' + id);
   }
 
   deletePricelist(id: number): Observable<any> {

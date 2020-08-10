@@ -20,10 +20,14 @@ export class PricelistListComponent implements OnInit {
   isAdd = false;
   userId: number;
 
+  isUpdate = false;
+
   isDeleted = false;
   isUpdated = false;
   isDeleteError = false;
   isUpdateError = false;
+
+  pricelistId: number;
 
   constructor(private pricelistService: PricelistService,
               private discountService: DiscountService,
@@ -64,6 +68,13 @@ export class PricelistListComponent implements OnInit {
       }
     );
     window.location.reload();
+  }
+
+  onPricelistUpdate(id): void {
+    this.pricelistId = id;
+    console.log("pricelistId: " + this.pricelistId);
+    
+    this.isUpdate = !this.isUpdate;
   }
 
 }

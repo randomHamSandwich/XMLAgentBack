@@ -66,4 +66,26 @@ public class PricelistServiceImpl implements PricelistService {
 		return true;
 	}
 
+	@Override
+	public Pricelist getPricelistById(Long id) {
+		Pricelist pricelist = pricelistRepo.findById(id).get();
+		
+		return pricelist;
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public Boolean updatePricelist(Long id, PricelistDTO pricelistDTO) {
+		Pricelist pricelist = pricelistRepo.findById(id).get();
+		Discount discount = discountRepo.findById(pricelistDTO.getDiscountId()).get();
+		
+		pricelist.setPriceForOneDay(pricelistDTO.getPriceForOneDay());
+		pricelist.setPriceForKM(pricelistDTO.getPriceForKM());
+		pricelist.setDiscount(discount);
+		
+		pricelistRepo.save(pricelist);
+		
+		return true;
+	}
+
 }

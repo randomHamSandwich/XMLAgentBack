@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row col-sm-6" style="max-width:700px;">
-        <div *ngIf="!isAdd">   
+        <div *ngIf="!isAdd && !isUpdate">   
             <button class="btn btn-success" (click)="onPricelistAdd()">Add new pricelist</button>
             <hr>
             <table class="table table-bordered">
@@ -17,11 +17,11 @@
                     <tr *ngIf="!p.isDeleted">
                         <ng-container *ngIf="p.user == userId">
                             <td scope="row">{{p.priceForOneDay}} €</td>
-                       <td scope="row">{{p.priceForKM}} €</td>
-                       <td scope="row">{{p.numberOfDays}} </td>
-                       <td scope="row">{{p.discount}} %</td>
-                       <td scope="row"> <button class="btn btn-secondary">Update</button></td>
-                       <td scope="row"> <button class="btn btn-danger" (click)="onDelete(p.pricelistId)">Delete</button></td>
+                            <td scope="row">{{p.priceForKM}} €</td>
+                            <td scope="row">{{p.numberOfDays}} </td>
+                            <td scope="row">{{p.discount}} %</td>
+                            <td scope="row"> <button class="btn btn-secondary" (click)="onPricelistUpdate(p.pricelistId)">Update</button></td>
+                           <!-- <td scope="row"> <button class="btn btn-danger" (click)="onDelete(p.pricelistId)">Delete</button></td>-->
                         </ng-container>
                     </tr>
                 </tbody>
@@ -29,7 +29,9 @@
         </div>
         <div *ngIf="isAdd">
             <app-pricelist-create> </app-pricelist-create>
-        
+        </div>
+        <div *ngIf="isUpdate">
+            <app-pricelist-update [pricelistId]='pricelistId'> </app-pricelist-update>
         </div>
  </div>
 </div>

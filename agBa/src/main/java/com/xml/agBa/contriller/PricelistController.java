@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.agBa.dto.PricelistDTO;
+import com.xml.agBa.model.Pricelist;
 import com.xml.agBa.service.PricelistService;
 
 @CrossOrigin(origins = "*")
@@ -48,10 +49,29 @@ public class PricelistController {
 		return new ResponseEntity<PricelistDTO>(newPricelist, HttpStatus.OK);
 	}
 	
-	@PutMapping(value="/pricelist/id")
+	@GetMapping(value="/pricelist/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<PricelistDTO> getPricelistById(@PathVariable("id") Long id) {
+		Pricelist pricelist = pricelistService.getPricelistById(id);
+		
+		if (pricelist != null) {
+			PricelistDTO pricelistDTO = new PricelistDTO(pricelist);
+			return new ResponseEntity<>(pricelistDTO, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@PutMapping(value="/pricelist/{id}")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<PricelistDTO> updatePricelist(@PathVariable("id") Long id, @RequestBody PricelistDTO pricelistDTO) {
-		return null;
+		Boolean result = pricelistService.updatePricelist(id, pricelistDTO);
+		
+		if (result) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 	@DeleteMapping(value="/pricelist/{id}")
@@ -63,8 +83,6 @@ public class PricelistController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-	
-	
 }
