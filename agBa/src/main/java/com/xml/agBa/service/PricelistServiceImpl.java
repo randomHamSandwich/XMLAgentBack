@@ -37,6 +37,7 @@ public class PricelistServiceImpl implements PricelistService {
 		Pricelist pricelist = new Pricelist(pricelistDTO);
 		pricelist.setDiscount(discount);
 		pricelist.setUser(user);
+		pricelist.setIsDeleted(false);
 		pricelist = pricelistRepo.save(pricelist);
 		
 		return new PricelistDTO(pricelist);
@@ -56,9 +57,35 @@ public class PricelistServiceImpl implements PricelistService {
 	}
 
 	@Override
-	public PricelistDTO getPricelistById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional(readOnly = false)
+	public Boolean deletePricelist(Long id) {
+		Pricelist pricelist = pricelistRepo.findById(id).get();
+		pricelist.setIsDeleted(true);
+		pricelistRepo.save(pricelist);
+		
+		return true;
+	}
+
+	@Override
+	public Pricelist getPricelistById(Long id) {
+		Pricelist pricelist = pricelistRepo.findById(id).get();
+		
+		return pricelist;
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public Boolean updatePricelist(Long id, PricelistDTO pricelistDTO) {
+		Pricelist pricelist = pricelistRepo.findById(id).get();
+		Discount discount = discountRepo.findById(pricelistDTO.getDiscountId()).get();
+		
+		pricelist.setPriceForOneDay(pricelistDTO.getPriceForOneDay());
+		pricelist.setPriceForKM(pricelistDTO.getPriceForKM());
+		pricelist.setDiscount(discount);
+		
+		pricelistRepo.save(pricelist);
+		
+		return true;
 	}
 
 }

@@ -11,13 +11,14 @@ public class PricelistDTO {
 	private Integer numberOfDays;
 	private Integer discount;
 	private Long user;
+	private Boolean isDeleted;
 	
 	public PricelistDTO() {
 		
 	}
 
 	public PricelistDTO(Long pricelistId, Double priceForOneDay, Double priceForKM, Long discountId,
-			Integer numberOfDays, Integer discount, Long user) {
+			Integer numberOfDays, Integer discount, Long user, Boolean isDeleted) {
 		super();
 		this.pricelistId = pricelistId;
 		this.priceForOneDay = priceForOneDay;
@@ -26,6 +27,7 @@ public class PricelistDTO {
 		this.numberOfDays = numberOfDays;
 		this.discount = discount;
 		this.user = user;
+		this.isDeleted = isDeleted;
 	}
 
 	public PricelistDTO(Pricelist pTemp) {
@@ -36,6 +38,7 @@ public class PricelistDTO {
 		this.numberOfDays = pTemp.getDiscount().getForMoreThanXDays();
 		this.discount = pTemp.getDiscount().getDiscount();
 		this.user = pTemp.getUser().getIdUser();
+		this.isDeleted = pTemp.getIsDeleted();
 	}
 
 	public Long getPricelistId() {
@@ -92,5 +95,13 @@ public class PricelistDTO {
 
 	public void setUser(Long user) {
 		this.user = user;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 }

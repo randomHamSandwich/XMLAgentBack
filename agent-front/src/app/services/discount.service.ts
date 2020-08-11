@@ -16,12 +16,12 @@ export class DiscountService {
     return this.http.post(this.baseUrl, data);
   }
 
-  updateDiscount() {
-
+  updateDiscount(id: number, discountData: any): Observable<any> {    
+    return this.http.put(this.baseUrl + '/' + id, discountData);
   }
 
-  getDiscountById() {
-
+  getDiscountById(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/' + id);
   }
 
   getAllDiscounts():Observable<any> {

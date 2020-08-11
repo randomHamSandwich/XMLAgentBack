@@ -49,7 +49,7 @@
                         <td *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.city}} {{c.country}}</td>
                     </ng-container>
                     <ng-container *ngFor="let p of pricelists">
-                        <td *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</td>
+                        <td *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}} €</td>
                     </ng-container>
                     <td scope="row"> <button class="btn btn-info" (click)="onReserve()">Reserve</button></td>
                     <td scope="row"> <button class="btn btn-secondary" routerLink="/ad-edit/{{a.idAd}}">Update</button></td>
