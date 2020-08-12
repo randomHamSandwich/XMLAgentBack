@@ -188,4 +188,18 @@ public class AdServiceImpl implements AdService {
 		return ad;
 	}
 
+	@Override
+	public List<Ad> getActiveAdsByUser(Long id) {
+		List<Ad> ads = adRepo.findActiveByUser(id);
+		
+		return ads;
+	}
+
+	@Override
+	public List<Ad> getActiveAds() {
+		List<Ad> ads = adRepo.findActiveAds();
+		
+		return ads;
+	}
+
 }

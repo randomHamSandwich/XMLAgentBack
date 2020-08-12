@@ -37,7 +37,8 @@ export class AdComponent implements OnInit {
   ngOnInit() {
     this.userID = this.tokenStorageService.getIdKorisnik();
     this.getEndUserData();
-    this.getAllAds();
+    this.getActiveAdsByUser();
+    //this.getAllAds();
     this.getAllCars();
     this.getAllPricelists();
   }
@@ -54,8 +55,20 @@ export class AdComponent implements OnInit {
     );
   }
 
-  getAllAds() {
+ /* getAllAds() {
     this.ads = this.adService.getAllAds("", "", "");
+  }*/
+
+  getActiveAdsByUser() {
+    this.adService.getActiveAdsByUser(this.userID).subscribe(
+      data => {
+        this.ads = data;
+      },
+      error => {
+        console.log("error: " + error.message);
+        
+      }
+    );
   }
 
   getAllCars() {

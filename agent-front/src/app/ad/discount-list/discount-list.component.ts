@@ -55,8 +55,6 @@ export class DiscountListComponent implements OnInit {
     //console.log("isAdd: " + this.isAdd);
   }
 
-  
-
   onDiscountUpdate(id): void {
     this.idDiscount = id;
     console.log("pricelistId: " + this.idDiscount);

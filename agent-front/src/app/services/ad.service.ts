@@ -36,6 +36,14 @@ export class AdService {
     return this.http.get(this.baseUrl, {params});
   }
 
+  getActiveAdsByUser(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/active/' + id);
+  }
+
+  getActiveAds(): Observable<any> {
+    return this.http.get(this.baseUrl + '/active');
+  }
+
   // searchAdd(city: string , startDateTime : string, endDateTime: string): Observable<any> {
   //   const params = new HttpParams().set('city', city).set('startDateTime', startDateTime).set('endDateTime', endDateTime);
   //   return this.http.get(this.baseUrl+'/search', {params} );

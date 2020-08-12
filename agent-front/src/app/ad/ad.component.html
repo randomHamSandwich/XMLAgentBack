@@ -37,9 +37,8 @@
                 </tr>
             </thead>
 
-            <tbody *ngFor="let a of ads | async ; let i = index;">
-
-                <tr *ngIf="a.user == userID && a.active == true">
+            <tbody *ngFor="let a of ads let i = index;">
+                <tr>
                     <th scope="row">{{i+1}}</th>
                     <td scope="row">{{a.startDate | date:"dd/MM/yyy HH:mm"}}</td>
                     <td scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</td>
