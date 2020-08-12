@@ -58,9 +58,6 @@ public class PricelistServiceImpl implements PricelistService {
 	
 	@Override
 	public List<Pricelist> getActivePricelists(Long userId) {
-		System.out.println("=======================");
-		System.out.println("user id: " + userId );
-		System.out.println("=======================");
 		
 		List<Pricelist> pricelists = pricelistRepo.findActivePricelist(userId);
 		

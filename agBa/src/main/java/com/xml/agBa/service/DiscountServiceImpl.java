@@ -60,4 +60,11 @@ public class DiscountServiceImpl implements DiscountService {
 		
 		return discount;
 	}
+
+	@Override
+	public List<Discount> findDiscountsByUserId(Long userId) {
+		List<Discount> discounts = discountRepo.findDiscountsByUser(userId);
+		
+		return discounts;
+	}
 }

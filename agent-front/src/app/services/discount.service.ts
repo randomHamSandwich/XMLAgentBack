@@ -27,4 +27,8 @@ export class DiscountService {
   getAllDiscounts():Observable<any> {
     return this.http.get(this.baseUrl);
   }
+
+  getDiscountsByUser(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/active/' + id);
+  }
 }

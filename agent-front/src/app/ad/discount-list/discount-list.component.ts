@@ -26,12 +26,24 @@ export class DiscountListComponent implements OnInit {
 
   ngOnInit() {
     this.userId = +this.tokenService.getIdKorisnik();
-    this.findAllDiscounts();
+   // this.findAllDiscounts();
+   this.findDiscountsByUser();
   }
 
-  findAllDiscounts() {    
+  /*findAllDiscounts() {    
     this.discounts = this.discountService.getAllDiscounts();
+  }*/
 
+  findDiscountsByUser() {
+    this.discountService.getDiscountsByUser(this.userId).subscribe(
+      data => {
+        this.discounts = data;
+      },
+      error => {
+        console.log("Error: " + error.message);
+        
+      }
+    );
   }
 
   onBack() {
