@@ -1,5 +1,6 @@
 package com.xml.agBa.contriller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,29 @@ public class PricelistController {
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+	
+	@GetMapping(value="/pricelist/active/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<List<PricelistDTO>> getActivePricelists(@PathVariable("id") Long userId) {
+		//List<PricelistDTO> pricelistDTOs = pricelist
+		List<Pricelist> pricelists = pricelistService.getActivePricelists(userId);
+		
+		System.out.println("=======================");
+		System.out.println("pricelist: " + pricelists.size() );
+		System.out.println("=======================");
+		
+		if (!pricelists.isEmpty()) {
+			List<PricelistDTO> pricelistDTOs = new ArrayList<PricelistDTO>();
+			for (Pricelist p: pricelists ) {
+				pricelistDTOs.add(new PricelistDTO(p));
+			}
+
+			return new ResponseEntity<List<PricelistDTO>>(pricelistDTOs, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
 	
 	@PostMapping(value="/pricelist")
 	@PreAuthorize("hasAuthority('END_USER')")

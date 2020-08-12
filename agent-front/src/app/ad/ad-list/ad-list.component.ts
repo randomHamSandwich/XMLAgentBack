@@ -41,7 +41,7 @@ export class AdListComponent implements OnInit {
         this.cars = data;
       },
       error => {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.message;
 
         console.log("Error: " + this.errorMessage);
       }

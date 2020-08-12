@@ -6,6 +6,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                       <th scope="col">#</th>
                        <th scope="col">Price per day: </th>
                        <th scope="col">Price for extra km: </th>
                        <th scope="col">Min days for discount: </th>
@@ -13,16 +14,15 @@
                     </tr>
                 </thead>
         
-                <tbody *ngFor="let p of pricelists | async">
-                    <tr *ngIf="!p.isDeleted">
-                        <ng-container *ngIf="p.user == userId">
-                            <td scope="row">{{p.priceForOneDay}} €</td>
-                            <td scope="row">{{p.priceForKM}} €</td>
-                            <td scope="row">{{p.numberOfDays}} </td>
-                            <td scope="row">{{p.discount}} %</td>
-                            <td scope="row"> <button class="btn btn-secondary" (click)="onPricelistUpdate(p.pricelistId)">Update</button></td>
-                           <!-- <td scope="row"> <button class="btn btn-danger" (click)="onDelete(p.pricelistId)">Delete</button></td>-->
-                        </ng-container>
+                <tbody *ngFor="let p of pricelists; let i = index;">
+                    <tr>
+                        <th>{{ i + 1 }}</th>
+                        <td scope="row">{{p.priceForOneDay}} €</td>
+                        <td scope="row">{{p.priceForKM}} €</td>
+                        <td scope="row">{{p.numberOfDays}} </td>
+                        <td scope="row">{{p.discount}} %</td>
+                        <td scope="row"> <button class="btn btn-secondary" (click)="onPricelistUpdate(p.pricelistId)">Update</button></td>
+                        <!-- <td scope="row"> <button class="btn btn-danger" (click)="onDelete(p.pricelistId)">Delete</button></td>-->
                     </tr>
                 </tbody>
             </table> 
