@@ -17,18 +17,33 @@ export class DiscountListComponent implements OnInit {
   isAdd = false;
   userId: number;
 
+  idDiscount: number;
+  isUpdate = false;
+
   constructor(private discountService: DiscountService,
               private tokenService: TokenStorageService,
               private router: Router) { }
 
   ngOnInit() {
     this.userId = +this.tokenService.getIdKorisnik();
-    this.findAllDiscounts();
+   // this.findAllDiscounts();
+   this.findDiscountsByUser();
   }
 
-  findAllDiscounts() {    
+  /*findAllDiscounts() {    
     this.discounts = this.discountService.getAllDiscounts();
+  }*/
 
+  findDiscountsByUser() {
+    this.discountService.getDiscountsByUser(this.userId).subscribe(
+      data => {
+        this.discounts = data;
+      },
+      error => {
+        console.log("Error: " + error.message);
+        
+      }
+    );
   }
 
   onBack() {
@@ -40,9 +55,11 @@ export class DiscountListComponent implements OnInit {
     //console.log("isAdd: " + this.isAdd);
   }
 
-  pickDiscount(id: number) {
-    //console.log("choosen discount: " + id);
+  onDiscountUpdate(id): void {
+    this.idDiscount = id;
+    console.log("pricelistId: " + this.idDiscount);
     
+    this.isUpdate = !this.isUpdate;
   }
 
 }

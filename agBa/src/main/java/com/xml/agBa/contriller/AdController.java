@@ -1,5 +1,6 @@
 package com.xml.agBa.contriller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,41 @@ public class AdController {
 			return new ResponseEntity<>(cDTO, HttpStatus.OK);
 			
 		}
+	}
+	
+	@GetMapping(value = "/ad/active/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<List<AdDTO>> getAllAds(@PathVariable("id") Long userId) {
+		List<Ad> ads = adService.getActiveAdsByUser(userId);
+		
+		if (!ads.isEmpty()) {
+			List<AdDTO> adDTOs = new ArrayList<AdDTO>();
+			
+			for (Ad a : ads) {
+				adDTOs.add(new AdDTO(a));
+			}
+			
+			return new ResponseEntity<List<AdDTO>>(adDTOs, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping(value = "/ad/active")
+	public ResponseEntity<List<AdDTO>> getActiveAds() {
+		List<Ad> ads = adService.getActiveAds();
+		
+		if (!ads.isEmpty()) {
+			List<AdDTO> adDTOs = new ArrayList<AdDTO>();
+			
+			for (Ad a : ads) {
+				adDTOs.add(new AdDTO(a));
+			}
+			
+			return new ResponseEntity<List<AdDTO>>(adDTOs, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping(value = "/ad/{id}")

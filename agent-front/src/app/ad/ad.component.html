@@ -3,19 +3,21 @@
         <h4>Dashboard for creating new ads, pricelists and discounts!</h4>
 
         <div *ngIf="!isAdd">
-            <button class="btn btn-success" routerLink="/ad-create">Add new ad</button>
+            <ng-container *ngIf="endUserData.adsNumber != 3; else hideAdd">
+                <button class="btn btn-success" routerLink="/ad-create">Add new ad</button>
+            </ng-container>
         </div>
         <div *ngIf="isAdd">
             <app-ad-create></app-ad-create>
         <hr>
         </div>
         <hr>
+
         <h4>My pricelists:</h4>
         <hr>
         <app-pricelist-list></app-pricelist-list>
     
         <hr>
-
         <h4> My discounts:</h4>
         <hr>
         <app-discount-list></app-discount-list>
@@ -35,9 +37,8 @@
                 </tr>
             </thead>
 
-            <tbody *ngFor="let a of ads | async ; let i = index;">
-
-                <tr *ngIf="a.user == userID && a.active == true">
+            <tbody *ngFor="let a of ads let i = index;">
+                <tr>
                     <th scope="row">{{i+1}}</th>
                     <td scope="row">{{a.startDate | date:"dd/MM/yyy HH:mm"}}</td>
                     <td scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</td>
@@ -47,7 +48,7 @@
                         <td *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.city}} {{c.country}}</td>
                     </ng-container>
                     <ng-container *ngFor="let p of pricelists">
-                        <td *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</td>
+                        <td *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}} €</td>
                     </ng-container>
                     <td scope="row"> <button class="btn btn-info" (click)="onReserve()">Reserve</button></td>
                     <td scope="row"> <button class="btn btn-secondary" routerLink="/ad-edit/{{a.idAd}}">Update</button></td>
@@ -61,3 +62,7 @@
         <br><br>
     </div>
   </div>
+
+  <ng-template #hideAdd>
+      <h3>We're sorry, you already have 3 active ads. To create a new ad, please delete some of the existing ones.</h3>
+  </ng-template>

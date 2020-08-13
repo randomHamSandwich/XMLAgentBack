@@ -1,6 +1,5 @@
 package com.xml.agBa.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -37,14 +36,22 @@ public class AdServiceImpl implements AdService {
 
 	@Override
 	public AdDTO createAd(AdDTO adDTO) {
-		DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		/*DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 	    LocalDate sdTemp = LocalDate.parse(adDTO.getStartDate(), DATEFORMATTER);
 	    LocalDateTime sdTemo_ldt = LocalDateTime.of(sdTemp, LocalDateTime.now().toLocalTime());
 	    
 	    LocalDate edTemp = LocalDate.parse(adDTO.getEndDate(), DATEFORMATTER);
 	    LocalDateTime edTemo_ldt = LocalDateTime.of(edTemp, LocalDateTime.now().toLocalTime());
-	    
+	    */
+		
+		String startDateTimeRemoveT =adDTO.getStartDate().replace("T", "-");
+		String endDateTimeRemoveT =adDTO.getEndDate().replace("T", "-");
+		DateTimeFormatter formater = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm");
+		
+		LocalDateTime startLocalDateTime= LocalDateTime.parse(startDateTimeRemoveT, formater);
+		LocalDateTime endLocalDateTime= LocalDateTime.parse(endDateTimeRemoveT, formater);
+		
 	    Long carID = Long.valueOf(adDTO.getCar());
 	    Car car = carRepo.findById(carID).get();
 	    
@@ -52,20 +59,27 @@ public class AdServiceImpl implements AdService {
 	    Pricelist pricelist = pricelistRepo.findById(pricelistID).get();
 	    
 	    EndUser user = (EndUser) endUserRepo.findById(adDTO.getUser()).get();
+	    Integer endUserAds = user.getAdsNumber();
+	    endUserAds = endUserAds + 1;
 	    
 		Ad newAd = new Ad();
 		
-		newAd.setStartDate(sdTemo_ldt);
-		newAd.setEndDate(edTemo_ldt);
+		newAd.setStartDate(startLocalDateTime);
+		newAd.setEndDate(endLocalDateTime);
 		newAd.setPriceList(pricelist);
 		newAd.setCar(car);
 		newAd.setEndUser(user);
+		newAd.setActive(true);
 	
 		newAd = adRepo.save(newAd);
 		
-		return new AdDTO(newAd);
+		user.setAdsNumber(endUserAds);
+		endUserRepo.save(user);
 		
+		car.setAdvertised(true);
+		carRepo.save(car);
 		
+		return new AdDTO(newAd);		
 	}
 
 	@Override
@@ -141,6 +155,16 @@ public class AdServiceImpl implements AdService {
 		ad.setActive(false);
 		ad = adRepo.save(ad);
 		
+		Car car = ad.getCar();
+		car.setAdvertised(false);
+		carRepo.save(car);
+		
+		EndUser endUser = ad.getEndUser();
+		Integer adsNumber = endUser.getAdsNumber();
+		adsNumber = adsNumber - 1;
+		endUser.setAdsNumber(adsNumber);
+		endUserRepo.save(endUser);
+		
 		return true;
 	}
 
@@ -162,6 +186,20 @@ public class AdServiceImpl implements AdService {
 		
 		ad = adRepo.save(ad);
 		return ad;
+	}
+
+	@Override
+	public List<Ad> getActiveAdsByUser(Long id) {
+		List<Ad> ads = adRepo.findActiveByUser(id);
+		
+		return ads;
+	}
+
+	@Override
+	public List<Ad> getActiveAds() {
+		List<Ad> ads = adRepo.findActiveAds();
+		
+		return ads;
 	}
 
 }

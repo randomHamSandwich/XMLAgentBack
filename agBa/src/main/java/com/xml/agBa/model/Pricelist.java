@@ -44,13 +44,16 @@ public class Pricelist {
 	
 	@OneToMany(mappedBy="priceList" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	private Set<Ad> ad;
+	
+	@Column
+	private Boolean isDeleted;
 
 	public Pricelist() {
 		
 	}
 
 	public Pricelist(Long idPriceList, Double priceForOneDay, Double priceForKM, int version, User user,
-			Discount discount, Set<Ad> ad) {
+			Discount discount, Set<Ad> ad, Boolean isDeleted) {
 		super();
 		this.idPriceList = idPriceList;
 		this.priceForOneDay = priceForOneDay;
@@ -59,6 +62,7 @@ public class Pricelist {
 		this.user = user;
 		this.discount = discount;
 		this.ad = ad;
+		this.isDeleted = isDeleted;
 	}
 
 	public Pricelist(PricelistDTO pricelistDTO) {
@@ -120,5 +124,13 @@ public class Pricelist {
 
 	public void setDiscount(Discount discount) {
 		this.discount = discount;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 }

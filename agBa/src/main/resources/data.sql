@@ -5,9 +5,9 @@ insert into roles (role_name) values ('ADMIN');
 insert into roles (role_name) values ('AGENT');
 
 
-insert into user (user_type, phone_number,street_number, country, email, city, password, status, street, isdeleted)
+insert into user (user_type, phone_number,street_number, country, email, city, password, status, street, isdeleted, ads_number)
 values ('END_USER', '111111111111', '15', 'Srbija', 'peraspringuser19@gmail.com', 'Novi Sad',
- '$2a$10$./yRHDMtr84Dr8w5Zr9Y/eaG3MPVzDmpH.uL3NCMmC/6Syy8RWCoa', 'ACTIVE', 'Gogoljeva', false);
+ '$2a$10$./yRHDMtr84Dr8w5Zr9Y/eaG3MPVzDmpH.uL3NCMmC/6Syy8RWCoa', 'ACTIVE', 'Gogoljeva', false, 1);
  insert into user_role(id_role, id_user) values ('1','1');
 
 insert into user (user_type, phone_number,street_number, country, email, city, password, status, street, isdeleted)
@@ -15,14 +15,14 @@ values ('ADMIN', '909090909090909090', '15', 'Srbija', 'admin@gmail.com', 'Novi 
  '$2a$10$./yRHDMtr84Dr8w5Zr9Y/eaG3MPVzDmpH.uL3NCMmC/6Syy8RWCoa', 'ACTIVE', 'Cara Dusana', false);
  insert into user_role(id_role, id_user) values ('4','2');
 
-insert into user (user_type, phone_number,street_number, country, email, city, password, status, street, isdeleted)
+insert into user (user_type, phone_number,street_number, country, email, city, password, status, street, isdeleted, ads_number)
 values ('END_USER', '111111111111', '21', 'Srbija', 'mirjanaspringuser19@gmail.com', 'Beograd',
- '$2a$10$./yRHDMtr84Dr8w5Zr9Y/eaG3MPVzDmpH.uL3NCMmC/6Syy8RWCoa', 'ACTIVE', 'Golubinacka', false);
+ '$2a$10$./yRHDMtr84Dr8w5Zr9Y/eaG3MPVzDmpH.uL3NCMmC/6Syy8RWCoa', 'ACTIVE', 'Golubinacka', false, 1);
  insert into user_role(id_role, id_user) values ('1','3');
 
-insert into user (user_type, phone_number,street_number, country, email, city, password, status, street, isdeleted)
+insert into user (user_type, phone_number,street_number, country, email, city, password, status, street, isdeleted, ads_number)
 values ('END_USER', '909090909090909090', '64', 'Srbija', 'lugaspring@gmail.com ', 'Kikinda',
- '$2a$10$./yRHDMtr84Dr8w5Zr9Y/eaG3MPVzDmpH.uL3NCMmC/6Syy8RWCoa', 'ACTIVE', 'Zlatiborska', false);
+ '$2a$10$./yRHDMtr84Dr8w5Zr9Y/eaG3MPVzDmpH.uL3NCMmC/6Syy8RWCoa', 'ACTIVE', 'Zlatiborska', false, 0);
  insert into user_role(id_role, id_user) values ('1','4');
  
 INSERT INTO car_brand (name, isdeleted)
@@ -139,13 +139,13 @@ VALUES (0, '300', 0, '0', 'Osaka', 'Japan', '999', 'BG8569-DS', 'DriftKings Str.
 ( SELECT id_fuel_type FROM fuel_type WHERE name ='Gasoline' ),
 ( SELECT id_gearbox_type FROM gearbox_type WHERE name ='Manual' ));
 
-INSERT INTO pricelist(price_forkm, price_for_one_day, id_discount, id_user) VALUES (10, 12, 1, 1);
-INSERT INTO pricelist(price_forkm, price_for_one_day, id_discount, id_user) VALUES (12, 11, 2, 2);
-INSERT INTO pricelist(price_forkm, price_for_one_day, id_discount, id_user) VALUES (14, 12, 1, 1);
+INSERT INTO pricelist(is_deleted, price_forkm, price_for_one_day, id_discount, id_user) VALUES (0, 10, 12, 1, 1);
+INSERT INTO pricelist(is_deleted, price_forkm, price_for_one_day, id_discount, id_user) VALUES (0, 12, 11, 2, 2);
+INSERT INTO pricelist(is_deleted, price_forkm, price_for_one_day, id_discount, id_user) VALUES (0, 14, 12, 1, 1);
 
-INSERT INTO ad(end_date, start_date, id_car, id_user, id_price_list) VALUES ('2025-01-11 01:00:00', '2020-06-14 04:00:00', 1, 1, 1);
-INSERT INTO ad(end_date, start_date, id_car, id_user, id_price_list) VALUES ('2024-02-12 02:00:00', '2020-07-15 05:00:00', 3, 3, 1);
-INSERT INTO ad(end_date, start_date, id_car, id_user, id_price_list) VALUES ('2023-03-13 03:00:00', '2020-08-16 06:00:00', 2, 1, 1);
+INSERT INTO ad(active, end_date, start_date, id_car, id_user, id_price_list) VALUES (1, '2025-01-11 01:00:00', '2020-06-14 04:00:00', 1, 1, 1);
+INSERT INTO ad(active, end_date, start_date, id_car, id_user, id_price_list) VALUES (1, '2024-02-12 02:00:00', '2020-07-15 05:00:00', 3, 3, 1);
+INSERT INTO ad(active, end_date, start_date, id_car, id_user, id_price_list) VALUES (0, '2023-03-13 03:00:00', '2020-08-16 06:00:00', 2, 1, 1);
 
 INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (5, 15, 0, 1);
 INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (10, 30, 0, 2);

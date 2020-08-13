@@ -26,9 +26,22 @@ export class AdListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.getAllAds("","","");
+    //this.getAllAds("","","");
+    this.getActiveAds();
     this.getAllCars();
     this.getAllPricelists();
+  }
+
+  getActiveAds() {
+    this.adService.getActiveAds().subscribe(
+      data => {
+        this.ads = data;
+      },
+      error => {
+        console.log("error: " + error.message);
+        
+      }
+    );
   }
 
   getAllAds(c: string , s: string, e:string) {    
@@ -41,7 +54,7 @@ export class AdListComponent implements OnInit {
         this.cars = data;
       },
       error => {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.message;
 
         console.log("Error: " + this.errorMessage);
       }

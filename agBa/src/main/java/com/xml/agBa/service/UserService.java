@@ -7,9 +7,6 @@ import com.xml.agBa.model.User;
 import com.xml.agBa.model.EndUser;
 
 public interface UserService {
-	
-	
-
 	UserDTO saveUser(UserDTO korisnikDTO);
 
 	List<UserDTO> findAllEndUsers();
@@ -25,5 +22,7 @@ public interface UserService {
 	Boolean delete(Long id);
 
 	User getOne(Long id);
+	
+	EndUser getEndUserData(Long id);
 
 }

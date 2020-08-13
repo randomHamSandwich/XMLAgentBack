@@ -71,10 +71,6 @@ export class AdUpdateComponent implements OnInit {
     this.updatedAd.startDate = this.form.startDate;
     this.updatedAd.endDate = this.form.endDate;
     this.updatedAd.pricelist = this.form.pricelist;
-
-    console.log("start date: " + this.updatedAd.startDate);
-    console.log("end date: " + this.updatedAd.endDate);
-    console.log("pricelist: " + this.updatedAd.pricelist);
     
     this.adService.updateAd(this.adId, this.updatedAd).subscribe(
       data => {

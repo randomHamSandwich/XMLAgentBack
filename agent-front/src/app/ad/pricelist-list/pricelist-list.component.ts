@@ -20,19 +20,46 @@ export class PricelistListComponent implements OnInit {
   isAdd = false;
   userId: number;
 
+  isUpdate = false;
+
+  isDeleted = false;
+  isUpdated = false;
+  isDeleteError = false;
+  isUpdateError = false;
+
+  pricelistId: number;
+
+  activePricelists: any;
+
   constructor(private pricelistService: PricelistService,
               private discountService: DiscountService,
               private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-    this.findAllPricelists();
-    this.getDiscounts();
+    //this.findAllPricelists();
 
     this.userId = +this.tokenStorage.getIdKorisnik();
+    this.getDiscounts();
+    this.findActivePricelists();
+
   }
 
-  findAllPricelists() {
+  /*findAllPricelists() {
     this.pricelists = this.pricelistService.getAllPricelists();
+  }*/
+
+  findActivePricelists() {
+    this.pricelistService.getActivePricelists(this.userId).subscribe(
+      data => {
+        this.pricelists = data;
+        console.log("pricelist data: " + this.pricelists);
+        
+      },
+      error => {
+        console.log("error: " + error.message);
+        
+      }
+    );
   }
 
   onPricelistAdd(): void {
@@ -45,6 +72,27 @@ export class PricelistListComponent implements OnInit {
         this.discounts = data;
       }
     );
+  }
+
+  onDelete(id) {
+    this.pricelistService.deletePricelist(id).subscribe(
+      data => {
+        this.isDeleted = true;
+      },
+      error => {
+        this.isDeleteError = true;
+        console.log("error: " + error.error.message);
+        
+      }
+    );
+    window.location.reload();
+  }
+
+  onPricelistUpdate(id): void {
+    this.pricelistId = id;
+    console.log("pricelistId: " + this.pricelistId);
+    
+    this.isUpdate = !this.isUpdate;
   }
 
 }

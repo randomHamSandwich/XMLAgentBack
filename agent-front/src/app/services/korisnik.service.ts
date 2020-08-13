@@ -46,4 +46,8 @@ export class KorisnikService {
     return this.http.delete(this.korisnikUrl + '/' + id);
   }
 
+  public getEndUserData(id: number): Observable<any> {
+    return this.http.get(this.korisnikUrl + '/enduser/' + id);
+  }
+
 }

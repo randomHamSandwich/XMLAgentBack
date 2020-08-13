@@ -43,6 +43,28 @@ public class DiscountServiceImpl implements DiscountService {
 		return dDTO;
 	}
 
+	@Override
+	public Discount getDiscountById(Long id) {
+		Discount discount = discountRepo.findById(id).get();
+		return discount;
+	}
 
+	@Override
+	public Discount updateDiscount(Long id, DiscountDTO discountDTO) {
+		Discount discount  = discountRepo.findById(id).get();
+		
+		discount.setForMoreThanXDays(discountDTO.getMoreThanXDays());
+		discount.setDiscount(discountDTO.getDiscount());
+		
+		discountRepo.save(discount);
+		
+		return discount;
+	}
 
+	@Override
+	public List<Discount> findDiscountsByUserId(Long userId) {
+		List<Discount> discounts = discountRepo.findDiscountsByUser(userId);
+		
+		return discounts;
+	}
 }

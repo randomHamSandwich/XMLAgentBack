@@ -1,5 +1,6 @@
 package com.xml.agBa.contriller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.agBa.dto.DiscountDTO;
+import com.xml.agBa.model.Discount;
 import com.xml.agBa.service.DiscountService;
 
 @CrossOrigin(origins = "*")
@@ -44,20 +48,51 @@ public class DiscountController {
 		
 		return new ResponseEntity<DiscountDTO>(newDiscount, HttpStatus.OK);
 	}
-//	TODO create restfull get,getAll,put and post
-//	@PostMapping(value = "/create")
-//	public ResponseEntity<DiscountDTO> createPopust(@RequestBody DiscountDTO popustData) {
-//		//System.out.println("kreiranje popusta: " + popustData.getDani() + " , " + popustData.getPopust());
-//		DiscountDTO noviPopust = popustService.createPopust(popustData);
-//		
-//		return new ResponseEntity<>(noviPopust, HttpStatus.CREATED);
-//	}
-//	
-//	@GetMapping(value = "/popusti")
-//	public ResponseEntity<List<DiscountDTO>> getAllPopusti() {
-//		List<DiscountDTO> popustiList = popustService.getAllDiscounts();
-//		
-//		return new ResponseEntity<>(popustiList, HttpStatus.OK);
-//	}
+	
+	@PutMapping(value="/discounts/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<?> updateDiscount(@PathVariable("id") Long id, @RequestBody DiscountDTO discountDTO) {
+		Discount discount = discountService.updateDiscount(id, discountDTO);
+		
+		if (discount != null) {
+			DiscountDTO newDiscount = new DiscountDTO(discount);
+			
+			return new ResponseEntity<>(newDiscount, HttpStatus.OK);
+		}
+	
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping(value="/discounts/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<DiscountDTO> getDiscountById(@PathVariable("id") Long id) {
+		Discount discount = discountService.getDiscountById(id);
+		
+		if (discount != null) {
+			DiscountDTO discountDTO = new DiscountDTO(discount);
+			
+			return new ResponseEntity<>(discountDTO, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping(value="/discounts/active/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<List<DiscountDTO>> getDiscountsByUser(@PathVariable("id") Long id) {
+		List<Discount> discounts = discountService.findDiscountsByUserId(id);
+		
+		if (!discounts.isEmpty()) {
+			List<DiscountDTO> discountDTOs = new ArrayList<DiscountDTO>();
+			
+			for (Discount d: discounts) {
+				discountDTOs.add(new DiscountDTO(d));
+			}
+			
+			return new ResponseEntity<>(discountDTOs, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
 	
 }
