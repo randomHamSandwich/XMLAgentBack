@@ -18,11 +18,6 @@ services:
     depends_on:
       - eureka-serviceregistry
       
-      
-
-
-
-
   aut-s:
     build: ./aut-s
     ports:
@@ -32,11 +27,14 @@ services:
     tty: true
     depends_on:
       - eureka-serviceregistry
+      
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+    - "5672:5672"
+    - "15672:15672"
   
   zuul:
-
-    
-    
 
     build: ./Zuul
     ports:
