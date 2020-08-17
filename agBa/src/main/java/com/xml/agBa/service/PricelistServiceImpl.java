@@ -55,6 +55,14 @@ public class PricelistServiceImpl implements PricelistService {
 		
 		return pricelistsDTO;
 	}
+	
+	@Override
+	public List<Pricelist> getActivePricelists(Long userId) {
+		
+		List<Pricelist> pricelists = pricelistRepo.findActivePricelist(userId);
+		
+		return pricelists;
+	}
 
 	@Override
 	@Transactional(readOnly = false)
@@ -87,5 +95,4 @@ public class PricelistServiceImpl implements PricelistService {
 		
 		return true;
 	}
-
 }

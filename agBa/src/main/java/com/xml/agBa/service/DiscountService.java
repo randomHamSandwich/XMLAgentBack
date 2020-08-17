@@ -11,5 +11,5 @@ public interface DiscountService {
 	List<DiscountDTO> getAllDiscounts();
 	Discount getDiscountById(Long id);
 	Discount updateDiscount(Long id, DiscountDTO discountDTO);
-
+	List<Discount> findDiscountsByUserId(Long userId);
 }

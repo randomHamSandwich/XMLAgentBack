@@ -17,9 +17,7 @@ export class PricelistService {
     return this.http.post(this.baseUrl, data);
   }
 
-  updatePricelist(id: number, updateData: any): Observable<any> {
-    console.log("in service");
-    
+  updatePricelist(id: number, updateData: any): Observable<any> {    
     return this.http.put(this.baseUrl + '/' + id, updateData);
   }
 
@@ -33,5 +31,11 @@ export class PricelistService {
 
   getAllPricelists(): Observable<any> {
     return this.http.get(this.baseUrl);
+  }
+
+  getActivePricelists(id: number): Observable<any> {
+    console.log("id: " + id);
+    
+    return this.http.get(this.baseUrl + '/active/' + id);
   }
 }
