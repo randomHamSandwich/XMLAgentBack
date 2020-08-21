@@ -28,6 +28,16 @@ services:
     depends_on:
       - eureka-serviceregistry
       
+  mail-s:
+    build: ./mail-s
+    ports:
+    - "8086:8086"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
+      
   rabbitmq:
     image: rabbitmq:management
     ports:
