@@ -31,39 +31,39 @@ export class AdComponent implements OnInit {
   ngOnInit() {
     this.userID = this.tokenStorageService.getIdKorisnik();
     this.getAllAds();
-    this.getAllCars();
-    this.getAllPricelists();
+    // this.getAllCars();
+    // this.getAllPricelists();
   }
 
   getAllAds() {
     this.ads = this.adService.getAllAds("", "", "");
   }
 
-  getAllCars() {
-    this.carService.getCarsList().subscribe(
-      data => {
-        this.cars = data;
-      },
-      error => {
-        this.errorMessage = error.error.message;
+  // getAllCars() {
+  //   this.carService.getCarsList().subscribe(
+  //     data => {
+  //       this.cars = data;
+  //     },
+  //     error => {
+  //       this.errorMessage = error.error.message;
 
-        console.log("Error: " + this.errorMessage);
-      }
-    );
-  }
+  //       console.log("Error: " + this.errorMessage);
+  //     }
+  //   );
+  // }
 
-  getAllPricelists() {
-    this.pricelistService.getAllPricelists().subscribe(
-      data => {
-        this.pricelists = data;
-      },
-      error => {
-        this.errorMessage = error.error.message;
-        console.log("Error: " + this.errorMessage);
+  // getAllPricelists() {
+  //   this.pricelistService.getAllPricelists().subscribe(
+  //     data => {
+  //       this.pricelists = data;
+  //     },
+  //     error => {
+  //       this.errorMessage = error.error.message;
+  //       console.log("Error: " + this.errorMessage);
 
-      }
-    );
-  }
+  //     }
+  //   );
+  // }
 
   onBack() {
     this.router.navigate(['/']);

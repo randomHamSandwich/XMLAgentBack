@@ -53,7 +53,7 @@ public class UserController {
         
         ArrayList<String>authAndMail =jtVerificationService.filter(authorizationJWT);
 //        System.out.println("in auth-s UserController  /verify authority:_" + authority);
-//        
+        
 //        return new ResponseEntity<>(this.consumerService.verify(email), HttpStatus.OK);
 		return new ResponseEntity<>(authAndMail, HttpStatus.OK);
     }
