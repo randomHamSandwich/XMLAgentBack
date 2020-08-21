@@ -1,5 +1,7 @@
 package com.xml.ad.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.ad.dto.AdDTO;
@@ -35,31 +38,32 @@ public class AdController {
 //		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 //	}
 
-//	@GetMapping(value = "/ad")
-//	@PreAuthorize("hasAuthority('END_USER')")
-//	public ResponseEntity<List<AdDTO>> getAllAds(@RequestParam String city, @RequestParam String startDateTime,
-//			@RequestParam String endDateTime) {
-//
-//		if (city.equals("") || city.equals(null) || startDateTime.equals("") || startDateTime.equals(null)
-//				|| endDateTime.equals("") || endDateTime.equals(null)) {
-//
-//			List<AdDTO> adDTOs = adService.getAllAds();
-//
-//			if (!adDTOs.isEmpty()) {
-//				return new ResponseEntity<>(adDTOs, HttpStatus.OK);
-//			}
-//
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		} else {
-//			
+	@GetMapping(value = "/ad")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<List<AdDTO>> getAllAds(@RequestParam String city, @RequestParam String startDateTime,
+			@RequestParam String endDateTime) {
+
+		if (city.equals("") || city.equals(null) || startDateTime.equals("") || startDateTime.equals(null)
+				|| endDateTime.equals("") || endDateTime.equals(null)) {
+
+			List<AdDTO> adDTOs = adService.getAllAds();
+
+			if (!adDTOs.isEmpty()) {
+				return new ResponseEntity<>(adDTOs, HttpStatus.OK);
+			}
+
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			
 //			List<AdDTO> cDTO = adService.search(city, startDateTime, endDateTime);
-//
+
 //			return new ResponseEntity<>(cDTO, HttpStatus.OK);
-//			
-//		}
-//			
-//
-//	}
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+			
+		}
+			
+
+	}
 
 	@GetMapping(value = "/ad/{id}")
 	@PreAuthorize("hasAuthority('END_USER')")

@@ -1,4 +1,9 @@
 version: '3'
+
+networks:
+  testnetwork:
+
+
 services:
 
   eureka-serviceregistry:
@@ -7,8 +12,8 @@ services:
      - "8761:8761"
     tty: true
 
-  ad:
-  
+
+  ad:  
     build: ./ad
     ports:
     - "8081:8081"
@@ -17,35 +22,52 @@ services:
     tty: true
     depends_on:
       - eureka-serviceregistry
-      
+
+
+
+ 
   aut-s:
     build: ./aut-s
     ports:
     - "8082:8082"
     environment:
       - REGISTRY_HOST=eureka-serviceregistry
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
     tty: true
     depends_on:
       - eureka-serviceregistry
+
+
       
   mail-s:
     build: ./mail-s
     ports:
     - "8086:8086"
     environment:
-      - REGISTRY_HOST=eureka-serviceregistry
+      - REGISTRY_HOST=eureka-serviceregistry  
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+
     tty: true
     depends_on:
       - eureka-serviceregistry
-      
+      - rabbitmq
+
+
+
+
+
   rabbitmq:
     image: rabbitmq:management
+    hostname: rabbitmq
     ports:
     - "5672:5672"
     - "15672:15672"
+
+
   
   zuul:
-
     build: ./Zuul
     ports:
     - "8083:8083"
@@ -57,6 +79,8 @@ services:
     depends_on:
       - eureka-serviceregistry
       - ad
+
+
 
   docker-mysql:
     restart: always
@@ -77,6 +101,7 @@ services:
       interval: 2s
       timeout: 20s
       retries: 10
+
   
   docker-mysql-aut-s:
     restart: always
@@ -97,4 +122,4 @@ services:
       interval: 2s
       timeout: 20s
       retries: 10
-  
+

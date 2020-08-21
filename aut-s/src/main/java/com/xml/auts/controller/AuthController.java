@@ -35,6 +35,7 @@ import com.xml.auts.security.jwt.JwtProvider;
 import com.xml.auts.security.service.UserDetailsImpl;
 import com.xml.auts.service.UserService;
 
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
@@ -66,6 +67,10 @@ public class AuthController {
 
 //	@Autowired
 //	private EmailService emailService;
+	
+	
+	@Autowired
+	private com.xml.auts.rabbitmq.Producer producer;
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
@@ -138,6 +143,8 @@ public class AuthController {
 		user.setRoles(roles);
 
 		korisnikService.save(user);
+		
+		producer.sendTo("spring-boot1", "poruka iz authControlera preko rebitmq");
 
 //		try {
 //			emailService.sendSuccessfulRegistrationMail(user);
