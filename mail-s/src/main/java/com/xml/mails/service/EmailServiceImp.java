@@ -14,7 +14,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.xml.mails.dto.UserDTO;
 
 
 
@@ -32,7 +31,7 @@ public class EmailServiceImp implements EmailService{
 
 //	annotating a method of a bean with @Async will make it execute in a separate thread i.e. the caller will not wait for the completion of the called method.
 	@Async
-	public void sendSuccessfulRegistrationMail(UserDTO user) throws MailException, InterruptedException {
+	public void sendSuccessfulRegistrationMail(String email) throws MailException, InterruptedException {
 		System.out.println("Slanje emaila...");
 
 		LocalDateTime dateTimeNow = LocalDateTime.now();
@@ -40,13 +39,13 @@ public class EmailServiceImp implements EmailService{
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
 		try {
-			helper.setTo(user.getEmail());
+			helper.setTo(email);
 
 			helper.setFrom(env.getProperty("spring.mail.username"));
 			helper.setSubject("Uspesna registracija");
 			String htmlPoruka = dateTimeNow.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) + "<p>Pozdrav  uspesno ste se registrovali na rent a car app "
 					+ "<p>Email:  "
-					+ user.getEmail()
+					+ email
 					+ "</p>";
 					
 			helper.setText(htmlPoruka, true);

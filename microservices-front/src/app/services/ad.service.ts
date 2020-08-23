@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class AdService {
 
 
-  private baseUrl = 'http://localhost:8083/ad';
+  private baseUrl = 'http://localhost:8083/ad/ad';
 
   constructor(private http: HttpClient) { }
 
