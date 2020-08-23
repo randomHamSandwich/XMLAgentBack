@@ -36,8 +36,9 @@ export class CartListComponent implements OnInit {
       this.adService.getAdById(parseInt(id)).subscribe(
         data => {
          this.tempAd = data;
-         //console.log("Attempted adding AdDTO with ID: " + this.tempAd.idAd + ". Car: " + this.tempAd.car);
+         console.log("Attempted adding AdDTO with ID: " + this.tempAd.idAd + ". Car: " + this.tempAd.car);
          console.log("Data fetched type: " + typeof(data));
+         this.adItemsSource.push(this.tempAd);
         },
         error => {
           {
@@ -45,7 +46,7 @@ export class CartListComponent implements OnInit {
           }
         }
       )
-      this.adItemsSource.push(this.tempAd);
+      
     });
 
     // this.cartItemSessions.push(new CartItemDTO(1, "Toyota", "Corolla","10-12-2020","15-12-2020", 15, 5));
