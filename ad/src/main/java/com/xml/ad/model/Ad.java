@@ -42,7 +42,7 @@ public class Ad {
 //	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
 //	private Set<Comment> comments;
 	
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST ,CascadeType.REFRESH} )
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST ,CascadeType.REFRESH} )
 	@JoinColumn(name = "id_price_list")
 	private Pricelist priceList;
 	
@@ -53,71 +53,71 @@ public class Ad {
 //	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 //	@JoinColumn(name = "id_user")
 //	private EndUser endUser;
+    
+
+	@Column
+	private Boolean active;
 
 	public Ad() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
 
-	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version, Pricelist priceList) {
+	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version,
+			com.xml.ad.model.Pricelist priceList, Boolean active) {
 		super();
 		this.idAd = idAd;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.version = version;
 		this.priceList = priceList;
+		this.active = active;
 	}
-
 
 	public Long getIdAd() {
 		return idAd;
 	}
 
-
 	public void setIdAd(Long idAd) {
 		this.idAd = idAd;
 	}
-
 
 	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-
 	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
-
 
 	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-
 	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
-
 
 	public Integer getVersion() {
 		return version;
 	}
 
-
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
-
 
 	public Pricelist getPriceList() {
 		return priceList;
 	}
 
-
 	public void setPriceList(Pricelist priceList) {
 		this.priceList = priceList;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
 
+	public void setActive(Boolean active) {
+		this.active = active;
+	}	
 }

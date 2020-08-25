@@ -22,6 +22,8 @@ export class AdComponent implements OnInit {
 
   errorMessage: any;
 
+  isDeleted = false;
+
   constructor(private router: Router,
               private adService: AdService,
               private carService: CarService,
@@ -30,13 +32,40 @@ export class AdComponent implements OnInit {
 
   ngOnInit() {
     this.userID = this.tokenStorageService.getIdKorisnik();
-    this.getAllAds();
+    this.getActiveAds();
+    this.getAllPricelists();
+    //this.getAllAds();
     // this.getAllCars();
     // this.getAllPricelists();
   }
 
-  getAllAds() {
+ /* getAllAds() {
     this.ads = this.adService.getAllAds("", "", "");
+  }*/
+
+  getActiveAds() {
+    this.adService.getActiveAds().subscribe(
+      data => {
+        this.ads = data;
+      },
+      error => {
+        console.log("error: " + error.message);
+        
+      }
+    );
+  }
+
+  getAllPricelists() {
+    this.pricelistService.getAllPricelists().subscribe(
+      data => {
+        this.pricelists = data;
+      },
+      error => {
+        this.errorMessage = error.error.message;
+        console.log("Error: " + this.errorMessage);
+
+      }
+    );
   }
 
   // getAllCars() {
@@ -52,19 +81,6 @@ export class AdComponent implements OnInit {
   //   );
   // }
 
-  // getAllPricelists() {
-  //   this.pricelistService.getAllPricelists().subscribe(
-  //     data => {
-  //       this.pricelists = data;
-  //     },
-  //     error => {
-  //       this.errorMessage = error.error.message;
-  //       console.log("Error: " + this.errorMessage);
-
-  //     }
-  //   );
-  // }
-
   onBack() {
     this.router.navigate(['/']);
   }
@@ -76,6 +92,16 @@ export class AdComponent implements OnInit {
 
   onReserve() {
     console.log("DAJ KALENDAR DA REZERVISEM SEBI HEHE");
+    
+  }
+
+  onDelete(idAd: any) {
+    this.adService.deleteAd(idAd).subscribe(
+      data => {
+        this.isDeleted = true;
+        window.location.reload();
+      }
+    );
     
   }
 

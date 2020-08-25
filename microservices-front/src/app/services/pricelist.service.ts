@@ -8,26 +8,28 @@ import { PricelistDTO } from '../ad/pricelist-create/PricelistDTO';
 })
 export class PricelistService {
 
-  private baseUrl = 'http://localhost:8080/api/pricelist';
+  private baseUrl = 'http://localhost:8083/ad/pricelist';
 
 
   constructor(private http: HttpClient) { }
 
   createNewPricelist(data: PricelistDTO): Observable<any> {
-    console.log("in here");
-    
     return this.http.post(this.baseUrl, data);
   }
 
-  updatePricelist() {
-
+  updatePricelist(id: number, updateData: any): Observable<any> {
+    return this.http.put(this.baseUrl + '/' + id, updateData);
   }
 
-  getPricelistById() {
-
+  getPricelistById(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/' + id);
   }
 
   getAllPricelists(): Observable<any> {
     return this.http.get(this.baseUrl);
+  }
+
+  deletePricelist(id: number): Observable<any> {
+    return this.http.delete(this.baseUrl + '/' + id);
   }
 }
