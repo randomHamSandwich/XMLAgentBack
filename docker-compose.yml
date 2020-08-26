@@ -11,6 +11,18 @@ services:
     ports:
      - "8761:8761"
     tty: true
+    
+    
+    
+    
+  rabbitmq:
+    image: rabbitmq:management
+    hostname: rabbitmq
+    ports:
+    - "5672:5672"
+    - "15672:15672"
+
+
 
 
   ad:  
@@ -22,6 +34,7 @@ services:
     tty: true
     depends_on:
       - eureka-serviceregistry
+
 
 
 
@@ -37,6 +50,7 @@ services:
     tty: true
     depends_on:
       - eureka-serviceregistry
+
 
 
       
@@ -58,14 +72,8 @@ services:
 
 
 
-  rabbitmq:
-    image: rabbitmq:management
-    hostname: rabbitmq
-    ports:
-    - "5672:5672"
-    - "15672:15672"
 
-
+ 
   
   zuul:
     build: ./Zuul
@@ -79,6 +87,7 @@ services:
     depends_on:
       - eureka-serviceregistry
       - ad
+
 
 
 
@@ -102,6 +111,10 @@ services:
       timeout: 20s
       retries: 10
 
+
+
+
+
   
   docker-mysql-aut-s:
     restart: always
@@ -122,4 +135,5 @@ services:
       interval: 2s
       timeout: 20s
       retries: 10
+
 

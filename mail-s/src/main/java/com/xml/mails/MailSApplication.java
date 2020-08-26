@@ -38,7 +38,9 @@ public class MailSApplication {
 	 */
 	@Bean
 	public ConnectionFactory connectionFactory() {
-		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
+		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("rabbitmq");
+//		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("testnetwork");
+//		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
 		return connectionFactory;
 	}
 	
