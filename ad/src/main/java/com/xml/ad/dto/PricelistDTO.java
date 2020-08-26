@@ -37,9 +37,6 @@ public class PricelistDTO {
 		this.numberOfDays = pTemp.getDiscount().getForMoreThanXDays();
 		this.discount = pTemp.getDiscount().getDiscount();
 		this.isDeleted = pTemp.getIsDeleted();
-		this.pricelistId = pTemp.getIdPriceList();
-		this.priceForOneDay = pTemp.getPriceForOneDay();
-		this.priceForKM = pTemp.getPriceForKM();
 	}
 
 	public Long getPricelistId() {

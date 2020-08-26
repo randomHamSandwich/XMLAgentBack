@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PricelistDTO } from './PricelistDTO';
 import { PricelistService } from 'src/app/services/pricelist.service';
-import { Router } from '@angular/router';
 import { DiscountService } from 'src/app/services/discount.service';
 import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
@@ -40,24 +39,31 @@ export class PricelistCreateComponent implements OnInit {
         this.discounts = data;
       },
       error => {
-        this.errorMessageDiscounts = error.error.message;
+        this.errorMessageDiscounts = error.message;
+        console.log("Error, get discounts: " + this.errorMessageDiscounts);
+        
       }
     );
 }
 
   onSubmit() {
+    console.log("submitted");
+    this.submitted = true;
+
     this.newPricelist = new PricelistDTO();
     this.newPricelist.priceForOneDay = this.form.priceForOneDay;
     this.newPricelist.priceForKM = this.form.priceForKM;
-
+    this.newPricelist.discountId = this.form.discount;
+    //this.newPricelist.user = +this.userId;
+    
     this.pricelistService.createNewPricelist(this.newPricelist).subscribe(
       data => {
-        console.log(data);
-        this.newPricelist = data as PricelistDTO;
+        console.log("created");
+        this.isCreated = true;
       },
       error => {
-        console.log(error);
-        
+        this.isFailed = true;
+        console.log("ERROR, creating new pricelist: " + error.message);
       }
     );
 

@@ -37,7 +37,7 @@ export class DiscountUpdateComponent implements OnInit {
       },
       error => {
         this.isError = true;
-        this.errorMessage = error.errorMessage;
+        this.errorMessage = error.message;
         console.log("error: " + this.errorMessage);
         
       }
@@ -61,7 +61,7 @@ export class DiscountUpdateComponent implements OnInit {
       },
       error => {
         this.isUpdateError = true;
-        this.errorUpdateMessage = error.errorMessage;
+        this.errorUpdateMessage = error.message;
         console.log("Error: " + this.errorUpdateMessage);
       }
     );

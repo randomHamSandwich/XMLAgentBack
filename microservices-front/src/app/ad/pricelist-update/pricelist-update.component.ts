@@ -40,7 +40,7 @@ export class PricelistUpdateComponent implements OnInit {
         this.pricelistData = data;
       },
       error => {
-        this.errorMessage = error.errorMessage;
+        this.errorMessage = error.message;
         console.log("Error: " + this.errorMessage);
       }
     );
@@ -52,7 +52,7 @@ export class PricelistUpdateComponent implements OnInit {
         this.discounts = data;
       },
       error => {
-        this.errorDiscountsMessage = error.errorMessage;
+        this.errorDiscountsMessage = error.message;
         console.log("Discounts: " + this.errorDiscountsMessage);
         
       }
@@ -65,7 +65,7 @@ export class PricelistUpdateComponent implements OnInit {
     this.updatePricelist = new PricelistDTO();
     this.updatePricelist.priceForOneDay = this.form.priceForOneDay;
     this.updatePricelist.priceForKM = this.form.priceForKM;
-   // this.updatePricelist.discountId = this.form.discount;
+    this.updatePricelist.discountId = this.form.discount;
     
     this.pricelistService.updatePricelist(this.pricelistId, this.updatePricelist).subscribe(
       data => {
@@ -74,7 +74,7 @@ export class PricelistUpdateComponent implements OnInit {
         this.reloadPage();
       },
       error => {
-        this.errorUpdateMessage = error.errorMessage;
+        this.errorUpdateMessage = error.message;
         console.log("error: " + this.errorUpdateMessage);
         
       }
