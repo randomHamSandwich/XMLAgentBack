@@ -1,14 +1,19 @@
 package com.xml.agBa.service;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xml.agBa.model.CarClass;
 import com.xml.agBa.model.CarBrand;
@@ -160,6 +165,16 @@ public class CarServiceImp implements CarService{
 				
 		return new CarDTO(editedCar);
 	}
+	
+	@Override
+	@Transactional
+	public CarDTO editCar(Long idCar, byte[] bytes) {
+		Car editedCar = carRepo.getOne(idCar);
+		editedCar.setPhoto(bytes);
+		editedCar = carRepo.save(editedCar);
+				
+		return new CarDTO(editedCar);
+	}
 
 	@Override
 	@Transactional
@@ -198,6 +213,42 @@ public class CarServiceImp implements CarService{
 		Long car = carRepo.deleteByIdCar(idCar);
 		System.out.println("Izbrisan: "+car);
 		return true;
+	}
+
+	@Override
+	public void save(MultipartFile file) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Resource load(String filename) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Stream<Path> loadAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public byte[] getData(MultipartFile file) {
+		byte[] bytes = null;
+		try {
+			bytes = file.getBytes();
+		} catch (IOException e) {
+			System.out.println("CarServiceImpl: MultiPart file didn't transfer to bytes");
+			e.printStackTrace();
+		}
+		return bytes;
 	}
 
 //	@Override

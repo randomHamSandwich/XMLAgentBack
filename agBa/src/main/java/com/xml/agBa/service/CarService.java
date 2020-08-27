@@ -1,6 +1,11 @@
 package com.xml.agBa.service;
 
+import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Stream;
+
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xml.agBa.model.CarClass;
 import com.xml.agBa.model.CarBrand;
@@ -19,6 +24,10 @@ public interface CarService {
 	List<CarDTO> getAllCars();
 	
 	Car save(Car car);
+	
+	public CarDTO editCar(Long idCar, byte[] bytes);
+	
+	byte[] getData(MultipartFile file);
 	
 	void deleteCarById(Long carId);
 	
@@ -43,6 +52,14 @@ public interface CarService {
 	CarDTO editCar(Long idCar, CarDTO carDTO);
 
 	Boolean delete(Long idCar);
+	
+	public void save(MultipartFile file);
+
+	public Resource load(String filename);
+
+	public void deleteAll();
+
+	public Stream<Path> loadAll();
 
 //	List<CarDTO> getAllCarsFromACity(String city);
 }

@@ -2,6 +2,8 @@ package com.xml.agBa.dto;
 
 import javax.persistence.Column;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.xml.agBa.model.CarBrand;
 import com.xml.agBa.model.Car;
 import com.xml.agBa.model.CarClass;
@@ -28,6 +30,7 @@ public class CarDTO {
 	private String registrationPlate;
 	private Long user;
 	private Boolean advertised;
+	private byte[] photo;
 
 	public CarDTO() {
 		super();
@@ -36,7 +39,7 @@ public class CarDTO {
 
 	public CarDTO(CarBrand carBrand, CarModel carModel, CarClass carClass, FuelType fuelType, GearboxType gearboxType,
 			Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street, String streetNumber,
-			String city, String country, String registrationPlate, Long user, Boolean advertised) {
+			String city, String country, String registrationPlate, Long user, Boolean advertised, byte[] photo) {
 		super();
 		this.carBrand = carBrand.getName();
 		this.carModel = carModel.getName();
@@ -55,6 +58,7 @@ public class CarDTO {
 		this.registrationPlate = registrationPlate;
 		this.user = user;
 		this.advertised = advertised;
+		this.photo = photo;
 	}
 
 	public CarDTO(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street, String streetNumber,
@@ -81,7 +85,16 @@ public class CarDTO {
 	public CarDTO(Car car) {
 		this(car.getCarBrand(), car.getCarModel(), car.getCarClass(), car.getFuelType(), car.getGearboxType(),
 				car.getIdCar(), car.getKm(), car.getAllowedKM(), car.getChildrenSeats(), car.getCdw(),
-				car.getStreet(), car.getStreetNumber(), car.getCity(), car.getCountry(), car.getRegistrationPlate(), 1L, car.getAdvertised());
+				car.getStreet(), car.getStreetNumber(), car.getCity(), car.getCountry(), car.getRegistrationPlate(),
+				1L, car.getAdvertised(), car.getPhoto());
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
 	}
 
 	public Long getIdCar() {

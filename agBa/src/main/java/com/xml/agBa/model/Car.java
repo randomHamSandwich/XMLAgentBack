@@ -10,10 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Car {
@@ -39,6 +42,10 @@ public class Car {
 //	@Column(unique = true)
 	@Column()
 	private String registrationPlate;
+	
+	@Lob
+	@Column
+	private byte[] photo;
 	
 //	@Column
 //	private boolean isdeleted;
@@ -82,7 +89,8 @@ public class Car {
 
 	public Car(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street,
 			String streetNumber, String city, String country, int version, CarBrand carBrand, CarClass carClass,
-			CarModel carModel, FuelType fuelType, GearboxType gearboxType, User user, Set<Report> reports, Ad ad, String registrationPlate, Boolean advertised) {
+			CarModel carModel, FuelType fuelType, GearboxType gearboxType, User user, Set<Report> reports, Ad ad, 
+			String registrationPlate, Boolean advertised, byte[] photo) {
 		super();
 		this.idCar = idCar;
 		this.km = km;
@@ -104,6 +112,7 @@ public class Car {
 		this.ad = ad;
 		this.registrationPlate = registrationPlate;
 		this.advertised = advertised;
+		this.photo = photo;
 //		this.isdeleted = false;
 	}
 
@@ -272,6 +281,16 @@ public class Car {
 		this.advertised = advertised;
 	}
 
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+
+	
+	
 //	public boolean isIsdeleted() {
 //		return isdeleted;
 //	}

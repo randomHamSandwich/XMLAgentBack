@@ -14,13 +14,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xml.agBa.dto.AdDTO;
 import com.xml.agBa.dto.CarDTO;
+import com.xml.agBa.dto.ImageDTO;
 import com.xml.agBa.dto.RoleDTO;
 import com.xml.agBa.dto.UserDTO;
+import com.xml.agBa.message.response.ResponseMessage;
 import com.xml.agBa.model.Car;
 import com.xml.agBa.service.CarService;
+import com.xml.agBa.service.ImageService;
+
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -31,11 +36,17 @@ public class CarController {
 	@Autowired
 	private CarService carService;
 	
+	@Autowired
+	private ImageService imageService;
+	
+//	private byte
+	
 //	TODO create restfull get,getAll,put and post
 	
 	@PostMapping(value="/car")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<CarDTO> createCar(@RequestBody CarDTO carDTO) {
+
 		CarDTO newCar = carService.createCar(carDTO);
 		if (newCar != null) {
 			return new ResponseEntity<CarDTO>(newCar, HttpStatus.OK);
@@ -43,6 +54,7 @@ public class CarController {
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
+	
 
 	@GetMapping(value = "/car")
 //	@PreAuthorize("hasAuthority('END_USER')")
