@@ -36,13 +36,13 @@ export class PricelistListComponent implements OnInit {
               private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
-   this.findAllPricelists()
+  // this.findAllPricelists()
    this.userId = +this.tokenStorage.getIdKorisnik();
    this.getDiscounts();
-  // this.findActivePricelists();
+   this.findActivePricelists();
   }
 
-  findAllPricelists() {
+ /* findAllPricelists() {
    // this.pricelists = this.pricelistService.getAllPricelists();
     this.pricelistService.getAllPricelists().subscribe(
       data => {
@@ -53,9 +53,9 @@ export class PricelistListComponent implements OnInit {
         
       }
     );
-  }
+  }*/
 
-  /*findActivePricelists() {
+  findActivePricelists() {
     this.pricelistService.getActivePricelists(this.userId).subscribe(
       data => {
         this.pricelists = data;
@@ -63,11 +63,11 @@ export class PricelistListComponent implements OnInit {
         
       },
       error => {
-        console.log("error: " + error.message);
+        console.log("error, find active pricelists: " + error.message);
         
       }
     );
-  }*/
+  }
 
   onPricelistAdd(): void {
     this.isAdd = !this.isAdd;

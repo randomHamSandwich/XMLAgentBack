@@ -10,7 +10,7 @@ public interface PricelistService {
 	PricelistDTO createPricelist(PricelistDTO pricelistDTO);
 	List<PricelistDTO> getAllPricelists();
 	Pricelist getPricelistById(Long id);
-	//List<Pricelist> getActivePricelists(Long userId);
+	List<Pricelist> getActivePricelists(Long userId);
 	Boolean deletePricelist(Long id);
 	Boolean updatePricelist(Long id, PricelistDTO pricelistDTO);
 }

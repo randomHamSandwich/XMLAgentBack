@@ -35,6 +35,9 @@ public class Pricelist {
 //	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 //	@JoinColumn(name = "id_user", nullable = true)
 //	private User user;
+    
+    @Column
+    private Long idUser;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	@JoinColumn(name = "id_discount", nullable = true)
@@ -50,13 +53,13 @@ public class Pricelist {
 		super();
 	}
 
-	public Pricelist(Long idPriceList, Double priceForOneDay, Double priceForKM, int version, Discount discount,
+	public Pricelist(Long idPriceList, Double priceForOneDay, Double priceForKM, Long idUser, Discount discount,
 			Set<Ad> ad, Boolean isDeleted) {
 		super();
 		this.idPriceList = idPriceList;
 		this.priceForOneDay = priceForOneDay;
 		this.priceForKM = priceForKM;
-		this.version = version;
+		this.idUser = idUser;
 		this.discount = discount;
 		this.ad = ad;
 		this.isDeleted = isDeleted;
@@ -121,5 +124,13 @@ public class Pricelist {
 
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
 }

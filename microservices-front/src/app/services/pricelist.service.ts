@@ -32,4 +32,8 @@ export class PricelistService {
   deletePricelist(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + '/' + id);
   }
+
+  getActivePricelists(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/active/' + id);
+  }
 }

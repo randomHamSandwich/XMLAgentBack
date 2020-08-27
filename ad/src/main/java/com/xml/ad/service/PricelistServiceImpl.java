@@ -30,6 +30,7 @@ public class PricelistServiceImpl implements PricelistService {
 		
 		Pricelist pricelist = new Pricelist(pricelistDTO);
 		pricelist.setDiscount(discount);
+		pricelist.setIdUser(pricelistDTO.getIdUser());
 		pricelist.setIsDeleted(false);
 		pricelist = pricelistRepo.save(pricelist);
 		
@@ -48,16 +49,6 @@ public class PricelistServiceImpl implements PricelistService {
 		
 		return pricelistsDTO;
 	}
-
-	/*
-	@Override
-	public List<Pricelist> getActivePricelists(Long userId) {
-		
-		List<Pricelist> pricelists = pricelistRepo.findActivePricelist(userId);
-		
-		return pricelists;
-	}
-	*/
 	
 	@Override
 	@Transactional(readOnly = false)
@@ -75,14 +66,15 @@ public class PricelistServiceImpl implements PricelistService {
 		
 		return pricelist;
 	}
-/*
+
 	@Override
 	public List<Pricelist> getActivePricelists(Long userId) {
+		
 		List<Pricelist> pricelists = pricelistRepo.findActivePricelist(userId);
 		
 		return pricelists;
 	}
-*/
+	
 	@Override
 	@Transactional(readOnly = false)
 	public Boolean updatePricelist(Long id, PricelistDTO pricelistDTO) {

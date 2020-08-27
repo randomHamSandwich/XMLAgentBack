@@ -5,7 +5,7 @@ export class PricelistDTO {
     discountId: number;
     numberOfDays: number;
     discount: number;
-   // user: number;
+    user: number;
 
     constructor() {
         this.pricelistId = null;
@@ -14,6 +14,6 @@ export class PricelistDTO {
         this.discountId = null;
         this.numberOfDays = null;
         this.discount = null;
-    //    this.user = null;
+        this.user = null;
     }
 }

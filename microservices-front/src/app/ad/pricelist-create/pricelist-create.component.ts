@@ -54,7 +54,7 @@ export class PricelistCreateComponent implements OnInit {
     this.newPricelist.priceForOneDay = this.form.priceForOneDay;
     this.newPricelist.priceForKM = this.form.priceForKM;
     this.newPricelist.discountId = this.form.discount;
-    //this.newPricelist.user = +this.userId;
+    this.newPricelist.user = +this.userId;
     
     this.pricelistService.createNewPricelist(this.newPricelist).subscribe(
       data => {
