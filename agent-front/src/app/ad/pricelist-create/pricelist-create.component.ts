@@ -58,6 +58,7 @@ export class PricelistCreateComponent implements OnInit {
       data => {
         //console.log("created");
         this.isCreated = true;
+        window.location.reload();
       },
       error => {
         this.isFailed = true;
@@ -65,7 +66,7 @@ export class PricelistCreateComponent implements OnInit {
       }
     );
 
-    window.location.reload();
+    // window.location.reload();
   }
 
   onCancel(): void {

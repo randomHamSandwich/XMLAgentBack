@@ -38,12 +38,13 @@ export class DiscountCreateComponent implements OnInit {
       data => {
         console.log(data);
         this.newDiscount = data as DiscountDTO;
+        window.location.reload();
       },
       error =>  {
         console.log(error);
       }
     );
-    window.location.reload();
+    // window.location.reload();
   }
 
   navigate() {

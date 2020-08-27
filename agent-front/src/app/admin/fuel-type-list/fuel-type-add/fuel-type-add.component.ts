@@ -30,10 +30,11 @@ newFuelType : FuelTypeDTO;
         data => {
           console.log(data);
           this.newFuelType = data as FuelTypeDTO;
+          window.location.reload();
         },
         error => console.log(error)
       );
-      window.location.reload();
+      // window.location.reload();
 
 
   }

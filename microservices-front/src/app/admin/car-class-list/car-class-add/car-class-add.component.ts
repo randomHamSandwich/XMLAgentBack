@@ -29,10 +29,11 @@ export class CarClassAddComponent implements OnInit {
         data => {
           console.log(data);
           this.newCarClassName = data as CarClassDTO;
+          window.location.reload()
         },
         error => console.log(error)
       );
-    window.location.reload();
+    // window.location.reload();
 
 
   }

@@ -85,6 +85,7 @@ export class PricelistListComponent implements OnInit {
     this.pricelistService.deletePricelist(id).subscribe(
       data => {
         this.isDeleted = true;
+        window.location.reload()
       },
       error => {
         this.isDeleteError = true;
@@ -92,7 +93,7 @@ export class PricelistListComponent implements OnInit {
         
       }
     );
-    window.location.reload();
+    // window.location.reload();
   }
 
   onPricelistUpdate(id): void {

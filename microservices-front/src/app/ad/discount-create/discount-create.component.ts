@@ -38,12 +38,16 @@ export class DiscountCreateComponent implements OnInit {
       data => {
         console.log(data);
         this.newDiscount = data as DiscountDTO;
+        //when discount is created THEN reload the page for new info
+        this.onBack();
       },
       error =>  {
         console.log("error: " + error.message);
       }
     );
-    window.location.reload();
+    //sometimes rolead habens before data is created so creat does not pass
+    //it just reloads the window
+    // window.location.reload();
   }
 
   navigate() {
