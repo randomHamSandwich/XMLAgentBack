@@ -27,8 +27,8 @@ export class AdListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllAds("","","");
-    this.getAllCars();
-    this.getAllPricelists();
+    //this.getAllCars();
+    //this.getAllPricelists();
   }
 
   getAllAds(c: string , s: string, e:string) {
