@@ -20,7 +20,7 @@
                 <tbody>
                     <tr *ngFor= "let ad of adItemsSource; index as i">
                       <th scope="row">{{ i + 1}}</th>
-                      <td>{{ad.carBrand}}</td>
+                      <td>{{ad.carBrand}} {{ad.carModel}}</td>
                       <td>{{ad.startDate}}</td>
                       <td>{{ad.endDate}}</td>
                       <td>{{ad.priceForOneDay}}</td>
