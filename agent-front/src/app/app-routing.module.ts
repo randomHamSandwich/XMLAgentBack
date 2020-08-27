@@ -20,6 +20,7 @@ import { AdDetailsComponent } from './ad/ad-details/ad-details.component';
 import { CarCreateComponent } from './car-create/car-create.component';
 import { CartListComponent } from './cart-list/cart-list.component';
 import { AdUpdateComponent } from './ad/ad-update/ad-update.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 const routes: Routes = [
     {
@@ -97,6 +98,10 @@ const routes: Routes = [
         path: 'cart-list',
         component: CartListComponent
     }, 
+    {
+        path: 'reservations',
+        component: ReservationsComponent
+    },
 
 
     {

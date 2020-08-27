@@ -48,6 +48,7 @@ import { CarDetailsComponent } from './car-details/car-details.component';
 import { AdUpdateComponent } from './ad/ad-update/ad-update.component';
 import { PricelistUpdateComponent } from './ad/pricelist-update/pricelist-update.component';
 import { DiscountUpdateComponent } from './ad/discount-update/discount-update.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 
 
@@ -91,6 +92,7 @@ import { DiscountUpdateComponent } from './ad/discount-update/discount-update.co
     AdUpdateComponent,
     PricelistUpdateComponent,
     DiscountUpdateComponent,
+    ReservationsComponent,
 
 
   ],
