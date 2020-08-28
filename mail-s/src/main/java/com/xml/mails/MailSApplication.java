@@ -24,12 +24,12 @@ public class MailSApplication {
 	
 	@Bean
 	Queue queue(){
-		return new Queue(queue,false);
+		return new Queue(queue,true);
 	}
 	
 	@Bean
 	Queue queue2(){
-		return new Queue(queue2,false);
+		return new Queue(queue2,true);
 	}
 	
 	/*

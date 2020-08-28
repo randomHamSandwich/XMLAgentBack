@@ -144,7 +144,7 @@ public class AuthController {
 
 		korisnikService.save(user);
 		
-		producer.sendTo("spring-boot1", "poruka iz authControlera preko rebitmq");
+		producer.sendTo("spring-boot1", user.getEmail());
 
 //		try {
 //			emailService.sendSuccessfulRegistrationMail(user);
