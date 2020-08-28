@@ -17,6 +17,6 @@ INSERT INTO ad(active, end_date, start_date, id_price_list) VALUES (1, '2025-01-
 INSERT INTO ad(active, end_date, start_date, id_price_list) VALUES (1, '2024-02-12 02:00:00', '2020-07-15 05:00:00', 1);
 INSERT INTO ad(active, end_date, start_date, id_price_list) VALUES (0, '2023-03-13 03:00:00', '2020-08-16 06:00:00', 1);
 
-INSERT INTO discount(discount, for_more_thanxdays, version) VALUES (5, 15, 0);
-INSERT INTO discount(discount, for_more_thanxdays, version) VALUES (10, 30, 0);
-INSERT INTO discount(discount, for_more_thanxdays, version) VALUES (7, 18, 0);
+INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (5, 15, 0, 1);
+INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (10, 30, 0, 1);
+INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (7, 18, 0, 2);
