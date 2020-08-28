@@ -9,7 +9,7 @@ public interface AdService {
 
 	AdDTO createAd(AdDTO adDAO);
 	List<AdDTO> getAllAds();
-	//List<Ad> getActiveAdsByUser(Long id);
+	List<Ad> getActiveAdsByUser(Long id);
 	List<Ad> getActiveAds();
 	AdDTO getAdById(Long id);
 	//List<AdDTO> search(String city, String startDateTime, String endDateTime);

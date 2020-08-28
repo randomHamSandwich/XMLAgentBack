@@ -40,7 +40,7 @@ public class AdServiceImpl implements AdService {
 	    Car car = carRepo.findById(carID).get();
 	  */ 
 	    
-	    Long pricelistID = Long.valueOf(adDTO.getPricelist());
+	    Long pricelistID = Long.valueOf(adDTO.getPricelistId());
 	    Pricelist pricelist = pricelistRepo.findById(pricelistID).get();
 	    
 	  /*
@@ -56,7 +56,7 @@ public class AdServiceImpl implements AdService {
 		newAd.setEndDate(endLocalDateTime);
 		newAd.setPriceList(pricelist);
 		//newAd.setCar(car);
-		//newAd.setEndUser(user);
+		newAd.setUserId(adDTO.getUserId());
 		newAd.setActive(true);
 	
 		newAd = adRepo.save(newAd);
@@ -126,7 +126,7 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public Ad updateAd(Long adId, AdDTO adDTO) {
 		Ad ad = adRepo.findById(adId).get();
-		Pricelist pricelist = pricelistRepo.findById(adDTO.getPricelist()).get();
+		Pricelist pricelist = pricelistRepo.findById(adDTO.getPricelistId()).get();
 		
 		String startDateTimeRemoveT =adDTO.getStartDate().replace("T", "-");
 		String endDateTimeRemoveT =adDTO.getEndDate().replace("T", "-");
@@ -141,6 +141,13 @@ public class AdServiceImpl implements AdService {
 		
 		ad = adRepo.save(ad);
 		return ad;
+	}
+
+	@Override
+	public List<Ad> getActiveAdsByUser(Long id) {
+		List<Ad> activeAds = adRepo.findActiveByUser(id);
+		
+		return activeAds;
 	}
 
 //	@Override

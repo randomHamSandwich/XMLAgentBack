@@ -29,6 +29,16 @@ public class Ad {
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private Integer version;
     
+    @Column
+    private Long userId;
+    
+    @Column
+    private Boolean active;
+    
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST ,CascadeType.REFRESH} )
+	@JoinColumn(name = "id_price_list")
+	private Pricelist priceList;
+    
     
 //    INSERT INTO ad(end_date, start_date, id_price_list) VALUES ('2025-01-11 01:00:00', '2023-06-14 04:00:00', 1);
 
@@ -42,35 +52,24 @@ public class Ad {
 //	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
 //	private Set<Comment> comments;
 	
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST ,CascadeType.REFRESH} )
-	@JoinColumn(name = "id_price_list")
-	private Pricelist priceList;
-	
 //	@OneToOne(fetch = FetchType.LAZY, optional = true)
 //    @JoinColumn(name = "id_car", nullable = true)
 //    private Car car;
-	
-//	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-//	@JoinColumn(name = "id_user")
-//	private EndUser endUser;
-    
-
-	@Column
-	private Boolean active;
 
 	public Ad() {
 		super();
 	}
 
-	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version,
-			com.xml.ad.model.Pricelist priceList, Boolean active) {
+	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version, Long userId, Boolean active,
+			Pricelist priceList) {
 		super();
 		this.idAd = idAd;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.version = version;
-		this.priceList = priceList;
+		this.userId = userId;
 		this.active = active;
+		this.priceList = priceList;
 	}
 
 	public Long getIdAd() {
@@ -113,11 +112,19 @@ public class Ad {
 		this.priceList = priceList;
 	}
 
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	public Boolean getActive() {
 		return active;
 	}
 
 	public void setActive(Boolean active) {
 		this.active = active;
-	}	
+	}
 }

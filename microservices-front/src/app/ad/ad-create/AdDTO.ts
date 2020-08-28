@@ -2,22 +2,24 @@ export class AdDTO {
     idAd: string;
     startDate: string;
     endDate: string;
-    pricelist: string;
+    pricelistId: string;
     priceForOneDay: string;
     priceForKM: string;
-    discount: string;
-    car: string;
-    endUser: string
+    //discount: string;
+    //car: string;
+    userId: number;
+    active: boolean;
     
     constructor() {
         this.idAd = "";
         this.startDate = "";
         this.endDate = "";
-        this.pricelist = "";
+        this.pricelistId = "";
         this.priceForOneDay = "";
         this.priceForKM = "";
-        this.discount = "";
-        this.car = "";
-        this.endUser = "";
+        this.active = true;
+        //this.discount = "";
+        //this.car = "";
+        this.userId = null;
     }
 }

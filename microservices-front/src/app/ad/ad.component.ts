@@ -4,7 +4,6 @@ import { AdService } from '../services/ad.service';
 import { Observable } from 'rxjs';
 import { AdDTO } from './ad-create/AdDTO';
 import { CarService } from '../services/car.service';
-import { CarDTO } from '../car-create/CarDTO';
 import { PricelistService } from '../services/pricelist.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 
@@ -44,7 +43,7 @@ export class AdComponent implements OnInit {
   }*/
 
   getActiveAds() {
-    this.adService.getActiveAds().subscribe(
+    this.adService.getActiveAdsByUser(this.userID).subscribe(
       data => {
         this.ads = data;
       },
@@ -61,7 +60,7 @@ export class AdComponent implements OnInit {
         this.pricelists = data;
       },
       error => {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.message;
         console.log("Error: " + this.errorMessage);
 
       }

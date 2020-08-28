@@ -97,12 +97,13 @@ public class AdController {
 		}
 	}
 	
-	//@GetMapping(value = "/ad/active/{id}")
-	@GetMapping(value = "/ad/active")
+	
+	//@GetMapping(value = "/ad/active")
+	@GetMapping(value = "/ad/active/{id}")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<List<AdDTO>> getAllAds(@PathVariable("id") Long userId) {
-		//List<Ad> ads = adService.getActiveAdsByUser(userId);
-		List<Ad> ads = adService.getActiveAds();
+		List<Ad> ads = adService.getActiveAdsByUser(userId);
+		//List<Ad> ads = adService.getActiveAds();
 		
 		if (!ads.isEmpty()) {
 			List<AdDTO> adDTOs = new ArrayList<AdDTO>();

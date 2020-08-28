@@ -35,15 +35,13 @@ export class AdService {
     return this.http.delete(this.baseUrl + '/delete/' + id);
   }
 
-  getActiveAds(): Observable<any> {
+  /*getActiveAds(): Observable<any> {
     return this.http.get(this.baseUrl + '/active');
-  }
-/*
+  }*/
+
   getActiveAdsByUser(id: number): Observable<any> {
     return this.http.get(this.baseUrl + '/active/' + id);
   }
-  */
-
 
   // searchAdd(city: string , startDateTime : string, endDateTime: string): Observable<any> {
   //   const params = new HttpParams().set('city', city).set('startDateTime', startDateTime).set('endDateTime', endDateTime);
