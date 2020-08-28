@@ -12,7 +12,7 @@ import { TokenStorageService } from 'src/app/auth/token-storage.service';
 export class DiscountCreateComponent implements OnInit {
   form: any = {};
   newDiscount = new DiscountDTO;
-  userId: number;
+  userId: any;
 
   submitted = false;
 
@@ -23,7 +23,7 @@ export class DiscountCreateComponent implements OnInit {
   }
   
   ngOnInit() {
-    
+    this.userId = this.tokenService.getIdKorisnik();
   }
 
   onSubmit() {
@@ -32,7 +32,7 @@ export class DiscountCreateComponent implements OnInit {
     this.newDiscount = new DiscountDTO();
     this.newDiscount.moreThanXDays = this.form.moreThanXDays;
     this.newDiscount.discount = this.form.discount;
-   // this.newDiscount.user = + this.tokenService.getIdKorisnik(); 
+    this.newDiscount.userId = +this.userId; 
 
     this.discountService.createNewDiscount(this.newDiscount).subscribe(
       data => {

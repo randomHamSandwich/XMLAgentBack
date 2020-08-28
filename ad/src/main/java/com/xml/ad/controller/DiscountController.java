@@ -1,5 +1,6 @@
 package com.xml.ad.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,24 @@ public class DiscountController {
 			DiscountDTO discountDTO = new DiscountDTO(discount);
 			
 			return new ResponseEntity<>(discountDTO, HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping(value="/discounts/active/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<List<DiscountDTO>> getActiveDiscounts (@PathVariable("id") Long id) {
+		List<Discount> discounts = discountService.getActiveDiscounts(id);
+		
+		if (!discounts.isEmpty()) {
+			List<DiscountDTO> discountDTOs = new ArrayList<DiscountDTO>();
+			
+			for (Discount d: discounts) {
+				discountDTOs.add(new DiscountDTO(d));
+			}
+			
+			return new ResponseEntity<>(discountDTOs, HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);

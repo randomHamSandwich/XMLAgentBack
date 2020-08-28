@@ -20,19 +20,34 @@ export class DiscountListComponent implements OnInit {
   idDiscount: number;
   isUpdate = false;
 
+  activeDiscounts: any;
+
   constructor(private discountService: DiscountService,
               private tokenService: TokenStorageService,
               private router: Router) { }
 
   ngOnInit() {
     this.userId = +this.tokenService.getIdKorisnik();
-    this.findAllDiscounts();
-    // this.findDiscountsByUser();
+    //this.findAllDiscounts();
+    this.findActiveDiscounts();
   }
 
-  findAllDiscounts() {    
+  /*findAllDiscounts() {    
     //this.discounts = this.discountService.getAllDiscounts();
     this.discountService.getAllDiscounts().subscribe(
+      data => {
+        this.discounts = data;
+      },
+      error => {
+        console.log("error: " + error.message);
+        
+      }
+    );
+  }*/
+
+  findActiveDiscounts() {    
+    //this.discounts = this.discountService.getAllDiscounts();
+    this.discountService.getActiveDiscounts(this.userId).subscribe(
       data => {
         this.discounts = data;
       },

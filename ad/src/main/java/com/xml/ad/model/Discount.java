@@ -35,19 +35,21 @@ public class Discount {
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private int version;
     
+    @Column
+    private Long idUser;
+    
 	public Discount() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Discount(Long idDiscount, Integer forMoreThanXDays, Integer discount,
-			Set<com.xml.ad.model.Pricelist> priceList, int version) {
+	public Discount(Long idDiscount, Integer forMoreThanXDays, Integer discount, Set<Pricelist> priceList,
+			Long idUser) {
 		super();
 		this.idDiscount = idDiscount;
 		this.forMoreThanXDays = forMoreThanXDays;
 		this.discount = discount;
 		this.priceList = priceList;
-		this.version = version;
+		this.idUser = idUser;
 	}
 
 	public Discount(DiscountDTO discountDTO) {
@@ -94,5 +96,13 @@ public class Discount {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
 }

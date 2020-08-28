@@ -7,20 +7,22 @@ public class DiscountDTO {
 	private Long idDiscount;
 	private Integer moreThanXDays;
 	private Integer discount;
+	private Long userId;
 
 	public DiscountDTO() {
 
-	}
+	}	
 	
-	public DiscountDTO(Long idDiscount, Integer moreThanXDays, Integer discount) {
+	public DiscountDTO(Long idDiscount, Integer moreThanXDays, Integer discount, Long userId) {
 		super();
 		this.idDiscount = idDiscount;
 		this.moreThanXDays = moreThanXDays;
 		this.discount = discount;
+		this.userId = userId;
 	}
 
 	public DiscountDTO(Discount discount) {
-		this(discount.getIdDiscount(), discount.getForMoreThanXDays(), discount.getDiscount());
+		this(discount.getIdDiscount(), discount.getForMoreThanXDays(), discount.getDiscount(), discount.getIdUser());
 	}
 
 	public Long getIdDiscount() {
@@ -45,5 +47,13 @@ public class DiscountDTO {
 
 	public void setDiscount(Integer discount) {
 		this.discount = discount;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 }

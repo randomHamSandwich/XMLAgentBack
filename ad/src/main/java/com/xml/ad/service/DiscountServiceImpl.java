@@ -20,6 +20,7 @@ public class DiscountServiceImpl implements DiscountService {
 	@Override
 	public DiscountDTO createDiscount(DiscountDTO discountDTO) {
 		Discount discount = new Discount(discountDTO);
+		discount.setIdUser(discountDTO.getUserId());
 		discount = discountRepo.save(discount);
 		
 		return new DiscountDTO(discount);
@@ -53,5 +54,12 @@ public class DiscountServiceImpl implements DiscountService {
 		discountRepo.save(discount);
 		
 		return discount;
+	}
+
+	@Override
+	public List<Discount> getActiveDiscounts(Long userId) {
+		List<Discount> discounts = discountRepo.findActiveDiscount(userId);
+		
+		return discounts;
 	}
 }
