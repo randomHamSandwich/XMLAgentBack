@@ -97,11 +97,13 @@ public class PricelistDTO {
 		this.isDeleted = isDeleted;
 	}
 
-	public Long getIdUser() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setIdUser(Long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
+
 }

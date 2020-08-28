@@ -30,7 +30,7 @@ public class PricelistServiceImpl implements PricelistService {
 		
 		Pricelist pricelist = new Pricelist(pricelistDTO);
 		pricelist.setDiscount(discount);
-		pricelist.setIdUser(pricelistDTO.getIdUser());
+		pricelist.setIdUser(pricelistDTO.getUserId());
 		pricelist.setIsDeleted(false);
 		pricelist = pricelistRepo.save(pricelist);
 		
