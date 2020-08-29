@@ -31,7 +31,7 @@ export class AdCreateComponent implements OnInit {
 
   ngOnInit() {
     this.userId = +this.tokenService.getIdKorisnik();
-    this.getAllCars();
+    //this.getAllCars();
     this.getAllPricelists();
   }
 
@@ -41,7 +41,7 @@ export class AdCreateComponent implements OnInit {
         this.cars = data;
       },
       error => {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.message;
 
         console.log("Error: " +  this.errorMessage);
       }
@@ -49,12 +49,12 @@ export class AdCreateComponent implements OnInit {
   }
 
   getAllPricelists() {
-    this.pricelistService.getAllPricelists().subscribe(
+    this.pricelistService.getActivePricelists(this.userId).subscribe(
       data => {
         this.pricelists = data;
       },
       error => {
-        this.errorMessage = error.error.errorMessage;
+        this.errorMessage = error.errorMessage;
         console.log("Error: " + this.errorMessage);
       }
     );
@@ -74,7 +74,7 @@ export class AdCreateComponent implements OnInit {
     console.log("pricelist: " + this.form.pricelist);
     console.log("start date: " + this.form.startDate);
     console.log("end date: " + this.form.endDate);
-    console.log("car: " + this.form.car);
+   // console.log("car: " + this.form.car);
     
     this.adService.createNewAd(this.newAd).subscribe(
       data => {
@@ -82,7 +82,7 @@ export class AdCreateComponent implements OnInit {
         this.newAd = data as AdDTO;        
       },
       error => {
-        console.log(error);
+        console.log("Error, creating new ad" + error.message);
       }
     );
       // window.location.reload();

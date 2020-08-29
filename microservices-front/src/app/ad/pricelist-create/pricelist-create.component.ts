@@ -22,19 +22,19 @@ export class PricelistCreateComponent implements OnInit {
   errorMessage: string;
   errorMessageDiscounts: string;
 
-  userId: string;
+  userId: number;
 
   constructor(private pricelistService: PricelistService,
               private discountService: DiscountService,
               private tokenService: TokenStorageService) { }
 
   ngOnInit() {
-    this.userId = this.tokenService.getIdKorisnik();
+    this.userId = +this.tokenService.getIdKorisnik();
     this.getDiscounts();
   }
 
   getDiscounts() {
-    this.discountService.getAllDiscounts().subscribe(
+    this.discountService.getActiveDiscounts(this.userId).subscribe(
       data => {
         this.discounts = data;
       },

@@ -30,7 +30,7 @@ public class Ad {
     private Integer version;
     
     @Column
-    private Long userId;
+    private Long idUser;
     
     @Column
     private Boolean active;
@@ -60,14 +60,14 @@ public class Ad {
 		super();
 	}
 
-	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version, Long userId, Boolean active,
+	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version, Long idUser, Boolean active,
 			Pricelist priceList) {
 		super();
 		this.idAd = idAd;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.version = version;
-		this.userId = userId;
+		this.idUser = idUser;
 		this.active = active;
 		this.priceList = priceList;
 	}
@@ -112,19 +112,19 @@ public class Ad {
 		this.priceList = priceList;
 	}
 
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
 	public Boolean getActive() {
 		return active;
 	}
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
 }

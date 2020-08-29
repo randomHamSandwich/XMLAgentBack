@@ -56,7 +56,7 @@ public class AdServiceImpl implements AdService {
 		newAd.setEndDate(endLocalDateTime);
 		newAd.setPriceList(pricelist);
 		//newAd.setCar(car);
-		newAd.setUserId(adDTO.getUserId());
+		newAd.setIdUser(adDTO.getUserId());
 		newAd.setActive(true);
 	
 		newAd = adRepo.save(newAd);

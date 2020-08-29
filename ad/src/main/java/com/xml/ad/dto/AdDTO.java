@@ -40,7 +40,7 @@ public class AdDTO {
 		this.priceForOneDay = newAd.getPriceList().getPriceForOneDay();
 		this.priceForKM = newAd.getPriceList().getPriceForKM();
 		this.active = newAd.getActive();
-		this.userId = newAd.getUserId();
+		this.userId = newAd.getIdUser();
 		//this.discount = newAd.getPriceList().getDiscounts().toString();
 //		this.car = newAd.getCar().getIdCar();
 //		this.endUser = newAd.getEndUser().getIdUser();
