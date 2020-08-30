@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class DiscountService {
 
-  private baseUrl = 'http://localhost:8080/api/discounts';
+  private baseUrl = 'http://localhost:8083/ad/discounts';
 
   constructor(private http:HttpClient) {}
 
@@ -16,17 +16,20 @@ export class DiscountService {
     return this.http.post(this.baseUrl, data);
   }
 
-  updateDiscount() {
-
+  updateDiscount(id: number, discountData: any): Observable<any> {
+    return this.http.put(this.baseUrl + '/' + id, discountData);
   }
 
-  getDiscountById() {
-
+  getDiscountById(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/' + id);
   }
 
   getAllDiscounts():Observable<any> {
-   // console.log("in get all discounts service");
-    
     return this.http.get(this.baseUrl);
   }
+
+  getActiveDiscounts(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/active/' + id);
+  }
+  
 }

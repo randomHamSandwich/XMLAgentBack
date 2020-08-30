@@ -37,11 +37,12 @@ export class ChangeAuthoriyComponent implements OnInit {
       data => {
         console.log(data);
         this.roleDTO = data as RoleDTO;
+        window.location.reload();
       },
       error => console.log(error)
     );
 
-    window.location.reload();
+   
   };
 
 
@@ -53,11 +54,12 @@ export class ChangeAuthoriyComponent implements OnInit {
       data => {
         console.log(data);
         // this.roleDTO = data as RoleDTO;
+        window.location.reload();
       }, 
           error => console.log(error)
     );
 
-    window.location.reload();
+
   };
 
 

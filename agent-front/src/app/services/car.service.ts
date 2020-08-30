@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpHeaders, HttpEvent } from '@angular/common/http';
 import { CarDTO } from '../car-create/CarDTO';
 import { Observable } from 'rxjs';
 
@@ -8,23 +8,40 @@ import { Observable } from 'rxjs';
 })
 export class CarService {
 
-  private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = 'http://localhost:8080/api/car';
 
   constructor(private http:HttpClient) {}
 
   createNewCar(data: CarDTO): Observable<any> {
-    return this.http.post(this.baseUrl + '/car', data);
+    console.log("carService: ");
+    console.log(data);
+    return this.http.post(this.baseUrl, data);
   }
+
+  // upload(file: File): Observable<any> {
+  //   const formData: FormData = new FormData();
+  //   console.log("carService.upload");
+  //   console.log(file);
+  //   formData.append('file', file);
+    
+
+  //   const req = new HttpRequest('POST', `http://localhost:8080/api/upload`, formData, {
+  //     reportProgress: true,
+  //     responseType: 'json'
+  //   });
+
+  //   return this.http.request(req);
+  // }
 
   public updateCar() {
 
   }
 
-  public getCarById() {
-
+  public getCarById(idCar: any): Observable<any> {
+      return this.http.get(this.baseUrl + '/' + idCar);
   }
 
   public getCarsList() {
-    return this.http.get(this.baseUrl + '/car');
+    return this.http.get(this.baseUrl);
   }
 }

@@ -45,10 +45,11 @@ export class GearboxListComponent implements OnInit {
       data => {
         console.log(data);
         // gear = data as GearboxTypeDTO;
+        window.location.reload();
       },
       error => console.log(error)
     );
-    window.location.reload();
+    // window.location.reload();
   }
 
   

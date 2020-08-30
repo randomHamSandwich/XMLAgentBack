@@ -40,10 +40,11 @@ export class CarClassUpdateComponent implements OnInit {
         data => {
           console.log(data);
           this.updateCarClass = data as CarClassDTO;
+          window.location.reload();
         },
         error => console.log(error)
       );
-      window.location.reload();
+      // window.location.reload();
 
 
   }

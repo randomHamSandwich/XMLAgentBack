@@ -8,11 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import com.xml.ad.dto.PricelistDTO;
-
 
 @Entity
 public class Pricelist {
@@ -34,27 +35,34 @@ public class Pricelist {
 //	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 //	@JoinColumn(name = "id_user", nullable = true)
 //	private User user;
+    
+    @Column
+    private Long idUser;
 
-	@OneToMany(mappedBy="priceList" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
-	private Set<Discount> discounts;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	@JoinColumn(name = "id_discount", nullable = true)
+	private Discount discount;
 	
 	@OneToMany(mappedBy="priceList" , cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	private Set<Ad> ad;
+	
+	@Column
+	private Boolean isDeleted;
 
 	public Pricelist() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Pricelist(Long idPriceList, Double priceForOneDay, Double priceForKM, int version, Set<Discount> discounts,
-			Set<Ad> ad) {
+	public Pricelist(Long idPriceList, Double priceForOneDay, Double priceForKM, Long idUser, Discount discount,
+			Set<Ad> ad, Boolean isDeleted) {
 		super();
 		this.idPriceList = idPriceList;
 		this.priceForOneDay = priceForOneDay;
 		this.priceForKM = priceForKM;
-		this.version = version;
-		this.discounts = discounts;
+		this.idUser = idUser;
+		this.discount = discount;
 		this.ad = ad;
+		this.isDeleted = isDeleted;
 	}
 
 	public Pricelist(PricelistDTO pricelistDTO) {
@@ -94,13 +102,12 @@ public class Pricelist {
 		this.version = version;
 	}
 
-
-	public Set<Discount> getDiscounts() {
-		return discounts;
+	public Discount getDiscount() {
+		return discount;
 	}
 
-	public void setDiscounts(Set<Discount> discounts) {
-		this.discounts = discounts;
+	public void setDiscount(Discount discount) {
+		this.discount = discount;
 	}
 
 	public Set<Ad> getAd() {
@@ -109,5 +116,21 @@ public class Pricelist {
 
 	public void setAd(Set<Ad> ad) {
 		this.ad = ad;
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
 }

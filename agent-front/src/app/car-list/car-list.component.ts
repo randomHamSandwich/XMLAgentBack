@@ -47,11 +47,12 @@ export class CarListComponent implements OnInit {
   }
 
   onDetails(c) {
-    // console.log("onDetail metoda")
     this.car=c;
-    // console.log(this.car)
-    this.carDetailsComponent.fillACar(this.car);
+    // this.carDetailsComponent.fillACar(this.car);
+    this.carDetailsComponent.ngOnInit();
+    this.router.navigate(['/carDetails', {idCar: this.car.idCar}]);
   }
+
 
   returnCar() {
     return this.car;

@@ -24,12 +24,12 @@ public class MailSApplication {
 	
 	@Bean
 	Queue queue(){
-		return new Queue(queue,false);
+		return new Queue(queue,true);
 	}
 	
 	@Bean
 	Queue queue2(){
-		return new Queue(queue2,false);
+		return new Queue(queue2,true);
 	}
 	
 	/*
@@ -38,7 +38,9 @@ public class MailSApplication {
 	 */
 	@Bean
 	public ConnectionFactory connectionFactory() {
-		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
+		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("rabbitmq");
+//		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("testnetwork");
+//		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
 		return connectionFactory;
 	}
 	

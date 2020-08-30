@@ -151,9 +151,9 @@ INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (5, 
 INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (10, 30, 0, 2);
 INSERT INTO discount(discount, for_more_thanxdays, version, id_user) VALUES (7, 18, 0, 1);
 
-insert into images (name, image_loc)
-values ('mitsubishi_pajero', '../agBa/images/mitsubishi-pajero.jpg');
+insert into image (name, image_loc, id_car, image_data)
+values ('mitsubishi_pajero', '../agBa/images/mitsubishi-pajero.jpg', '1', LOAD_FILE('/home/miki/git/XMLAgentBack/agBa/images/mitsubishi-pajero.jpg'));
 
-insert into images (name, image_loc)
-values ('toyota_corrola', '../agBa/images/toyota-corrola.jpg');
+insert into image (name, image_loc, id_car)
+values ('toyota_corrola', '../agBa/images/toyota-corrola.jpg', '3');
 

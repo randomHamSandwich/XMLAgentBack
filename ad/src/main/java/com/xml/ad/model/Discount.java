@@ -1,13 +1,15 @@
 
 package com.xml.ad.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import com.xml.ad.dto.DiscountDTO;
@@ -15,33 +17,39 @@ import com.xml.ad.dto.DiscountDTO;
 
 @Entity
 public class Discount {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long idDiscount;
+	
 	@Column
 	public Integer forMoreThanXDays;
+	
 	@Column
 	public Integer discount;
-
-	@ManyToOne
-	@JoinColumn(name = "id_price_list")
-	private Pricelist priceList;
+	
+	@OneToMany(mappedBy = "discount", cascade = CascadeType.ALL)
+	private Set<Pricelist> priceList;
 
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private int version;
     
+    @Column
+    private Long idUser;
+    
 	public Discount() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
-	public Discount(Long idDiscount, Integer forMoreThanXDays, Integer discount, Pricelist priceList) {
+
+	public Discount(Long idDiscount, Integer forMoreThanXDays, Integer discount, Set<Pricelist> priceList,
+			Long idUser) {
 		super();
 		this.idDiscount = idDiscount;
 		this.forMoreThanXDays = forMoreThanXDays;
 		this.discount = discount;
 		this.priceList = priceList;
+		this.idUser = idUser;
 	}
 
 	public Discount(DiscountDTO discountDTO) {
@@ -74,11 +82,11 @@ public class Discount {
 		this.discount = discount;
 	}
 
-	public Pricelist getPriceList() {
+	public Set<Pricelist> getPriceList() {
 		return priceList;
 	}
 
-	public void setPriceList(Pricelist priceList) {
+	public void setPriceList(Set<Pricelist> priceList) {
 		this.priceList = priceList;
 	}
 
@@ -89,5 +97,12 @@ public class Discount {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
 }

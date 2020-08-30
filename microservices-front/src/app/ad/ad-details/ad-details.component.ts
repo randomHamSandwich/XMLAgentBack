@@ -29,7 +29,7 @@ export class AdDetailsComponent implements OnInit {
   ngOnInit() {
     this.adId = this.route.snapshot.params['idAd'];
     this.getAdById();
-    this.getAllCars();
+   // this.getAllCars();
   }
 
   getAdById() {
@@ -39,7 +39,7 @@ export class AdDetailsComponent implements OnInit {
       },
       error => {
         {
-          console.log("ERROR je: " + error.errorMessage);
+          console.log("ERROR, get ad by id: " + error.message);
           
         }
       }

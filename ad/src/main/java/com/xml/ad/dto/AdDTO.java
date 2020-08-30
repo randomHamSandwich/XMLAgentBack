@@ -7,41 +7,41 @@ public class AdDTO {
 	private Long idAd;
 	private String startDate;
 	private String endDate;
-	private Long pricelist;
+	private Long pricelistId;
 	private Double priceForOneDay;
 	private Double priceForKM;
-	private String discount;
-	private Long car;
-	
-	private Long endUser;
+	private Boolean active;
+	private Long userId;
+	//private String discount;
+	//private Long car;
 	
 	public AdDTO() {
 		
-	}
+	}	
 
-	public AdDTO(Long idAd, String startDate, String endDate, Long pricelist, Double priceForOneDay, Double priceForKM,
-			String discount, Long car, Long endUser) {
+	public AdDTO(Long idAd, String startDate, String endDate, Long pricelistId, Double priceForOneDay,
+			Double priceForKM, Boolean active, Long userId) {
 		super();
 		this.idAd = idAd;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.pricelist = pricelist;
+		this.pricelistId = pricelistId;
 		this.priceForOneDay = priceForOneDay;
 		this.priceForKM = priceForKM;
-		this.discount = discount;
-		this.car = car;
-		this.endUser = endUser;
-		
+		this.active = active;
+		this.userId = userId;
 	}
 
 	public AdDTO(Ad newAd) {
 		this.idAd = newAd.getIdAd();
 		this.startDate = newAd.getStartDate().toString();
 		this.endDate = newAd.getEndDate().toString();
-		this.pricelist = newAd.getPriceList().getIdPriceList();
+		this.pricelistId = newAd.getPriceList().getIdPriceList();
 		this.priceForOneDay = newAd.getPriceList().getPriceForOneDay();
 		this.priceForKM = newAd.getPriceList().getPriceForKM();
-		this.discount = newAd.getPriceList().getDiscounts().toString();
+		this.active = newAd.getActive();
+		this.userId = newAd.getIdUser();
+		//this.discount = newAd.getPriceList().getDiscounts().toString();
 //		this.car = newAd.getCar().getIdCar();
 //		this.endUser = newAd.getEndUser().getIdUser();
 	}
@@ -70,22 +70,6 @@ public class AdDTO {
 		this.endDate = endDate;
 	}
 
-	public Long getPricelist() {
-		return pricelist;
-	}
-
-	public void setPricelist(Long pricelist) {
-		this.pricelist = pricelist;
-	}
-
-	public Long getCar() {
-		return car;
-	}
-
-	public void setCar(Long car) {
-		this.car = car;
-	}
-
 	public Double getPriceForOneDay() {
 		return priceForOneDay;
 	}
@@ -102,19 +86,27 @@ public class AdDTO {
 		this.priceForKM = priceForKM;
 	}
 
-	public String getDiscount() {
-		return discount;
+	public Boolean getActive() {
+		return active;
 	}
 
-	public void setDiscount(String discount) {
-		this.discount = discount;
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
-	public Long getEndUser() {
-		return endUser;
+	public Long getPricelistId() {
+		return pricelistId;
 	}
 
-	public void setEndUser(Long endUser) {
-		this.endUser = endUser;
+	public void setPricelistId(Long pricelistId) {
+		this.pricelistId = pricelistId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PricelistDTO } from './PricelistDTO';
 import { PricelistService } from 'src/app/services/pricelist.service';
-import { Router } from '@angular/router';
+import { DiscountService } from 'src/app/services/discount.service';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-pricelist-create',
@@ -12,32 +13,62 @@ export class PricelistCreateComponent implements OnInit {
 
   form: any = {};
   newPricelist = new PricelistDTO;
+  discounts: any;
 
   isBack = false;
+  submitted = false;
+  isCreated = false;
+  isFailed = false;
+  errorMessage: string;
+  errorMessageDiscounts: string;
+
+  userId: number;
 
   constructor(private pricelistService: PricelistService,
-              private router: Router) { }
+              private discountService: DiscountService,
+              private tokenService: TokenStorageService) { }
 
   ngOnInit() {
+    this.userId = +this.tokenService.getIdKorisnik();
+    this.getDiscounts();
   }
 
-  onSubmit() {
-    this.newPricelist = new PricelistDTO();
-    this.newPricelist.priceForOneDay = this.form.priceForOneDay;
-    this.newPricelist.priceForKM = this.form.priceForKM;
-
-    this.pricelistService.createNewPricelist(this.newPricelist).subscribe(
+  getDiscounts() {
+    this.discountService.getActiveDiscounts(this.userId).subscribe(
       data => {
-        console.log(data);
-        this.newPricelist = data as PricelistDTO;
+        this.discounts = data;
       },
       error => {
-        console.log(error);
+        this.errorMessageDiscounts = error.message;
+        console.log("Error, get discounts: " + this.errorMessageDiscounts);
         
       }
     );
+}
 
-    window.location.reload();
+  onSubmit() {
+    console.log("submitted");
+    this.submitted = true;
+
+    this.newPricelist = new PricelistDTO();
+    this.newPricelist.priceForOneDay = this.form.priceForOneDay;
+    this.newPricelist.priceForKM = this.form.priceForKM;
+    this.newPricelist.discountId = this.form.discount;
+    this.newPricelist.userId = +this.userId;
+    
+    this.pricelistService.createNewPricelist(this.newPricelist).subscribe(
+      data => {
+        console.log("created");
+        this.isCreated = true;
+        this.onBack();
+      },
+      error => {
+        this.isFailed = true;
+        console.log("ERROR, creating new pricelist: " + error.message);
+      }
+    );
+
+    // window.location.reload();
   }
 
   onBack(): void {

@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { CarListComponent } from '../car-list/car-list.component';
+import { Component, OnInit, Input} from '@angular/core';
 import { CarDTO } from '../car-create/CarDTO';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CarService } from '../services/car.service';
+import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { UploadFileService } from '../services/upload-file.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-car-details',
@@ -10,20 +14,87 @@ import { Router } from '@angular/router';
 })
 export class CarDetailsComponent implements OnInit {
 
-  car: CarDTO = new CarDTO;;
+  // car: Observable<any>;
+  car: CarDTO = new CarDTO();
+  idCar: string;
   errorMessage: any;
+  selectedFiles: FileList;
+  currentFile: File;
+  progress = 0;
+  message = '';
+  fileinfos : any;
 
-  constructor() { 
-  }
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private carService: CarService,
+              private uploadService: UploadFileService,
+              private http: HttpClient) {}
+  
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => { this.idCar = params.get("idCar"); })
+    this.getCarById();
     console.log(this.car);
+    // this.fileinfos = this.car.photo;
   }
 
-  fillACar(c) {
-    
-    this.car = c;
-    this.ngOnInit();
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  upload() {
+    this.progress = 0;
+
+    this.currentFile = this.selectedFiles.item(0);
+    this.uploadService.upload(this.currentFile, this.idCar).subscribe(
+      event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.message = event.body.message;
+          // this.fileInfos = this.uploadService.getFiles();
+        }
+      },
+      err => {
+        this.progress = 0;
+        this.message = 'Could not upload the file!';
+        this.currentFile = undefined;
+      });
+
+    this.selectedFiles = undefined;
+  }
+
+  photoGud() {
+    console.log("photo gud?");
+    // console.log(this.car.photo);
+    this.uploadService.getFile(this.idCar).subscribe(
+      data => {
+        this.fileinfos = data;
+      },
+      error => {
+        {
+          console.log("ERROR getFile: " + error.errorMessage);
+        }
+      }
+    )
+    console.log(this.fileinfos);
+  }
+
+  getCarById() {
+    this.carService.getCarById(this.idCar).subscribe(
+      data => {
+        this.car = data;
+      },
+      error => {
+        {
+          console.log("ERROR getCarById: " + error.errorMessage);
+          
+        }
+      }
+    )
+  }
+  onBack() {
+    this.router.navigate(['/carList']);
   }
 
   slides = [

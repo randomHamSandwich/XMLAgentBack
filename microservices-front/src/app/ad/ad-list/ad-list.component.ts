@@ -27,7 +27,7 @@ export class AdListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllAds("","","");
-    this.getAllCars();
+    //this.getAllCars();
     this.getAllPricelists();
   }
 
@@ -35,18 +35,18 @@ export class AdListComponent implements OnInit {
     this.ads = this.adService.getAllAds(c, s, e);
   }
 
-  getAllCars() {
+  /*getAllCars() {
     this.carService.getCarsList().subscribe(
       data => {
         this.cars = data;
       },
       error => {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.message;
 
         console.log("Error: " + this.errorMessage);
       }
     );
-  }
+  }*/
 
   getAllPricelists() {
     this.pricelistService.getAllPricelists().subscribe(
@@ -54,7 +54,7 @@ export class AdListComponent implements OnInit {
         this.pricelists = data;
       },
       error => {
-        this.errorMessage = error.error.message;
+        this.errorMessage = error.message;
         console.log("Error: " + this.errorMessage);
 
       }

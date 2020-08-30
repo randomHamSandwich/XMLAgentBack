@@ -28,10 +28,11 @@ export class CarModelAddComponent implements OnInit {
         data => {
           console.log(data);
           this.newCarModel = data as CarModelDTO;
+          window.location.reload();
         },
         error => console.log(error)
       );
-      window.location.reload();
+      // window.location.reload();
 
 
   }

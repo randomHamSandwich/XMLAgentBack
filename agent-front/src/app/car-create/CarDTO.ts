@@ -1,4 +1,5 @@
 import { TokenStorageService } from '../auth/token-storage.service';
+import { Observable } from 'rxjs';
 
 export class CarDTO {
     idCar: string;
@@ -18,6 +19,8 @@ export class CarDTO {
     country: string;
     user: number;
     registrationPlate: string;
+    // photos: string | ArrayBuffer;
+    photo: Observable<any>;
     
     constructor() {
         this.idCar = "";
@@ -37,6 +40,7 @@ export class CarDTO {
         this.country = "";
         this.user = 0;
         this.registrationPlate = "";
+        this.photo = null;
     }
 
 }

@@ -35,24 +35,30 @@
                 </tr>
             </thead>
 
-            <tbody *ngFor="let a of ads | async ; let i = index;">
+            <tbody *ngFor="let a of ads; let i = index;">
 
-                <tr *ngIf="a.endUser == userID">
+                <tr>
                     <th scope="row">{{i+1}}</th>
                     <th scope="row">{{a.startDate | date:"dd/MM/yyy HH:mm"}}</th>
                     <th scope="row">{{a.endDate | date:"dd/MM/yyy HH:mm"}}</th>
-
+                    <th scope="row"> PLACEHOLDER, TREBA AUTO </th>
+                    <th scope="row"> PLACEHOLDER, TREBA LOKACIJA AUTOMOBILA</th>              
+                <!--
                     <ng-container *ngFor="let c of cars">
                         <th *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.carBrand}} {{c.carModel}}</th>
                         <th *ngIf="c.idCar == a.car" scope="row" rowspan="3">{{c.city}} {{c.country}}</th>
                     </ng-container>
+                -->   
                     <ng-container *ngFor="let p of pricelists">
                         <th *ngIf="p.pricelistId == a.pricelist" scope="row" rowspan="2"> {{ p.priceForOneDay}}</th>
                     </ng-container>
-                    <th scope="row"> <button class="btn btn-info" (click)="onReserve()">Reserve for me</button></th>
+                    <td scope="row"> <button class="btn btn-info" (click)="onReserve()">Reserve</button></td>
+                    <td scope="row"> <button class="btn btn-secondary" routerLink="/ad-edit/{{a.idAd}}">Update</button></td>
+                    <td scope="row"> <button class="btn btn-danger" (click)="onDelete(a.idAd)">Delete</button></td>
 
                 </tr>
             </tbody>
+
         </table>
         <hr>
         <button class="btn btn-danger" (click)="onBack()">Back</button>

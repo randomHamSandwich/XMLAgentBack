@@ -31,10 +31,11 @@ export class CarBrandAddComponent implements OnInit {
         data => {
           console.log(data);
           this.newCarBrand = data as CarBrandDTO;
+          window.location.reload();
         },
         error => console.log(error)
       );
-      window.location.reload();
+     
 
 
   }

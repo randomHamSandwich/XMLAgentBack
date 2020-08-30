@@ -28,10 +28,11 @@ export class GearboxAddComponent implements OnInit {
         data => {
           console.log(data);
           this.newGearboxType = data as GearboxTypeDTO;
+          window.location.reload();
         },
         error => console.log(error)
       );
-      window.location.reload();
+
 
 
   }
