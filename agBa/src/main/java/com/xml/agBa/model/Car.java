@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Car {
