@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PricelistDTO } from '../ad/pricelist-create/PricelistDTO';
+import { PricelistResponse } from './responses/PricelistResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class PricelistService {
   }
 
   getPricelistById(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + '/' + id);
+    return this.http.get<PricelistResponse>(this.baseUrl + '/' + id);
   }
 
   deletePricelist(id: number): Observable<any> {
