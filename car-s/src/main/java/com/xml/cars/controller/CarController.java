@@ -15,11 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xml.agBa.dto.AdDTO;
-import com.xml.agBa.dto.CarDTO;
-import com.xml.agBa.dto.RoleDTO;
-import com.xml.agBa.dto.UserDTO;
-import com.xml.agBa.service.CarService;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -27,46 +22,46 @@ import java.util.List;
 @RequestMapping(value = "api")
 public class CarController {
 
-	@Autowired
-	private CarService carService;
-	
-//	TODO create restfull get,getAll,put and post
-	
-	@PostMapping(value="/car")
-	@PreAuthorize("hasAuthority('END_USER')")
-	public ResponseEntity<CarDTO> createCar(@RequestBody CarDTO carDTO) {
-		CarDTO newCar = carService.createCar(carDTO);
-		if (newCar != null) {
-			return new ResponseEntity<CarDTO>(newCar, HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
-
-	@GetMapping(value = "/car")
+//	@Autowired
+//	private CarService carService;
+//	
+////	TODO create restfull get,getAll,put and post
+//	
+//	@PostMapping(value="/car")
 //	@PreAuthorize("hasAuthority('END_USER')")
-	public ResponseEntity<List<CarDTO>> getAllCars() {
-		List<CarDTO> carListDTO = carService.getAllCars();
-		
-		return new ResponseEntity<>(carListDTO, HttpStatus.OK);
-	}
-	
-	@PutMapping(value = "car/{idCar}" )
+//	public ResponseEntity<CarDTO> createCar(@RequestBody CarDTO carDTO) {
+//		CarDTO newCar = carService.createCar(carDTO);
+//		if (newCar != null) {
+//			return new ResponseEntity<CarDTO>(newCar, HttpStatus.OK);
+//		}
+//		
+//		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//	}
+//
+//	@GetMapping(value = "/car")
+////	@PreAuthorize("hasAuthority('END_USER')")
+//	public ResponseEntity<List<CarDTO>> getAllCars() {
+//		List<CarDTO> carListDTO = carService.getAllCars();
+//		
+//		return new ResponseEntity<>(carListDTO, HttpStatus.OK);
+//	}
+//	
+//	@PutMapping(value = "car/{idCar}" )
+////	@PreAuthorize("hasAuthority('ADMIN')")
+//	public ResponseEntity<CarDTO> editCar(@PathVariable("id") Long idCar, CarDTO ccarDTO) {
+//		CarDTO carDTO = carService.editCar(idCar, ccarDTO);
+//
+//		return new ResponseEntity<>(carDTO, HttpStatus.CREATED);
+//	}
+//
+//	
+//	@DeleteMapping(value = "/car/{idCar}")
 //	@PreAuthorize("hasAuthority('ADMIN')")
-	public ResponseEntity<CarDTO> editCar(@PathVariable("id") Long idCar, CarDTO ccarDTO) {
-		CarDTO carDTO = carService.editCar(idCar, ccarDTO);
-
-		return new ResponseEntity<>(carDTO, HttpStatus.CREATED);
-	}
-
-	
-	@DeleteMapping(value = "/car/{idCar}")
-	@PreAuthorize("hasAuthority('ADMIN')")
-	public ResponseEntity<Boolean> deleteCar(@PathVariable Long idCar) {
-		Boolean isDeleted = carService.delete(idCar);
-		
-		return new ResponseEntity<Boolean>(isDeleted, HttpStatus.OK);
-	}
+//	public ResponseEntity<Boolean> deleteCar(@PathVariable Long idCar) {
+//		Boolean isDeleted = carService.delete(idCar);
+//		
+//		return new ResponseEntity<Boolean>(isDeleted, HttpStatus.OK);
+//	}
 
 	
 }

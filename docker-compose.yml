@@ -70,6 +70,17 @@ services:
 
 
 
+  car-s:
+    build: ./car-s
+    ports:
+    - "8084:8084"
+    environment:
+      - REGISTRY_HOST=eureka-serviceregistry  
+
+
+    tty: true
+    depends_on:
+      - eureka-serviceregistry
 
 
 

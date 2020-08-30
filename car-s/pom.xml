@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.xml</groupId>
 	<artifactId>car-s</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>car-s</name>
 	<description>Demo project for Spring Boot</description>
 
