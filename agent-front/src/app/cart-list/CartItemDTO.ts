@@ -9,16 +9,6 @@ export class CartItemDTO {
     priceDay: number;
     discount: number;
 
-    // constructor() {
-    //     this.id = 0;
-    //     this.carBrand = "";
-    //     this.carModel = "";
-    //     this.startDate = "";
-    //     this.endDate = "";
-    //     this.priceDay = 0;
-    //     this.discount = 0;
-    // }
-
     constructor(
         public cartItemId: number, 
         public brand: string, 

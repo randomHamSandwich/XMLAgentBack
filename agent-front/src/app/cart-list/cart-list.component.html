@@ -18,16 +18,16 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor= "let ad of adItemsSource; index as i">
+                    <tr *ngFor= "let cartItem of cartItems; index as i">
                       <th scope="row">{{ i + 1}}</th>
-                      <td>{{ad.carBrand}} {{ad.carModel}}</td>
-                      <td>{{ad.startDate}}</td>
-                      <td>{{ad.endDate}}</td>
-                      <td>{{ad.priceForOneDay}}</td>
-                      <td>{{ad.discount}}</td>
+                      <td>{{cartItem.carBrand}} {{cartItem.carModel}}</td>
+                      <td>{{cartItem.startDate}}</td>
+                      <td>{{cartItem.endDate}}</td>
+                      <td>{{cartItem.priceDay}}</td>
+                      <td>{{cartItem.discount}}</td>
                        
-                      <button class="btn btn-success">Send request</button>
-                      <button class="btn btn-danger">Delete</button>  
+                      <td scope="row"> <button class="btn btn-success">Send request</button></td>
+                      <td scope="row"> <button class="btn btn-danger">Delete</button></td>
             
                     </tr>
                 </tbody>

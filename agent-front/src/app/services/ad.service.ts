@@ -3,6 +3,7 @@ import { HttpClient,HttpParams } from '@angular/common/http';
 import { AdDTO } from '../ad/ad-create/AdDTO';
 import { Observable } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
+import { AdResponse } from './responses/adResponse';
 //import { start } from 'repl';
 
 @Injectable({
@@ -20,7 +21,7 @@ export class AdService {
   }
 
   getAdById(idAd: any): Observable<any> {
-    return this.http.get(this.baseUrl + '/' + idAd);
+    return this.http.get<AdResponse>(this.baseUrl + '/' + idAd);
   }
 
   updateAd(idAd: number, adData: any): Observable<any> {
