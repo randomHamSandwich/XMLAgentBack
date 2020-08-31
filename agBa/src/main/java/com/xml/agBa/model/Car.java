@@ -248,14 +248,6 @@ public class Car {
 		this.user = user;
 	}
 
-	public Set<Report> getReports() {
-		return reports;
-	}
-
-	public void setReports(Set<Report> reports) {
-		this.reports = reports;
-	}
-
 	public Ad getAd() {
 		return ad;
 	}
@@ -263,7 +255,14 @@ public class Car {
 	public void setAd(Ad ad) {
 		this.ad = ad;
 	}
+	
+	public Set<Report> getReports() {
+		return reports;
+	}
 
+	public void setReports(Set<Report> reports) {
+		this.reports = reports;
+	}
 	public String getRegistrationPlate() {
 		return registrationPlate;
 	}

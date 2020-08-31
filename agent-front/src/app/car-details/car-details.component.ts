@@ -6,6 +6,8 @@ import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadFileService } from '../services/upload-file.service';
 import { Observable } from 'rxjs';
+import { FileDTO } from '../car-create/FileDTO';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-car-details',
@@ -14,7 +16,6 @@ import { Observable } from 'rxjs';
 })
 export class CarDetailsComponent implements OnInit {
 
-  // car: Observable<any>;
   car: CarDTO = new CarDTO();
   idCar: string;
   errorMessage: any;
@@ -23,19 +24,25 @@ export class CarDetailsComponent implements OnInit {
   progress = 0;
   message = '';
   fileinfos : any;
+  file: FileDTO = new FileDTO();
+  image: any;
+  data: any;
+  
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private carService: CarService,
               private uploadService: UploadFileService,
-              private http: HttpClient) {}
+              private http: HttpClient,
+              private sanitizer: DomSanitizer) {}
   
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => { this.idCar = params.get("idCar"); })
     this.getCarById();
-    console.log(this.car);
-    // this.fileinfos = this.car.photo;
+    // this.image = btoa(this.car.photo);
+    let objectURL = 'data:image/png;base64,'+this.car.photo;
+    this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
   }
 
   selectFile(event) {
@@ -52,7 +59,6 @@ export class CarDetailsComponent implements OnInit {
           this.progress = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
           this.message = event.body.message;
-          // this.fileInfos = this.uploadService.getFiles();
         }
       },
       err => {
@@ -66,18 +72,21 @@ export class CarDetailsComponent implements OnInit {
 
   photoGud() {
     console.log("photo gud?");
-    // console.log(this.car.photo);
-    this.uploadService.getFile(this.idCar).subscribe(
-      data => {
-        this.fileinfos = data;
-      },
-      error => {
-        {
-          console.log("ERROR getFile: " + error.errorMessage);
-        }
-      }
-    )
-    console.log(this.fileinfos);
+    console.log(this.car.photo);
+    // this.uploadService.getFile(this.idCar).subscribe(
+    //   data => {
+    //     this.file = data;
+    //   },
+    //   error => {
+    //     {
+    //       console.log("ERROR getFile: " + error.errorMessage);
+    //     }
+    //   }
+    // )
+
+    // const reader = new FileReader();
+    // reader.onload = (e) => this.image = e.target.result;
+    // reader.readAsDataURL(new Blob([this.car.photo]));
   }
 
   getCarById() {
@@ -98,7 +107,7 @@ export class CarDetailsComponent implements OnInit {
   }
 
   slides = [
-    {img: "http://placehold.it/350x150/000000"},
+    {img: this.image},
     {img: "http://placehold.it/350x150/111111"},
     {img: "http://placehold.it/350x150/333333"},
     {img: "http://placehold.it/350x150/666666"}

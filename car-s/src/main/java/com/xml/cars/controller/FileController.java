@@ -1,4 +1,4 @@
-package com.xml.agBa.contriller;
+package com.xml.cars.controller;
 
 import java.sql.Blob;
 import java.sql.SQLException;
@@ -24,18 +24,18 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.xml.agBa.dto.CarDTO;
-import com.xml.agBa.message.response.ResponseFile;
-import com.xml.agBa.message.response.ResponseMessage;
-import com.xml.agBa.model.FileDB;
-import com.xml.agBa.model.FileInfo;
-import com.xml.agBa.service.FilesStorageService;
-import com.xml.agBa.service.CarService;
+import com.xml.cars.dto.CarDTO;
+import com.xml.cars.message.response.ResponseFile;
+import com.xml.cars.message.response.ResponseMessage;
+import com.xml.cars.model.FileDB;
+import com.xml.cars.model.FileInfo;
+import com.xml.cars.service.FilesStorageService;
+import com.xml.cars.service.CarService;
 
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "api")
+//@RequestMapping(value = "api")
 public class FileController {
 
 	  @Autowired
