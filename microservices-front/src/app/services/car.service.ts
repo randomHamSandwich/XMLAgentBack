@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CarService {
-
-  private baseUrl = 'http://localhost:8080/api';
+  // private korisnikUrl = 'http://localhost:8083/aut-s/user';
+  private baseUrl = 'http://localhost:8083/car-s';
 
   constructor(private http:HttpClient) {}
 

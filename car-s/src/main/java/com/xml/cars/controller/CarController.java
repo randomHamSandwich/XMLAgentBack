@@ -1,5 +1,7 @@
 package com.xml.cars.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,19 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xml.agBa.dto.AdDTO;
-import com.xml.agBa.dto.CarDTO;
-import com.xml.agBa.dto.RoleDTO;
-import com.xml.agBa.dto.UserDTO;
-import com.xml.agBa.service.CarService;
-import java.util.List;
+import com.xml.cars.dto.CarDTO;
+import com.xml.cars.service.CarService;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "api")
+//@RequestMapping(value = "api")
+@RequestMapping()
 public class CarController {
 
 	@Autowired
@@ -35,6 +33,7 @@ public class CarController {
 	@PostMapping(value="/car")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<CarDTO> createCar(@RequestBody CarDTO carDTO) {
+
 		CarDTO newCar = carService.createCar(carDTO);
 		if (newCar != null) {
 			return new ResponseEntity<CarDTO>(newCar, HttpStatus.OK);
@@ -42,6 +41,7 @@ public class CarController {
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
+	
 
 	@GetMapping(value = "/car")
 //	@PreAuthorize("hasAuthority('END_USER')")
@@ -58,6 +58,20 @@ public class CarController {
 
 		return new ResponseEntity<>(carDTO, HttpStatus.CREATED);
 	}
+	
+	@GetMapping(value = "/car/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<?> getCarById(@PathVariable("id") Long id) {
+
+		CarDTO car = new CarDTO(carService.getOne(id));
+
+		if (car != null) {
+			return new ResponseEntity<>(car, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+	}
 
 	
 	@DeleteMapping(value = "/car/{idCar}")
@@ -68,5 +82,4 @@ public class CarController {
 		return new ResponseEntity<Boolean>(isDeleted, HttpStatus.OK);
 	}
 
-	
 }

@@ -1,7 +1,11 @@
 package com.xml.agBa.contriller;
 
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -74,13 +78,31 @@ public class FileController {
 	  }
 
 	  @GetMapping("/files/{id}")
-	  public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-//	    FileDB fileDB = storageService.getFile(id);
-		  CarDTO carDTO = new CarDTO(carService.getOne(Long.parseLong(id)));
-		  FileDB fileDB = new FileDB(carDTO.getCarBrand()+carDTO.getCarModel(), "slika", carDTO.getPhoto());
+	  public ResponseEntity<Blob> getFile(@PathVariable String id) {
+		  //ResponseEntity<FileDB>
+		CarDTO carDTO = new CarDTO(carService.getOne(Long.parseLong(id)));
+		//FileDB fileDB = new FileDB(carDTO.getCarBrand()+carDTO.getCarModel(), "slika", carDTO.getPhoto());
+		Blob blob = null;
+		try {
+			blob = new SerialBlob(carDTO.getPhoto());
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		if (blob != null) {
+			return new ResponseEntity<Blob>(blob, HttpStatus.OK);
+		}
 
-	    return ResponseEntity.ok()
-	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
-	        .body(fileDB.getData());
+		return new ResponseEntity<Blob>(HttpStatus.NOT_FOUND);
+		
+//		if (fileDB != null) {
+//			return new ResponseEntity<>(fileDB, HttpStatus.OK);
+//		}
+//
+//		return new ResponseEntity<FileDB>(HttpStatus.NOT_FOUND);
+//	    return ResponseEntity.ok()
+//	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+//	        .body(fileDB.getData());
 	  }
 	}

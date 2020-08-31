@@ -19,8 +19,8 @@ export class CarDTO {
     country: string;
     user: number;
     registrationPlate: string;
-    // photos: string | ArrayBuffer;
-    photo: Observable<any>;
+    // photo: Observable<any>;
+    photo: any;
     
     constructor() {
         this.idCar = "";
