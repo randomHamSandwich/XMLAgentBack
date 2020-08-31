@@ -1,6 +1,11 @@
 package com.xml.cars.dto;
 
 import com.xml.cars.model.Car;
+import com.xml.cars.model.CarBrand;
+import com.xml.cars.model.CarClass;
+import com.xml.cars.model.CarModel;
+import com.xml.cars.model.FuelType;
+import com.xml.cars.model.GearboxType;
 
 public class CarDTO {
 
@@ -42,16 +47,58 @@ public class CarDTO {
 		this.country = country;
 		this.advertised = advertised;
 	}
-	
-	public CarDTO(Car c) {
-		this(c.getIdCar(), c.getKm(), c.getAllowedKM(), c.getChildrenSeats(), c.getCdw(), c.getStreet(),
-				c.getStreetNumber(), c.getCity(), c.getCountry(), c.getAdvertised());
 
+//	public CarDTO(Car c) {
+//		this(c.getIdCar(), c.getKm(), c.getAllowedKM(), c.getChildrenSeats(), c.getCdw(), c.getStreet(),
+//				c.getStreetNumber(), c.getCity(), c.getCountry(), c.getAdvertised());
+//
+//	}
+
+	public CarDTO(CarBrand carBrand, CarModel carModel, CarClass carClass, FuelType fuelType, GearboxType gearboxType,
+			Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street, String streetNumber,
+			String city, String country, String registrationPlate, Long user, Boolean advertised, byte[] photo) {
+		super();
+		this.carBrand = carBrand.getName();
+		this.carModel = carModel.getName();
+		this.carClass = carClass.getName();
+		this.fuelType = fuelType.getName();
+		this.gearboxType = gearboxType.getName();
+		this.idCar = idCar;
+		this.km = km;
+		this.allowedKM = allowedKM;
+		this.childrenSeats = childrenSeats;
+		this.cdw = cdw;
+		this.street = street;
+		this.streetNumber = streetNumber;
+		this.city = city;
+		this.country = country;
+		this.registrationPlate = registrationPlate;
+		this.user = user;
+		this.advertised = advertised;
+		this.photo = photo;
 	}
 	
-	
-	
-	
+	public CarDTO(Car c) {
+		super();
+		this.carBrand = c.getCarBrand().getName();
+		this.carModel = c.getCarModel().getName();
+		this.carClass = c.getCarClass().getName();
+		this.fuelType = c.getFuelType().getName();
+		this.gearboxType = c.getGearboxType().getName();
+		this.idCar = c.getIdCar();
+		this.km = c.getKm();
+		this.allowedKM = c.getAllowedKM();
+		this.childrenSeats = c.getChildrenSeats();
+		this.cdw = c.getCdw();
+		this.street = c.getStreet();
+		this.streetNumber = c.getStreetNumber();
+		this.city = c.getCity();
+		this.country = c.getCountry();
+		this.registrationPlate = c.getRegistrationPlate();
+		this.user = c.getUser().getIdUser();
+		this.advertised = c.getAdvertised();
+
+	}
 
 	public CarDTO(Long idCar, String carBrand, String carModel, String carClass, String fuelType, String gearboxType,
 			double km, double allowedKM, int childrenSeats, boolean cdw, String street, String streetNumber,

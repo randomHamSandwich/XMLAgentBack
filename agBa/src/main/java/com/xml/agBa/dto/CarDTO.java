@@ -82,6 +82,10 @@ public class CarDTO {
 //				car.getStreet(), car.getStreetNumber(), car.getCity(), car.getCountry());
 //	}
 	
+	/**
+	 * Id of user is allways 1, this must be corrected
+	 * 
+	 */
 	public CarDTO(Car car) {
 		this(car.getCarBrand(), car.getCarModel(), car.getCarClass(), car.getFuelType(), car.getGearboxType(),
 				car.getIdCar(), car.getKm(), car.getAllowedKM(), car.getChildrenSeats(), car.getCdw(),

@@ -283,21 +283,21 @@ public class Car {
 		this.photo = photo;
 	}
 
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
-//
-//	public Ad getAd() {
-//		return ad;
-//	}
-//
-//	public void setAd(Ad ad) {
-//		this.ad = ad;
-//	}
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Ad getAd() {
+		return ad;
+	}
+
+	public void setAd(Ad ad) {
+		this.ad = ad;
+	}
 	
 
 }
