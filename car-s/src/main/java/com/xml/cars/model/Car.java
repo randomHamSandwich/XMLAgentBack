@@ -16,8 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
-//import com.xml.cars.model.Ad;
-//import com.xml.cars.model.User;
+import com.xml.cars.model.Ad;
+import com.xml.cars.model.User;
 import com.xml.cars.model.CarBrand;
 import com.xml.cars.model.CarClass;
 import com.xml.cars.model.CarModel;
@@ -83,15 +83,15 @@ public class Car {
 	@JoinColumn(name = "id_gearbox_type", nullable = true)
 	private GearboxType gearboxType;
 	
-//	@ManyToOne(cascade = CascadeType.MERGE)
-//	@JoinColumn(name = "id_user", nullable = true)
-//	private User user;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_user", nullable = true)
+	private User user;
 
 	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
 	private Set<Report> reports;
 
-//	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
-//	private Ad ad;
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
+	private Ad ad;
 	
 	@Column
 	private Boolean advertised;
