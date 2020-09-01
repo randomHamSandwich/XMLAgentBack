@@ -11,8 +11,8 @@ import { FuelTypeDTO } from '../admin/fuel-type-list/FuelTypeDTO';
 export class FuelTypeService{
 
 
-    private FuelTypeUrl = 'http://localhost:8080/api/fuelType';
-
+    // private FuelTypeUrl = 'http://localhost:8080/api/fuelType';
+private FuelTypeUrl = 'http://localhost:8083/car-s/fuelType';
     constructor(private http: HttpClient) { }
   
   

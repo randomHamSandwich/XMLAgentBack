@@ -17,7 +17,9 @@ import com.xml.cars.model.CarClass;
 import com.xml.cars.model.CarModel;
 import com.xml.cars.model.FuelType;
 import com.xml.cars.model.GearboxType;
-//import com.xml.cars.model.User;
+import com.xml.cars.model.additional.CarRabbitMQ;
+import com.xml.cars.rabbitmq.Producer;
+import com.xml.cars.model.User;
 import com.xml.cars.repo.CarBrandRepo;
 import com.xml.cars.repo.CarClassRepo;
 import com.xml.cars.repo.CarModelRepo;
@@ -48,6 +50,9 @@ public class CarServiceImp implements CarService{
 	
 	@Autowired
 	private FuelTypeRepo fuelTypeRepo;
+	
+	@Autowired
+	private Producer producer;
 	
 	@Override
 	public Car findCarById() {
@@ -181,9 +186,12 @@ public class CarServiceImp implements CarService{
 		newCar.setChildrenSeats(carDTO.getChildrenSeats());
 		newCar.setCdw(carDTO.getCdw());
 		newCar.setRegistrationPlate(carDTO.getRegistrationPlate());
-//		newCar.setUser(new User(carDTO.getUser()));
+		newCar.setUser(new User(carDTO.getUser()));
 		newCar = carRepo.save(newCar);
 				
+		CarRabbitMQ h = new CarRabbitMQ(333L, 1D, 231D, 4, true, "s1", "s2", "s3", "country4", "registrationPlate", null, 1, true);
+		producer.sendHouse("car-to-ad", h);
+		
 		return new CarDTO(newCar);
 	}
 

@@ -11,8 +11,8 @@ import { CarBrandDTO} from '../admin/car-brand-list/CarBrandDTO';
 export class CarBrandService {
 
 
-  private carBrandUrl = 'http://localhost:8080/api/carbrand';
-
+  // private carBrandUrl = 'http://localhost:8080/api/carbrand';
+  private carBrandUrl = 'http://localhost:8083/car-s/carbrand';
   constructor(private http: HttpClient) { }
 
 
