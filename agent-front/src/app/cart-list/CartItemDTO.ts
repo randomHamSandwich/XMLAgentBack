@@ -8,6 +8,7 @@ export class CartItemDTO {
     endDate: string;
     priceDay: number;
     discount: number;
+    user: number;
 
     constructor(
         public cartItemId: number, 
@@ -16,7 +17,8 @@ export class CartItemDTO {
         public dateFrom: string,
         public dateTo: string,
         public price: number,
-        public disc: number) {
+        public disc: number,
+        public userId: number) {
 
         this.id = cartItemId;
         this.carBrand = brand;
@@ -25,6 +27,7 @@ export class CartItemDTO {
         this.endDate = dateTo;
         this.priceDay = price;
         this.discount = disc;
+        this.user = userId;
     }
 
 }
