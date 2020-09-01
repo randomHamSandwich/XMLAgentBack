@@ -15,18 +15,21 @@ import { PricelistResponse } from '../services/responses/PricelistResponse';
 })
 export class CartListComponent implements OnInit {
 
+  // Properties
   currentCartItem: CartItemDTO;
 
   cartItems: CartItemDTO[] = [];
 
   uniqueUsers: UniqueUserDTO[] = [];
 
+  // Constructor
   constructor(
     private adService: AdService,
     private pricelistService: PricelistService,
     private cartStorageService: CartStorageService,
     private router: Router) { }
 
+  // Initialization
   ngOnInit() {
     this.populateData();
   }
@@ -35,40 +38,42 @@ export class CartListComponent implements OnInit {
     let ids = this.cartStorageService.getCartAdIds();
 
     ids.forEach( id => {
-      this.adService.getAdById(parseInt(id)).subscribe(
+        this.adService.getAdById(parseInt(id)).subscribe(
         (data: AdResponse) => {
           this.pricelistService.getPricelistById(data.pricelist).subscribe(
-            (pricelistData: PricelistResponse) =>
-            {
-              this.currentCartItem = new CartItemDTO(
-                data.idAd,
-                data.carBrand,
-                data.carModel,
-                data.startDate.toString(),
-                data.endDate.toString(),
-                data.priceForOneDay,
-                pricelistData.discount);
-      
-              console.log("Attempted adding AdDTO with ID: " + this.currentCartItem.id + ". Car: " + this.currentCartItem.carBrand);
-              console.log("Discount: " + this.currentCartItem.discount);
-      
-              this.cartItems.push(this.currentCartItem);
+            (pricelistData: PricelistResponse) => {
+              this.storeCartItemData(data, pricelistData);
             },
-            error =>
-            {
-              console.log("Error: " + error.errorMessage);
-            }
-          );
-        },
-
-        error => {
-          {
-            console.log("ERROR: " + error.errorMessage);            
-          }
-        }
-      )
+            error => { console.log("Error: " + error.message); },
+            );
+          },
+        error => { console.log("Error: " + error.message); },
+        )
     });    
   }
+
+  storeCartItemData(data: AdResponse, pricelistData: PricelistResponse){
+    this.currentCartItem = new CartItemDTO(
+      data.idAd,
+      data.carBrand,
+      data.carModel,
+      data.startDate.toString(),
+      data.endDate.toString(),
+      data.priceForOneDay,
+      pricelistData.discount,
+      data.user);
+
+    console.log("Attempted adding AdDTO with ID: " + this.currentCartItem.id + ". Car: " + this.currentCartItem.carBrand);
+    console.log("Discount: " + this.currentCartItem.discount);
+
+    this.cartItems.push(this.currentCartItem);
+
+    if (!this.uniqueUsers.find(x => x.uniqueUserId == this.currentCartItem.user))
+    {
+      // TODO: find and add user name to this DTO
+      this.uniqueUsers.push(new UniqueUserDTO(this.currentCartItem.user, "Lol TheLolie"));
+    }
+  };
 
   onBack() {
     this.router.navigate(['/']);
