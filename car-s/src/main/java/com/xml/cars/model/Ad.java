@@ -35,27 +35,27 @@ public class Ad {
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
     private Integer version;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_request_ad", joinColumns = @JoinColumn(name = "id_ad"), inverseJoinColumns = @JoinColumn(name = "id_user_request"))
-	private Set<UserRequest> userRequest;
-	
-	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
-	private Set<Rating> rating;
-
-	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
-	private Set<Comment> comments;
-	
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST ,CascadeType.REFRESH} )
-	@JoinColumn(name = "id_price_list")
-	private Pricelist priceList;
+//	@ManyToMany(fetch = FetchType.LAZY)
+//	@JoinTable(name = "user_request_ad", joinColumns = @JoinColumn(name = "id_ad"), inverseJoinColumns = @JoinColumn(name = "id_user_request"))
+//	private Set<UserRequest> userRequest;
+//	
+//	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
+//	private Set<Rating> rating;
+//
+//	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL)
+//	private Set<Comment> comments;
+//	
+//	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST ,CascadeType.REFRESH} )
+//	@JoinColumn(name = "id_price_list")
+//	private Pricelist priceList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "id_car", nullable = true)
     private Car car;
 	
-	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "id_user")
-	private EndUser endUser;
+//	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+//	@JoinColumn(name = "id_user")
+//	private EndUser endUser;
 	
 	@Column
 	private Boolean active;
@@ -64,19 +64,19 @@ public class Ad {
 		super();
 	}
 	
-	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version, Set<UserRequest> userRequest,
-			Set<Rating> rating, Set<Comment> comments, Pricelist priceList, Car car, EndUser endUser, Boolean active) {
+	public Ad(Long idAd, LocalDateTime startDate, LocalDateTime endDate, Integer version, Car car, Boolean active /*, Set<UserRequest> userRequest,
+			Set<Rating> rating, Set<Comment> comments, Pricelist priceList,  EndUser endUser*/) {
 		super();
 		this.idAd = idAd;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.version = version;
-		this.userRequest = userRequest;
-		this.rating = rating;
-		this.comments = comments;
-		this.priceList = priceList;
+//		this.userRequest = userRequest;
+//		this.rating = rating;
+//		this.comments = comments;
+//		this.priceList = priceList;
 		this.car = car;
-		this.endUser = endUser;
+//		this.endUser = endUser;
 		this.active = active;
 	}
 
@@ -112,37 +112,37 @@ public class Ad {
 		this.version = version;
 	}
 
-	public Set<UserRequest> getUserRequest() {
-		return userRequest;
-	}
+//	public Set<UserRequest> getUserRequest() {
+//		return userRequest;
+//	}
+//
+//	public void setUserRequest(Set<UserRequest> userRequest) {
+//		this.userRequest = userRequest;
+//	}
+//
+//	public Set<Rating> getRating() {
+//		return rating;
+//	}
+//
+//	public void setRating(Set<Rating> rating) {
+//		this.rating = rating;
+//	}
+//
+//	public Set<Comment> getComments() {
+//		return comments;
+//	}
+//
+//	public void setComments(Set<Comment> comments) {
+//		this.comments = comments;
+//	}
 
-	public void setUserRequest(Set<UserRequest> userRequest) {
-		this.userRequest = userRequest;
-	}
-
-	public Set<Rating> getRating() {
-		return rating;
-	}
-
-	public void setRating(Set<Rating> rating) {
-		this.rating = rating;
-	}
-
-	public Set<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public Pricelist getPriceList() {
-		return priceList;
-	}
-
-	public void setPriceList(Pricelist priceList) {
-		this.priceList = priceList;
-	}
+//	public Pricelist getPriceList() {
+//		return priceList;
+//	}
+//
+//	public void setPriceList(Pricelist priceList) {
+//		this.priceList = priceList;
+//	}
 
 	public Car getCar() {
 		return car;
@@ -152,13 +152,13 @@ public class Ad {
 		this.car = car;
 	}
 
-	public EndUser getEndUser() {
-		return endUser;
-	}
-
-	public void setEndUser(EndUser endUser) {
-		this.endUser = endUser;
-	}
+//	public EndUser getEndUser() {
+//		return endUser;
+//	}
+//
+//	public void setEndUser(EndUser endUser) {
+//		this.endUser = endUser;
+//	}
 
 	public Boolean getActive() {
 		return active;

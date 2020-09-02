@@ -1,0 +1,79 @@
+<div class="column">
+    <div>
+        <p>Car Brand: {{car.carBrand}}</p>
+        <p>Car Model: {{car.carModel}}</p>
+        <p>Car Class: {{car.carClass}}</p>
+        <p>Fuel Type: {{car.fuelType}}</p>
+        <p>Gearbox Type: {{car.gearboxType}}</p>
+        <p>Km: {{car.km}}</p>
+        <p>Allowed km: {{car.allowedKM}}</p>
+        <p>Childrens seats: {{car.childrenSeats}}</p>
+        <p>CDW package: {{car.cdw}}</p>
+        <p>Street: {{car.street}}</p>
+        <p>Street Number: {{car.streetNumber}}</p>
+        <p>City: {{car.city}}</p>
+        <p>Country: {{car.country}}</p>
+        <p>Reg. Plate: {{car.registrationPlate}}</p>
+        
+    </div>
+    <div *ngIf="currentFile" class="progress">
+        <div
+          class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar"
+          attr.aria-valuenow="{{ progress }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: progress + '%' }"
+        >
+          {{ progress }}%
+        </div>
+      </div>
+      
+      <label class="btn btn-default">
+        <input type="file" (change)="selectFile($event)" />
+      </label>
+      
+      <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
+        Upload
+      </button>
+      
+      <div class="alert alert-light" role="alert">{{ message }}</div>
+      
+      <!-- <img [src]='image'/> -->
+      <!-- <div class="card">
+        <div class="card-header">List of Files</div>
+        <ul
+          class="list-group list-group-flush"
+          *ngFor="let file of fileInfos | async"
+        >
+          <li class="list-group-item">
+            <a href="{{ file.url }}">{{ file.name }}</a>
+          </li>
+        </ul>
+      </div> -->
+
+    <div>
+        <button class="btn btn-success" (click)="photoGud()">photo?</button>
+    </div>
+  
+    <hr>
+        <button class="btn btn-danger" (click)="onBack()">Back</button>
+    <div>
+        <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideConfig" 
+                        (init)="slickInit($event)"
+                        (breakpoint)="breakpoint($event)"
+                        (afterChange)="afterChange($event)"
+                        (beforeChange)="beforeChange($event)">
+            <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+              <img src="{{ slide.img }}" alt="" width="100%">
+            </div>
+        </ngx-slick-carousel>
+    
+        <button (click)="addSlide()">Add</button>
+        <button (click)="removeSlide()">Remove</button>
+        <button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
+        <button (click)="slickModal.unslick()">unslick</button>
+    </div>
+</div>
