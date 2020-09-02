@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CarService {
-
-  private baseUrl = 'http://localhost:8083/car';
+//we have to poin to microservice endpoint and its name is car-s,
+//after that we can access resource car
+  private baseUrl = 'http://localhost:8083/car-s/car';
 
   constructor(private http:HttpClient) {}
 
