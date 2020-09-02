@@ -1,56 +1,51 @@
 <div class="container-fluid">
-    <!-- <div class="row col-sm-6" style="max-width:500px;"> -->
-        <div>
-            <h1>My cart:</h1>
-            <table  class="table table-bordered table-dark">
+    <div>
+        <h1>My cart:</h1>
+        <table  class="table table-bordered table-dark">
 
-                <tbody>
-                    <th scope="col">User: </th>
-                    <tr *ngFor= "let userId of uniqueUsers; index as x">
-                        <th scope="row">{{ x + 1}}</th>
-                            <td>                                       
-                                <table class="table table-bordered table-hover table-dark">
+            <tbody>
+                <th scope="col">User: </th>
+                <tr *ngFor= "let uniqueUser of uniqueUsers; index as x">
+                    <th scope="row">{{ x + 1}}</th>
+                        <td>                                       
+                            <table class="table table-bordered table-hover table-dark">
 
-                                    <thead>
-                                        <tr>
+                                <thead>
+                                    <tr>
                                         <th scope="col">#</th>
-                                        <!-- <th scope="col">Car brand: </th> -->
                                         <th scope="col">Car model: </th>
                                         <th scope="col">Start date: </th>
                                         <th scope="col">Return date: </th>
                                         <th scope="col">Price per day: </th>
                                         <th scope="col">Discount: </th>
-                                        </tr>
-                                    </thead>
+                                    </tr>
+                                </thead>
 
-                                    <tbody>
-                                        <tr *ngFor= "let cartItem of cartItems; index as i">
-                                            <th scope="row">{{ i + 1}}</th>
-                                            <td>{{cartItem.carBrand}} {{cartItem.carModel}}</td>
-                                            <td>{{cartItem.startDate}}</td>
-                                            <td>{{cartItem.endDate}}</td>
-                                            <td>{{cartItem.priceDay}}</td>
-                                            <td>{{cartItem.discount}}</td>
-                                            
-                                            <td scope="row"> <button class="btn btn-success btn-sm btn-block" (click)="onSendRequest()">Send request</button></td>
-                                            <td scope="row"> <button class="btn btn-danger btn-sm btn-block" (click)="onDelete()">Delete</button></td>
-                                
-                                        </tr>
-                                    </tbody>
+                                <tbody>
+                                    <tr *ngFor= "let cartItem of cartItems; index as i" [hidden]= "!(cartItem.user == uniqueUser.id)">
+                                        <th scope="row">{{ i + 1}}</th>
+                                        <td>{{cartItem.carBrand}} {{cartItem.carModel}}</td>
+                                        <td>{{cartItem.startDate}}</td>
+                                        <td>{{cartItem.endDate}}</td>
+                                        <td>{{cartItem.priceDay}}</td>
+                                        <td>{{cartItem.discount}}</td>
+                                        
+                                        <td scope="row"> <button class="btn btn-success btn-sm btn-block" (click)="onSendRequest()">Send request</button></td>
+                                        <td scope="row"> <button class="btn btn-danger btn-sm btn-block" (click)="onDelete()">Delete</button></td>                                
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    <td scope="row" style="vertical-align:middle;" > <button class="btn btn-success btn-block btn-lg" (click)="onSendBundle()">Send bundle</button></td>
+                </tr>
+            </tbody>
 
-                                </table>
-                            </td>
-                        <td scope="row" style="vertical-align:middle;" > <button class="btn btn-success btn-block btn-lg" (click)="onSendBundle()">Send bundle</button></td>
-                    </tr>
-                </tbody>
+        </table>
 
-            </table>
+        <div>
+            <button class="btn btn-info" (click)="onBack()">Back</button>
+        </div>
 
-            <div>
-                <button class="btn btn-info" (click)="onBack()">Back</button>
-            </div>
-
-         </div>
+    </div>
                   
-    <!-- </div> -->
 </div>

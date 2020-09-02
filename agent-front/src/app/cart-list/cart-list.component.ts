@@ -85,7 +85,7 @@ export class CartListComponent implements OnInit {
   };
 
   onSendRequest(){
-    //RODO Send request button
+    //TODO Send request button
   };
 
   onSendBundle(){
