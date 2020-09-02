@@ -11,8 +11,8 @@ import { GearboxTypeDTO } from '../admin/gearbox-list/GearboxTypeDTO';
 export class GearboxService {
 
 
-  private GearboxUrl = 'http://localhost:8080/api/gearbox';
-
+  // private GearboxUrl = 'http://localhost:8080/api/gearbox';
+  private GearboxUrl = 'http://localhost:8083/car-s/gearbox';
   constructor(private http: HttpClient) { }
 
 

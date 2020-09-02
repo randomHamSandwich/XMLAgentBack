@@ -31,9 +31,12 @@ services:
     - "8081:8081"
     environment:
       - REGISTRY_HOST=eureka-serviceregistry
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672      
     tty: true
     depends_on:
       - eureka-serviceregistry
+      - rabbitmq      
 
 
 
@@ -76,10 +79,12 @@ services:
     - "8089:8089"
     environment:
       - REGISTRY_HOST=eureka-serviceregistry  
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672      
     tty: true
     depends_on:
       - eureka-serviceregistry
-
+      - rabbitmq
 
 
  

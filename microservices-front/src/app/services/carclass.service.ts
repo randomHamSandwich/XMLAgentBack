@@ -10,8 +10,8 @@ import { CarClassDTO } from '../admin/car-class-list/CarClassDTO';
 
 export class CarClassService {
 
-  private carClassUrl = 'http://localhost:8080/api/carclass';
-
+  // private carClassUrl = 'http://localhost:8080/api/carclass';
+  private carClassUrl = 'http://localhost:8083/car-s/carclass';
   constructor(private http: HttpClient) { }
 
   public getCarClass(id): Observable<any> {

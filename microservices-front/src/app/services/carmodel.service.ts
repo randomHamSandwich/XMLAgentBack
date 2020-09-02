@@ -12,8 +12,8 @@ import { CarModelDTO } from '../admin/car-model-list/CarModel';
 export class CarModelService {
 
 
-    private carModelUrl = 'http://localhost:8080/api/carmodel';
-
+    // private carModelUrl = 'http://localhost:8080/api/carmodel';
+    private carModelUrl = 'http://localhost:8083/car-s/carmodel';
     constructor(private http: HttpClient) { }
 
 
