@@ -17,11 +17,11 @@ export class CartListComponent implements OnInit {
 
   // Properties
   currentCartItem: CartItemDTO;
-
   cartItems: CartItemDTO[] = [];
-
   uniqueUsers: UniqueUserDTO[] = [];
 
+  errorMessage: any;
+  isDeleted = false;
   // Constructor
   constructor(
     private adService: AdService,
@@ -73,6 +73,23 @@ export class CartListComponent implements OnInit {
       // TODO: find and add user name to this DTO
       this.uniqueUsers.push(new UniqueUserDTO(this.currentCartItem.user, "Lol TheLolie"));
     }
+  };
+
+  onDelete(){
+    //TODO Delete button
+    // this.adService.deleteAd(idAd).subscribe(
+    //   data => {
+    //     this.isDeleted = true;
+    //     window.location.reload();
+    //   }
+  };
+
+  onSendRequest(){
+    //RODO Send request button
+  };
+
+  onSendBundle(){
+    //TODO Send bundle button
   };
 
   onBack() {

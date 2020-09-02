@@ -65,7 +65,7 @@ export class AdDetailsComponent implements OnInit {
   onAddToCart() {
     this.startTime = this.form.startDateTime;
     this.endTime = this.form.endDateTime;
-    console.log(" ad dateil ad j e " + this.ad.idAd);
+    console.log(" ad detail ad je " + this.ad.idAd);
     
     // this.cartStorageService.addCartDTO(this.ad);
     this.cartStorageService.addCartAdId(parseInt(this.ad.idAd));
