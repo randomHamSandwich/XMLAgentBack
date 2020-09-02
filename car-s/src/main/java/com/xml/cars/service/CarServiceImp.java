@@ -189,7 +189,8 @@ public class CarServiceImp implements CarService{
 		newCar.setUser(new User(carDTO.getUser()));
 		newCar = carRepo.save(newCar);
 				
-		CarRabbitMQ h = new CarRabbitMQ(333L, 1D, 231D, 4, true, "s1", "s2", "s3", "country4", "registrationPlate", null, 1, true);
+		CarRabbitMQ h = new CarRabbitMQ(newCar.getIdCar(),newCar.getKm(),newCar.getAllowedKM(),newCar.getChildrenSeats(),newCar.getCdw(),newCar.getStreet()
+				,newCar.getStreetNumber(),newCar.getCity(),newCar.getCountry(),newCar.getRegistrationPlate(),null,newCar.getVersion(),newCar.getAdvertised());
 		producer.sendHouse("car-to-ad", h);
 		
 		return new CarDTO(newCar);

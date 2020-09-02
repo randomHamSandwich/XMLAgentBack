@@ -53,33 +53,33 @@ public class User {
 
 	@Column
 	private boolean isdeleted;
-
-	@Enumerated(EnumType.STRING)
-	private StatusUser status;
-
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "idRole"))
-	private Set<Roles> roles;
-
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Pricelist> priceList;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Discount> discount;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Car> cars;
 
-	@OneToMany(mappedBy = "seller")
-	private Set<Chat> chats;
-
-	@OneToMany(mappedBy = "messageSender")
-	private Set<Message> messages;
+//	@Enumerated(EnumType.STRING)
+//	private StatusUser status;
+//
+//	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+//			CascadeType.REFRESH })
+//	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "idUser"), inverseJoinColumns = @JoinColumn(name = "idRole"))
+//	private Set<Roles> roles;
+//
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	private Set<Pricelist> priceList;
+//	
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//	private Set<Discount> discount;
+//
+//	@OneToMany(mappedBy = "seller")
+//	private Set<Chat> chats;
+//
+//	@OneToMany(mappedBy = "messageSender")
+//	private Set<Message> messages;
 
 	public User(Long idUser, String email, String password, String phoneNumber, String street, String streetNumber,
-			String city, String country, int version, boolean isdeleted, StatusUser status, Set<Roles> roles,
-			Set<Pricelist> priceList, Set<Discount> discount, Set<Car> cars, Set<Chat> chats, Set<Message> messages) {
+			String city, String country, int version, boolean isdeleted, Set<Car> cars/*, StatusUser status, Set<Roles> roles,
+			Set<Pricelist> priceList, Set<Discount> discount, Set<Chat> chats, Set<Message> messages */) {
 		super();
 		this.idUser = idUser;
 		this.email = email;
@@ -91,13 +91,13 @@ public class User {
 		this.country = country;
 		this.version = version;
 		this.isdeleted = isdeleted;
-		this.status = status;
-		this.roles = roles;
-		this.priceList = priceList;
-		this.discount = discount;
 		this.cars = cars;
-		this.chats = chats;
-		this.messages = messages;
+//		this.status = status;
+//		this.roles = roles;
+//		this.priceList = priceList;
+//		this.discount = discount;
+//		this.chats = chats;
+//		this.messages = messages;
 	}
 
 	public User() {
@@ -186,31 +186,7 @@ public class User {
 	public void setIsdeleted(boolean isdeleted) {
 		this.isdeleted = isdeleted;
 	}
-
-	public StatusUser getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusUser status) {
-		this.status = status;
-	}
-
-	public Set<Roles> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Roles> roles) {
-		this.roles = roles;
-	}
-
-	public Set<Pricelist> getPriceList() {
-		return priceList;
-	}
-
-	public void setPriceList(Set<Pricelist> priceList) {
-		this.priceList = priceList;
-	}
-
+	
 	public Set<Car> getCars() {
 		return cars;
 	}
@@ -219,27 +195,53 @@ public class User {
 		this.cars = cars;
 	}
 
-	public Set<Chat> getChats() {
-		return chats;
-	}
-
-	public void setChats(Set<Chat> chats) {
-		this.chats = chats;
-	}
-
-	public Set<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(Set<Message> messages) {
-		this.messages = messages;
-	}
-
-	public Set<Discount> getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(Set<Discount> discount) {
-		this.discount = discount;
-	}	
+//	public StatusUser getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(StatusUser status) {
+//		this.status = status;
+//	}
+//
+//	public Set<Roles> getRoles() {
+//		return roles;
+//	}
+//
+//	public void setRoles(Set<Roles> roles) {
+//		this.roles = roles;
+//	}
+//
+//	public Set<Pricelist> getPriceList() {
+//		return priceList;
+//	}
+//
+//	public void setPriceList(Set<Pricelist> priceList) {
+//		this.priceList = priceList;
+//	}
+//
+//	
+//
+//	public Set<Chat> getChats() {
+//		return chats;
+//	}
+//
+//	public void setChats(Set<Chat> chats) {
+//		this.chats = chats;
+//	}
+//
+//	public Set<Message> getMessages() {
+//		return messages;
+//	}
+//
+//	public void setMessages(Set<Message> messages) {
+//		this.messages = messages;
+//	}
+//
+//	public Set<Discount> getDiscount() {
+//		return discount;
+//	}
+//
+//	public void setDiscount(Set<Discount> discount) {
+//		this.discount = discount;
+//	}	
 }
