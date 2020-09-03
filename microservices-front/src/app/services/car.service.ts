@@ -20,6 +20,15 @@ export class CarService {
   }
 
 
+  public editCar(data: CarDTO, idCar: any): Observable<any> {
+    console.log(data);
+    return this.http.put(this.baseUrl + '/' + idCar, data);
+  }
+
+  public deleteCar(idCar: any): Observable<any> {
+    return this.http.get(this.baseUrl + '/delete/' + idCar);
+  }
+
   public updateCar() {
 
   }

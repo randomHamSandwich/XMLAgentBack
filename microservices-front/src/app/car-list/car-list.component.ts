@@ -16,6 +16,9 @@ export class CarListComponent implements OnInit {
   car: CarDTO;
   errorMessage: any;
   userId: number;
+  isDeleted: any;
+  isDeleteError: any;
+
   constructor(private carService: CarService,
               private router: Router,
               private carDetailsComponent: CarDetailsComponent,
@@ -50,7 +53,6 @@ export class CarListComponent implements OnInit {
 
   onDetails(c) {
     this.car=c;
-    // this.carDetailsComponent.fillACar(this.car);
     this.carDetailsComponent.ngOnInit();
     this.router.navigate(['/carDetails', {idCar: this.car.idCar}]);
   }
@@ -58,6 +60,26 @@ export class CarListComponent implements OnInit {
 
   returnCar() {
     return this.car;
+  }
+
+  onEdit(c) {
+    this.car=c;
+    this.carDetailsComponent.ngOnInit();
+    this.router.navigate(['/carEdit', {idCar: this.car.idCar}]);
+  }
+
+  onDelete(c) {
+    this.carService.deleteCar(c.idCar).subscribe(
+      data => {
+        this.isDeleted = true;
+        window.location.reload();
+      },
+      error => {
+        this.isDeleteError = true;
+        console.log("error: " + error.error.message);
+
+      }
+    );
   }
 
 }

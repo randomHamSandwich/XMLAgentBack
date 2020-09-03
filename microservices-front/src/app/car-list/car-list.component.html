@@ -44,8 +44,10 @@
                     <td>{{ c.city }}</td>
                     <td>{{ c.street }}</td>
                     <td>{{ c.streetNumber }}</td> -->
-                    <td><button class="btn btn-danger">Add to Cart</button></td>
-                    <td><button class="btn btn-danger" (click)="onDetails(c)">Details</button></td>
+                    <td><button class="btn btn-success">Add to Cart</button></td>
+                    <td><button class="btn btn-success" (click)="onDetails(c)">Details</button></td>
+                    <td><button class="btn btn-success" (click)="onEdit(c)">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="onDelete(c)">Delete</button></td>
                   </tr>
                 </tbody>
               </table>

@@ -47,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartListComponent } from './cart-list/cart-list.component';
 import { DiscountUpdateComponent } from './ad/discount-update/discount-update.component';
 import { PricelistUpdateComponent } from './ad/pricelist-update/pricelist-update.component';
+import { CarEditComponent } from './car-edit/car-edit.component';
 
 
 
@@ -89,6 +90,7 @@ import { PricelistUpdateComponent } from './ad/pricelist-update/pricelist-update
     CartListComponent,
     DiscountUpdateComponent,
     PricelistUpdateComponent,
+    CarEditComponent,
 
 
   ],
