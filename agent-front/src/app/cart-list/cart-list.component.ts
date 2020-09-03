@@ -5,10 +5,11 @@ import { CartStorageService } from '../services/cart-storage.service';
 import { AdService } from '../services/ad.service';
 import { UniqueUserDTO } from './UniqueUserDTO';
 import { PricelistService } from '../services/pricelist.service';
-import { AdResponse } from '../services/responses/adResponse';
+import { AdResponse } from '../services/responses/AdResponse';
 import { PricelistResponse } from '../services/responses/PricelistResponse';
 import { CartItemRequestDTO } from './CartItemRequestDTO';
 import { UUID } from 'angular2-uuid';
+import { ReservationService } from '../services/reservation.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -29,7 +30,8 @@ export class CartListComponent implements OnInit {
     private adService: AdService,
     private pricelistService: PricelistService,
     private cartStorageService: CartStorageService,
-    private router: Router) { }
+    private router: Router,
+    private reservationService : ReservationService) { }
 
   // Initialization
   ngOnInit() {
@@ -85,6 +87,16 @@ export class CartListComponent implements OnInit {
 
   onSendRequest(requestId: UUID){
     let targetCartItem = this.cartItems.find( item => item.id === requestId );
+
+    this.reservationService.crate(targetCartItem).subscribe(
+      data => {
+        console.log(data);
+
+      },
+      error => {
+        console.log(error);
+      }
+    );
     //TODO implement reservation service
     //this.reservationService.addReservation(targetCartItem);
   };

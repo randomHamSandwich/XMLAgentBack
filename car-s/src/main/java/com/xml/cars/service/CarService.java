@@ -25,6 +25,8 @@ public interface CarService {
 	
 	List<CarDTO> getAllCars();
 	
+	List<CarDTO> getAllCarsByOwner(Long idUser);
+	
 	Car save(Car car);
 	
 	public CarDTO editCar(Long idCar, byte[] bytes);

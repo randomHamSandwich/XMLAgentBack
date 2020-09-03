@@ -137,11 +137,11 @@ public class CarServiceImp implements CarService{
 	@Transactional
 	public CarDTO editCar(Long idCar, CarDTO carDTO) {
 		Car editedCar = carRepo.getOne(idCar);
-		editedCar.setCarBrand(new CarBrand(Long.valueOf(carDTO.getCarBrand()), carBrandRepo.findNameByCarBrandId(Long.valueOf(carDTO.getCarBrand()))));
-		editedCar.setCarModel(new CarModel(Long.valueOf(carDTO.getCarModel()), carModelRepo.findNameByCarModelId(Long.valueOf(carDTO.getCarModel()))));
-		editedCar.setCarClass(new CarClass(Long.valueOf(carDTO.getCarClass()), carClassRepo.findNameByCarClassId(Long.valueOf(carDTO.getCarClass()))));
-		editedCar.setFuelType(new FuelType(Long.valueOf(carDTO.getFuelType()), fuelTypeRepo.findNameByFuelTypeId(Long.valueOf(carDTO.getFuelType()))));
-		editedCar.setGearboxType(new GearboxType(Long.valueOf(carDTO.getGearboxType()), gearboxTypeRepo.findNameByGearboxTypeId(Long.valueOf(carDTO.getGearboxType()))));
+		editedCar.setCarBrand(carBrandRepo.getOne(Long.valueOf(carDTO.getCarBrand())));
+		editedCar.setCarModel(carModelRepo.getOne(Long.valueOf(carDTO.getCarModel())));
+		editedCar.setCarClass(carClassRepo.getOne(Long.valueOf(carDTO.getCarClass())));
+		editedCar.setGearboxType(gearboxTypeRepo.getOne(Long.valueOf(carDTO.getGearboxType())));
+		editedCar.setFuelType(fuelTypeRepo.getOne(Long.valueOf(carDTO.getCarModel())));
 		editedCar.setAllowedKM(carDTO.getAllowedKM());
 		editedCar.setKm(carDTO.getKm());
 		editedCar.setCountry(carDTO.getCountry());
@@ -205,8 +205,7 @@ public class CarServiceImp implements CarService{
 	@Override
 	@Transactional
 	public Boolean delete(Long idCar) {
-		Long car = carRepo.deleteByIdCar(idCar);
-		System.out.println("Izbrisan: "+car);
+		carRepo.deleteById(idCar);
 		return true;
 	}
 
@@ -244,6 +243,20 @@ public class CarServiceImp implements CarService{
 			e.printStackTrace();
 		}
 		return bytes;
+	}
+
+	@Override
+	public List<CarDTO> getAllCarsByOwner(Long idUser) {
+		System.out.println(" ********************* idUser:" + idUser);
+		
+		List<Car> cars = carRepo.AllCarsByOwner(idUser);
+		List<CarDTO> carsDTO = new ArrayList<>();
+		for (Car c : cars) {
+			CarDTO carDTOtemp = new CarDTO(c);
+			carsDTO.add(carDTOtemp);
+		}
+		
+		return carsDTO;
 	}
 
 

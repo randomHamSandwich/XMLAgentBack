@@ -20,6 +20,15 @@ export class CarService {
   }
 
 
+  public editCar(data: CarDTO, idCar: any): Observable<any> {
+    console.log(data);
+    return this.http.put(this.baseUrl + '/' + idCar, data);
+  }
+
+  public deleteCar(idCar: any): Observable<any> {
+    return this.http.get(this.baseUrl + '/delete/' + idCar);
+  }
+
   public updateCar() {
 
   }
@@ -30,5 +39,9 @@ export class CarService {
 
   public getCarsList() {
     return this.http.get(this.baseUrl);
+  }
+
+  public getCarsOwndByUser(idUser: number){
+    return this.http.get('http://localhost:8083/car-s/car/idOwner/'+ idUser);
   }
 }

@@ -11,6 +11,7 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Registration Plate: </th>
                     <th scope="col">Car brand: </th>
                     <th scope="col">Car model: </th>
                     <!-- <th scope="col">Gearbox type: </th>
@@ -29,6 +30,7 @@
                 <tbody>
                   <tr *ngFor="let c of cars; index as i">
                     <th scope="row"> {{ i + 1}}</th>
+                    <td>{{ c.registrationPlate }}</td>
                     <td>{{ c.carBrand }}</td>
                     <td>{{ c.carModel}}</td>
                     <!-- <td>{{ c.gearboxType }}</td>
@@ -42,8 +44,10 @@
                     <td>{{ c.city }}</td>
                     <td>{{ c.street }}</td>
                     <td>{{ c.streetNumber }}</td> -->
-                    <td><button class="btn btn-danger">Add to Cart</button></td>
-                    <td><button class="btn btn-danger" (click)="onDetails(c)">Details</button></td>
+                    <td><button class="btn btn-success">Add to Cart</button></td>
+                    <td><button class="btn btn-success" (click)="onDetails(c)">Details</button></td>
+                    <td><button class="btn btn-success" (click)="onEdit(c)">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="onDelete(c)">Delete</button></td>
                   </tr>
                 </tbody>
               </table>

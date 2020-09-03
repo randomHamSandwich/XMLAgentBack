@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CarListComponent } from './car-list/car-list.component';
+import { CarEditComponent } from './car-edit/car-edit.component';
 import { AdminComponent } from './admin/admin.component'; 
 import { ChangeAuthoriyComponent} from './admin/change-authoriy/change-authoriy.component';
 import { GearboxListComponent  } from './admin/gearbox-list/gearbox-list.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent
+    },
+    {
+        path: 'carEdit',
+        component: CarEditComponent
     },
     {
         path: 'carDetails',
