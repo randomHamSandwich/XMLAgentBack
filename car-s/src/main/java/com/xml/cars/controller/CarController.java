@@ -51,6 +51,14 @@ public class CarController {
 		return new ResponseEntity<>(carListDTO, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/car/idOwner/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<List<CarDTO>> getAllCarsByOwner(@PathVariable("id") Long idUser) {
+		List<CarDTO> carListDTO = carService.getAllCarsByOwner(idUser);
+		
+		return new ResponseEntity<>(carListDTO, HttpStatus.OK);
+	}
+	
 	@PutMapping(value = "car/{idCar}" )
 //	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<CarDTO> editCar(@PathVariable("id") Long idCar, CarDTO ccarDTO) {

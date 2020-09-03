@@ -3,6 +3,7 @@ import { CarService } from '../services/car.service';
 import { Router } from '@angular/router';
 import { CarDTO } from '../car-create/CarDTO';
 import { CarDetailsComponent } from '../car-details/car-details.component';
+import { TokenStorageService } from 'src/app/auth/token-storage.service';
 
 @Component({
   selector: 'app-car-list',
@@ -14,22 +15,23 @@ export class CarListComponent implements OnInit {
   cars: any;
   car: CarDTO;
   errorMessage: any;
-
+  userId: number;
   constructor(private carService: CarService,
               private router: Router,
-              private carDetailsComponent: CarDetailsComponent
-              ) 
+              private carDetailsComponent: CarDetailsComponent,
+              private tokenService: TokenStorageService) 
               { 
                 this.car = new CarDTO;
                 this.car.carBrand = "zastava";
               }
 
   ngOnInit() {
+    this.userId = +this.tokenService.getIdKorisnik();
     this.findAllCars();
   }
 
   findAllCars() {
-    this.carService.getCarsList().subscribe(
+    this.carService.getCarsOwndByUser(this.userId).subscribe(
       data => {
         this.cars = data;
       },

@@ -246,5 +246,19 @@ public class CarServiceImp implements CarService{
 		return bytes;
 	}
 
+	@Override
+	public List<CarDTO> getAllCarsByOwner(Long idUser) {
+		System.out.println(" ********************* idUser:" + idUser);
+		
+		List<Car> cars = carRepo.AllCarsByOwner(idUser);
+		List<CarDTO> carsDTO = new ArrayList<>();
+		for (Car c : cars) {
+			CarDTO carDTOtemp = new CarDTO(c);
+			carsDTO.add(carDTOtemp);
+		}
+		
+		return carsDTO;
+	}
+
 
 }

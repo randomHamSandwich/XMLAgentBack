@@ -31,4 +31,8 @@ export class CarService {
   public getCarsList() {
     return this.http.get(this.baseUrl);
   }
+
+  public getCarsOwndByUser(idUser: number){
+    return this.http.get('http://localhost:8083/car-s/car/idOwner/'+ idUser);
+  }
 }

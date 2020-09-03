@@ -18,6 +18,9 @@ public interface CarRepo extends JpaRepository<Car, Long> {
 	
 	List<Car> findAll();
 	
+	@Query(value = "SELECT * FROM car c where c.id_user = ?1 ;", nativeQuery = true)
+	List<Car> AllCarsByOwner(Long id);
+	
 	Long deleteByIdCar(Long idCar);
 	
 

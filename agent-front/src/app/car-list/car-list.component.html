@@ -11,6 +11,7 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Registration Plate: </th>
                     <th scope="col">Car brand: </th>
                     <th scope="col">Car model: </th>
                     <!-- <th scope="col">Gearbox type: </th>
@@ -29,6 +30,7 @@
                 <tbody>
                   <tr *ngFor="let c of cars; index as i">
                     <th scope="row"> {{ i + 1}}</th>
+                    <td>{{ c.registrationPlate }}</td>
                     <td>{{ c.carBrand }}</td>
                     <td>{{ c.carModel}}</td>
                     <!-- <td>{{ c.gearboxType }}</td>

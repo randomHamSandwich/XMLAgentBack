@@ -37,7 +37,8 @@ export class AdCreateComponent implements OnInit {
   }
 
   getAllCars() {
-    this.carService.getCarsList().subscribe(
+    // this.carService.getCarsList().subscribe(
+      this.carService.getCarsOwndByUser(this.userId).subscribe(
       data => {
         this.cars = data;
       },

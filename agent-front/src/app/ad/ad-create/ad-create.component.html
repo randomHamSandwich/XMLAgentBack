@@ -18,7 +18,7 @@
             <label for="car">Car: </label>
             <select class="form-control"  id="car" required [(ngModel)]="form.car" name="car">
                 <ng-container *ngFor="let c of cars">
-                    <option *ngIf="!c.advertised" [value]="c.idCar">{{ c.carBrand }} {{c.carModel}}</option>
+                    <option *ngIf="!c.advertised" [value]="c.idCar">{{c.registrationPlate}} {{ c.carBrand }} {{c.carModel}}</option>
                 </ng-container>
              </select>
         </div>
