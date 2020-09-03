@@ -4,6 +4,8 @@ import { AdService } from 'src/app/services/ad.service';
 import { CarService } from 'src/app/services/car.service';
 import { AdDTO } from '../ad-create/AdDTO';
 import { CartStorageService } from 'src/app/services/cart-storage.service';
+import { UUID } from 'angular2-uuid'
+import { CartItemRequestDTO } from 'src/app/cart-list/CartItemRequestDTO';
 
 @Component({
   selector: 'app-ad-details',
@@ -15,8 +17,6 @@ export class AdDetailsComponent implements OnInit {
   ad: AdDTO = new AdDTO();
 
   form: any = {};
-  startTime: any;
-  endTime: any;
 
   cars: any;
 
@@ -63,27 +63,20 @@ export class AdDetailsComponent implements OnInit {
 
   
   onAddToCart() {
-    this.startTime = this.form.startDateTime;
-    this.endTime = this.form.endDateTime;
-    console.log(" ad detail ad je " + this.ad.idAd);
+    let reqId = UUID.UUID();
+    let startTime = this.form.startDateTime;
+    let endTime = this.form.endDateTime;
+    console.log(" Ad Id: " + this.ad.idAd);
     
-    // this.cartStorageService.addCartDTO(this.ad);
-    this.cartStorageService.addCartAdId(parseInt(this.ad.idAd));
+    // TODO: Create new cart item request object, and feed it to session storage
+    let cartItemRequestDTO = new CartItemRequestDTO(reqId, this.adId, startTime, endTime);
+    this.cartStorageService.addCartRequest(cartItemRequestDTO);
     
-  }
-
-  addToCart() {
-    this.cartStorageService.addCartAdId(this.adId);
     this.router.navigate(["/cart-list"]);
   }
-
 
   onBack() {
     this.router.navigate(['/']);
   }
 
-
-  emptyCart(){
-    this.cartStorageService.emptyCart();
-  }
 }

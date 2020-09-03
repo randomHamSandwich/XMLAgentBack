@@ -35,10 +35,10 @@ export class CartListComponent implements OnInit {
   }
 
   populateData() {
-    let ids = this.cartStorageService.getCartAdIds();
+    let cartRequests = this.cartStorageService.getCartRequests();
 
-    ids.forEach( id => {
-        this.adService.getAdById(parseInt(id)).subscribe(
+    cartRequests.forEach( request => {
+        this.adService.getAdById(request.adId).subscribe(
         (data: AdResponse) => {
           this.pricelistService.getPricelistById(data.pricelist).subscribe(
             (pricelistData: PricelistResponse) => {
@@ -75,13 +75,9 @@ export class CartListComponent implements OnInit {
     }
   };
 
-  onDelete(){
-    //TODO Delete button
-    // this.adService.deleteAd(idAd).subscribe(
-    //   data => {
-    //     this.isDeleted = true;
-    //     window.location.reload();
-    //   }
+  onDelete(id: number){
+    let index = this.cartItems.findIndex( c => c.id === id);
+    this.cartItems.splice(index, 1);
   };
 
   onSendRequest(){
@@ -94,5 +90,10 @@ export class CartListComponent implements OnInit {
 
   onBack() {
     this.router.navigate(['/']);
+  }
+
+  emptyCart(){
+    this.cartStorageService.emptyCart();
+    this.cartItems.splice(0, this.cartItems.length);
   }
 }
