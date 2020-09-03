@@ -146,11 +146,11 @@ public class CarServiceImp implements CarService{
 	@Transactional
 	public CarDTO editCar(Long idCar, CarDTO carDTO) {
 		Car editedCar = carRepo.getOne(idCar);
-		editedCar.setCarBrand(new CarBrand(Long.valueOf(carDTO.getCarBrand()), carBrandRepo.findNameByCarBrandId(Long.valueOf(carDTO.getCarBrand()))));
-		editedCar.setCarModel(new CarModel(Long.valueOf(carDTO.getCarModel()), carModelRepo.findNameByCarModelId(Long.valueOf(carDTO.getCarModel()))));
-		editedCar.setCarClass(new CarClass(Long.valueOf(carDTO.getCarClass()), carClassRepo.findNameByCarClassId(Long.valueOf(carDTO.getCarClass()))));
-		editedCar.setFuelType(new FuelType(Long.valueOf(carDTO.getFuelType()), fuelTypeRepo.findNameByFuelTypeId(Long.valueOf(carDTO.getFuelType()))));
-		editedCar.setGearboxType(new GearboxType(Long.valueOf(carDTO.getGearboxType()), gearboxTypeRepo.findNameByGearboxTypeId(Long.valueOf(carDTO.getGearboxType()))));
+		editedCar.setCarBrand(carBrandRepo.getOne(Long.valueOf(carDTO.getCarBrand())));
+		editedCar.setCarModel(carModelRepo.getOne(Long.valueOf(carDTO.getCarModel())));
+		editedCar.setCarClass(carClassRepo.getOne(Long.valueOf(carDTO.getCarClass())));
+		editedCar.setGearboxType(gearboxTypeRepo.getOne(Long.valueOf(carDTO.getGearboxType())));
+		editedCar.setFuelType(fuelTypeRepo.getOne(Long.valueOf(carDTO.getCarModel())));
 		editedCar.setAllowedKM(carDTO.getAllowedKM());
 		editedCar.setKm(carDTO.getKm());
 		editedCar.setCountry(carDTO.getCountry());
@@ -160,7 +160,6 @@ public class CarServiceImp implements CarService{
 		editedCar.setChildrenSeats(carDTO.getChildrenSeats());
 		editedCar.setCdw(carDTO.getCdw());
 		editedCar.setRegistrationPlate(carDTO.getRegistrationPlate());
-		editedCar.setUser(new User(carDTO.getUser()));
 		editedCar = carRepo.save(editedCar);
 				
 		return new CarDTO(editedCar);
@@ -210,8 +209,8 @@ public class CarServiceImp implements CarService{
 	@Override
 	@Transactional
 	public Boolean delete(Long idCar) {
-		Long car = carRepo.deleteByIdCar(idCar);
-		System.out.println("Izbrisan: "+car);
+		System.out.println("DA LI BRISE COVEK CAR PO IMENU:"+idCar);
+		carRepo.deleteById(idCar);
 		return true;
 	}
 

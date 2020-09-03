@@ -5,7 +5,7 @@ import { CartStorageService } from '../services/cart-storage.service';
 import { AdService } from '../services/ad.service';
 import { UniqueUserDTO } from './UniqueUserDTO';
 import { PricelistService } from '../services/pricelist.service';
-import { AdResponse } from '../services/responses/adResponse';
+import { AdResponse } from '../services/responses/AdResponse';
 import { PricelistResponse } from '../services/responses/PricelistResponse';
 import { CartItemRequestDTO } from './CartItemRequestDTO';
 import { UUID } from 'angular2-uuid';

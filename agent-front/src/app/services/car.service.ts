@@ -13,14 +13,12 @@ export class CarService {
   constructor(private http:HttpClient) {}
 
   createNewCar(data: CarDTO): Observable<any> {
-    console.log("carService: ");
-    console.log(data);
     return this.http.post(this.baseUrl, data);
   }
 
-
-  public updateCar() {
-
+  public editCar(data: CarDTO, idCar: any): Observable<any> {
+    console.log(data);
+    return this.http.put(this.baseUrl + '/' + idCar, data);
   }
 
   public getCarById(idCar: any): Observable<any> {
@@ -33,5 +31,9 @@ export class CarService {
 
   public getCarsOwndByUser(idUser: number){
     return this.http.get('http://localhost:8080/api/car/idOwner/'+ idUser);
+  }
+
+  public deleteCar(idCar: any): Observable<any> {
+    return this.http.get(this.baseUrl + '/delete/' + idCar);
   }
 }

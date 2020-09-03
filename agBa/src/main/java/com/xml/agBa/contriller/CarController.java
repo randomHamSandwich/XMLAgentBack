@@ -74,9 +74,9 @@ public class CarController {
 	
 	
 	@PutMapping(value = "car/{idCar}" )
-//	@PreAuthorize("hasAuthority('ADMIN')")
-	public ResponseEntity<CarDTO> editCar(@PathVariable("id") Long idCar, CarDTO ccarDTO) {
-		CarDTO carDTO = carService.editCar(idCar, ccarDTO);
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<CarDTO> editCar(@PathVariable("idCar") String idCar, @RequestBody CarDTO ccarDTO) {
+		CarDTO carDTO = carService.editCar(Long.parseLong(idCar), ccarDTO);
 
 		return new ResponseEntity<>(carDTO, HttpStatus.CREATED);
 	}
@@ -94,16 +94,16 @@ public class CarController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 	}
+	
+	@GetMapping(value = "/car/delete/{id}")
+	@PreAuthorize("hasAuthority('END_USER')")
+	public ResponseEntity<Boolean> deleteCar(@PathVariable("id") String id) {
 
-	
-	@DeleteMapping(value = "/car/{idCar}")
-	@PreAuthorize("hasAuthority('ADMIN')")
-	public ResponseEntity<Boolean> deleteCar(@PathVariable Long idCar) {
-		Boolean isDeleted = carService.delete(idCar);
-		
+		Boolean isDeleted = carService.delete(Long.parseLong(id));
 		return new ResponseEntity<Boolean>(isDeleted, HttpStatus.OK);
+
 	}
-	
+
 	
 
 	

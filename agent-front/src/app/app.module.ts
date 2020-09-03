@@ -16,6 +16,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AgentComponent } from './agent/agent.component';
 import { CarCreateComponent } from './car-create/car-create.component';
 import { CarListComponent } from './car-list/car-list.component';
+import { CarEditComponent } from './car-edit/car-edit.component';
 
 import { ChangeAuthoriyComponent } from './admin/change-authoriy/change-authoriy.component';
 import { CarBrandListComponent } from './admin/car-brand-list/car-brand-list.component';
@@ -64,6 +65,7 @@ import { ReservationsComponent } from './reservations/reservations.component';
     CarCreateComponent,
     CarListComponent,
     ChangeAuthoriyComponent,
+    CarEditComponent,
     CarBrandListComponent,
     CarClassListComponent,
     CarModelListComponent,
@@ -93,6 +95,7 @@ import { ReservationsComponent } from './reservations/reservations.component';
     PricelistUpdateComponent,
     DiscountUpdateComponent,
     ReservationsComponent,
+    CarEditComponent,
 
 
   ],

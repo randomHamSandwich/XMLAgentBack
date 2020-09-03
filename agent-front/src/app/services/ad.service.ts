@@ -3,7 +3,7 @@ import { HttpClient,HttpParams } from '@angular/common/http';
 import { AdDTO } from '../ad/ad-create/AdDTO';
 import { Observable } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
-import { AdResponse } from './responses/adResponse';
+import { AdResponse } from './responses/AdResponse';
 //import { start } from 'repl';
 
 @Injectable({
