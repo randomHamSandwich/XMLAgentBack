@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xml.agBa.dto.UserRequestDTO;
+import com.xml.agBa.model.StatusUserRequest;
 import com.xml.agBa.model.UserRequest;
+import com.xml.agBa.repository.AdRepo;
 import com.xml.agBa.repository.UserRepo;
 import com.xml.agBa.repository.UserRequestRepo;
+import com.xml.agBa.util.DateChecker;
 
 @Service
 @Transactional()
@@ -18,6 +21,12 @@ public class UserRequestServiceImp implements UserRequestService{
 	
 	@Autowired
 	private UserRequestRepo userRequestRepo ;
+	
+	@Autowired
+	private AdRepo adReop;
+	
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public UserRequestDTO findUserRequestById(Long id) {
@@ -36,8 +45,26 @@ public class UserRequestServiceImp implements UserRequestService{
 	}
 
 	@Override
+//	TODO add start and end time
 	public UserRequestDTO save(UserRequestDTO userRequestDTO) {
-		return null;
+		UserRequest newUr = new UserRequest();
+		newUr.setAd(adReop.getOne(userRequestDTO.getAdId()));
+		newUr.setEndUser(userService.getEndUserData(userRequestDTO.getAdId()));
+		newUr.setPriceDay(newUr.getAd().getPriceList().getPriceForOneDay());
+		newUr.setStatusUserRequest(StatusUserRequest.PENDING);
+		newUr.setUUID(userRequestDTO.getId());
+		
+		newUr.setStartDate(DateChecker.convertTimeForDb(userRequestDTO.getStartDate()) );
+		newUr.setEndDate(DateChecker.convertTimeForDb(userRequestDTO.getEndDate()));
+		
+		
+		
+		newUr = userRequestRepo.save(newUr);
+		
+		
+		
+		return new UserRequestDTO(newUr);
+		
 	}
 
 	@Override

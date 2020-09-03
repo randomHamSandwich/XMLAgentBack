@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
-
 @Entity
 public class Car {
 	@Id
@@ -42,19 +41,16 @@ public class Car {
 	@Column()
 	private String registrationPlate;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
-	private UserRequest userRequest;
-	
 	@Lob
 	@Column
 	private byte[] photo;
-	
+
 //	@Column
 //	private boolean isdeleted;
-	
-    @Version
-    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
-    private int version;
+
+	@Version
+	@Column(name = "version", nullable = false, columnDefinition = "int default 0")
+	private int version;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_car_brand", nullable = true)
@@ -75,7 +71,7 @@ public class Car {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_gearbox_type", nullable = true)
 	private GearboxType gearboxType;
-	
+
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_user", nullable = true)
 	private User user;
@@ -85,13 +81,13 @@ public class Car {
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
 	private Ad ad;
-	
+
 	@Column
 	private Boolean advertised;
 
 	public Car(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street,
 			String streetNumber, String city, String country, int version, CarBrand carBrand, CarClass carClass,
-			CarModel carModel, FuelType fuelType, GearboxType gearboxType, User user, Set<Report> reports, Ad ad, 
+			CarModel carModel, FuelType fuelType, GearboxType gearboxType, User user, Set<Report> reports, Ad ad,
 			String registrationPlate, Boolean advertised, byte[] photo) {
 		super();
 		this.idCar = idCar;
@@ -117,39 +113,6 @@ public class Car {
 		this.photo = photo;
 //		this.isdeleted = false;
 	}
-	
-	
-
-	public Car(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street,
-			String streetNumber, String city, String country, String registrationPlate, UserRequest userRequest,
-			byte[] photo, int version, CarBrand carBrand, CarClass carClass, CarModel carModel, FuelType fuelType,
-			GearboxType gearboxType, User user, Set<Report> reports, Ad ad, Boolean advertised) {
-		super();
-		this.idCar = idCar;
-		this.km = km;
-		this.allowedKM = allowedKM;
-		this.childrenSeats = childrenSeats;
-		this.cdw = cdw;
-		this.street = street;
-		this.streetNumber = streetNumber;
-		this.city = city;
-		this.country = country;
-		this.registrationPlate = registrationPlate;
-		this.userRequest = userRequest;
-		this.photo = photo;
-		this.version = version;
-		this.carBrand = carBrand;
-		this.carClass = carClass;
-		this.carModel = carModel;
-		this.fuelType = fuelType;
-		this.gearboxType = gearboxType;
-		this.user = user;
-		this.reports = reports;
-		this.ad = ad;
-		this.advertised = advertised;
-	}
-
-
 
 	public Car() {
 		super();
@@ -291,7 +254,7 @@ public class Car {
 	public void setAd(Ad ad) {
 		this.ad = ad;
 	}
-	
+
 	public Set<Report> getReports() {
 		return reports;
 	}
@@ -299,6 +262,7 @@ public class Car {
 	public void setReports(Set<Report> reports) {
 		this.reports = reports;
 	}
+
 	public String getRegistrationPlate() {
 		return registrationPlate;
 	}
@@ -323,18 +287,6 @@ public class Car {
 		this.photo = photo;
 	}
 
-	public UserRequest getUserRequest() {
-		return userRequest;
-	}
-
-	public void setUserRequest(UserRequest userRequest) {
-		this.userRequest = userRequest;
-	}
-	
-	
-
-	
-	
 //	public boolean isIsdeleted() {
 //		return isdeleted;
 //	}
@@ -342,7 +294,5 @@ public class Car {
 //	public void setIsdeleted(boolean isdeleted) {
 //		this.isdeleted = isdeleted;
 //	}
-	
 
 }
-	
