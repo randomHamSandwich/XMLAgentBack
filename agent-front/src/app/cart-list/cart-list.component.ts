@@ -59,6 +59,7 @@ export class CartListComponent implements OnInit {
   storeCartItemData(adData: AdResponse, pricelistData: PricelistResponse, requestData: CartItemRequestDTO){
     this.currentCartItem = new CartItemDTO(
       requestData.reqId,
+      adData.idAd,
       adData.carBrand,
       adData.carModel,
       requestData.startDate.toString(),
