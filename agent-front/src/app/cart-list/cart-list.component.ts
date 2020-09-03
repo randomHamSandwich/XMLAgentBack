@@ -23,6 +23,7 @@ export class CartListComponent implements OnInit {
   uniqueUsers: UniqueUserDTO[] = [];
 
   errorMessage: any;
+
   // Constructor
   constructor(
     private adService: AdService,
@@ -71,25 +72,32 @@ export class CartListComponent implements OnInit {
 
     if (!this.uniqueUsers.find(x => x.uniqueUserId == this.currentCartItem.user))
     {
-      // TODO: find and add user name to this DTO
+      // TODO: find and add user name to this DTO (korisnik.service.ts)
       this.uniqueUsers.push(new UniqueUserDTO(this.currentCartItem.user, "Lol TheLolie"));
     }
   };
 
   onDelete(id: UUID){
-    let index = this.cartItems.findIndex( c => c.id === id);
+    let index = this.cartItems.findIndex( c => c.id === id );
     this.cartItems.splice(index, 1);
     this.cartStorageService.deleteRequest(id);
   };
 
   onSendRequest(requestId: UUID){
-    //TODO Send request button
-    let single = requestId;
+    let targetCartItem = this.cartItems.find( item => item.id === requestId );
+    //TODO implement reservation service
+    //this.reservationService.addReservation(targetCartItem);
   };
 
   onSendBundle(userId: number){
     //TODO Send bundle button
-    let bundle = userId;
+    let targetReservations = Array<CartItemDTO>();
+    this.cartItems.forEach( cartItem => {
+      if (cartItem.user === userId) {
+        targetReservations.push(cartItem)
+      }
+    });
+    //this.reservationService.addReservation(targetReservations);
   };
 
   onBack() {
