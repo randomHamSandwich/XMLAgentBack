@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartItemRequestDTO } from '../cart-list/CartItemRequestDTO';
+import { UUID } from 'angular2-uuid';
 
 const SESSION_CART = 'sessionCart';
 
@@ -35,5 +36,14 @@ export class CartStorageService {
         }
 
         return requests;
+    }
+
+    public deleteRequest(id: UUID) {
+        //TODO implement check if index exists
+        let stashedCartRequests = this.getCartRequests();
+        let targetIndex = stashedCartRequests.findIndex( request => request.reqId === id);
+        stashedCartRequests.splice(targetIndex, 1);
+        window.sessionStorage.removeItem(SESSION_CART);
+        sessionStorage.setItem(SESSION_CART, JSON.stringify(stashedCartRequests));
     }
 }  
