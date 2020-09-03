@@ -23,52 +23,35 @@ public class Discount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long idDiscount;
-	
+
 	@Column
 	public Integer forMoreThanXDays;
-	
+
 	@Column
 	public Integer discount;
-	
+
 	@OneToMany(mappedBy = "discount", cascade = CascadeType.ALL)
 	private Set<Pricelist> priceList;
-	
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST })
 	@JoinColumn(name = "id_user", nullable = true)
 	private User user;
-	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "discount")
-	private UserRequest userRequest;
 
-    @Version
-    @Column( name = "version",nullable = false, columnDefinition = "int default 0")
-    private int version;
-    
+	@Version
+	@Column(name = "version", nullable = false, columnDefinition = "int default 0")
+	private int version;
+
 	public Discount() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Discount(Long idDiscount, Integer forMoreThanXDays, Integer discount, Set<Pricelist> priceList, User user) {
 		this.idDiscount = idDiscount;
 		this.forMoreThanXDays = forMoreThanXDays;
 		this.discount = discount;
 		this.priceList = priceList;
 		this.user = user;
-	}
-	
-	
-
-	public Discount(Long idDiscount, Integer forMoreThanXDays, Integer discount, Set<Pricelist> priceList, User user,
-			UserRequest userRequest, int version) {
-		super();
-		this.idDiscount = idDiscount;
-		this.forMoreThanXDays = forMoreThanXDays;
-		this.discount = discount;
-		this.priceList = priceList;
-		this.user = user;
-		this.userRequest = userRequest;
-		this.version = version;
 	}
 
 	public Discount(DiscountDTO discountDTO) {
@@ -125,13 +108,4 @@ public class Discount {
 		this.user = user;
 	}
 
-	public UserRequest getUserRequest() {
-		return userRequest;
-	}
-
-	public void setUserRequest(UserRequest userRequest) {
-		this.userRequest = userRequest;
-	}	
-	
-	
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xml.agBa.dto.AdDTO;
 import com.xml.agBa.dto.UserRequestDTO;
 import com.xml.agBa.service.UserRequestService;
 
@@ -26,6 +25,9 @@ public class UserRequestController {
 	@PostMapping(value = "/user-request")
 	@PreAuthorize("hasAuthority('END_USER')")
 	public ResponseEntity<UserRequestDTO > createAd(@RequestBody UserRequestDTO userRequestDTO) {
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++ usli smo u controler");
+		userRequestDTO.toString();
+		
 		UserRequestDTO userRequestDto= userRequestService.save(userRequestDTO);
 		if (userRequestDto != null) {
 			return new ResponseEntity<UserRequestDTO >(userRequestDto, HttpStatus.OK);
