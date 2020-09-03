@@ -1,7 +1,29 @@
 <div class = "container-fluid">
     <h1>My reservations: </h1> 
+        <table class="table table-bordered table-hover table-dark">
 
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Car model: </th>
+                    <th scope="col">Start date: </th>
+                    <th scope="col">Return date: </th>
+                    <th scope="col">Price per day: </th>
+                    <th scope="col">Discount: </th>
+                </tr>
+            </thead>
 
-
-
+            <tbody>
+                <tr *ngFor= "let cartItem of cartItems; index as i" [hidden]= "!(cartItem.user == uniqueUser.id)">
+                    <th scope="row">{{ i + 1}}</th>
+                    <td>{{cartItem.carBrand}} {{cartItem.carModel}}</td>
+                    <td>{{cartItem.startDate}}</td>
+                    <td>{{cartItem.endDate}}</td>
+                    <td>{{cartItem.priceDay}}</td>
+                    <td>{{cartItem.discount}}</td>
+                
+                </tr>
+            </tbody>
+        </table>
+                    
 </div>
