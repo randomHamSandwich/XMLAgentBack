@@ -41,6 +41,9 @@ public class Car {
 //	@Column(unique = true)
 	@Column()
 	private String registrationPlate;
+
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
+	private UserRequest userRequest;
 	
 	@Lob
 	@Column
@@ -114,6 +117,39 @@ public class Car {
 		this.photo = photo;
 //		this.isdeleted = false;
 	}
+	
+	
+
+	public Car(Long idCar, double km, double allowedKM, int childrenSeats, boolean cdw, String street,
+			String streetNumber, String city, String country, String registrationPlate, UserRequest userRequest,
+			byte[] photo, int version, CarBrand carBrand, CarClass carClass, CarModel carModel, FuelType fuelType,
+			GearboxType gearboxType, User user, Set<Report> reports, Ad ad, Boolean advertised) {
+		super();
+		this.idCar = idCar;
+		this.km = km;
+		this.allowedKM = allowedKM;
+		this.childrenSeats = childrenSeats;
+		this.cdw = cdw;
+		this.street = street;
+		this.streetNumber = streetNumber;
+		this.city = city;
+		this.country = country;
+		this.registrationPlate = registrationPlate;
+		this.userRequest = userRequest;
+		this.photo = photo;
+		this.version = version;
+		this.carBrand = carBrand;
+		this.carClass = carClass;
+		this.carModel = carModel;
+		this.fuelType = fuelType;
+		this.gearboxType = gearboxType;
+		this.user = user;
+		this.reports = reports;
+		this.ad = ad;
+		this.advertised = advertised;
+	}
+
+
 
 	public Car() {
 		super();
@@ -286,6 +322,16 @@ public class Car {
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
+
+	public UserRequest getUserRequest() {
+		return userRequest;
+	}
+
+	public void setUserRequest(UserRequest userRequest) {
+		this.userRequest = userRequest;
+	}
+	
+	
 
 	
 	

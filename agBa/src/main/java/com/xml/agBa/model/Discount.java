@@ -6,12 +6,14 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 import com.xml.agBa.dto.DiscountDTO;
@@ -34,6 +36,9 @@ public class Discount {
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	@JoinColumn(name = "id_user", nullable = true)
 	private User user;
+	
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "discount")
+	private UserRequest userRequest;
 
     @Version
     @Column( name = "version",nullable = false, columnDefinition = "int default 0")
@@ -50,6 +55,20 @@ public class Discount {
 		this.discount = discount;
 		this.priceList = priceList;
 		this.user = user;
+	}
+	
+	
+
+	public Discount(Long idDiscount, Integer forMoreThanXDays, Integer discount, Set<Pricelist> priceList, User user,
+			UserRequest userRequest, int version) {
+		super();
+		this.idDiscount = idDiscount;
+		this.forMoreThanXDays = forMoreThanXDays;
+		this.discount = discount;
+		this.priceList = priceList;
+		this.user = user;
+		this.userRequest = userRequest;
+		this.version = version;
 	}
 
 	public Discount(DiscountDTO discountDTO) {
@@ -104,5 +123,15 @@ public class Discount {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public UserRequest getUserRequest() {
+		return userRequest;
+	}
+
+	public void setUserRequest(UserRequest userRequest) {
+		this.userRequest = userRequest;
 	}	
+	
+	
 }
