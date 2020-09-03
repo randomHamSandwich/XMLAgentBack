@@ -30,13 +30,13 @@
                                         <td>{{cartItem.priceDay}}</td>
                                         <td>{{cartItem.discount}}</td>
                                         
-                                        <td scope="row"> <button class="btn btn-success btn-sm btn-block" (click)="onSendRequest()">Send request</button></td>
+                                        <td scope="row"> <button class="btn btn-success btn-sm btn-block" (click)="onSendRequest(cartItem.id)">Send request</button></td>
                                         <td scope="row"> <button class="btn btn-danger btn-sm btn-block" (click)="onDelete(cartItem.id)">Delete</button></td>                                
                                     </tr>
                                 </tbody>
                             </table>
                         </td>
-                    <td scope="row" style="vertical-align:middle;" > <button class="btn btn-success btn-block btn-lg" (click)="onSendBundle()">Send bundle</button></td>
+                    <td scope="row" style="vertical-align:middle;" > <button class="btn btn-success btn-block btn-lg" (click)="onSendBundle(uniqueUser.id)">Send bundle</button></td>
                 </tr>
             </tbody>
 

@@ -7,6 +7,8 @@ import { UniqueUserDTO } from './UniqueUserDTO';
 import { PricelistService } from '../services/pricelist.service';
 import { AdResponse } from '../services/responses/adResponse';
 import { PricelistResponse } from '../services/responses/PricelistResponse';
+import { CartItemRequestDTO } from './CartItemRequestDTO';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-cart-list',
@@ -21,7 +23,6 @@ export class CartListComponent implements OnInit {
   uniqueUsers: UniqueUserDTO[] = [];
 
   errorMessage: any;
-  isDeleted = false;
   // Constructor
   constructor(
     private adService: AdService,
@@ -42,7 +43,7 @@ export class CartListComponent implements OnInit {
         (data: AdResponse) => {
           this.pricelistService.getPricelistById(data.pricelist).subscribe(
             (pricelistData: PricelistResponse) => {
-              this.storeCartItemData(data, pricelistData);
+              this.storeCartItemData(data, pricelistData, request);
             },
             error => { console.log("Error: " + error.message); },
             );
@@ -52,16 +53,16 @@ export class CartListComponent implements OnInit {
     });    
   }
 
-  storeCartItemData(data: AdResponse, pricelistData: PricelistResponse){
+  storeCartItemData(adData: AdResponse, pricelistData: PricelistResponse, requestData: CartItemRequestDTO){
     this.currentCartItem = new CartItemDTO(
-      data.idAd,
-      data.carBrand,
-      data.carModel,
-      data.startDate.toString(),
-      data.endDate.toString(),
-      data.priceForOneDay,
+      requestData.reqId,
+      adData.carBrand,
+      adData.carModel,
+      requestData.startDate.toString(),
+      requestData.endDate.toString(),
+      adData.priceForOneDay,
       pricelistData.discount,
-      data.user);
+      adData.user);
 
     console.log("Attempted adding AdDTO with ID: " + this.currentCartItem.id + ". Car: " + this.currentCartItem.carBrand);
     console.log("Discount: " + this.currentCartItem.discount);
@@ -75,17 +76,20 @@ export class CartListComponent implements OnInit {
     }
   };
 
-  onDelete(id: number){
+  onDelete(id: UUID){
     let index = this.cartItems.findIndex( c => c.id === id);
     this.cartItems.splice(index, 1);
+    this.cartStorageService.deleteRequest(id);
   };
 
-  onSendRequest(){
+  onSendRequest(requestId: UUID){
     //TODO Send request button
+    let single = requestId;
   };
 
-  onSendBundle(){
+  onSendBundle(userId: number){
     //TODO Send bundle button
+    let bundle = userId;
   };
 
   onBack() {

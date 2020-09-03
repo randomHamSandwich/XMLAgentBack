@@ -1,7 +1,8 @@
+import { UUID } from 'angular2-uuid';
 
 export class CartItemDTO {
 
-    id: number;
+    id: UUID;
     carBrand: string;
     carModel: string;
     startDate: string;
@@ -11,7 +12,7 @@ export class CartItemDTO {
     user: number;
 
     constructor(
-        public cartItemId: number, 
+        public cartItemId: UUID, 
         public brand: string, 
         public model: string,
         public dateFrom: string,
