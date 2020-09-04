@@ -18,19 +18,7 @@ export class ReservationService {
 
   crate(data: CartItemDTO): Observable<any> {
 
-    console.log("xxxxxxxxxxxxxx ;D ");
-    console.log(data.id);
-    console.log(data.adId);
-    console.log(data.carBrand);
-    console.log(data.carModel);
-    console.log(data.startDate);
-    console.log(data.endDate);
-    console.log(data.priceDay);
-    console.log(data.discount);
-    console.log(data.user);
-    console.log("xxxxxxxxxxxxxx");
-    
-    
+
     return this.http.post(this.baseUrl, data);
   }
 
@@ -49,5 +37,6 @@ export class ReservationService {
   getReservationByOwner(idAd: any): Observable<any> {
     return this.http.get<AdResponse>(this.baseUrl + '/' + idAd);
   }
+
 
 }
