@@ -57,11 +57,7 @@ public class UserRequestServiceImp implements UserRequestService{
 		newUr.setStartDate(DateChecker.convertTimeForDb(userRequestDTO.getStartDate()) );
 		newUr.setEndDate(DateChecker.convertTimeForDb(userRequestDTO.getEndDate()));
 		
-		
-		
 		newUr = userRequestRepo.save(newUr);
-		
-		
 		
 		return new UserRequestDTO(newUr);
 		

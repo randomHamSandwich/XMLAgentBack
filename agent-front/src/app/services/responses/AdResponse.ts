@@ -11,4 +11,5 @@ export interface AdResponse {
     pricelist: number;
     startDate: Date;
     user: number;    
+    statusUserRequest: string;
 }
