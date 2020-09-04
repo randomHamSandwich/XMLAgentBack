@@ -87,7 +87,7 @@ export class CartListComponent implements OnInit {
   };
 
   onSendRequest(requestId: UUID){
-    let targetCartItem = this.cartItems.find( item => item.id === requestId );
+    var targetCartItem = this.cartItems.find( item => item.id === requestId );
 
     this.reservationService.crate(targetCartItem).subscribe(
       data => {

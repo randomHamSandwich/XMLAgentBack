@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AdDTO } from '../ad/ad-create/AdDTO';
 import { AdResponse } from './responses/adResponse';
 import { CartItemDTO } from '../cart-list/CartItemDTO';
 
@@ -34,7 +33,7 @@ export class ReservationService {
     return this.http.delete(this.baseUrl + '/delete/' + id);
   }
 
-  getReservationByOwner(idAd: any): Observable<any> {
+  getReservationByOwner(idAd: number): Observable<any> {
     return this.http.get<AdResponse>(this.baseUrl + '/' + idAd);
   }
 

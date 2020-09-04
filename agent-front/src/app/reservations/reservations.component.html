@@ -10,18 +10,19 @@
                     <th scope="col">Return date: </th>
                     <th scope="col">Price per day: </th>
                     <th scope="col">Discount: </th>
+                    <th scope="col">Status: </th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr *ngFor= "let cartItem of cartItems; index as i" [hidden]= "!(cartItem.user == uniqueUser.id)">
+                <tr *ngFor= "let reserve of reservations; let i = index">
                     <th scope="row">{{ i + 1}}</th>
-                    <td>{{cartItem.carBrand}} {{cartItem.carModel}}</td>
-                    <td>{{cartItem.startDate}}</td>
-                    <td>{{cartItem.endDate}}</td>
-                    <td>{{cartItem.priceDay}}</td>
-                    <td>{{cartItem.discount}}</td>
-                
+                    <td>{{reserve.carBrand}} {{reserve.carModel}}</td>
+                    <td>{{reserve.startDate}}</td>
+                    <td>{{reserve.endDate}}</td>
+                    <td>{{reserve.priceDay}}</td>
+                    <td>{{reserve.discount}}</td>
+                    <td>{{reserve.statusUserRequest}}</td>
                 </tr>
             </tbody>
         </table>
